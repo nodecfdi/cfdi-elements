@@ -7,3 +7,4 @@ coverage
 tests/_files
 .pnpm-store
 CHANGELOG.md
+*.stub

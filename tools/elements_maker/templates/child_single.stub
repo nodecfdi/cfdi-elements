@@ -1,0 +1,11 @@
+
+  public get#child-name#(): #child-name# {
+    return this.helperGetOrAdd(new #child-name#());
+  }
+
+  public add#child-name#(attributes: Record<string, unknown> = {}): #child-name# {
+    const subject = this.get#child-name#();
+    subject.addAttributes(attributes);
+
+    return subject;
+  }

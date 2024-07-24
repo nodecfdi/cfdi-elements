@@ -1,0 +1,15 @@
+
+  public add#child-name#(attributes: Record<string, unknown> = {}): #child-name# {
+    const subject = new #child-name#(attributes);
+    this.addChild(subject);
+
+    return subject;
+  }
+
+  public multi#child-name#(...elementAttributes: Array<Record<string, unknown>>): this {
+    for (const attributes of elementAttributes) {
+      this.add#child-name#(attributes);
+    }
+
+    return this;
+  }

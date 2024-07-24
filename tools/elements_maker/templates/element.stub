@@ -1,0 +1,9 @@
+import AbstractElement from '#src/common/abstract_element';
+#imports#
+
+export default class #element-name# extends AbstractElement {
+  public getElementName(): string {
+    return '#prefix#:#element-name#';
+  }
+  #sections#
+}
