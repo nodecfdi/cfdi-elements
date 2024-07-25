@@ -1,0 +1,9 @@
+{
+  "prefix": "tfd",
+  "xml-namespace": "http://www.sat.gob.mx/TimbreFiscalDigital",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.1",
+  "root-element": "TimbreFiscalDigital",
+  "structure": {}
+}
