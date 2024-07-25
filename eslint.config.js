@@ -4,4 +4,10 @@ import { defineFlatConfig } from 'eslint-define-config';
 
 export default defineFlatConfig([
   ...nodecfdiConfig({ vitest: true, ignores: { additional: ['**/*.stub'] } }),
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts', '**/tests/**/*'],
+    rules: {
+      'vitest/no-done-callback': 'off',
+    },
+  },
 ]);
