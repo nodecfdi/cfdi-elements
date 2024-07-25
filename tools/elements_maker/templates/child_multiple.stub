@@ -6,7 +6,7 @@
     return subject;
   }
 
-  public multi#child-name#(...elementAttributes: Array<Record<string, unknown>>): this {
+  public multi#child-name#(...elementAttributes: Record<string, unknown>[]): this {
     for (const attributes of elementAttributes) {
       this.add#child-name#(attributes);
     }

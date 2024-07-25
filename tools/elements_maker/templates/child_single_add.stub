@@ -1,0 +1,10 @@
+
+  public get#child-name#(): #child-name# {
+    return this.helperGetOrAdd(new #child-name#());
+  }
+
+  public add#child-name#(children: XmlNodeInterface): this {
+    this.get#child-name#().addChild(children);
+
+    return this;
+  }

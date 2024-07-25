@@ -27,7 +27,9 @@
         "ACuentaTerceros": {},
         "InformacionAduanera": { "multiple": true },
         "CuentaPredial": { "multiple": true },
-        "ComplementoConcepto": {},
+        "ComplementoConcepto": {
+          "singleAddChild": true
+        },
         "Parte": {
           "multiple": true,
           "InformacionAduanera": { "multiple": true }
@@ -35,14 +37,18 @@
       }
     },
     "Impuestos": {
-      "Traslados": {
-        "Traslado": { "multiple": true }
-      },
       "Retenciones": {
         "Retencion": { "multiple": true }
+      },
+      "Traslados": {
+        "Traslado": { "multiple": true }
       }
     },
-    "Complemento": {},
-    "Addenda": {}
+    "Complemento": {
+      "singleAddChild": true
+    },
+    "Addenda": {
+      "singleAddChild": true
+    }
   }
 }

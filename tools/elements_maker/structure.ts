@@ -1,8 +1,13 @@
 export default class Structure implements Iterable<Structure> {
   public static makeFromObject(name: string, data: object): Structure {
     let multiple = false;
-    if ('muliple' in data && typeof data.muliple === 'boolean') {
-      multiple = data.muliple;
+    let singleAddChild = false;
+    if ('multiple' in data && typeof data.multiple === 'boolean') {
+      multiple = data.multiple;
+    }
+
+    if ('singleAddChild' in data && typeof data.singleAddChild === 'boolean') {
+      singleAddChild = data.singleAddChild;
     }
 
     const children: Structure[] = [];
@@ -13,18 +18,26 @@ export default class Structure implements Iterable<Structure> {
       }
     }
 
-    return new Structure(name, multiple, ...children);
+    return new Structure(name, multiple, singleAddChild, ...children);
   }
 
   private readonly _name: string;
 
   private readonly _multiple: boolean;
 
+  private readonly _singleAddChild: boolean;
+
   private readonly _children: Structure[];
 
-  public constructor(name: string, multiple: boolean, ...children: Structure[]) {
+  public constructor(
+    name: string,
+    multiple: boolean,
+    singleAddChild: boolean,
+    ...children: Structure[]
+  ) {
     this._name = name;
     this._multiple = multiple;
+    this._singleAddChild = singleAddChild;
     this._children = children;
   }
 
@@ -38,6 +51,10 @@ export default class Structure implements Iterable<Structure> {
 
   public isMultiple(): boolean {
     return this._multiple;
+  }
+
+  public isSingleAddChild(): boolean {
+    return this._singleAddChild;
   }
 
   public getChildren(): Structure[] {

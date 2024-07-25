@@ -50,13 +50,23 @@ export default class ElementsMarker {
     }
 
     for (const child of structure) {
-      const childTemplate = child.isMultiple() ? 'child_multiple' : 'child_single';
+      const childTemplate = child.isMultiple()
+        ? 'child_multiple'
+        : child.isSingleAddChild()
+          ? 'child_single_add'
+          : 'child_single';
       sectionsContent.push(
         this.template(childTemplate, new Dictionary({ '#child-name#': child.getName() })),
       );
+
       imports.push(
         `import ${child.getName()} from '#${this._outputDir}${string.snakeCase(child.getName())}';`,
       );
+
+      if (child.isSingleAddChild()) {
+        imports.push("import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';");
+      }
+
       this.createElement(child, finalDictionary);
     }
 

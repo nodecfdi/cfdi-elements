@@ -2,6 +2,7 @@
   public getFixedAttributes(): Record<string, string> {
     return {
       'xmlns:#prefix#': '#xml-namespace#',
+      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
           '#xml-namespace# #xml-schemalocation#',
       '#version-attribute#': '#version-value#',

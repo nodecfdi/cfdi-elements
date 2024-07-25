@@ -1,7 +1,8 @@
+import { Mixin } from 'ts-mixer';
 import AbstractElement from '#src/common/abstract_element';
 #imports#
 
-export default class #element-name# extends AbstractElement {
+export default class #element-name# extends Mixin(AbstractElement) {
   public getElementName(): string {
     return '#prefix#:#element-name#';
   }
