@@ -58,6 +58,9 @@
     "typescript": "^5.5.4",
     "vitest": "^2.0.4"
   },
+  "dependencies": {
+    "ts-mixer": "^6.0.4"
+  },
   "peerDependencies": {
     "@nodecfdi/cfdi-core": "^0.3.0"
   },
