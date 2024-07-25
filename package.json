@@ -6,7 +6,62 @@
   "files": [
     "dist"
   ],
-  "exports": {},
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json",
+    "./types": {
+      "import": {
+        "types": "./dist/esm/types.d.ts",
+        "default": "./dist/esm/types.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/types.d.ts",
+        "default": "./dist/commonjs/types.js"
+      }
+    },
+    "./tfd11": {
+      "import": {
+        "types": "./dist/esm/tfd_11/*.d.ts",
+        "default": "./dist/esm/tfd_11/*.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/tfd_11/*.d.ts",
+        "default": "./dist/commonjs/tfd_11/*.js"
+      }
+    },
+    "./cfdi40": {
+      "import": {
+        "types": "./dist/esm/cfdi_40/*.d.ts",
+        "default": "./dist/esm/cfdi_40/*.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/cfdi_40/*.d.ts",
+        "default": "./dist/commonjs/cfdi_40/*.js"
+      }
+    },
+    "./pagos20": {
+      "import": {
+        "types": "./dist/esm/pagos_20/*.d.ts",
+        "default": "./dist/esm/pagos_20/*.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/pagos_20/*.d.ts",
+        "default": "./dist/commonjs/pagos_20/*.js"
+      }
+    }
+  },
   "imports": {
     "#src/*": "./src/*.js",
     "#tests/*": "./tests/*.js"
@@ -113,8 +168,11 @@
     "selfLink": false,
     "exports": {
       ".": "./src/index.ts",
+      "./package.json": "./package.json",
       "./types": "./src/types.ts",
-      "./package.json": "./package.json"
+      "./tfd11": "./src/tfd_11/*.ts",
+      "./cfdi40": "./src/cfdi_40/*.ts",
+      "./pagos20": "./src/pagos_20/*.ts"
     }
   }
 }
