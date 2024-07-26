@@ -1,0 +1,14 @@
+export { default as DoctoRelacionado } from '#src/pagos_20/docto_relacionado';
+export { default as ImpuestosDR } from '#src/pagos_20/impuestos_dr';
+export { default as ImpuestosP } from '#src/pagos_20/impuestos_p';
+export { default as Pago } from '#src/pagos_20/pago';
+export { default as Pagos } from '#src/pagos_20/pagos';
+export { default as RetencionDR } from '#src/pagos_20/retencion_dr';
+export { default as RetencionP } from '#src/pagos_20/retencion_p';
+export { default as RetencionesDR } from '#src/pagos_20/retenciones_dr';
+export { default as RetencionesP } from '#src/pagos_20/retenciones_p';
+export { default as Totales } from '#src/pagos_20/totales';
+export { default as TrasladoDR } from '#src/pagos_20/traslado_dr';
+export { default as TrasladoP } from '#src/pagos_20/traslado_p';
+export { default as TrasladosDR } from '#src/pagos_20/traslados_dr';
+export { default as TrasladosP } from '#src/pagos_20/traslados_p';

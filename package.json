@@ -33,38 +33,37 @@
     },
     "./tfd11": {
       "import": {
-        "types": "./dist/esm/tfd_11/*.d.ts",
-        "default": "./dist/esm/tfd_11/*.js"
+        "types": "./dist/esm/tfd_11/index.d.ts",
+        "default": "./dist/esm/tfd_11/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/tfd_11/*.d.ts",
-        "default": "./dist/commonjs/tfd_11/*.js"
+        "types": "./dist/commonjs/tfd_11/index.d.ts",
+        "default": "./dist/commonjs/tfd_11/index.js"
       }
     },
     "./cfdi40": {
       "import": {
-        "types": "./dist/esm/cfdi_40/*.d.ts",
-        "default": "./dist/esm/cfdi_40/*.js"
+        "types": "./dist/esm/cfdi_40/index.d.ts",
+        "default": "./dist/esm/cfdi_40/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/cfdi_40/*.d.ts",
-        "default": "./dist/commonjs/cfdi_40/*.js"
+        "types": "./dist/commonjs/cfdi_40/index.d.ts",
+        "default": "./dist/commonjs/cfdi_40/index.js"
       }
     },
     "./pagos20": {
       "import": {
-        "types": "./dist/esm/pagos_20/*.d.ts",
-        "default": "./dist/esm/pagos_20/*.js"
+        "types": "./dist/esm/pagos_20/index.d.ts",
+        "default": "./dist/esm/pagos_20/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/pagos_20/*.d.ts",
-        "default": "./dist/commonjs/pagos_20/*.js"
+        "types": "./dist/commonjs/pagos_20/index.d.ts",
+        "default": "./dist/commonjs/pagos_20/index.js"
       }
     }
   },
   "imports": {
-    "#src/*": "./src/*.js",
-    "#tests/*": "./tests/*.js"
+    "#src/*": "./src/*.js"
   },
   "scripts": {
     "prepare": "is-in-ci || husky",
@@ -79,12 +78,11 @@
     "gen:docs": "typedoc --options typedoc.json",
     "gen:changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
     "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "prebuild": "pnpm lint:check",
+    "prebuild": "pnpm lint:check && pnpm typecheck",
     "build": "tshy",
     "postbuild": "pnpm run gen:docs && git add docs/*",
     "release": "np",
-    "version": "pnpm run build && pnpm run changelog",
-    "prepublishOnly": "pnpm run build"
+    "version": "pnpm run build && pnpm run changelog"
   },
   "devDependencies": {
     "@adonisjs/ace": "^13.1.0",
@@ -170,9 +168,9 @@
       ".": "./src/index.ts",
       "./package.json": "./package.json",
       "./types": "./src/types.ts",
-      "./tfd11": "./src/tfd_11/*.ts",
-      "./cfdi40": "./src/cfdi_40/*.ts",
-      "./pagos20": "./src/pagos_20/*.ts"
+      "./tfd11": "./src/tfd_11/index.ts",
+      "./cfdi40": "./src/cfdi_40/index.ts",
+      "./pagos20": "./src/pagos_20/index.ts"
     }
   }
 }
