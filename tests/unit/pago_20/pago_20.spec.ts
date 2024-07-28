@@ -1,19 +1,19 @@
-import DoctoRelacionado from '#src/pagos_20/docto_relacionado';
-import ImpuestosDR from '#src/pagos_20/impuestos_dr';
-import ImpuestosP from '#src/pagos_20/impuestos_p';
-import Pago from '#src/pagos_20/pago';
-import Pagos from '#src/pagos_20/pagos';
-import RetencionDR from '#src/pagos_20/retencion_dr';
-import RetencionP from '#src/pagos_20/retencion_p';
-import RetencionesDR from '#src/pagos_20/retenciones_dr';
-import RetencionesP from '#src/pagos_20/retenciones_p';
-import Totales from '#src/pagos_20/totales';
-import TrasladoDR from '#src/pagos_20/traslado_dr';
-import TrasladoP from '#src/pagos_20/traslado_p';
-import TrasladosDR from '#src/pagos_20/traslados_dr';
-import TrasladosP from '#src/pagos_20/traslados_p';
+import DoctoRelacionado from '#src/pago_20/docto_relacionado';
+import ImpuestosDR from '#src/pago_20/impuestos_dr';
+import ImpuestosP from '#src/pago_20/impuestos_p';
+import Pago from '#src/pago_20/pago';
+import Pagos from '#src/pago_20/pagos';
+import RetencionDR from '#src/pago_20/retencion_dr';
+import RetencionP from '#src/pago_20/retencion_p';
+import RetencionesDR from '#src/pago_20/retenciones_dr';
+import RetencionesP from '#src/pago_20/retenciones_p';
+import Totales from '#src/pago_20/totales';
+import TrasladoDR from '#src/pago_20/traslado_dr';
+import TrasladoP from '#src/pago_20/traslado_p';
+import TrasladosDR from '#src/pago_20/traslados_dr';
+import TrasladosP from '#src/pago_20/traslados_p';
 
-describe('pagos20', () => {
+describe('pago20', () => {
   test('pagos', ({ assert }) => {
     const element = new Pagos();
     expect(element).toElementHasName('pago20:Pagos');

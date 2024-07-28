@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
 import AbstractElement from '#src/common/abstract_element';
-import ImpuestosDR from '#src/pagos_20/impuestos_dr';
+import ImpuestosDR from '#src/pago_20/impuestos_dr';
 
 export default class DoctoRelacionado extends Mixin(AbstractElement) {
   public getElementName(): string {
