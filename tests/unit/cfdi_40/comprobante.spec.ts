@@ -51,6 +51,14 @@ describe('cfdi40', () => {
     assert.toElementHasChildSingleAddChild(element, Addenda);
   });
 
+  test('comprobante impuestos shortcuts', () => {
+    const element = new Comprobante();
+    expect(element).toHaveProperty('addTraslado');
+    expect(element).toHaveProperty('multiTraslado');
+    expect(element).toHaveProperty('addRetencion');
+    expect(element).toHaveProperty('multiRetencion');
+  });
+
   test('informacion global', () => {
     const element = new InformacionGlobal();
     expect(element).toElementHasName('cfdi:InformacionGlobal');
@@ -100,6 +108,14 @@ describe('cfdi40', () => {
     assert.toElementHasChildMultiple(element, CuentaPredial);
     assert.toElementHasChildSingleAddChild(element, ComplementoConcepto);
     assert.toElementHasChildMultiple(element, Parte);
+  });
+
+  test('concepto impuestos shortcuts', () => {
+    const element = new Concepto();
+    expect(element).toHaveProperty('addTraslado');
+    expect(element).toHaveProperty('multiTraslado');
+    expect(element).toHaveProperty('addRetencion');
+    expect(element).toHaveProperty('multiRetencion');
   });
 
   test('concepto impuestos', ({ assert }) => {

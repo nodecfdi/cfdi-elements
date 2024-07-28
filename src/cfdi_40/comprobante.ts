@@ -8,10 +8,11 @@ import Conceptos from '#src/cfdi_40/conceptos';
 import Emisor from '#src/cfdi_40/emisor';
 import Impuestos from '#src/cfdi_40/impuestos';
 import InformacionGlobal from '#src/cfdi_40/informacion_global';
+import WithImpuestos from '#src/cfdi_40/mixins/with_impuestos';
 import Receptor from '#src/cfdi_40/receptor';
 import AbstractElement from '#src/common/abstract_element';
 
-export default class Comprobante extends Mixin(AbstractElement) {
+export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
   public getElementName(): string {
     return 'cfdi:Comprobante';
   }
