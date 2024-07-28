@@ -26,9 +26,10 @@ export default class MakeElements extends BaseCommand {
 
   public async run(): Promise<void> {
     let elementsCreated = false;
+    const fixedOutputDirectory = `${this.outputDirectory}${this.outputDirectory.endsWith('/') ? '' : '/'}`;
 
     try {
-      const elementsMaker = ElementsMarker.make(this.specificationFile, this.outputDirectory);
+      const elementsMaker = ElementsMarker.make(this.specificationFile, fixedOutputDirectory);
       elementsMaker.write();
       elementsCreated = true;
       this.logger.success('Elements created');
@@ -38,8 +39,8 @@ export default class MakeElements extends BaseCommand {
 
     if (this.beautify && elementsCreated) {
       const execAsync = promisify(exec);
-      const commandPrettier = `pnpm prettier --write ./${this.outputDirectory}`;
-      const commandEslint = `pnpm eslint ./${this.outputDirectory} --fix`;
+      const commandPrettier = `pnpm prettier --write ./${fixedOutputDirectory}`;
+      const commandEslint = `pnpm eslint ./${fixedOutputDirectory} --fix`;
 
       const applyPrettier = this.logger.action('Apply formatter using prettier');
       await execAsync(commandPrettier);
