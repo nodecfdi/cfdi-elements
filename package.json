@@ -1,6 +1,6 @@
 {
   "name": "@nodecfdi/cfdi-elements",
-  "version": "0.0.1-1",
+  "version": "0.1.0",
   "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
   "type": "module",
   "files": [
@@ -51,14 +51,24 @@
         "default": "./dist/commonjs/cfdi_40/index.js"
       }
     },
-    "./pagos20": {
+    "./pago20": {
       "import": {
-        "types": "./dist/esm/pagos_20/index.d.ts",
-        "default": "./dist/esm/pagos_20/index.js"
+        "types": "./dist/esm/pago_20/index.d.ts",
+        "default": "./dist/esm/pago_20/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/pagos_20/index.d.ts",
-        "default": "./dist/commonjs/pagos_20/index.js"
+        "types": "./dist/commonjs/pago_20/index.d.ts",
+        "default": "./dist/commonjs/pago_20/index.js"
+      }
+    },
+    "./implocal10": {
+      "import": {
+        "types": "./dist/esm/implocal_10/index.d.ts",
+        "default": "./dist/esm/implocal_10/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/implocal_10/index.d.ts",
+        "default": "./dist/commonjs/implocal_10/index.js"
       }
     }
   },
