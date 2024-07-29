@@ -1,3 +1,4 @@
+import { roundNumber, toFloat } from '@nodecfdi/cfdi-core';
 import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import {
   type SumaExentos,
@@ -116,7 +117,7 @@ export default class SumasConceptos {
     return this._foundAnyConceptWithDiscount;
   }
 
-  private addComprobante(comprobante: XmlNodeInterface) {
+  private addComprobante(comprobante: XmlNodeInterface): void {
     const conceptos = comprobante.searchNodes('cfdi:Conceptos', 'cfdi:Concepto');
     for (const concepto of conceptos) {
       this.addConcepto(concepto);
@@ -152,12 +153,12 @@ export default class SumasConceptos {
       0,
     );
 
-    this._impuestosTrasladados = this.round(this._impuestosTrasladados, this._precision);
-    this._impuestosRetenidos = this.round(this._impuestosRetenidos, this._precision);
-    this._importes = this.round(this._importes, this._precision);
-    this._descuento = this.round(this._descuento, this._precision);
+    this._impuestosTrasladados = roundNumber(this._impuestosTrasladados, this._precision);
+    this._impuestosRetenidos = roundNumber(this._impuestosRetenidos, this._precision);
+    this._importes = roundNumber(this._importes, this._precision);
+    this._descuento = roundNumber(this._descuento, this._precision);
 
-    this._total = this.round(
+    this._total = roundNumber(
       [
         this._importes,
         -this._descuento,
@@ -171,12 +172,12 @@ export default class SumasConceptos {
   }
 
   private addConcepto(concepto: XmlNodeInterface) {
-    this._importes += this.parseFloat(concepto.getAttribute('Importe'));
+    this._importes += toFloat(concepto.getAttribute('Importe'));
     if (concepto.hasAttribute('Descuento')) {
       this._foundAnyConceptWithDiscount = true;
     }
 
-    this._descuento += this.parseFloat(concepto.getAttribute('Descuento'));
+    this._descuento += toFloat(concepto.getAttribute('Descuento'));
 
     const traslados = concepto.searchNodes('cfdi:Impuestos', 'cfdi:Traslados', 'cfdi:Traslado');
     for (const traslado of traslados) {
@@ -211,8 +212,8 @@ export default class SumasConceptos {
     return locales.map((local) => {
       return {
         Impuesto: local.getAttribute(`ImpLoc${singular}`),
-        Tasa: this.parseFloat(local.getAttribute(`Tasade${singular}`)),
-        Importe: this.parseFloat(local.getAttribute('Importe')),
+        Tasa: toFloat(local.getAttribute(`Tasade${singular}`)),
+        Importe: toFloat(local.getAttribute('Importe')),
       };
     });
   }
@@ -221,16 +222,16 @@ export default class SumasConceptos {
     T extends Record<string, { Impuesto: string; Importe: number; Base?: number }>,
   >(group: T): T {
     for (const key of Object.keys(group)) {
-      group[key].Importe = this.round(group[key].Importe, this._precision);
+      group[key].Importe = roundNumber(group[key].Importe, this._precision);
       if (group[key].Base !== undefined) {
-        group[key].Base = this.round(group[key].Base, this._precision);
+        group[key].Base = roundNumber(group[key].Base, this._precision);
       }
     }
 
     return group;
   }
 
-  private addTraslado(traslado: XmlNodeInterface) {
+  private addTraslado(traslado: XmlNodeInterface): void {
     const key = this.impuestoKey(
       traslado.getAttribute('Impuesto'),
       traslado.getAttribute('TipoFactor'),
@@ -247,11 +248,11 @@ export default class SumasConceptos {
       };
     }
 
-    this._traslados[key].Importe += this.parseFloat(traslado.getAttribute('Importe'));
-    this._traslados[key].Base += this.parseFloat(traslado.getAttribute('Base'));
+    this._traslados[key].Importe += toFloat(traslado.getAttribute('Importe'));
+    this._traslados[key].Base += toFloat(traslado.getAttribute('Base'));
   }
 
-  private addExento(exento: XmlNodeInterface) {
+  private addExento(exento: XmlNodeInterface): void {
     const key = this.impuestoKey(
       exento.getAttribute('Impuesto'),
       exento.getAttribute('TipoFactor'),
@@ -264,10 +265,10 @@ export default class SumasConceptos {
       };
     }
 
-    this._exentos[key].Base += this.parseFloat(exento.getAttribute('Base'));
+    this._exentos[key].Base += toFloat(exento.getAttribute('Base'));
   }
 
-  private addRetencion(retencion: XmlNodeInterface) {
+  private addRetencion(retencion: XmlNodeInterface): void {
     const key = this.impuestoKey(retencion.getAttribute('Impuesto'));
     if (!(key in this._retenciones)) {
       this._retenciones[key] = {
@@ -276,26 +277,10 @@ export default class SumasConceptos {
       };
     }
 
-    this._retenciones[key].Importe += this.parseFloat(retencion.getAttribute('Importe'));
+    this._retenciones[key].Importe += toFloat(retencion.getAttribute('Importe'));
   }
 
   public impuestoKey(impuesto: string, tipoFactor = '', tasaOCuota = ''): string {
     return [impuesto, tipoFactor, tasaOCuota].join(':');
-  }
-
-  private round(num: number, precision: number) {
-    const numSign = num >= 0 ? 1 : -1;
-
-    return this.parseFloat(
-      (
-        Math.round(num * Math.pow(10, precision) + numSign * 0.0001) / Math.pow(10, precision)
-      ).toFixed(precision),
-    );
-  }
-
-  private parseFloat(value: string): number {
-    const resultFloat = Number.parseFloat(value);
-
-    return Number.isNaN(resultFloat) ? 0 : resultFloat;
   }
 }
