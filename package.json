@@ -171,7 +171,8 @@
       "./types": "./src/types.ts",
       "./tfd11": "./src/tfd_11/index.ts",
       "./cfdi40": "./src/cfdi_40/index.ts",
-      "./pagos20": "./src/pagos_20/index.ts"
+      "./pago20": "./src/pago_20/index.ts",
+      "./implocal10": "./src/implocal_10/index.ts"
     }
   }
 }
