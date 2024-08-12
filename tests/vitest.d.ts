@@ -21,18 +21,18 @@ declare module 'vitest' {
 
   interface TestContext {
     assert: {
-      toElementHasChildSingle<T extends AbstractElement, Y extends AbstractElement>(
-        element: T,
+      toElementHasChildSingle<Y extends AbstractElement>(
+        element: AbstractElement,
         childClass: Constructor<Y>,
         getterParameter?: string,
         adderParameter?: string,
       ): void;
-      toElementHasChildSingleAddChild<T extends AbstractElement, Y extends AbstractElement>(
-        element: T,
+      toElementHasChildSingleAddChild<Y extends AbstractElement>(
+        element: AbstractElement,
         childClass: Constructor<Y>,
       ): void;
-      toElementHasChildMultiple<T extends AbstractElement, Y extends AbstractElement>(
-        element: T,
+      toElementHasChildMultiple<Y extends AbstractElement>(
+        element: AbstractElement,
         childClass: Constructor<Y>,
         elementName?: string,
       ): void;

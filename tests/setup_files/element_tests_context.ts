@@ -6,7 +6,7 @@
 import { XmlNode } from '@nodecfdi/cfdi-core';
 import type AbstractElement from '#src/common/abstract_element';
 
-type WrapMethod = <Y extends AbstractElement>(...args: unknown[]) => Y;
+type WrapMethod = (...args: unknown[]) => AbstractElement;
 
 beforeEach(async (ctx) => {
   ctx.assert = {
