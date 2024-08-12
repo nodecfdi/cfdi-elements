@@ -1,3 +1,8 @@
+## [0.2.0](https://github.com/nodecfdi/cfdi-elements/compare/v0.1.0...v0.2.0) (2024-08-12)
+
+### Features
+
+* :sparkles: add new element donatarias 11 ([8e9c0f2](https://github.com/nodecfdi/cfdi-elements/commit/8e9c0f282f0bdd97adff9630f85489414b25dc7b))
 ## [0.1.0](https://github.com/nodecfdi/cfdi-elements/compare/v0.0.1-1...v0.1.0) (2024-07-29)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@nodecfdi/cfdi-elements",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
   "type": "module",
   "files": [
@@ -69,6 +69,16 @@
       "require": {
         "types": "./dist/commonjs/implocal_10/index.d.ts",
         "default": "./dist/commonjs/implocal_10/index.js"
+      }
+    },
+    "./donat11": {
+      "import": {
+        "types": "./dist/esm/donat_11/index.d.ts",
+        "default": "./dist/esm/donat_11/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/donat_11/index.d.ts",
+        "default": "./dist/commonjs/donat_11/index.js"
       }
     }
   },
