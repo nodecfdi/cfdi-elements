@@ -99,7 +99,7 @@
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@jsprismarine/typedoc-material-theme": "^1.0.4",
-    "@nodecfdi/cfdi-core": "^0.4.1",
+    "@nodecfdi/cfdi-core": "^0.4.3",
     "@nodecfdi/eslint-config": "^1.9.3",
     "@nodecfdi/prettier-config": "^1.1.1",
     "@nodecfdi/tsconfig": "^1.5.0",
@@ -126,7 +126,7 @@
     "ts-mixer": "^6.0.4"
   },
   "peerDependencies": {
-    "@nodecfdi/cfdi-core": "^0.4.0"
+    "@nodecfdi/cfdi-core": "^0.4.3"
   },
   "author": "Fernando Isidro <luffynando@gmail.com>",
   "license": "MIT",
@@ -182,7 +182,8 @@
       "./tfd11": "./src/tfd_11/index.ts",
       "./cfdi40": "./src/cfdi_40/index.ts",
       "./pago20": "./src/pago_20/index.ts",
-      "./implocal10": "./src/implocal_10/index.ts"
+      "./implocal10": "./src/implocal_10/index.ts",
+      "./donat11": "./src/donat_11/index.ts"
     }
   }
 }
