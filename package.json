@@ -193,7 +193,8 @@
       "./cfdi40": "./src/cfdi_40/index.ts",
       "./pago20": "./src/pago_20/index.ts",
       "./implocal10": "./src/implocal_10/index.ts",
-      "./donat11": "./src/donat_11/index.ts"
+      "./donat11": "./src/donat_11/index.ts",
+      "./leyendasFisc10": "./src/leyendas_fisc_10/index.ts"
     }
   }
 }
