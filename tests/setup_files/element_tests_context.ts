@@ -97,15 +97,11 @@ beforeEach(async (ctx) => {
       ).toBe('first');
       expect(element).toHaveLength(1);
 
-      const second = (element[adder] as WrapMethod)({ id: 'second' });
+      const second = (element[adder] as WrapMethod)();
       expect(
         second,
         `The method ${elementClassName}.${String(adder)} should return the an instance of ${childClassName}`,
       ).toBeInstanceOf(childClass);
-      expect(
-        second.getAttribute('id'),
-        `The method ${elementClassName}.${String(adder)} should write the attributes`,
-      ).toBe('second');
       expect(element).toHaveLength(2);
 
       const multier = `multi${childClassName}` as keyof typeof element;
