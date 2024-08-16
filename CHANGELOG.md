@@ -1,3 +1,8 @@
+## [0.3.0](https://github.com/nodecfdi/cfdi-elements/compare/v0.2.0...v0.3.0) (2024-08-16)
+
+### Features
+
+* :sparkles: add new element leyendas fiscales 10 ([6f80465](https://github.com/nodecfdi/cfdi-elements/commit/6f804653be3ba2cfcf9cb06657a2b87216ca3058))
 ## [0.2.0](https://github.com/nodecfdi/cfdi-elements/compare/v0.1.0...v0.2.0) (2024-08-12)
 
 ### Features
