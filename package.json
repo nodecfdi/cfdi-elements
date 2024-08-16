@@ -110,12 +110,12 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@jsprismarine/typedoc-material-theme": "^1.0.4",
     "@nodecfdi/cfdi-core": "^0.4.3",
-    "@nodecfdi/eslint-config": "^1.9.3",
+    "@nodecfdi/eslint-config": "^1.10.1",
     "@nodecfdi/prettier-config": "^1.1.1",
-    "@nodecfdi/tsconfig": "^1.5.0",
+    "@nodecfdi/tsconfig": "^1.6.0",
     "@poppinss/utils": "^6.7.3",
-    "@swc/core": "^1.7.10",
-    "@types/node": "^20.14.15",
+    "@swc/core": "^1.7.11",
+    "@types/node": "^20.15.0",
     "@vitest/coverage-istanbul": "^2.0.5",
     "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
@@ -136,7 +136,7 @@
     "ts-mixer": "^6.0.4"
   },
   "peerDependencies": {
-    "@nodecfdi/cfdi-core": "^0.4.3"
+    "@nodecfdi/cfdi-core": ">=0.4.3"
   },
   "author": "Fernando Isidro <luffynando@gmail.com>",
   "license": "MIT",
@@ -171,7 +171,7 @@
     ]
   },
   "prettier": "@nodecfdi/prettier-config",
-  "packageManager": "pnpm@9.7.0",
+  "packageManager": "pnpm@9.7.1",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
