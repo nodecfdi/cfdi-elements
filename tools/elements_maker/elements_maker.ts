@@ -1,6 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-// eslint-disable-next-line import-x/no-deprecated
 import { getDirname } from '@poppinss/utils';
 import string from '@poppinss/utils/string';
 import Dictionary from './dictionary.js';

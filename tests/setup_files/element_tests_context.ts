@@ -1,4 +1,3 @@
-/* eslint-disable vitest/valid-expect */
 /* eslint-disable vitest/no-standalone-expect */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable vitest/require-top-level-describe */

@@ -1,7 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { args, BaseCommand } from '@adonisjs/ace';
-// eslint-disable-next-line import-x/no-deprecated
 import { getDirname } from '@poppinss/utils';
 import string from '@poppinss/utils/string';
 
