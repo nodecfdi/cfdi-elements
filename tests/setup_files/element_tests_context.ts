@@ -37,6 +37,16 @@ beforeEach(async (ctx) => {
         instanceTwo.getAttribute('foo'),
         `The method ${elementClassName}.${String(adder)} should write the attributes on the same instance`,
       ).toBe('bar');
+
+      const instanceThreeEmpty = (element[adder] as WrapMethod)();
+      expect(
+        instanceThreeEmpty,
+        `The method ${elementClassName}.${String(adder)} should return the an instance of ${childClassName}`,
+      ).toBeInstanceOf(childClass);
+      expect(
+        instanceThreeEmpty.attributes(),
+        `The method ${elementClassName}.${String(adder)} with empty attributes not append nothing`,
+      ).toHaveLength(1);
     },
 
     toElementHasChildSingleAddChild(element, childClass) {
