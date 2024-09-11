@@ -1,7 +1,7 @@
 {
   "name": "@nodecfdi/cfdi-elements",
   "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "files": [
     "dist"
@@ -89,6 +89,16 @@
       "require": {
         "types": "./dist/commonjs/leyendas_fisc_10/index.d.ts",
         "default": "./dist/commonjs/leyendas_fisc_10/index.js"
+      }
+    },
+    "./plataformasTecnologicas10": {
+      "import": {
+        "types": "./dist/esm/plataformas_tecnologicas_10/index.d.ts",
+        "default": "./dist/esm/plataformas_tecnologicas_10/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/plataformas_tecnologicas_10/index.d.ts",
+        "default": "./dist/commonjs/plataformas_tecnologicas_10/index.js"
       }
     }
   },
