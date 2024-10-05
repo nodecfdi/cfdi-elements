@@ -1,7 +1,6 @@
 {
   "extends": "@nodecfdi/tsconfig/tsconfig.package.json",
   "compilerOptions": {
-    "lib": ["ESNext"],
     "types": ["vitest/globals", "@types/node"]
   }
 }

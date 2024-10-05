@@ -20,7 +20,6 @@
         "default": "./dist/commonjs/index.js"
       }
     },
-    "./package.json": "./package.json",
     "./types": {
       "import": {
         "types": "./dist/esm/types.d.ts",
@@ -125,35 +124,35 @@
   },
   "devDependencies": {
     "@adonisjs/ace": "^13.2.0",
-    "@commitlint/cli": "^19.4.1",
-    "@commitlint/config-conventional": "^19.4.1",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@jsprismarine/typedoc-material-theme": "^1.0.4",
-    "@nodecfdi/cfdi-core": "^0.4.3",
-    "@nodecfdi/eslint-config": "^2.0.2",
+    "@nodecfdi/cfdi-core": ">=0.6.1",
+    "@nodecfdi/eslint-config": "^2.0.6",
     "@nodecfdi/prettier-config": "^1.2.0",
     "@nodecfdi/tsconfig": "^1.7.2",
-    "@poppinss/utils": "^6.7.3",
-    "@swc/core": "^1.7.24",
-    "@types/node": "^20.16.5",
-    "@vitest/coverage-istanbul": "^2.0.5",
-    "auto-changelog": "^2.4.0",
-    "eslint": "^9.10.0",
-    "husky": "^9.1.5",
+    "@poppinss/utils": "^6.8.3",
+    "@swc/core": "^1.7.26",
+    "@types/node": "^20.16.10",
+    "@vitest/coverage-istanbul": "^2.1.2",
+    "auto-changelog": "^2.5.0",
+    "eslint": "^9.12.0",
+    "husky": "^9.1.6",
     "is-in-ci": "^1.0.0",
     "jest-xml-matcher": "^1.2.0",
     "np": "^10.0.7",
     "prettier": "^3.3.3",
     "ts-node-maintained": "^10.9.4",
     "tshy": "^3.0.2",
-    "typedoc": "^0.26.7",
+    "typedoc": "^0.26.8",
     "typescript": "^5.6.2",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.2"
   },
   "dependencies": {
     "ts-mixer": "^6.0.4"
   },
   "peerDependencies": {
-    "@nodecfdi/cfdi-core": ">=0.4.3"
+    "@nodecfdi/cfdi-core": ">=0.6.1"
   },
   "author": "Fernando Isidro <luffynando@gmail.com>",
   "license": "MIT",
@@ -188,7 +187,7 @@
     ]
   },
   "prettier": "@nodecfdi/prettier-config",
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.12.0",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -207,7 +206,6 @@
     "selfLink": false,
     "exports": {
       ".": "./src/index.ts",
-      "./package.json": "./package.json",
       "./types": "./src/types.ts",
       "./tfd11": "./src/tfd_11/index.ts",
       "./cfdi40": "./src/cfdi_40/index.ts",
