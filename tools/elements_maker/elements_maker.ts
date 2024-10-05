@@ -30,7 +30,9 @@ export default class ElementsMarker {
 
   public createElement(structure: Structure, dictionary: Dictionary, isRoot = false): void {
     const prefix = dictionary.get('#prefix#');
-    let finalDictionary = dictionary.with('#element-name#', structure.getName());
+    let finalDictionary = dictionary
+      .with('#element-name#', structure.getElementName())
+      .with('#class-name#', structure.getName());
     const sectionsContent: string[] = [];
     const imports: string[] = [];
     const orderElements = structure.getChildrenNames(`${prefix}:`);
