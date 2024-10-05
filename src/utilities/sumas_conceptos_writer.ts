@@ -166,8 +166,8 @@ export default class SumasConceptosWriter {
     const result: Record<string, unknown>[] = [];
     for (const impuesto of Object.values(impuestos)) {
       const resultImpuesto = Object.assign(impuesto, {
-        Base: hasBase ? formatNumber(impuesto.Base ?? 0, this._precision) : undefined,
-        Importe: hasImporte ? formatNumber(impuesto.Importe ?? 0, this._precision) : undefined,
+        Base: hasBase ? formatNumber(impuesto.Base!, this._precision) : undefined,
+        Importe: hasImporte ? formatNumber(impuesto.Importe!, this._precision) : undefined,
       });
 
       result.push({
