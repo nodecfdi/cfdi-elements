@@ -32,7 +32,7 @@ export default class SumasConceptos {
 
   private _localesRetenciones: SumaLocal[] = [];
 
-  private _precision: number;
+  private readonly _precision: number;
 
   private _foundAnyConceptWithDiscount = false;
 

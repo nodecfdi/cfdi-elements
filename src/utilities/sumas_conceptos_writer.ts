@@ -4,15 +4,15 @@ import Comprobante from '#src/cfdi_40/comprobante';
 import type SumasConceptos from '#src/utilities/sumas_conceptos';
 
 export default class SumasConceptosWriter {
-  private _comprobante: Comprobante;
+  private readonly _comprobante: Comprobante;
 
-  private _sumas: SumasConceptos;
+  private readonly _sumas: SumasConceptos;
 
-  private _precision: number;
+  private readonly _precision: number;
 
-  private _writeImpuestosBase: boolean;
+  private readonly _writeImpuestosBase: boolean;
 
-  private _writeExentos: boolean;
+  private readonly _writeExentos: boolean;
 
   public constructor(comprobante: XmlNodeInterface, sumas: SumasConceptos, precision = 6) {
     if (comprobante instanceof Comprobante) {
@@ -166,8 +166,8 @@ export default class SumasConceptosWriter {
     const result: Record<string, unknown>[] = [];
     for (const impuesto of Object.values(impuestos)) {
       const resultImpuesto = Object.assign(impuesto, {
-        Base: hasBase ? formatNumber(impuesto.Base!, this._precision) : undefined,
-        Importe: hasImporte ? formatNumber(impuesto.Importe!, this._precision) : undefined,
+        Base: hasBase ? formatNumber(impuesto.Base ?? 0, this._precision) : undefined,
+        Importe: hasImporte ? formatNumber(impuesto.Importe ?? 0, this._precision) : undefined,
       });
 
       result.push({
