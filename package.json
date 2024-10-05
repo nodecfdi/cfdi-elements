@@ -99,6 +99,16 @@
         "types": "./dist/commonjs/plataformas_tecnologicas_10/index.d.ts",
         "default": "./dist/commonjs/plataformas_tecnologicas_10/index.js"
       }
+    },
+    "./cartaporte31": {
+      "import": {
+        "types": "./dist/esm/cartaporte_31/index.d.ts",
+        "default": "./dist/esm/cartaporte_31/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/cartaporte_31/index.d.ts",
+        "default": "./dist/commonjs/cartaporte_31/index.js"
+      }
     }
   },
   "imports": {
@@ -172,7 +182,9 @@
     "cfdi40",
     "pagos20",
     "sat",
-    "mx"
+    "mx",
+    "cartaporte",
+    "implocal"
   ],
   "engines": {
     "node": ">=18 <=22 || ^16"
@@ -213,7 +225,8 @@
       "./implocal10": "./src/implocal_10/index.ts",
       "./donat11": "./src/donat_11/index.ts",
       "./leyendasFisc10": "./src/leyendas_fisc_10/index.ts",
-      "./plataformasTecnologicas10": "./src/plataformas_tecnologicas_10/index.ts"
+      "./plataformasTecnologicas10": "./src/plataformas_tecnologicas_10/index.ts",
+      "./cartaporte31": "./src/cartaporte_31/index.ts"
     }
   }
 }
