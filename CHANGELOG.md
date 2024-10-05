@@ -5,13 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.4.0](https://luffynando.github.com/nodecfdi/cfdi-elements/compare/v0.3.0...v0.4.0)
+## [v0.5.0](https://luffynando.github.com/nodecfdi/cfdi-elements/compare/v0.4.0...v0.5.0)
 
 ### Commits
 
+- feat: :sparkles: add element cartaporte 31 [`a9f7419`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/a9f74194882304b88c42cf8d251ea376c15aa636)
+- build: :sparkles: add exports for recent new element cartaporte31 [`cdd84bb`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/cdd84bb7071d187e6ea1b5c1a713eb19bbbc0c57)
+- chore: :arrow_up: update dependencies and update configs for latest changes in org [`7179aa0`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/7179aa0e6154ee74815864477e9d70c57c43a329)
+
+## [v0.4.0](https://luffynando.github.com/nodecfdi/cfdi-elements/compare/v0.3.0...v0.4.0) - 2024-09-10
+
+### Commits
+
+- chore(release): :tada: 0.4.0 [`19c05d0`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/19c05d0d1661aebddb6c0a1bdc71b8550683d71d)
 - feat: :sparkles: add element plataformas tecnologicas 10 [`cb7f4fd`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/cb7f4fd9b271136840827d50e9b493c29107f929)
 - chore: :arrow_up: update dev dependencies and apply new eslint config and changelog generator [`f7d5739`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/f7d57399ec5d595257ffa05792510133a2ea65d4)
-- test: :test_tube: add tests for recent element servicios plataformas tecnologicas 10 [`fab66d0`](https://luffynando.github.com/nodecfdi/cfdi-elements/commit/fab66d0bb2733666cff51c36f52e594abfa69ebd)
 
 ## [v0.3.0](https://luffynando.github.com/nodecfdi/cfdi-elements/compare/v0.2.0...v0.3.0) - 2024-08-16
 
