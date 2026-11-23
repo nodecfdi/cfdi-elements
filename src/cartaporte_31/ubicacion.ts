@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Domicilio from '#src/cartaporte_31/domicilio';
-import AbstractElement from '#src/common/abstract_element';
+import Domicilio from './domicilio';
+import AbstractElement from '../common/abstract_element';
 
 export default class Ubicacion extends Mixin(AbstractElement) {
   public getElementName(): string {

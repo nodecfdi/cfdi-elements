@@ -1,7 +1,7 @@
 import { formatNumber, roundNumber } from '@nodecfdi/cfdi-core';
 import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import Comprobante from '#src/cfdi_40/comprobante';
-import type SumasConceptos from '#src/utilities/sumas_conceptos';
+import Comprobante from '../cfdi_40/comprobante';
+import type SumasConceptos from './sumas_conceptos';
 
 export default class SumasConceptosWriter {
   private readonly _comprobante: Comprobante;

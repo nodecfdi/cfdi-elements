@@ -1,10 +1,10 @@
 import { Mixin } from 'ts-mixer';
-import Autotransporte from '#src/cartaporte_31/autotransporte';
-import Mercancia from '#src/cartaporte_31/mercancia';
-import TransporteAereo from '#src/cartaporte_31/transporte_aereo';
-import TransporteFerroviario from '#src/cartaporte_31/transporte_ferroviario';
-import TransporteMaritimo from '#src/cartaporte_31/transporte_maritimo';
-import AbstractElement from '#src/common/abstract_element';
+import Autotransporte from './autotransporte';
+import Mercancia from './mercancia';
+import TransporteAereo from './transporte_aereo';
+import TransporteFerroviario from './transporte_ferroviario';
+import TransporteMaritimo from './transporte_maritimo';
+import AbstractElement from '../common/abstract_element';
 
 export default class Mercancias extends Mixin(AbstractElement) {
   public getElementName(): string {

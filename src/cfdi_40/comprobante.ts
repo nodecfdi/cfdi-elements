@@ -1,16 +1,16 @@
 import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import { Mixin } from 'ts-mixer';
-import Addenda from '#src/cfdi_40/addenda';
-import CfdiRelacionados from '#src/cfdi_40/cfdi_relacionados';
-import Complemento from '#src/cfdi_40/complemento';
-import type Concepto from '#src/cfdi_40/concepto';
-import Conceptos from '#src/cfdi_40/conceptos';
-import Emisor from '#src/cfdi_40/emisor';
-import Impuestos from '#src/cfdi_40/impuestos';
-import InformacionGlobal from '#src/cfdi_40/informacion_global';
-import WithImpuestos from '#src/cfdi_40/mixins/with_impuestos';
-import Receptor from '#src/cfdi_40/receptor';
-import AbstractElement from '#src/common/abstract_element';
+import Addenda from './addenda';
+import CfdiRelacionados from './cfdi_relacionados';
+import Complemento from './complemento';
+import type Concepto from './concepto';
+import Conceptos from './conceptos';
+import Emisor from './emisor';
+import Impuestos from './impuestos';
+import InformacionGlobal from './informacion_global';
+import WithImpuestos from './mixins/with_impuestos';
+import Receptor from './receptor';
+import AbstractElement from '../common/abstract_element';
 
 export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
   public getElementName(): string {

@@ -1,9 +1,9 @@
 import { Mixin } from 'ts-mixer';
-import FiguraTransporte from '#src/cartaporte_31/figura_transporte';
-import Mercancias from '#src/cartaporte_31/mercancias';
-import RegimenesAduaneros from '#src/cartaporte_31/regimenes_aduaneros';
-import Ubicaciones from '#src/cartaporte_31/ubicaciones';
-import AbstractElement from '#src/common/abstract_element';
+import FiguraTransporte from './figura_transporte';
+import Mercancias from './mercancias';
+import RegimenesAduaneros from './regimenes_aduaneros';
+import Ubicaciones from './ubicaciones';
+import AbstractElement from '../common/abstract_element';
 
 export default class CartaPorte extends Mixin(AbstractElement) {
   public getElementName(): string {

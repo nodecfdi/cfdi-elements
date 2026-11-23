@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Contenedor from '#src/cartaporte_31/contenedor_ferroviario';
-import AbstractElement from '#src/common/abstract_element';
+import Contenedor from './contenedor_ferroviario';
+import AbstractElement from '../common/abstract_element';
 
 export default class Carro extends Mixin(AbstractElement) {
   public getElementName(): string {

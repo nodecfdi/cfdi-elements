@@ -1,4 +1,4 @@
-import TimbreFiscalDigital from '#src/tfd_11/timbre_fiscal_digital';
+import TimbreFiscalDigital from '../../../src/tfd_11/timbre_fiscal_digital';
 
 describe('tfd11', () => {
   test('timbre fiscal digital', () => {

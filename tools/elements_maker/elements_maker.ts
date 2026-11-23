@@ -61,7 +61,7 @@ export default class ElementsMarker {
       );
 
       imports.push(
-        `import ${child.getName()} from '#${this._outputDir}${string.snakeCase(child.getName())}';`,
+        `import ${child.getName()} from './${string.snakeCase(child.getName())}';`,
       );
 
       if (child.isSingleAddChild()) {

@@ -1,5 +1,5 @@
 import 'jest-xml-matcher';
-import type AbstractElement from '#src/common/abstract_element';
+import type AbstractElement from '../../src/common/abstract_element';
 
 expect.extend({
   toElementHasName(received: AbstractElement, expected: string) {

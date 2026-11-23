@@ -1,9 +1,9 @@
 import { Mixin } from 'ts-mixer';
-import CantidadTransporta from '#src/cartaporte_31/cantidad_transporta';
-import DetalleMercancia from '#src/cartaporte_31/detalle_mercancia';
-import DocumentacionAduanera from '#src/cartaporte_31/documentacion_aduanera';
-import GuiasIdentificacion from '#src/cartaporte_31/guias_identificacion';
-import AbstractElement from '#src/common/abstract_element';
+import CantidadTransporta from './cantidad_transporta';
+import DetalleMercancia from './detalle_mercancia';
+import DocumentacionAduanera from './documentacion_aduanera';
+import GuiasIdentificacion from './guias_identificacion';
+import AbstractElement from '../common/abstract_element';
 
 export default class Mercancia extends Mixin(AbstractElement) {
   public getElementName(): string {

@@ -1,6 +1,6 @@
-import type Impuestos from '#src/cfdi_40/impuestos';
-import type Retencion from '#src/cfdi_40/retencion';
-import type Traslado from '#src/cfdi_40/traslado';
+import type Impuestos from '../impuestos';
+import type Retencion from '../retencion';
+import type Traslado from '../traslado';
 
 export default abstract class WithImpuestos {
   public abstract getImpuestos(): Impuestos;

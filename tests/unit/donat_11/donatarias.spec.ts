@@ -1,4 +1,4 @@
-import Donatarias from '#src/donat_11/donatarias';
+import Donatarias from '../../../src/donat_11/donatarias';
 
 describe('donat11', () => {
   test('donatarias', () => {

@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Remolque from '#src/cartaporte_31/remolque';
-import AbstractElement from '#src/common/abstract_element';
+import Remolque from './remolque';
+import AbstractElement from '../common/abstract_element';
 
 export default class Remolques extends Mixin(AbstractElement) {
   public getElementName(): string {

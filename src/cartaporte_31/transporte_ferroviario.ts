@@ -1,7 +1,7 @@
 import { Mixin } from 'ts-mixer';
-import Carro from '#src/cartaporte_31/carro';
-import DerechosDePaso from '#src/cartaporte_31/derechos_de_paso';
-import AbstractElement from '#src/common/abstract_element';
+import Carro from './carro';
+import DerechosDePaso from './derechos_de_paso';
+import AbstractElement from '../common/abstract_element';
 
 export default class TransporteFerroviario extends Mixin(AbstractElement) {
   public getElementName(): string {

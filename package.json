@@ -26,9 +26,6 @@
     "cartaporte",
     "implocal"
   ],
-  "imports": {
-    "#src/*": "./src/*.js"
-  },
   "exports": {
     ".": {
       "import": {

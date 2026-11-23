@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'vitest';
-import type AbstractElement from '#src/common/abstract_element';
+import type AbstractElement from '../src/common/abstract_element';
 
 type Constructor<T> = new (...args: any[]) => T;
 

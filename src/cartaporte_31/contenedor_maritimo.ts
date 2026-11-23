@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import RemolquesCCP from '#src/cartaporte_31/remolques_ccp';
-import AbstractElement from '#src/common/abstract_element';
+import RemolquesCCP from './remolques_ccp';
+import AbstractElement from '../common/abstract_element';
 
 export default class ContenedorMaritimo extends Mixin(AbstractElement) {
   public getElementName(): string {

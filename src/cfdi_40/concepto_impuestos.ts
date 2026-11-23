@@ -1,5 +1,5 @@
 import { Mixin } from 'ts-mixer';
-import Impuestos from '#src/cfdi_40/impuestos';
+import Impuestos from './impuestos';
 
 export default class ConceptoImpuestos extends Mixin(Impuestos) {
   public getChildrenOrder(): string[] {

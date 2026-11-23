@@ -1,7 +1,7 @@
 import { XmlNode } from '@nodecfdi/cfdi-core';
-import Comprobante from '#src/cfdi_40/comprobante';
-import ImpuestosLocales from '#src/implocal_10/impuestos_locales';
-import SumasConceptos from '#src/utilities/sumas_conceptos';
+import Comprobante from '../../../src/cfdi_40/comprobante';
+import ImpuestosLocales from '../../../src/implocal_10/impuestos_locales';
+import SumasConceptos from '../../../src/utilities/sumas_conceptos';
 
 describe('sumas conceptos', () => {
   test('constructor', () => {

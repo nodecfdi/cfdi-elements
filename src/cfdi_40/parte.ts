@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import InformacionAduanera from '#src/cfdi_40/informacion_aduanera';
-import AbstractElement from '#src/common/abstract_element';
+import InformacionAduanera from './informacion_aduanera';
+import AbstractElement from '../common/abstract_element';
 
 export default class Parte extends Mixin(AbstractElement) {
   public getElementName(): string {

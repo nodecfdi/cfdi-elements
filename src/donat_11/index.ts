@@ -1,1 +1,1 @@
-export { default as Donatarias } from '#src/donat_11/donatarias';
+export { default as Donatarias } from './donatarias';

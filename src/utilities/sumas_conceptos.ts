@@ -5,7 +5,7 @@ import {
   type SumaLocal,
   type SumaRetenciones,
   type SumaTraslados,
-} from '#src/types';
+} from '../types';
 
 export default class SumasConceptos {
   private _importes = 0;

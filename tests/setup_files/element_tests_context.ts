@@ -3,7 +3,7 @@
 /* eslint-disable vitest/require-top-level-describe */
 
 import { XmlNode } from '@nodecfdi/cfdi-core';
-import type AbstractElement from '#src/common/abstract_element';
+import type AbstractElement from '../../src/common/abstract_element';
 
 type WrapMethod = (...args: unknown[]) => AbstractElement;
 

@@ -1,7 +1,7 @@
 import { Mixin } from 'ts-mixer';
-import Retenciones from '#src/cfdi_40/retenciones';
-import Traslados from '#src/cfdi_40/traslados';
-import AbstractElement from '#src/common/abstract_element';
+import Retenciones from './retenciones';
+import Traslados from './traslados';
+import AbstractElement from '../common/abstract_element';
 
 export default class Impuestos extends Mixin(AbstractElement) {
   public getElementName(): string {
