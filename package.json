@@ -187,7 +187,7 @@
     "implocal"
   ],
   "engines": {
-    "node": ">=18 <=22 || ^16"
+    "node": "^22.13.0 || ^24 || ^26"
   },
   "browserslist": [
     "defaults",
@@ -199,7 +199,7 @@
     ]
   },
   "prettier": "@nodecfdi/prettier-config",
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@12.23.0",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
