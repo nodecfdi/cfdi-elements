@@ -12,10 +12,10 @@ describe('plataformasTecnologicas10', () => {
     expect(element).toElementHasName('plataformasTecnologicas:ServiciosPlataformasTecnologicas');
     expect(element).toElementHasFixedAttributes({
       'xmlns:plataformasTecnologicas':
-        'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10',
+        'https://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10 http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd',
+        'https://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10 https://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd',
       'Version': '1.0',
     });
     assert.toElementHasChildSingle(element, Servicios);

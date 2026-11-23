@@ -14,10 +14,10 @@ export default class Pagos extends Mixin(AbstractElement) {
 
   public getFixedAttributes(): Record<string, string> {
     return {
-      'xmlns:pago20': 'http://www.sat.gob.mx/Pagos20',
+      'xmlns:pago20': 'https://www.sat.gob.mx/Pagos20',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
+        'https://www.sat.gob.mx/Pagos20 https://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
       'Version': '2.0',
     };
   }

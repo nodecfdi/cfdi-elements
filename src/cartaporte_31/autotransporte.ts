@@ -1,8 +1,8 @@
 import { Mixin } from 'ts-mixer';
+import AbstractElement from '../common/abstract_element';
 import IdentificacionVehicular from './identificacion_vehicular';
 import Remolques from './remolques';
 import Seguros from './seguros';
-import AbstractElement from '../common/abstract_element';
 
 export default class Autotransporte extends Mixin(AbstractElement) {
   public getElementName(): string {

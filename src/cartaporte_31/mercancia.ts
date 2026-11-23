@@ -1,9 +1,9 @@
 import { Mixin } from 'ts-mixer';
+import AbstractElement from '../common/abstract_element';
 import CantidadTransporta from './cantidad_transporta';
 import DetalleMercancia from './detalle_mercancia';
 import DocumentacionAduanera from './documentacion_aduanera';
 import GuiasIdentificacion from './guias_identificacion';
-import AbstractElement from '../common/abstract_element';
 
 export default class Mercancia extends Mixin(AbstractElement) {
   public getElementName(): string {

@@ -37,11 +37,7 @@ export default class SpecificationsReader {
   }
 
   public keyAsString(name: string): string {
-    if (!(name in this._data)) {
-      return '';
-    }
-
-    if (typeof this._data[name] !== 'string') {
+    if (!(name in this._data) || (typeof this._data[name] !== 'string')) {
       return '';
     }
 
@@ -49,11 +45,7 @@ export default class SpecificationsReader {
   }
 
   public keyAsObject(name: string): object {
-    if (!(name in this._data)) {
-      return {};
-    }
-
-    if (typeof this._data[name] !== 'object' || this._data[name] === null) {
+    if (!(name in this._data) || typeof this._data[name] !== 'object' || this._data[name] === null) {
       return {};
     }
 

@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Retencion from './retencion';
 import AbstractElement from '../common/abstract_element';
+import Retencion from './retencion';
 
 export default class Retenciones extends Mixin(AbstractElement) {
   public getElementName(): string {

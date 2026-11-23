@@ -1,7 +1,7 @@
+import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { ElementInterface } from '../types';
 import { isValidXmlName, XmlNode } from '@nodecfdi/cfdi-core';
-import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import { settings } from 'ts-mixer';
-import { type ElementInterface } from '../types';
 
 settings.initFunction = '__init';
 

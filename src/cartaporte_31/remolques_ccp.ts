@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import RemolqueCCP from './remolque_ccp';
 import AbstractElement from '../common/abstract_element';
+import RemolqueCCP from './remolque_ccp';
 
 export default class RemolquesCCP extends Mixin(AbstractElement) {
   public getElementName(): string {

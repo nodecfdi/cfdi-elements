@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Contenedor from './contenedor_maritimo';
 import AbstractElement from '../common/abstract_element';
+import Contenedor from './contenedor_maritimo';
 
 export default class TransporteMaritimo extends Mixin(AbstractElement) {
   public getElementName(): string {

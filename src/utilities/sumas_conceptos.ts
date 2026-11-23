@@ -1,11 +1,6 @@
+import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { SumaExentos, SumaLocal, SumaRetenciones, SumaTraslados } from '../types';
 import { roundNumber, toFloat } from '@nodecfdi/cfdi-core';
-import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import {
-  type SumaExentos,
-  type SumaLocal,
-  type SumaRetenciones,
-  type SumaTraslados,
-} from '../types';
 
 export default class SumasConceptos {
   private _importes = 0;
@@ -220,7 +215,8 @@ export default class SumasConceptos {
 
   private roundImpuestosGroup<
     T extends Record<string, { Impuesto: string; Importe: number; Base?: number }>,
-  >(group: T): T {
+  >(group: T,
+  ): T {
     for (const key of Object.keys(group)) {
       group[key].Importe = roundNumber(group[key].Importe, this._precision);
       if (group[key].Base !== undefined) {

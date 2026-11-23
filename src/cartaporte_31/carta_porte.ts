@@ -1,9 +1,9 @@
 import { Mixin } from 'ts-mixer';
+import AbstractElement from '../common/abstract_element';
 import FiguraTransporte from './figura_transporte';
 import Mercancias from './mercancias';
 import RegimenesAduaneros from './regimenes_aduaneros';
 import Ubicaciones from './ubicaciones';
-import AbstractElement from '../common/abstract_element';
 
 export default class CartaPorte extends Mixin(AbstractElement) {
   public getElementName(): string {
@@ -21,10 +21,10 @@ export default class CartaPorte extends Mixin(AbstractElement) {
 
   public getFixedAttributes(): Record<string, string> {
     return {
-      'xmlns:cartaporte31': 'http://www.sat.gob.mx/CartaPorte31',
+      'xmlns:cartaporte31': 'https://www.sat.gob.mx/CartaPorte31',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'http://www.sat.gob.mx/CartaPorte31 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
+        'https://www.sat.gob.mx/CartaPorte31 https://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
       'Version': '3.1',
     };
   }

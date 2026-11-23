@@ -1,7 +1,7 @@
-import { formatNumber, roundNumber } from '@nodecfdi/cfdi-core';
-import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import Comprobante from '../cfdi_40/comprobante';
+import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type SumasConceptos from './sumas_conceptos';
+import { formatNumber, roundNumber } from '@nodecfdi/cfdi-core';
+import Comprobante from '../cfdi_40/comprobante';
 
 export default class SumasConceptosWriter {
   private readonly _comprobante: Comprobante;
@@ -66,8 +66,8 @@ export default class SumasConceptosWriter {
       formatNumber(this._sumas.getDescuento(), this._precision),
     );
     if (
-      !this._sumas.foundAnyConceptWithDiscount() &&
-      !this.valueGreaterThanZero(this._sumas.getDescuento())
+      !this._sumas.foundAnyConceptWithDiscount()
+      && !this.valueGreaterThanZero(this._sumas.getDescuento())
     ) {
       this._comprobante.attributes().delete('Descuento');
     }
@@ -78,9 +78,9 @@ export default class SumasConceptosWriter {
     const impuestos = this._comprobante.getImpuestos();
     // If there is nothing to write then remove the children and exit
     if (
-      !this._sumas.hasTraslados() &&
-      !this._sumas.hasRetenciones() &&
-      !(this._writeExentos && this._sumas.hasExentos())
+      !this._sumas.hasTraslados()
+      && !this._sumas.hasRetenciones()
+      && !(this._writeExentos && this._sumas.hasExentos())
     ) {
       this._comprobante.children().delete(impuestos);
 
@@ -111,15 +111,17 @@ export default class SumasConceptosWriter {
     }
 
     // Add retenciones when needed
-    if (this._sumas.hasRetenciones()) {
-      impuestos.setAttribute(
-        'TotalImpuestosRetenidos',
-        formatNumber(this._sumas.getImpuestosRetenidos(), this._precision),
-      );
-      impuestos
-        .getRetenciones()
-        .multiRetencion(...this.getImpuestosContents(this._sumas.getRetenciones(), false, true));
+    if (!this._sumas.hasRetenciones()) {
+      return;
     }
+
+    impuestos.setAttribute(
+      'TotalImpuestosRetenidos',
+      formatNumber(this._sumas.getImpuestosRetenidos(), this._precision),
+    );
+    impuestos
+      .getRetenciones()
+      .multiRetencion(...this.getImpuestosContents(this._sumas.getRetenciones(), false, true));
   }
 
   private putComplementoImpuestoLocalSumas(): void {

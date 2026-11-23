@@ -1,16 +1,16 @@
-import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type Concepto from './concepto';
 import { Mixin } from 'ts-mixer';
+import AbstractElement from '../common/abstract_element';
 import Addenda from './addenda';
 import CfdiRelacionados from './cfdi_relacionados';
 import Complemento from './complemento';
-import type Concepto from './concepto';
 import Conceptos from './conceptos';
 import Emisor from './emisor';
 import Impuestos from './impuestos';
 import InformacionGlobal from './informacion_global';
 import WithImpuestos from './mixins/with_impuestos';
 import Receptor from './receptor';
-import AbstractElement from '../common/abstract_element';
 
 export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
   public getElementName(): string {
@@ -32,10 +32,10 @@ export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
 
   public getFixedAttributes(): Record<string, string> {
     return {
-      'xmlns:cfdi': 'http://www.sat.gob.mx/cfd/4',
+      'xmlns:cfdi': 'https://www.sat.gob.mx/cfd/4',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
+        'https://www.sat.gob.mx/cfd/4 https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
       'Version': '4.0',
     };
   }

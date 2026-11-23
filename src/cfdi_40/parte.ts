@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import InformacionAduanera from './informacion_aduanera';
 import AbstractElement from '../common/abstract_element';
+import InformacionAduanera from './informacion_aduanera';
 
 export default class Parte extends Mixin(AbstractElement) {
   public getElementName(): string {

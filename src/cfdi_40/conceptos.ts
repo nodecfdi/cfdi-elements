@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import Concepto from './concepto';
 import AbstractElement from '../common/abstract_element';
+import Concepto from './concepto';
 
 export default class Conceptos extends Mixin(AbstractElement) {
   public getElementName(): string {

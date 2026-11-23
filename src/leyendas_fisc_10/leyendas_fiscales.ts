@@ -9,10 +9,10 @@ export default class LeyendasFiscales extends Mixin(AbstractElement) {
 
   public getFixedAttributes(): Record<string, string> {
     return {
-      'xmlns:leyendasFisc': 'http://www.sat.gob.mx/leyendasFiscales',
+      'xmlns:leyendasFisc': 'https://www.sat.gob.mx/leyendasFiscales',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'http://www.sat.gob.mx/leyendasFiscales http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
+        'https://www.sat.gob.mx/leyendasFiscales https://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
       'version': '1.0',
     };
   }

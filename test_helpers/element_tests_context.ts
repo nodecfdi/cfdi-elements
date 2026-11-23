@@ -4,9 +4,8 @@ import type AbstractElement from '../src/common/abstract_element';
 import { XmlNode } from '@nodecfdi/cfdi-core';
 import { beforeEach, expect } from 'vitest';
 
-type WrapMethod = (...args: unknown[]) => AbstractElement;
-
 beforeEach(async (ctx) => {
+  type WrapMethod = (...args: unknown[]) => AbstractElement;
   ctx.assert = {
     toElementHasChildSingle(element, childClass, getterParameter, adderParameter) {
       const elementClassName = element.constructor.name;

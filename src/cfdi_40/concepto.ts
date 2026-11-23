@@ -1,5 +1,6 @@
-import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import { Mixin } from 'ts-mixer';
+import AbstractElement from '../common/abstract_element';
 import ACuentaTerceros from './a_cuenta_terceros';
 import ComplementoConcepto from './complemento_concepto';
 import ConceptoImpuestos from './concepto_impuestos';
@@ -7,7 +8,6 @@ import CuentaPredial from './cuenta_predial';
 import InformacionAduanera from './informacion_aduanera';
 import WithImpuestos from './mixins/with_impuestos';
 import Parte from './parte';
-import AbstractElement from '../common/abstract_element';
 
 export default class Concepto extends Mixin(AbstractElement, WithImpuestos) {
   public getElementName(): string {

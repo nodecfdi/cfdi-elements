@@ -1,10 +1,10 @@
+import type Structure from './structure.js';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { getDirname } from '@poppinss/utils';
 import string from '@poppinss/utils/string';
 import Dictionary from './dictionary.js';
 import Specifications from './specifications.js';
-import type Structure from './structure.js';
 
 export default class ElementsMarker {
   public static make(specFile: string, outputDir: string): ElementsMarker {
@@ -53,9 +53,9 @@ export default class ElementsMarker {
     for (const child of structure) {
       const childTemplate = child.isMultiple()
         ? 'child_multiple'
-        : child.isSingleAddChild()
-          ? 'child_single_add'
-          : 'child_single';
+        : (child.isSingleAddChild()
+            ? 'child_single_add'
+            : 'child_single');
       sectionsContent.push(
         this.template(childTemplate, new Dictionary({ '#child-name#': child.getName() })),
       );
@@ -95,11 +95,7 @@ export default class ElementsMarker {
   }
 
   private elementsToString(list: string[]): string {
-    const parts: string[] = [];
-
-    for (const value of list) {
-      parts.push(`'${value}'`);
-    }
+    const parts: string[] = Array.from(list, (value) => `'${value}'`);
 
     return `[\n${parts.join(',\n')}]`;
   }

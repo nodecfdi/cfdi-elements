@@ -1,6 +1,6 @@
 import { Mixin } from 'ts-mixer';
-import TiposFigura from './tipos_figura';
 import AbstractElement from '../common/abstract_element';
+import TiposFigura from './tipos_figura';
 
 export default class FiguraTransporte extends Mixin(AbstractElement) {
   public getElementName(): string {
