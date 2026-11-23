@@ -1,14 +1,34 @@
 {
   "name": "@nodecfdi/cfdi-elements",
-  "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
-  "version": "0.5.0",
   "type": "module",
-  "files": [
-    "dist"
+  "version": "0.5.0",
+  "packageManager": "pnpm@12.23.0",
+  "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
+  "author": "Fernando Isidro <luffynando@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/nodecfdi/cfdi-elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodecfdi/cfdi-elements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodecfdi/cfdi-elements/issues"
+  },
+  "keywords": [
+    "cfdi",
+    "elements",
+    "xml",
+    "structure",
+    "cfdi40",
+    "pagos20",
+    "sat",
+    "mx",
+    "cartaporte",
+    "implocal"
   ],
-  "main": "./dist/commonjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/commonjs/index.d.ts",
+  "imports": {
+    "#src/*": "./src/*.js"
+  },
   "exports": {
     ".": {
       "import": {
@@ -111,8 +131,14 @@
       }
     }
   },
-  "imports": {
-    "#src/*": "./src/*.js"
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^22.13.0 || ^24 || ^26"
   },
   "scripts": {
     "prepare": "is-in-ci || husky",
@@ -129,53 +155,33 @@
     "build": "tsdown",
     "release": "release-it"
   },
-  "devDependencies": {
-    "@adonisjs/ace": "^13.2.0",
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "@nodecfdi/cfdi-core": ">=0.6.1",
-    "@poppinss/utils": "^6.8.3",
-    "@swc/core": "^1.7.26",
-    "@types/node": "^20.16.10",
-    "@vitest/coverage-istanbul": "^2.1.2",
-    "auto-changelog": "^2.5.0",
-    "husky": "^9.1.6",
-    "is-in-ci": "^1.0.0",
-    "jest-xml-matcher": "^1.2.0",
-    "ts-node-maintained": "^10.9.4",
-    "typescript": "^5.6.2",
-    "vitest": "^2.1.2"
+  "peerDependencies": {
+    "@nodecfdi/cfdi-core": ">=0.6.1"
   },
   "dependencies": {
     "ts-mixer": "^6.0.4"
   },
-  "peerDependencies": {
-    "@nodecfdi/cfdi-core": ">=0.6.1"
-  },
-  "author": "Fernando Isidro <luffynando@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/nodecfdi/cfdi-elements",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodecfdi/cfdi-elements.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nodecfdi/cfdi-elements/issues"
-  },
-  "keywords": [
-    "cfdi",
-    "elements",
-    "xml",
-    "structure",
-    "cfdi40",
-    "pagos20",
-    "sat",
-    "mx",
-    "cartaporte",
-    "implocal"
-  ],
-  "engines": {
-    "node": "^22.13.0 || ^24 || ^26"
+  "devDependencies": {
+    "@adonisjs/ace": "^13.2.0",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@eienjs/eslint-config": "^2.3.2",
+    "@nodecfdi/cfdi-core": ">=0.6.1",
+    "@poppinss/utils": "^6.8.3",
+    "@swc/core": "^1.7.26",
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-istanbul": "^5.1.1",
+    "auto-changelog": "^2.7.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-erasable-syntax-only": "^0.7.2",
+    "husky": "^9.1.7",
+    "is-in-ci": "^2.0.0",
+    "jest-xml-matcher": "^1.2.0",
+    "release-it": "^21.1.3",
+    "ts-node-maintained": "^10.9.4",
+    "tsdown": "^0.23.7",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.1"
   },
   "browserslist": [
     "defaults",
@@ -186,7 +192,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "pnpm@12.23.0",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -195,5 +200,38 @@
     "template": "keepachangelog",
     "hideCredit": true,
     "commitLimit": false
+  },
+  "release-it": {
+    "git": {
+      "commit": true,
+      "tag": true,
+      "push": true,
+      "requireCleanWorkingDir": true,
+      "commitMessage": "chore(release): :tada: v${version}",
+      "tagAnnotation": "chore(release): :tada: v${version}"
+    },
+    "github": {
+      "release": true,
+      "web": true,
+      "releaseName": "Release v${version}"
+    },
+    "npm": {
+      "publish": true,
+      "publishPackageManager": "pnpm",
+      "publishArgs": [
+        "--no-git-checks"
+      ]
+    },
+    "hooks": {
+      "before:init": [
+        "pnpm run lint:check",
+        "pnpm run typecheck",
+        "pnpm test:run"
+      ],
+      "after:bump": [
+        "pnpm run build",
+        "pnpm run changelog"
+      ]
+    }
   }
 }
