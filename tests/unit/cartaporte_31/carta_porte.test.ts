@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import Autotransporte from '../../../src/cartaporte_31/autotransporte';
 import CantidadTransporta from '../../../src/cartaporte_31/cantidad_transporta';
 import Carro from '../../../src/cartaporte_31/carro';

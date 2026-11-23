@@ -1,9 +1,8 @@
-/* eslint-disable vitest/no-standalone-expect */
 /* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable vitest/require-top-level-describe */
 
+import type AbstractElement from '../src/common/abstract_element';
 import { XmlNode } from '@nodecfdi/cfdi-core';
-import type AbstractElement from '../../src/common/abstract_element';
+import { beforeEach, expect } from 'vitest';
 
 type WrapMethod = (...args: unknown[]) => AbstractElement;
 
@@ -123,3 +122,28 @@ beforeEach(async (ctx) => {
     },
   };
 });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Constructor<T> = new (...args: any[]) => T;
+
+declare module 'vitest' {
+  interface TestContext {
+    assert: {
+      toElementHasChildSingle: <Y extends AbstractElement>(
+        element: AbstractElement,
+        childClass: Constructor<Y>,
+        getterParameter?: string,
+        adderParameter?: string,
+      ) => void;
+      toElementHasChildSingleAddChild: <Y extends AbstractElement>(
+        element: AbstractElement,
+        childClass: Constructor<Y>,
+      ) => void;
+      toElementHasChildMultiple: <Y extends AbstractElement>(
+        element: AbstractElement,
+        childClass: Constructor<Y>,
+        elementName?: string,
+      ) => void;
+    };
+  }
+}

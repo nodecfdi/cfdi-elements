@@ -3,8 +3,9 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     setupFiles: [
-      'tests/setup_files/element_matchers.ts',
-      'tests/setup_files/element_tests_context.ts',
+      'test_helpers/xml_matcher.ts',
+      'test_helpers/element_matchers.ts',
+      'test_helpers/element_tests_context.ts',
     ],
     coverage: {
       provider: 'istanbul',

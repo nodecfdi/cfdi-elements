@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import DoctoRelacionado from '../../../src/pago_20/docto_relacionado';
 import ImpuestosDR from '../../../src/pago_20/impuestos_dr';
 import ImpuestosP from '../../../src/pago_20/impuestos_p';

@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import ACuentaTerceros from '../../../src/cfdi_40/a_cuenta_terceros';
 import Addenda from '../../../src/cfdi_40/addenda';
 import CfdiRelacionado from '../../../src/cfdi_40/cfdi_relacionado';

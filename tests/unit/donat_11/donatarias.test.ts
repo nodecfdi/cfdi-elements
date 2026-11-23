@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import Donatarias from '../../../src/donat_11/donatarias';
 
 describe('donat11', () => {

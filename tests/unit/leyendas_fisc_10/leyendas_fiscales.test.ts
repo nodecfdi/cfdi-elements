@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import Leyenda from '../../../src/leyendas_fisc_10/leyenda';
 import LeyendasFiscales from '../../../src/leyendas_fisc_10/leyendas_fiscales';
 

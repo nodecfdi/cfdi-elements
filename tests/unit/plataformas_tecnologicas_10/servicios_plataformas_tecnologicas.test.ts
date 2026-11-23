@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import ComisionDelServicio from '../../../src/plataformas_tecnologicas_10/comision_del_servicio';
 import ContribucionGubernamental from '../../../src/plataformas_tecnologicas_10/contribucion_gubernamental';
 import DetallesDelServicio from '../../../src/plataformas_tecnologicas_10/detalles_del_servicio';

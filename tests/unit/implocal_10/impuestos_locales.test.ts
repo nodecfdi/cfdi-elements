@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import ImpuestosLocales from '../../../src/implocal_10/impuestos_locales';
 import RetencionesLocales from '../../../src/implocal_10/retenciones_locales';
 import TrasladosLocales from '../../../src/implocal_10/traslados_locales';

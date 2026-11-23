@@ -1,5 +1,5 @@
-import 'jest-xml-matcher';
-import type AbstractElement from '../../src/common/abstract_element';
+import type AbstractElement from '../src/common/abstract_element';
+import { expect } from 'vitest';
 
 expect.extend({
   toElementHasName(received: AbstractElement, expected: string) {
@@ -33,3 +33,17 @@ expect.extend({
     };
   },
 });
+
+interface ElementMatchers<R = unknown> {
+  toElementHasName: (expected: string) => R;
+  toElementHasFixedAttributes: (expected: Record<string, string>) => R;
+  toElementHasOrder: (expected: string[]) => R;
+}
+
+declare module 'vitest' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface Assertion<R extends void | Promise<void> = void, T = unknown>
+    extends ElementMatchers<R> {}
+
+  interface AsymmetricMatchersContaining extends ElementMatchers {}
+}
