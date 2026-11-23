@@ -141,6 +141,8 @@
     "prepare": "is-in-ci || husky",
     "changelog": "auto-changelog -u -p",
     "commitlint": "commitlint --edit",
+    "make:elements": "tsx scripts/make_elements.ts",
+    "make:specification": "tsx scripts/make_specification.ts",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -153,19 +155,16 @@
     "release": "release-it"
   },
   "peerDependencies": {
-    "@nodecfdi/cfdi-core": ">=2.0.0"
+    "@nodecfdi/cfdi-core": "^2.0.0"
   },
   "dependencies": {
     "ts-mixer": "^6.0.4"
   },
   "devDependencies": {
-    "@adonisjs/ace": "^13.2.0",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eienjs/eslint-config": "^2.3.2",
-    "@nodecfdi/cfdi-core": ">=2.0.0",
-    "@poppinss/utils": "^6.8.3",
-    "@swc/core": "^1.7.26",
+    "@nodecfdi/cfdi-core": "^2.0.0",
     "@types/node": "^26.6.6",
     "@vitest/coverage-istanbul": "^5.1.1",
     "auto-changelog": "^2.7.0",
@@ -174,8 +173,8 @@
     "husky": "^9.1.7",
     "is-in-ci": "^2.0.0",
     "release-it": "^21.1.3",
-    "ts-node-maintained": "^10.9.4",
     "tsdown": "^0.23.7",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^5.1.1"
   },

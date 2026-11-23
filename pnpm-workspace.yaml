@@ -16,3 +16,6 @@ permissions:
 skills:
   dirs:
     - .agents/skills
+
+allowBuilds:
+  esbuild: true

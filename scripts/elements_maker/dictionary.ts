@@ -23,7 +23,7 @@ export default class Dictionary {
   public interpolate(subject: string): string {
     let result = subject;
     for (const [key, value] of Object.entries(this._values)) {
-      result = result.replaceAll(key, value);
+      result = result.replaceAll(key, () => value);
     }
 
     return result;

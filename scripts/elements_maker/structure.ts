@@ -1,31 +1,4 @@
 export default class Structure implements Iterable<Structure> {
-  public static makeFromObject(name: string, data: object): Structure {
-    let multiple = false;
-    let singleAddChild = false;
-    let elementName = name;
-    if ('multiple' in data && typeof data.multiple === 'boolean') {
-      multiple = data.multiple;
-    }
-
-    if ('singleAddChild' in data && typeof data.singleAddChild === 'boolean') {
-      singleAddChild = data.singleAddChild;
-    }
-
-    if ('elementName' in data && typeof data.elementName === 'string') {
-      elementName = data.elementName;
-    }
-
-    const children: Structure[] = [];
-
-    for (const [key, value] of Object.entries(data)) {
-      if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
-        children.push(Structure.makeFromObject(key, value as object));
-      }
-    }
-
-    return new Structure(name, elementName, multiple, singleAddChild, ...children);
-  }
-
   private readonly _name: string;
 
   private readonly _elementName: string;
@@ -82,5 +55,32 @@ export default class Structure implements Iterable<Structure> {
 
   public [Symbol.iterator](): Iterator<Structure> {
     return this._children[Symbol.iterator]();
+  }
+
+  public static makeFromObject(name: string, data: object): Structure {
+    let multiple = false;
+    let singleAddChild = false;
+    let elementName = name;
+    if ('multiple' in data && typeof data.multiple === 'boolean') {
+      multiple = data.multiple;
+    }
+
+    if ('singleAddChild' in data && typeof data.singleAddChild === 'boolean') {
+      singleAddChild = data.singleAddChild;
+    }
+
+    if ('elementName' in data && typeof data.elementName === 'string') {
+      elementName = data.elementName;
+    }
+
+    const children: Structure[] = [];
+
+    for (const [key, value] of Object.entries(data)) {
+      if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+        children.push(this.makeFromObject(key, value as object));
+      }
+    }
+
+    return new Structure(name, elementName, multiple, singleAddChild, ...children);
   }
 }

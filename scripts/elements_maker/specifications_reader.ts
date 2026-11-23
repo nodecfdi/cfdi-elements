@@ -1,6 +1,28 @@
 import { existsSync, readFileSync } from 'node:fs';
 
 export default class SpecificationsReader {
+  private _data: Record<string, unknown>;
+
+  public constructor(data: Record<string, unknown>) {
+    this._data = data;
+  }
+
+  public keyAsString(name: string): string {
+    if (!Object.hasOwn(this._data, name) || (typeof this._data[name] !== 'string')) {
+      return '';
+    }
+
+    return this._data[name];
+  }
+
+  public keyAsObject(name: string): object {
+    if (!Object.hasOwn(this._data, name) || typeof this._data[name] !== 'object' || this._data[name] === null) {
+      return {};
+    }
+
+    return this._data[name];
+  }
+
   public static fromFile(specFile: string): SpecificationsReader {
     if (!existsSync(specFile)) {
       throw new Error(`Specification file '${specFile}' does not exists`);
@@ -9,7 +31,7 @@ export default class SpecificationsReader {
     try {
       const specContents = readFileSync(specFile);
 
-      return SpecificationsReader.fromJsonString(specContents.toString());
+      return this.fromJsonString(specContents.toString());
     } catch {
       throw new Error(`Unable to read ${specFile}`);
     }
@@ -28,27 +50,5 @@ export default class SpecificationsReader {
     }
 
     return new SpecificationsReader(data as Record<string, unknown>);
-  }
-
-  private _data: Record<string, unknown>;
-
-  public constructor(data: Record<string, unknown>) {
-    this._data = data;
-  }
-
-  public keyAsString(name: string): string {
-    if (!(name in this._data) || (typeof this._data[name] !== 'string')) {
-      return '';
-    }
-
-    return this._data[name];
-  }
-
-  public keyAsObject(name: string): object {
-    if (!(name in this._data) || typeof this._data[name] !== 'object' || this._data[name] === null) {
-      return {};
-    }
-
-    return this._data[name];
   }
 }

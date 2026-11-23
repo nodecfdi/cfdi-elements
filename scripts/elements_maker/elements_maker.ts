@@ -1,16 +1,11 @@
 import type Structure from './structure.js';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { getDirname } from '@poppinss/utils';
-import string from '@poppinss/utils/string';
 import Dictionary from './dictionary.js';
 import Specifications from './specifications.js';
+import { toSnakeCase } from './string_utils.js';
 
 export default class ElementsMarker {
-  public static make(specFile: string, outputDir: string): ElementsMarker {
-    return new ElementsMarker(Specifications.makeFromFile(specFile), outputDir);
-  }
-
   private readonly _specs: Specifications;
 
   private readonly _outputDir: string;
@@ -61,7 +56,7 @@ export default class ElementsMarker {
       );
 
       imports.push(
-        `import ${child.getName()} from './${string.snakeCase(child.getName())}';`,
+        `import ${child.getName()} from './${toSnakeCase(child.getName())}';`,
       );
 
       if (child.isSingleAddChild()) {
@@ -79,9 +74,13 @@ export default class ElementsMarker {
     writeFileSync(outputFile, contents);
   }
 
+  public static make(specFile: string, outputDir: string): ElementsMarker {
+    return new ElementsMarker(Specifications.makeFromFile(specFile), outputDir);
+  }
+
   private template(templateName: string, dictionary: Dictionary): string {
-    if (!(templateName in this._templates)) {
-      const fileName = path.join(getDirname(import.meta.url), 'templates', `${templateName}.stub`);
+    if (!Object.hasOwn(this._templates, templateName)) {
+      const fileName = path.join(import.meta.dirname, 'templates', `${templateName}.stub`);
       this._templates[templateName] = readFileSync(fileName).toString();
     }
 
@@ -89,7 +88,7 @@ export default class ElementsMarker {
   }
 
   private buildOutputFile(elementName: string): string {
-    const snakeCaseName = string.snakeCase(elementName);
+    const snakeCaseName = toSnakeCase(elementName);
 
     return path.join(this._outputDir, `${snakeCaseName}.ts`);
   }
