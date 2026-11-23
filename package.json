@@ -153,7 +153,7 @@
     "release": "release-it"
   },
   "peerDependencies": {
-    "@nodecfdi/cfdi-core": ">=0.6.1"
+    "@nodecfdi/cfdi-core": ">=2.0.0"
   },
   "dependencies": {
     "ts-mixer": "^6.0.4"
@@ -163,7 +163,7 @@
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eienjs/eslint-config": "^2.3.2",
-    "@nodecfdi/cfdi-core": ">=0.6.1",
+    "@nodecfdi/cfdi-core": ">=2.0.0",
     "@poppinss/utils": "^6.8.3",
     "@swc/core": "^1.7.26",
     "@types/node": "^26.6.6",

@@ -1,11 +1,6 @@
-import type { Element, Node } from '@xmldom/xmldom';
-import { DOMParser, XMLSerializer } from '@xmldom/xmldom';
+import type { Element } from '@nodecfdi/cfdi-core';
+import { DOMParser, Node, XMLSerializer } from '@nodecfdi/cfdi-core';
 import { expect } from 'vitest';
-
-const NODE_ELEMENT = 1;
-const NODE_TEXT = 3;
-const NODE_CDATA = 4;
-const NODE_COMMENT = 8;
 
 const serializer = new XMLSerializer();
 
@@ -21,7 +16,7 @@ const escapeXmlAttr = (value: string): string =>
 const formatNode = (node: Node, indent: number): string => {
   const pad = '  '.repeat(indent);
 
-  if (node.nodeType === NODE_ELEMENT) {
+  if (node.nodeType === Node.ELEMENT_NODE) {
     const element = node as Element;
     const attrs = [...element.attributes]
       .toSorted((a, b) => a.name.localeCompare(b.name))
@@ -29,14 +24,14 @@ const formatNode = (node: Node, indent: number): string => {
       .join('');
 
     const children = [...element.childNodes].filter((child) => {
-      if (child.nodeType === NODE_TEXT) {
+      if (child.nodeType === Node.TEXT_NODE) {
         return (child.nodeValue ?? '').trim() !== '';
       }
 
       return (
-        child.nodeType === NODE_ELEMENT
-        || child.nodeType === NODE_CDATA
-        || child.nodeType === NODE_COMMENT
+        child.nodeType === Node.ELEMENT_NODE
+        || child.nodeType === Node.CDATA_SECTION_NODE
+        || child.nodeType === Node.COMMENT_NODE
       );
     });
 
@@ -44,7 +39,7 @@ const formatNode = (node: Node, indent: number): string => {
       return `${pad}<${element.tagName}${attrs}/>`;
     }
 
-    if (children.length === 1 && children[0].nodeType === NODE_TEXT) {
+    if (children.length === 1 && children[0].nodeType === Node.TEXT_NODE) {
       return `${pad}<${element.tagName}${attrs}>${escapeXmlText(children[0].nodeValue ?? '')}</${element.tagName}>`;
     }
 
@@ -53,15 +48,15 @@ const formatNode = (node: Node, indent: number): string => {
     return `${pad}<${element.tagName}${attrs}>\n${formattedChildren}\n${pad}</${element.tagName}>`;
   }
 
-  if (node.nodeType === NODE_TEXT) {
+  if (node.nodeType === Node.TEXT_NODE) {
     return `${pad}${escapeXmlText((node.nodeValue ?? '').trim())}`;
   }
 
-  if (node.nodeType === NODE_CDATA) {
+  if (node.nodeType === Node.CDATA_SECTION_NODE) {
     return `${pad}<![CDATA[${node.nodeValue ?? ''}]]>`;
   }
 
-  if (node.nodeType === NODE_COMMENT) {
+  if (node.nodeType === Node.COMMENT_NODE) {
     return `${pad}<!--${node.nodeValue ?? ''}-->`;
   }
 
