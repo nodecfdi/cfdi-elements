@@ -116,45 +116,33 @@
   },
   "scripts": {
     "prepare": "is-in-ci || husky",
-    "typecheck": "tsc --noEmit",
+    "changelog": "auto-changelog -u -p",
+    "commitlint": "commitlint --edit",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "gen:docs": "typedoc --options typedoc.json",
-    "changelog": "auto-changelog -p && git add CHANGELOG.md",
-    "prebuild": "pnpm lint:check && pnpm typecheck",
-    "build": "tshy",
-    "postbuild": "pnpm run gen:docs && git add docs/*",
-    "release": "np",
-    "version": "pnpm run build && pnpm run changelog"
+    "tool:code": "pnpm run lint:check && pnpm run typecheck",
+    "tool:build": "pnpm run tool:code && pnpm run test:run",
+    "build": "tsdown",
+    "release": "release-it"
   },
   "devDependencies": {
     "@adonisjs/ace": "^13.2.0",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@jsprismarine/typedoc-material-theme": "^1.0.4",
     "@nodecfdi/cfdi-core": ">=0.6.1",
-    "@nodecfdi/eslint-config": "^2.0.6",
-    "@nodecfdi/prettier-config": "^1.2.0",
-    "@nodecfdi/tsconfig": "^1.7.2",
     "@poppinss/utils": "^6.8.3",
     "@swc/core": "^1.7.26",
     "@types/node": "^20.16.10",
     "@vitest/coverage-istanbul": "^2.1.2",
     "auto-changelog": "^2.5.0",
-    "eslint": "^9.12.0",
     "husky": "^9.1.6",
     "is-in-ci": "^1.0.0",
     "jest-xml-matcher": "^1.2.0",
-    "np": "^10.0.7",
-    "prettier": "^3.3.3",
     "ts-node-maintained": "^10.9.4",
-    "tshy": "^3.0.2",
-    "typedoc": "^0.26.8",
     "typescript": "^5.6.2",
     "vitest": "^2.1.2"
   },
@@ -198,7 +186,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "prettier": "@nodecfdi/prettier-config",
   "packageManager": "pnpm@12.23.0",
   "publishConfig": {
     "access": "public",
@@ -206,27 +193,7 @@
   },
   "auto-changelog": {
     "template": "keepachangelog",
-    "hideCredit": true
-  },
-  "np": {
-    "message": "chore(release): :tada: %s",
-    "tag": "latest",
-    "branch": "main",
-    "testScript": "test:run"
-  },
-  "tshy": {
-    "selfLink": false,
-    "exports": {
-      ".": "./src/index.ts",
-      "./types": "./src/types.ts",
-      "./tfd11": "./src/tfd_11/index.ts",
-      "./cfdi40": "./src/cfdi_40/index.ts",
-      "./pago20": "./src/pago_20/index.ts",
-      "./implocal10": "./src/implocal_10/index.ts",
-      "./donat11": "./src/donat_11/index.ts",
-      "./leyendasFisc10": "./src/leyendas_fisc_10/index.ts",
-      "./plataformasTecnologicas10": "./src/plataformas_tecnologicas_10/index.ts",
-      "./cartaporte31": "./src/cartaporte_31/index.ts"
-    }
+    "hideCredit": true,
+    "commitLimit": false
   }
 }
