@@ -1,0 +1,56 @@
+{
+  "prefix": "consumodecombustibles11",
+  "xml-namespace": "http://www.sat.gob.mx/ConsumoDeCombustibles11",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodeCombustibles11.xsd",
+  "version-attribute": "version",
+  "version-value": "1.1",
+  "root": {
+    "name": "ConsumoDeCombustibles",
+    "attributes": [
+      "version",
+      "tipoOperacion",
+      "numeroDeCuenta",
+      "subTotal",
+      "total"
+    ],
+    "children": [
+      {
+        "name": "Conceptos",
+        "children": [
+          {
+            "name": "ConceptoConsumoDeCombustibles",
+            "multiple": true,
+            "attributes": [
+              "identificador",
+              "fecha",
+              "rfc",
+              "claveEstacion",
+              "tipoCombustible",
+              "cantidad",
+              "nombreCombustible",
+              "folioOperacion",
+              "valorUnitario",
+              "importe"
+            ],
+            "children": [
+              {
+                "name": "Determinados",
+                "children": [
+                  {
+                    "name": "Determinado",
+                    "multiple": true,
+                    "attributes": [
+                      "impuesto",
+                      "tasaOCuota",
+                      "importe"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

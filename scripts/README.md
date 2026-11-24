@@ -146,6 +146,12 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/2/retencion
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xsd
 ```
 
+### `consumodecombustibles_11`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodeCombustibles11.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -226,6 +232,12 @@ pnpm make:elements scripts/elements_maker/specifications/retenciones_20.json src
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/notariospublicos_10.json src/elements/notariospublicos_10/ --with-tests
+```
+
+### `consumodecombustibles_11`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/consumodecombustibles_11.json src/elements/consumodecombustibles_11/ --with-tests
 ```
 
 <!-- elements:end -->
