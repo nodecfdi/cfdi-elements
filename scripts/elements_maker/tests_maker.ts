@@ -1,6 +1,7 @@
 import type Structure from './structure.js';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { specKeyFromFile } from './cli_utils.js';
 import Specifications from './specifications.js';
 import { snakeToCamelCase, toSnakeCase, toWords } from './string_utils.js';
 
@@ -103,7 +104,7 @@ export default class TestsMaker {
   }
 
   public static make(specFile: string, outputPath?: string, options: TestsMakerOptions = {}): TestsMaker {
-    const specKey = options.specKey ?? path.basename(specFile, path.extname(specFile));
+    const specKey = options.specKey ?? specKeyFromFile(specFile);
     const resolvedOutput = outputPath ?? path.join('tests', 'unit', specKey);
 
     return new TestsMaker(Specifications.makeFromFile(specFile), resolvedOutput, {

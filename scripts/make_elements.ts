@@ -1,9 +1,12 @@
-import type { SpecificationSpec } from './elements_maker/structure.js';
-import { execFile } from 'node:child_process';
-import { readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
 import process from 'node:process';
-import { parseArgs, promisify } from 'node:util';
+import { parseArgs } from 'node:util';
+import {
+  beautify,
+  failWithUsage,
+  readSpecificationFile,
+  specKeyFromFile,
+  writeSpecificationFile,
+} from './elements_maker/cli_utils.js';
 import ElementsMaker from './elements_maker/elements_maker.js';
 import { ensureElementInReadme } from './elements_maker/readme_updater.js';
 import TestsMaker from './elements_maker/tests_maker.js';
@@ -12,8 +15,6 @@ import {
   parseXsd,
   syncSpecificationAttributes,
 } from './elements_maker/xsd_parser.js';
-
-const execFileAsync = promisify(execFile);
 
 const USAGE = `Uso:
   pnpm make:elements [opciones] <specification-file> <output-directory>
@@ -35,8 +36,7 @@ Opciones:
 `;
 
 async function syncAttributesFromXsd(specificationFile: string, customXsd?: string): Promise<void> {
-  const raw = await readFile(specificationFile, 'utf8');
-  const specData = JSON.parse(raw) as SpecificationSpec;
+  const specData = await readSpecificationFile(specificationFile);
   const source = customXsd ?? specData['xml-schemalocation'];
 
   if (!source) {
@@ -46,10 +46,11 @@ async function syncAttributesFromXsd(specificationFile: string, customXsd?: stri
   }
 
   console.log(`Syncing attributes from XSD: ${source}...`);
-  const xsdXml = await loadXsdContent(source);
-  const parsed = parseXsd(xsdXml);
-  const updated = syncSpecificationAttributes(specData, parsed.attributesByPath);
-  await writeFile(specificationFile, `${JSON.stringify(updated, null, 2)}\n`);
+  const parsed = parseXsd(await loadXsdContent(source));
+  await writeSpecificationFile(
+    specificationFile,
+    syncSpecificationAttributes(specData, parsed.attributesByPath),
+  );
   console.log(`Updated specification attributes: ${specificationFile}`);
 }
 
@@ -90,9 +91,7 @@ async function main(): Promise<void> {
   const [specificationFile, outputDirectory] = positionals;
 
   if (!specificationFile || !outputDirectory) {
-    console.error('Error: Los argumentos <specification-file> y <output-directory> son requeridos.\n');
-    console.error(USAGE);
-    process.exitCode = 1;
+    failWithUsage('Los argumentos <specification-file> y <output-directory> son requeridos.', USAGE);
 
     return;
   }
@@ -105,11 +104,10 @@ async function main(): Promise<void> {
       await syncAttributesFromXsd(specificationFile, values.xsd);
     }
 
-    const elementsMaker = ElementsMaker.make(specificationFile, fixedOutputDirectory);
-    elementsMaker.write();
+    ElementsMaker.make(specificationFile, fixedOutputDirectory).write();
     console.log('Elements created');
 
-    const specKey = path.basename(specificationFile, path.extname(specificationFile));
+    const specKey = specKeyFromFile(specificationFile);
     const readmeUpdated = await ensureElementInReadme(
       specKey,
       specificationFile,
@@ -121,8 +119,7 @@ async function main(): Promise<void> {
     }
 
     if (values['with-tests']) {
-      const defaultTestDir = `tests/unit/${specKey}/`;
-      const testsMaker = TestsMaker.make(specificationFile, defaultTestDir, {
+      const testsMaker = TestsMaker.make(specificationFile, undefined, {
         specKey,
         srcDir: fixedOutputDirectory,
       });
@@ -145,9 +142,7 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.log('Applying linter/formatter using eslint...');
-  await execFileAsync('pnpm', ['eslint', ...lintTargets, '--fix']);
-  console.log('Formatting completed');
+  await beautify(lintTargets);
 }
 
 await main();

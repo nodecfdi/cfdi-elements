@@ -5,10 +5,14 @@ import type {
   SpecificationSpec,
 } from './elements_maker/structure.js';
 import { existsSync } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { parseArgs } from 'node:util';
+import {
+  failWithUsage,
+  readSpecificationFile,
+  writeSpecificationFile,
+} from './elements_maker/cli_utils.js';
 import { ensureSpecificationInReadme } from './elements_maker/readme_updater.js';
 import { toSnakeCase } from './elements_maker/string_utils.js';
 import {
@@ -97,11 +101,6 @@ function applyMethodName(root: ElementSpec, expression: string): void {
   node.methodName = methodName;
 }
 
-function applySingleAddChild(root: ElementSpec, nodePath: string): void {
-  const node = resolveNodeByPath(root, nodePath);
-  node.singleAddChild = true;
-}
-
 function applyShortcut(root: ElementSpec, expression: string): void {
   const colonIndex = expression.indexOf(':');
   if (colonIndex === -1) {
@@ -130,7 +129,7 @@ function applyShortcut(root: ElementSpec, expression: string): void {
   }
 
   const ownerNode = resolveNodeByPath(root, ownerPath);
-  const shortcuts: ShortcutDefinition[] = [...(ownerNode.shortcuts ?? [])];
+  const shortcuts = ownerNode.shortcuts ?? [];
 
   const shortcut: ShortcutDefinition = mode === 'single'
     ? { path: getterPath, target, multi: false }
@@ -176,9 +175,7 @@ async function main(): Promise<void> {
   const [schemaLocationArg = ''] = positionals;
 
   if (!schemaLocationArg && !values.name && !values.xsd) {
-    console.error('Error: Debes proporcionar <schema-location> (o --name / --xsd).\n');
-    console.error(USAGE);
-    process.exitCode = 1;
+    failWithUsage('Debes proporcionar <schema-location> (o --name / --xsd).', USAGE);
 
     return;
   }
@@ -230,7 +227,7 @@ async function main(): Promise<void> {
   const fileExists = existsSync(outputPath);
 
   if (fileExists) {
-    content = JSON.parse(await readFile(outputPath, 'utf8')) as SpecificationSpec;
+    content = await readSpecificationFile(outputPath);
   } else {
     content = {
       'prefix': '',
@@ -248,49 +245,20 @@ async function main(): Promise<void> {
     content['xml-schemalocation'] = schemaLocationArg;
   }
 
-  if (values.prefix !== undefined) {
-    content.prefix = values.prefix;
+  // Precedence: CLI option > existing spec value > value inferred from the XSD (fills empty values)
+  const metadata: [keyof Omit<SpecificationSpec, 'root'>, string | undefined, string | undefined][] = [
+    ['prefix', values.prefix, inferredFromXsd?.prefix],
+    ['xml-namespace', values['xml-namespace'], inferredFromXsd?.xmlNamespace],
+    ['version-attribute', values['version-attribute'], inferredFromXsd?.versionAttribute],
+    ['version-value', values['version-value'], inferredFromXsd?.versionValue],
+  ];
+  for (const [key, cliValue, inferredValue] of metadata) {
+    content[key] = (cliValue ?? content[key]) || inferredValue || '';
   }
 
-  if (values['xml-namespace'] !== undefined) {
-    content['xml-namespace'] = values['xml-namespace'];
-  }
+  content.root.name = (values['root-element'] ?? content.root.name) || (parsed?.rootElement ?? '');
 
-  if (values['version-attribute'] !== undefined) {
-    content['version-attribute'] = values['version-attribute'];
-  }
-
-  if (values['version-value'] !== undefined) {
-    content['version-value'] = values['version-value'];
-  }
-
-  if (values['root-element'] !== undefined) {
-    content.root.name = values['root-element'];
-  }
-
-  if (parsed && inferredFromXsd) {
-    if (!content.prefix && inferredFromXsd.prefix) {
-      content.prefix = inferredFromXsd.prefix;
-    }
-
-    if (!content['xml-namespace'] && inferredFromXsd.xmlNamespace) {
-      content['xml-namespace'] = inferredFromXsd.xmlNamespace;
-    }
-
-    if (!content.root.name && parsed.rootElement) {
-      content.root.name = parsed.rootElement;
-    }
-
-    if (inferredFromXsd.versionAttribute) {
-      if (!content['version-attribute']) {
-        content['version-attribute'] = inferredFromXsd.versionAttribute;
-      }
-
-      if (!content['version-value']) {
-        content['version-value'] = inferredFromXsd.versionValue;
-      }
-    }
-
+  if (parsed) {
     const isEmptyRoot = (!content.root.children || content.root.children.length === 0)
       && (!content.root.attributes || content.root.attributes.length === 0);
 
@@ -301,27 +269,30 @@ async function main(): Promise<void> {
     }
   }
 
-  const renames = values.rename ?? [];
-  for (const renameExpr of renames) {
-    applyRename(content.root, renameExpr);
+  const {
+    'rename': renames = [],
+    'method-name': methodNames = [],
+    'single-add-child': singleAddChildPaths = [],
+    'shortcut': shortcuts = [],
+  } = values;
+
+  for (const expression of renames) {
+    applyRename(content.root, expression);
   }
 
-  const methodNames = values['method-name'] ?? [];
-  for (const methodExpr of methodNames) {
-    applyMethodName(content.root, methodExpr);
+  for (const expression of methodNames) {
+    applyMethodName(content.root, expression);
   }
 
-  const singleAddChildren = values['single-add-child'] ?? [];
-  for (const singlePath of singleAddChildren) {
-    applySingleAddChild(content.root, singlePath);
+  for (const nodePath of singleAddChildPaths) {
+    resolveNodeByPath(content.root, nodePath).singleAddChild = true;
   }
 
-  const shortcuts = values.shortcut ?? [];
-  for (const shortcutExpr of shortcuts) {
-    applyShortcut(content.root, shortcutExpr);
+  for (const expression of shortcuts) {
+    applyShortcut(content.root, expression);
   }
 
-  await writeFile(outputPath, `${JSON.stringify(content, null, 2)}\n`);
+  await writeSpecificationFile(outputPath, content);
   console.log(`Specification ${fileExists ? 'updated' : 'created'}: ${outputPath}`);
 
   const readmeUpdated = await ensureSpecificationInReadme(

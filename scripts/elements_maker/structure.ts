@@ -98,9 +98,7 @@ export default class Structure implements Iterable<Structure> {
   }
 
   public getChildrenNames(prefix: string): string[] {
-    return this._children
-      .map((structure) => `${prefix}${structure.getElementName()}`)
-      .filter((value, index, array) => array.indexOf(value) === index);
+    return [...new Set(this._children.map((structure) => `${prefix}${structure.getElementName()}`))];
   }
 
   public [Symbol.iterator](): Iterator<Structure> {
@@ -120,14 +118,7 @@ export default class Structure implements Iterable<Structure> {
       multi: item.multi !== false,
     }));
 
-    const attributes: string[] = [];
-    const specAttributes = spec.attributes ?? [];
-    for (const attr of specAttributes) {
-      if (!attributes.includes(attr)) {
-        attributes.push(attr);
-      }
-    }
-
+    const attributes = [...new Set(spec.attributes)];
     const children = (spec.children ?? []).map((child) => this.makeFromSpec(child));
 
     return new Structure(

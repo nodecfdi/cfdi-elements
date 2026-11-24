@@ -21,10 +21,16 @@ export interface ParsedXsd {
   rootNode: ParsedXsdElement | undefined;
 }
 
-function stripPrefix(name: string): string {
-  const colonIndex = name.indexOf(':');
+const COMPOSITORS = new Set<string | null>(['sequence', 'choice', 'all']);
 
-  return colonIndex === -1 ? name : name.slice(colonIndex + 1);
+function stripPrefix(name: string): string {
+  return name.slice(name.indexOf(':') + 1);
+}
+
+function isMultipleOccurs(element: Element): boolean {
+  const maxOccurs = element.getAttribute('maxOccurs');
+
+  return maxOccurs === 'unbounded' || Number(maxOccurs) > 1;
 }
 
 function childElements(parent: Element): Element[] {
@@ -38,18 +44,38 @@ function childElements(parent: Element): Element[] {
   return result;
 }
 
-function uniquePush(target: string[], items: string[]): void {
-  for (const item of items) {
-    if (!target.includes(item)) {
-      target.push(item);
-    }
-  }
-}
-
 interface XsdIndex {
   complexTypes: Map<string, Element>;
   attributeGroups: Map<string, Element>;
   topElements: Map<string, Element>;
+}
+
+/**
+ * Visits each extension/restriction of a complexContent/simpleContent node: first its base type
+ * (once per visitedTypes), then the derivation node itself.
+ */
+function forEachDerivation(
+  content: Element,
+  index: XsdIndex,
+  visitedTypes: Set<string>,
+  visit: (node: Element) => void,
+): void {
+  for (const derivation of childElements(content)) {
+    if (derivation.localName !== 'extension' && derivation.localName !== 'restriction') {
+      continue;
+    }
+
+    const baseName = stripPrefix(derivation.getAttribute('base') ?? '');
+    if (baseName && !visitedTypes.has(baseName)) {
+      visitedTypes.add(baseName);
+      const baseType = index.complexTypes.get(baseName);
+      if (baseType) {
+        visit(baseType);
+      }
+    }
+
+    visit(derivation);
+  }
 }
 
 function collectAttributesFromChild(
@@ -86,37 +112,9 @@ function collectAttributesFromChild(
     }
     case 'complexContent':
     case 'simpleContent': {
-      for (const contentChild of childElements(child)) {
-        if (contentChild.localName !== 'extension' && contentChild.localName !== 'restriction') {
-          continue;
-        }
-
-        const base = contentChild.getAttribute('base');
-        if (base) {
-          const baseName = stripPrefix(base);
-          if (!visitedTypes.has(baseName)) {
-            visitedTypes.add(baseName);
-            const baseType = index.complexTypes.get(baseName);
-            if (baseType) {
-              collectAttributesFromNode(
-                baseType,
-                index,
-                attributes,
-                fixedAttributes,
-                visitedTypes,
-              );
-            }
-          }
-        }
-
-        collectAttributesFromNode(
-          contentChild,
-          index,
-          attributes,
-          fixedAttributes,
-          visitedTypes,
-        );
-      }
+      forEachDerivation(child, index, visitedTypes, (node) => {
+        collectAttributesFromNode(node, index, attributes, fixedAttributes, visitedTypes);
+      });
       break;
     }
     default: {
@@ -145,17 +143,14 @@ function collectChildElementDefsFromChild(
 ): void {
   switch (child.localName) {
     case 'element': {
-      const maxOccurs = child.getAttribute('maxOccurs');
-      const multiple = maxOccurs === 'unbounded' || (Boolean(maxOccurs) && Number(maxOccurs) > 1);
-      results.push({ element: child, multiple });
+      results.push({ element: child, multiple: isMultipleOccurs(child) });
 
       return;
     }
     case 'sequence':
     case 'choice':
     case 'all': {
-      const groupMax = child.getAttribute('maxOccurs');
-      const groupMultiple = groupMax === 'unbounded' || (Boolean(groupMax) && Number(groupMax) > 1);
+      const groupMultiple = isMultipleOccurs(child);
       for (const nested of collectChildElementDefs(child, index, visitedTypes)) {
         results.push({
           element: nested.element,
@@ -166,25 +161,9 @@ function collectChildElementDefsFromChild(
       return;
     }
     case 'complexContent': {
-      for (const contentChild of childElements(child)) {
-        if (contentChild.localName !== 'extension' && contentChild.localName !== 'restriction') {
-          continue;
-        }
-
-        const base = contentChild.getAttribute('base');
-        if (base) {
-          const baseName = stripPrefix(base);
-          if (!visitedTypes.has(baseName)) {
-            visitedTypes.add(baseName);
-            const baseType = index.complexTypes.get(baseName);
-            if (baseType) {
-              results.push(...collectChildElementDefs(baseType, index, visitedTypes));
-            }
-          }
-        }
-
-        results.push(...collectChildElementDefs(contentChild, index, visitedTypes));
-      }
+      forEachDerivation(child, index, visitedTypes, (node) => {
+        results.push(...collectChildElementDefs(node, index, visitedTypes));
+      });
       break;
     }
     default: {
@@ -199,10 +178,7 @@ function hasWildcardAnyChild(container: Element): boolean {
       return true;
     }
 
-    if (
-      (child.localName === 'sequence' || child.localName === 'choice' || child.localName === 'all')
-      && hasWildcardAnyChild(child)
-    ) {
+    if (COMPOSITORS.has(child.localName) && hasWildcardAnyChild(child)) {
       return true;
     }
   }
@@ -289,9 +265,10 @@ function walkElement(
     }
   }
 
-  const existing = attributesByPath.get(currentPath) ?? [];
-  uniquePush(existing, attributes);
-  attributesByPath.set(currentPath, existing);
+  attributesByPath.set(
+    currentPath,
+    [...new Set([...(attributesByPath.get(currentPath) ?? []), ...attributes])],
+  );
 
   return {
     name,
@@ -308,12 +285,13 @@ export async function loadXsdContent(source: string): Promise<string> {
     return readFile(source, 'utf8');
   }
 
-  const candidates = [source];
-  if (source.startsWith('http://')) {
-    candidates.push(source.replace(/^http:\/\//, 'https://'));
-  } else {
-    candidates.push(source.replace(/^https:\/\//, 'http://'));
-  }
+  // SAT schemas are published inconsistently over http/https: try the other scheme as fallback
+  const candidates = [
+    source,
+    source.startsWith('http://')
+      ? source.replace('http://', 'https://')
+      : source.replace('https://', 'http://'),
+  ];
 
   let lastError: unknown;
   for (const url of candidates) {
@@ -504,11 +482,28 @@ function findDivergeIndex(list: { ancestors: ElementSpec[] }[]): number {
   return -1;
 }
 
+interface Occurrence {
+  node: ElementSpec;
+  ancestors: ElementSpec[];
+  sig: string;
+}
+
+function renameNode(node: ElementSpec, newName: string): void {
+  node.elementName ??= node.name;
+  node.name = newName;
+}
+
+function prefixWithParentName(list: Occurrence[], skip?: ElementSpec): void {
+  for (const item of list) {
+    const parent = item.ancestors.at(-1);
+    if (parent && item.node !== skip) {
+      renameNode(item.node, `${parent.name}${item.node.name}`);
+    }
+  }
+}
+
 function disambiguateStructuralCollisions(root: ElementSpec): void {
-  const occurrences = new Map<
-    string,
-    { node: ElementSpec; ancestors: ElementSpec[]; sig: string }[]
-  >();
+  const occurrences = new Map<string, Occurrence[]>();
 
   function collect(parent: ElementSpec, ancestors: ElementSpec[]): void {
     const children = parent.children ?? [];
@@ -534,21 +529,7 @@ function disambiguateStructuralCollisions(root: ElementSpec): void {
 
     const directRootChildren = list.filter((item) => item.ancestors.length === 1);
     if (directRootChildren.length === 1) {
-      const keepUnchanged = directRootChildren[0].node;
-      for (const item of list) {
-        if (item.node === keepUnchanged) {
-          continue;
-        }
-
-        const parent = item.ancestors.at(-1);
-        if (!parent) {
-          continue;
-        }
-
-        item.node.elementName ??= item.node.name;
-        item.node.name = `${parent.name}${item.node.name}`;
-      }
-
+      prefixWithParentName(list, directRootChildren[0].node);
       continue;
     }
 
@@ -562,23 +543,14 @@ function disambiguateStructuralCollisions(root: ElementSpec): void {
 
       if (suffixes.length > 0 && suffixes.every((suffix) => suffix.length > 0)) {
         for (const [index, item] of list.entries()) {
-          item.node.elementName ??= item.node.name;
-          item.node.name = `${item.node.name}${suffixes[index]}`;
+          renameNode(item.node, `${item.node.name}${suffixes[index]}`);
         }
 
         continue;
       }
     }
 
-    for (const item of list) {
-      const parent = item.ancestors.at(-1);
-      if (!parent) {
-        continue;
-      }
-
-      item.node.elementName ??= item.node.name;
-      item.node.name = `${parent.name}${item.node.name}`;
-    }
+    prefixWithParentName(list);
   }
 }
 

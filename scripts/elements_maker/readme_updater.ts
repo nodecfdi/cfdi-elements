@@ -9,17 +9,17 @@ const SPECS_END = '<!-- specifications:end -->';
 const ELEMENTS_START = '<!-- elements:start -->';
 const ELEMENTS_END = '<!-- elements:end -->';
 
+// Paths are relative to the root (root itself is the empty path), as resolveNodeByPath expects.
 function collectSpecFlags(
   node: ElementSpec,
-  parentPath: string[],
+  parentPath: string[] | undefined,
   flags: string[],
 ): void {
-  const isRoot = parentPath.length === 0 && node.elementName === undefined;
-  const currentPath = isRoot ? [] : [...parentPath, node.name];
+  const currentPath = parentPath ? [...parentPath, node.name] : [];
   const currentPathStr = currentPath.join('.');
 
   if (node.elementName && node.elementName !== node.name) {
-    const originalPath = [...parentPath, node.elementName].join('.');
+    const originalPath = [...(parentPath ?? []), node.elementName].join('.');
     const methodSuffix = node.methodName && node.methodName !== node.elementName
       ? `:${node.methodName}`
       : '';
@@ -82,24 +82,7 @@ export function buildMakeSpecificationCommand(
     args.push(`--version-value ${spec['version-value']}`);
   }
 
-  const childFlags: string[] = [];
-  const rootChildren = spec.root.children ?? [];
-  const rootShortcuts = spec.root.shortcuts ?? [];
-
-  for (const shortcut of rootShortcuts) {
-    const modeSuffix = shortcut.multi === false ? ':single' : '';
-    childFlags.push(`--shortcut ':${shortcut.path.join('.')}->${shortcut.target}${modeSuffix}'`);
-  }
-
-  for (const child of rootChildren) {
-    collectSpecFlags(child, [], childFlags);
-  }
-
-  args.push(...childFlags);
-
-  if (args.length === 1) {
-    return args[0];
-  }
+  collectSpecFlags(spec.root, undefined, args);
 
   return args.join(' \\\n  ');
 }

@@ -1,10 +1,7 @@
-import { execFile } from 'node:child_process';
-import path from 'node:path';
 import process from 'node:process';
-import { parseArgs, promisify } from 'node:util';
+import { parseArgs } from 'node:util';
+import { beautify, failWithUsage } from './elements_maker/cli_utils.js';
 import TestsMaker from './elements_maker/tests_maker.js';
-
-const execFileAsync = promisify(execFile);
 
 const USAGE = `Uso:
   pnpm make:tests [opciones] <specification-file> [output-path]
@@ -60,22 +57,15 @@ async function main(): Promise<void> {
   const [specificationFile, outputPathArg] = positionals as (string | undefined)[];
 
   if (!specificationFile) {
-    console.error('Error: El argumento <specification-file> es requerido.\n');
-    console.error(USAGE);
-    process.exitCode = 1;
+    failWithUsage('El argumento <specification-file> es requerido.', USAGE);
 
     return;
   }
 
-  const specKey = path.basename(specificationFile, path.extname(specificationFile));
-  const defaultOutputDir = `tests/unit/${specKey}/`;
-  const targetOutput = outputPathArg ?? defaultOutputDir;
-
   let generatedFile = '';
 
   try {
-    const testsMaker = TestsMaker.make(specificationFile, targetOutput, {
-      specKey,
+    const testsMaker = TestsMaker.make(specificationFile, outputPathArg, {
       srcDir: values['src-dir'],
       force: values.force,
     });
@@ -103,9 +93,7 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.log('Applying linter/formatter using eslint...');
-  await execFileAsync('pnpm', ['eslint', generatedFile, '--fix']);
-  console.log('Formatting completed');
+  await beautify([generatedFile]);
 }
 
 await main();

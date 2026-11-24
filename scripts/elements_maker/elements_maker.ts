@@ -5,7 +5,7 @@ import Dictionary from './dictionary.js';
 import Specifications from './specifications.js';
 import { toSnakeCase } from './string_utils.js';
 
-export default class ElementsMarker {
+export default class ElementsMaker {
   private readonly _specs: Specifications;
 
   private readonly _outputDir: string;
@@ -69,10 +69,7 @@ export default class ElementsMarker {
     for (const child of structure) {
       const childName = child.getName();
       const childModule = `./${toSnakeCase(childName)}`;
-      const childAttrs = this._classAttributes.get(childName) ?? [];
-      const childAttributesType = childAttrs.length > 0
-        ? `AttributesRecord<${childName}Attributes>`
-        : 'AttributesRecord';
+      const childHasAttributes = this.hasAttributes(childName);
 
       const childTemplate = child.isMultiple()
         ? 'child_multiple'
@@ -86,7 +83,7 @@ export default class ElementsMarker {
           new Dictionary({
             '#child-name#': childName,
             '#child-method-name#': child.getMethodName(),
-            '#child-attributes-type#': childAttributesType,
+            '#child-attributes-type#': this.attributesRecordType(childName),
           }),
         ),
       );
@@ -97,7 +94,7 @@ export default class ElementsMarker {
         cfdiCoreTypes.add('XmlNodeInterface');
       } else {
         cfdiCoreTypes.add('AttributesRecord');
-        if (childAttrs.length > 0) {
+        if (childHasAttributes) {
           addNamedTypeImport(childModule, `${childName}Attributes`);
         }
       }
@@ -108,16 +105,12 @@ export default class ElementsMarker {
     for (const shortcut of structure.getShortcuts()) {
       const targetName = shortcut.target;
       const targetModule = `./${toSnakeCase(targetName)}`;
-      const targetAttrs = this._classAttributes.get(targetName) ?? [];
-      const targetAttributesType = targetAttrs.length > 0
-        ? `AttributesRecord<${targetName}Attributes>`
-        : 'AttributesRecord';
 
       const getterChain = shortcut.path.map((segment) => `get${segment}()`).join('.');
       const shortcutDictionary = new Dictionary({
         '#target#': targetName,
         '#getter-chain#': getterChain,
-        '#target-attributes-type#': targetAttributesType,
+        '#target-attributes-type#': this.attributesRecordType(targetName),
       });
 
       sectionsContent.push(this.template('shortcut_add', shortcutDictionary));
@@ -126,7 +119,7 @@ export default class ElementsMarker {
       }
 
       cfdiCoreTypes.add('AttributesRecord');
-      if (targetAttrs.length > 0) {
+      if (this.hasAttributes(targetName)) {
         addNamedTypeImport(targetModule, `${targetName}Attributes`);
       }
 
@@ -158,8 +151,8 @@ export default class ElementsMarker {
     writeFileSync(outputFile, contents);
   }
 
-  public static make(specFile: string, outputDir: string): ElementsMarker {
-    return new ElementsMarker(Specifications.makeFromFile(specFile), outputDir);
+  public static make(specFile: string, outputDir: string): ElementsMaker {
+    return new ElementsMaker(Specifications.makeFromFile(specFile), outputDir);
   }
 
   private writeIndex(): void {
@@ -188,16 +181,18 @@ export default class ElementsMarker {
   private collectClassAttributes(structure: Structure): void {
     const className = structure.getName();
     const existing = this._classAttributes.get(className) ?? [];
-    for (const attr of structure.getAttributes()) {
-      if (!existing.includes(attr)) {
-        existing.push(attr);
-      }
-    }
-
-    this._classAttributes.set(className, existing);
+    this._classAttributes.set(className, [...new Set([...existing, ...structure.getAttributes()])]);
     for (const child of structure) {
       this.collectClassAttributes(child);
     }
+  }
+
+  private hasAttributes(className: string): boolean {
+    return (this._classAttributes.get(className)?.length ?? 0) > 0;
+  }
+
+  private attributesRecordType(className: string): string {
+    return this.hasAttributes(className) ? `AttributesRecord<${className}Attributes>` : 'AttributesRecord';
   }
 
   private formatAttributesType(className: string, attributes: string[]): string {
@@ -231,8 +226,6 @@ export default class ElementsMarker {
   }
 
   private elementsToString(list: string[]): string {
-    const parts: string[] = Array.from(list, (value) => `'${value}'`);
-
-    return `[\n${parts.join(',\n')}]`;
+    return `[\n${list.map((value) => `'${value}'`).join(',\n')}]`;
   }
 }
