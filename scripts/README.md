@@ -178,6 +178,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/servicioparcial
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd
 ```
 
+### `ine_11`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -288,6 +294,12 @@ pnpm make:elements scripts/elements_maker/specifications/servicioparcial_10.json
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/iedu_10.json src/elements/iedu_10/ --with-tests
+```
+
+### `ine_11`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/ine_11.json src/elements/ine_11/ --with-tests
 ```
 
 <!-- elements:end -->

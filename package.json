@@ -36,6 +36,7 @@
     "./donat11": "./dist/donat11.js",
     "./iedu10": "./dist/iedu10.js",
     "./implocal10": "./dist/implocal10.js",
+    "./ine11": "./dist/ine11.js",
     "./leyendasFisc10": "./dist/leyendasFisc10.js",
     "./nomina12": "./dist/nomina12.js",
     "./notariospublicos10": "./dist/notariospublicos10.js",
