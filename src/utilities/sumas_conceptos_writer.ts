@@ -99,7 +99,7 @@ export class SumasConceptosWriter {
       impuestos
         .getTraslados()
         .multiTraslado(
-          ...this.getImpuestosContents(this._sumas.getTraslados(), this._writeImpuestosBase, true),
+          ...this.getImpuestosContents(this._sumas.getTraslados(), this._writeImpuestosBase),
         );
     }
 
@@ -107,7 +107,7 @@ export class SumasConceptosWriter {
       impuestos
         .getTraslados()
         .multiTraslado(
-          ...this.getImpuestosContents(this._sumas.getExentos(), this._writeImpuestosBase, false),
+          ...this.getImpuestosContents(this._sumas.getExentos(), this._writeImpuestosBase),
         );
     }
 
@@ -122,7 +122,7 @@ export class SumasConceptosWriter {
     );
     impuestos
       .getRetenciones()
-      .multiRetencion(...this.getImpuestosContents(this._sumas.getRetenciones(), false, true));
+      .multiRetencion(...this.getImpuestosContents(this._sumas.getRetenciones(), false));
   }
 
   private putComplementoImpuestoLocalSumas(): void {
@@ -164,12 +164,14 @@ export class SumasConceptosWriter {
       }
     >,
     hasBase: boolean,
-    hasImporte: boolean,
   ): Record<string, unknown>[] {
+    const format = (value: Decimal | undefined): string | undefined =>
+      value === undefined ? undefined : formatNumber(value, this._precision);
+
     return Object.values(impuestos).map((impuesto) => ({
       ...impuesto,
-      Base: hasBase ? formatNumber(impuesto.Base ?? 0, this._precision) : undefined,
-      Importe: hasImporte ? formatNumber(impuesto.Importe ?? 0, this._precision) : undefined,
+      Base: format(hasBase ? impuesto.Base : undefined),
+      Importe: format(impuesto.Importe),
     }));
   }
 

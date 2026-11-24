@@ -1,0 +1,12 @@
+<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">
+  <pago20:Pago MonedaP="MXN" TipoCambioP="1">
+    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="0.14">
+      <pago20:ImpuestosDR>
+        <pago20:TrasladosDR>
+          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
+                             BaseDR="0.123456789" ImporteDR="0.01975308624"/>
+        </pago20:TrasladosDR>
+      </pago20:ImpuestosDR>
+    </pago20:DoctoRelacionado>
+  </pago20:Pago>
+</pago20:Pagos>

@@ -254,6 +254,40 @@ describe('sumas conceptos', () => {
     expect(sc.getTotal()).toStrictEqual(new Decimal('1.74'));
   });
 
+  test('retenciones with the same impuesto are summarized', () => {
+    const comprobante = new Comprobante();
+    comprobante.addConcepto({ Importe: '1000.00' }).addRetencion({
+      Base: '1000.00',
+      Impuesto: '001',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.100000',
+      Importe: '100.00',
+    });
+    comprobante.addConcepto({ Importe: '500.00' }).addRetencion({
+      Base: '500.00',
+      Impuesto: '001',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.100000',
+      Importe: '50.00',
+    });
+    comprobante.addConcepto({ Importe: '200.00' }).addRetencion({
+      Base: '200.00',
+      Impuesto: '002',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.106667',
+      Importe: '21.33',
+    });
+
+    const sc = new SumasConceptos(comprobante, 2);
+    expect(sc.hasRetenciones()).toBeTruthy();
+    expect(sc.getRetenciones()).toStrictEqual({
+      '001::': { Impuesto: '001', Importe: new Decimal('150') },
+      '002::': { Impuesto: '002', Importe: new Decimal('21.33') },
+    });
+    expect(sc.getImpuestosRetenidos()).toStrictEqual(new Decimal('171.33'));
+    expect(sc.getTotal()).toStrictEqual(new Decimal('1528.67'));
+  });
+
   test('handles invalid or non-finite numeric attribute values as zero', () => {
     const comprobante = new Comprobante();
     comprobante.addConcepto({ Importe: 'invalid', Descuento: 'NaN' });

@@ -2,20 +2,9 @@ import { Decimal, nodeFromXmlString } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
 import { Calculator } from '../../../../src/utilities/sumas_pagos20/calculator';
 import { Currencies } from '../../../../src/utilities/sumas_pagos20/currencies';
+import { fileContents } from '../../../../test_helpers/test_utils';
 
-const minimalXml = `
-<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">
-  <pago20:Pago MonedaP="MXN" TipoCambioP="1">
-    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="0.14">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="0.123456789" ImporteDR="0.01975308624"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-</pago20:Pagos>`;
+const minimalXml = fileContents('pagos20-calculator/calculator-minimal.xml');
 
 describe('sumas pagos20 calculator', () => {
   test('default properties', () => {
@@ -89,27 +78,7 @@ describe('sumas pagos20 calculator', () => {
   });
 
   test('calculate two documents', () => {
-    const pagos = nodeFromXmlString(`
-<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20" Version="2.0">
-  <pago20:Pago MonedaP="MXN" TipoCambioP="1">
-    <pago20:DoctoRelacionado ImpPagado="0.14" MonedaDR="MXN" EquivalenciaDR="1">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="0.123456789" ImporteDR="0.01975308624"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-    <pago20:DoctoRelacionado ImpPagado="1.43" MonedaDR="MXN" EquivalenciaDR="1">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="1.23456789" ImporteDR="0.1975308624"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-</pago20:Pagos>`);
+    const pagos = nodeFromXmlString(fileContents('pagos20-calculator/calculator-two-documents.xml'));
 
     const result = new Calculator().calculate(pagos);
     expect(result.getTotales().getTotal()).toStrictEqual(new Decimal('1.57'));
@@ -122,43 +91,7 @@ describe('sumas pagos20 calculator', () => {
   });
 
   test('calculate multiple documents traslados and retenciones', () => {
-    const pagos = nodeFromXmlString(`
-<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">
-  <pago20:Pago MonedaP="MXN" TipoCambioP="1" Monto="1000.00">
-    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="1000.00">
-      <pago20:ImpuestosDR>
-        <pago20:RetencionesDR>
-          <pago20:RetencionDR BaseDR="123.45" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.160000" ImporteDR="19.752000" />
-          <pago20:RetencionDR BaseDR="400.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.040000" ImporteDR="16.000000" />
-        </pago20:RetencionesDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR BaseDR="600.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.160000" ImporteDR="96.000000" />
-          <pago20:TrasladoDR BaseDR="400.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.160000" ImporteDR="64.000000" />
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-  <pago20:Pago MonedaP="MXN" TipoCambioP="1" Monto="200.00">
-    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="200.00">
-      <pago20:ImpuestosDR>
-        <pago20:RetencionesDR>
-          <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.040000" ImporteDR="4.000000" />
-          <pago20:RetencionDR BaseDR="50.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.040000" ImporteDR="2.000000" />
-        </pago20:RetencionesDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR BaseDR="200.00" ImpuestoDR="002" TipoFactorDR="Tasa"
-           TasaOCuotaDR="0.160000" ImporteDR="32.000000" />
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-</pago20:Pagos>`);
+    const pagos = nodeFromXmlString(fileContents('pagos20-calculator/calculator-multiple-documents-traslados-retenciones.xml'));
 
     const result = new Calculator(6).calculate(pagos);
     expect(result.getTotales().getTotal()).toStrictEqual(new Decimal('1200'));
@@ -182,37 +115,7 @@ describe('sumas pagos20 calculator', () => {
   });
 
   test('calculate payment usd with doctos mxn and usd', () => {
-    const pagos = nodeFromXmlString(`
-<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20" Version="2.0">
-  <pago20:Pago MonedaP="USD" Monto="5.00" TipoCambioP="17.8945">
-    <pago20:DoctoRelacionado ImpPagado="0.14" MonedaDR="MXN" EquivalenciaDR="17.8945">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="0.123456789" ImporteDR="0.01975308624"/>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.000000"
-                             BaseDR="0.123456789" ImporteDR="0"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-    <pago20:DoctoRelacionado ImpPagado="1.43" MonedaDR="MXN" EquivalenciaDR="17.8945">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="1.23456789" ImporteDR="0.1975308624"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-    <pago20:DoctoRelacionado ImpPagado="4.01" MonedaDR="USD" EquivalenciaDR="1">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="3.456789" ImporteDR="0.55308624"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-</pago20:Pagos>`);
+    const pagos = nodeFromXmlString(fileContents('pagos20-calculator/calculator-payment-usd-doctos-mxn-usd.xml'));
 
     const result = new Calculator().calculate(pagos);
 
@@ -254,20 +157,29 @@ describe('sumas pagos20 calculator', () => {
     });
   });
 
+  test('invalid or non-finite numeric attribute values use the default value', () => {
+    const pagos = nodeFromXmlString(fileContents('pagos20-calculator/calculator-invalid-numeric-values.xml'));
+
+    const result = new Calculator().calculate(pagos);
+
+    // TipoCambioP and EquivalenciaDR invalid are considered as 1, ImpPagado invalid as 0
+    const firstPago = result.getPago(0);
+    expect(firstPago.getTipoCambioP()).toStrictEqual(new Decimal(1));
+    expect(firstPago.getMonto()).toStrictEqual(new Decimal('116'));
+    const traslado = firstPago.getImpuestos().getTraslado('002', 'Tasa', '0.160000');
+    expect(traslado.getBase()).toStrictEqual(new Decimal('100'));
+    expect(traslado.getImporte()).toStrictEqual(new Decimal('16'));
+
+    // Monto invalid is considered as 0, but the minimum amount is still calculated
+    const secondPago = result.getPago(1);
+    expect(secondPago.getMonto()).toStrictEqual(new Decimal(0));
+    expect(secondPago.getMontoMinimo()).toStrictEqual(new Decimal('10'));
+
+    expect(result.getTotales().getTotal()).toStrictEqual(new Decimal('116'));
+  });
+
   test('missing TipoCambioP and EquivalenciaDR are considered as 1', () => {
-    const pagos = nodeFromXmlString(`
-<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">
-  <pago20:Pago MonedaP="MXN">
-    <pago20:DoctoRelacionado MonedaDR="MXN" ImpPagado="116.00">
-      <pago20:ImpuestosDR>
-        <pago20:TrasladosDR>
-          <pago20:TrasladoDR ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000"
-                             BaseDR="100.00" ImporteDR="16.00"/>
-        </pago20:TrasladosDR>
-      </pago20:ImpuestosDR>
-    </pago20:DoctoRelacionado>
-  </pago20:Pago>
-</pago20:Pagos>`);
+    const pagos = nodeFromXmlString(fileContents('pagos20-calculator/calculator-missing-tipocambio-equivalencia.xml'));
 
     const result = new Calculator().calculate(pagos);
     expect(result.getTotales().getTotal()).toStrictEqual(new Decimal('116'));

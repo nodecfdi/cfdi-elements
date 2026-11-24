@@ -1,0 +1,36 @@
+<pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">
+  <pago20:Pago MonedaP="MXN" TipoCambioP="1" Monto="1000.00">
+    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="1000.00">
+      <pago20:ImpuestosDR>
+        <pago20:RetencionesDR>
+          <pago20:RetencionDR BaseDR="123.45" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.160000" ImporteDR="19.752000" />
+          <pago20:RetencionDR BaseDR="400.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.040000" ImporteDR="16.000000" />
+        </pago20:RetencionesDR>
+        <pago20:TrasladosDR>
+          <pago20:TrasladoDR BaseDR="600.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.160000" ImporteDR="96.000000" />
+          <pago20:TrasladoDR BaseDR="400.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.160000" ImporteDR="64.000000" />
+        </pago20:TrasladosDR>
+      </pago20:ImpuestosDR>
+    </pago20:DoctoRelacionado>
+  </pago20:Pago>
+  <pago20:Pago MonedaP="MXN" TipoCambioP="1" Monto="200.00">
+    <pago20:DoctoRelacionado MonedaDR="MXN" EquivalenciaDR="1" ImpPagado="200.00">
+      <pago20:ImpuestosDR>
+        <pago20:RetencionesDR>
+          <pago20:RetencionDR BaseDR="100.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.040000" ImporteDR="4.000000" />
+          <pago20:RetencionDR BaseDR="50.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.040000" ImporteDR="2.000000" />
+        </pago20:RetencionesDR>
+        <pago20:TrasladosDR>
+          <pago20:TrasladoDR BaseDR="200.00" ImpuestoDR="002" TipoFactorDR="Tasa"
+           TasaOCuotaDR="0.160000" ImporteDR="32.000000" />
+        </pago20:TrasladosDR>
+      </pago20:ImpuestosDR>
+    </pago20:DoctoRelacionado>
+  </pago20:Pago>
+</pago20:Pagos>
