@@ -1,7 +1,7 @@
 {
   "prefix": "cfdi",
-  "xml-namespace": "https://www.sat.gob.mx/cfd/4",
-  "xml-schemalocation": "https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
+  "xml-namespace": "http://www.sat.gob.mx/cfd/4",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
   "version-attribute": "Version",
   "version-value": "4.0",
   "root": {

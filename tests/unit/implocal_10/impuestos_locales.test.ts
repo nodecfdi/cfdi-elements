@@ -9,10 +9,10 @@ describe('implocal10', () => {
     expect(element).toElementHasName('implocal:ImpuestosLocales');
     expect(element).toElementHasOrder(['implocal:RetencionesLocales', 'implocal:TrasladosLocales']);
     expect(element).toElementHasFixedAttributes({
-      'xmlns:implocal': 'https://www.sat.gob.mx/implocal',
+      'xmlns:implocal': 'http://www.sat.gob.mx/implocal',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/implocal https://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd',
+        'http://www.sat.gob.mx/implocal http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd',
       'version': '1.0',
     });
     assert.toElementHasChildMultiple(element, RetencionesLocales);

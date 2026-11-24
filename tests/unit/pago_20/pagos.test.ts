@@ -19,10 +19,10 @@ describe('pago20', () => {
     const element = new Pagos();
     expect(element).toElementHasName('pago20:Pagos');
     expect(element).toElementHasFixedAttributes({
-      'xmlns:pago20': 'https://www.sat.gob.mx/Pagos20',
+      'xmlns:pago20': 'http://www.sat.gob.mx/Pagos20',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/Pagos20 https://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
+        'http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
       'Version': '2.0',
     });
     assert.toElementHasChildSingle(element, Totales);

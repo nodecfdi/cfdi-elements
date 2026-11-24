@@ -31,7 +31,6 @@
     "./types": "./dist/types.js",
     "./package.json": "./package.json"
   },
-  "types": "./dist/commonjs/index.d.ts",
   "files": [
     "dist"
   ],

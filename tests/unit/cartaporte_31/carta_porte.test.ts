@@ -40,10 +40,10 @@ describe('cartaporte31', () => {
       'cartaporte31:FiguraTransporte',
     ]);
     expect(element).toElementHasFixedAttributes({
-      'xmlns:cartaporte31': 'https://www.sat.gob.mx/CartaPorte31',
+      'xmlns:cartaporte31': 'http://www.sat.gob.mx/CartaPorte31',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/CartaPorte31 https://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
+        'http://www.sat.gob.mx/CartaPorte31 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
       'Version': '3.1',
     });
     assert.toElementHasChildSingle(element, RegimenesAduaneros);

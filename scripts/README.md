@@ -59,7 +59,7 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/Cart
 ### `cfdi_40`
 
 ```sh
-pnpm make:specification https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd \
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd \
   --shortcut ':Conceptos->Concepto:single' \
   --shortcut ':Impuestos.Traslados->Traslado' \
   --shortcut ':Impuestos.Retenciones->Retencion' \

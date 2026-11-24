@@ -8,10 +8,10 @@ describe('leyendasFisc10', () => {
 
     expect(element).toElementHasName('leyendasFisc:LeyendasFiscales');
     expect(element).toElementHasFixedAttributes({
-      'xmlns:leyendasFisc': 'https://www.sat.gob.mx/leyendasFiscales',
+      'xmlns:leyendasFisc': 'http://www.sat.gob.mx/leyendasFiscales',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/leyendasFiscales https://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
+        'http://www.sat.gob.mx/leyendasFiscales http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
       'version': '1.0',
     });
     assert.toElementHasChildMultiple(element, Leyenda);
