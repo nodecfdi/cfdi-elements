@@ -24,13 +24,11 @@ Librería inspirada por la versión para php https://github.com/eclipxe13/CfdiUt
 
 ## Documentación
 
-La documentación está disponible en el sitio web [NodeCfdi](https://nodecfdi.com/librarys/cfdi-elements/getting-started/)
+La documentación está disponible en el sitio web [NodeCfdi](https://nodecfdi.com/packages/cfdi-elements/getting-started/)
 
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.
-
-Adicionalmente, esta librería pertenece a la comunidad [OcelotlStudio](https://ocelotlstudio.com), así que puedes usar los mismos canales de comunicación para obtener ayuda de algún miembro de la comunidad.
 
 ## Compatibilidad
 
@@ -45,7 +43,7 @@ Las contribuciones con bienvenidas. Por favor lee [CONTRIBUTING][] para más det
 
 ## Copyright and License
 
-The `@nodecfdi/cfdi-elements` library is copyright © [NodeCfdi](https://github.com/nodecfdi) - [OcelotlStudio](https://ocelotlstudio.com) and licensed for use under the MIT License (MIT). Please see [LICENSE][] for more information.
+The `@nodecfdi/cfdi-elements` library is copyright © [NodeCfdi](https://github.com/nodecfdi) and licensed for use under the MIT License (MIT). Please see [LICENSE][] for more information.
 
 [contributing]: https://github.com/nodecfdi/.github/blob/main/docs/CONTRIBUTING.md
 [changelog]: https://github.com/nodecfdi/cfdi-elements/blob/main/CHANGELOG.md
@@ -53,7 +51,7 @@ The `@nodecfdi/cfdi-elements` library is copyright © [NodeCfdi](https://github.
 [node-version]: https://www.npmjs.com/package/@nodecfdi/cfdi-elements
 [discord]: https://discord.gg/AsqX8fkW2k
 [release]: https://www.npmjs.com/package/@nodecfdi/cfdi-elements
-[license]: https://github.com/nodecfdi/cfdi-elements/blob/main/LICENSE.md
+[license]: https://github.com/nodecfdi/cfdi-elements/blob/main/LICENSE
 [build]: https://github.com/nodecfdi/cfdi-elements/actions/workflows/build.yml?query=branch:main
 [reliability]: https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-elements&metric=Reliability
 [maintainability]: https://sonarcloud.io/component_measures?id=nodecfdi_cfdi-elements&metric=Maintainability
