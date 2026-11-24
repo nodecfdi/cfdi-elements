@@ -1,6 +1,7 @@
+import type { Decimal } from '@nodecfdi/cfdi-core';
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type SumasConceptos from './sumas_conceptos';
-import { formatNumber, roundNumber } from '@nodecfdi/cfdi-core';
+import { formatNumber } from '@nodecfdi/cfdi-core';
 import { Comprobante } from '../elements/cfdi_40/comprobante';
 
 export default class SumasConceptosWriter {
@@ -158,29 +159,21 @@ export default class SumasConceptosWriter {
         Impuesto: string;
         TipoFactor?: string;
         TasaOCuota?: string;
-        Importe?: number;
-        Base?: number;
+        Importe?: Decimal;
+        Base?: Decimal;
       }
     >,
     hasBase: boolean,
     hasImporte: boolean,
   ): Record<string, unknown>[] {
-    const result: Record<string, unknown>[] = [];
-    for (const impuesto of Object.values(impuestos)) {
-      const resultImpuesto = Object.assign(impuesto, {
-        Base: hasBase ? formatNumber(impuesto.Base ?? 0, this._precision) : undefined,
-        Importe: hasImporte ? formatNumber(impuesto.Importe ?? 0, this._precision) : undefined,
-      });
-
-      result.push({
-        ...resultImpuesto,
-      });
-    }
-
-    return result;
+    return Object.values(impuestos).map((impuesto) => ({
+      ...impuesto,
+      Base: hasBase ? formatNumber(impuesto.Base ?? 0, this._precision) : undefined,
+      Importe: hasImporte ? formatNumber(impuesto.Importe ?? 0, this._precision) : undefined,
+    }));
   }
 
-  private valueGreaterThanZero(value: number): boolean {
-    return roundNumber(value, this._precision) > 0;
+  private valueGreaterThanZero(value: Decimal): boolean {
+    return value.toDecimalPlaces(this._precision).gt(0);
   }
 }

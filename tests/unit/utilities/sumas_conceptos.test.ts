@@ -1,4 +1,4 @@
-import { XmlNode } from '@nodecfdi/cfdi-core';
+import { Decimal, XmlNode } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
 import { Comprobante } from '../../../src/elements/cfdi_40/index';
 import { ImpuestosLocales } from '../../../src/elements/implocal_10/index';
@@ -6,16 +6,15 @@ import SumasConceptos from '../../../src/utilities/sumas_conceptos';
 
 describe('sumas conceptos', () => {
   test('constructor', () => {
-    // const maxDiff = 0.0000001;
     const sc = new SumasConceptos(new XmlNode('x'));
     expect(sc.getPrecision()).toBe(2);
-    expect(sc.getSubTotal()).toBe(0);
-    expect(sc.getTotal()).toBe(0);
-    expect(sc.getDescuento()).toBe(0);
-    expect(sc.getImpuestosRetenidos()).toBe(0);
-    expect(sc.getImpuestosTrasladados()).toBe(0);
-    expect(sc.getLocalesImpuestosRetenidos()).toBe(0);
-    expect(sc.getLocalesImpuestosTrasladados()).toBe(0);
+    expect(sc.getSubTotal()).toStrictEqual(new Decimal(0));
+    expect(sc.getTotal()).toStrictEqual(new Decimal(0));
+    expect(sc.getDescuento()).toStrictEqual(new Decimal(0));
+    expect(sc.getImpuestosRetenidos()).toStrictEqual(new Decimal(0));
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(0));
+    expect(sc.getLocalesImpuestosRetenidos()).toStrictEqual(new Decimal(0));
+    expect(sc.getLocalesImpuestosTrasladados()).toStrictEqual(new Decimal(0));
     expect(Object.keys(sc.getRetenciones())).toHaveLength(0);
     expect(Object.keys(sc.getTraslados())).toHaveLength(0);
     expect(Object.keys(sc.getExentos())).toHaveLength(0);
@@ -33,61 +32,59 @@ describe('sumas conceptos', () => {
    * The case "tax uses 6 dec" 53.33 = round(17.7776 + 35.5552, 2)
    */
   test.each([
-    ['tax uses 1 dec', 1, 333.33, 53.4, 386.73],
-    ['tax uses 6 dec', 6, 333.33, 53.33, 386.66],
+    ['tax uses 1 dec', 1, '333.33', '53.4', '386.73'],
+    ['tax uses 6 dec', 6, '333.33', '53.33', '386.66'],
   ])('with concepts decimals %s', (_name, taxDecimals, subTotal, traslados, total) => {
-    // const maxDiff = 0.0000001;
     const comprobante = new Comprobante();
     comprobante.addConcepto({ Importe: '111.11' }).addTraslado({
       Base: '111.11',
       Impuesto: '002',
       TipoFactor: 'Tasa',
       TasaOCuota: '0.160000',
-      Importe: (111.11 * 0.16).toFixed(taxDecimals),
+      Importe: new Decimal('111.11').times('0.16').toFixed(taxDecimals),
     });
     comprobante.addConcepto({ Importe: '222.22' }).addTraslado({
       Base: '222.22',
       Impuesto: '002',
       TipoFactor: 'Tasa',
       TasaOCuota: '0.160000',
-      Importe: (222.22 * 0.16).toFixed(taxDecimals),
+      Importe: new Decimal('222.22').times('0.16').toFixed(taxDecimals),
     });
     const sc = new SumasConceptos(comprobante, 2);
-    expect(sc.getSubTotal()).toBe(subTotal);
-    expect(sc.getImpuestosTrasladados()).toBe(traslados);
-    expect(sc.getTotal()).toBe(total);
+    expect(sc.getSubTotal()).toStrictEqual(new Decimal(subTotal));
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(traslados));
+    expect(sc.getTotal()).toStrictEqual(new Decimal(total));
 
     // These are zero
-    expect(sc.getDescuento()).toBe(0);
-    expect(sc.getImpuestosRetenidos()).toBe(0);
+    expect(sc.getDescuento()).toStrictEqual(new Decimal(0));
+    expect(sc.getImpuestosRetenidos()).toStrictEqual(new Decimal(0));
     expect(Object.keys(sc.getRetenciones())).toHaveLength(0);
     expect(Object.keys(sc.getExentos())).toHaveLength(0);
   });
 
   test('with impuestos locales', () => {
     const taxDecimals = 4;
-    // const maxDiff = 0.0000001;
     const comprobante = new Comprobante();
     comprobante.addConcepto({ Importe: '111.11' }).addTraslado({
       Base: '111.11',
       Impuesto: '002',
       TipoFactor: 'Tasa',
       TasaOCuota: '0.160000',
-      Importe: (111.11 * 0.16).toFixed(taxDecimals),
+      Importe: new Decimal('111.11').times('0.16').toFixed(taxDecimals),
     });
     comprobante.addConcepto({ Importe: '222.22' }).addTraslado({
       Base: '222.22',
       Impuesto: '002',
       TipoFactor: 'Tasa',
       TasaOCuota: '0.160000',
-      Importe: (222.22 * 0.16).toFixed(taxDecimals),
+      Importe: new Decimal('222.22').times('0.16').toFixed(taxDecimals),
     });
 
     const impuestosLocales = new ImpuestosLocales();
     impuestosLocales.addTrasladosLocales({
       ImpLocTraslado: 'IH',
       TasadeTraslado: '2.5',
-      Importe: (333.33 * 0.025).toFixed(2),
+      Importe: new Decimal('333.33').times('0.025').toFixed(2),
     });
 
     comprobante.addComplemento(impuestosLocales);
@@ -97,17 +94,17 @@ describe('sumas conceptos', () => {
     expect(sc.hasTraslados()).toBeTruthy();
     expect(sc.getLocalesTraslados()).toHaveLength(1);
 
-    expect(sc.getSubTotal()).toBe(333.33);
-    expect(sc.getImpuestosTrasladados()).toBe(53.33);
-    expect(sc.getLocalesImpuestosTrasladados()).toBe(8.33);
-    expect(sc.getTotal()).toBe(394.99);
+    expect(sc.getSubTotal()).toStrictEqual(new Decimal('333.33'));
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal('53.33'));
+    expect(sc.getLocalesImpuestosTrasladados()).toStrictEqual(new Decimal('8.33'));
+    expect(sc.getTotal()).toStrictEqual(new Decimal('394.99'));
 
     // These are zero
-    expect(sc.getDescuento()).toBe(0);
-    expect(sc.getImpuestosRetenidos()).toBe(0);
+    expect(sc.getDescuento()).toStrictEqual(new Decimal(0));
+    expect(sc.getImpuestosRetenidos()).toStrictEqual(new Decimal(0));
     expect(Object.keys(sc.getRetenciones())).toHaveLength(0);
     expect(Object.keys(sc.getExentos())).toHaveLength(0);
-    expect(sc.getLocalesImpuestosRetenidos()).toBe(0);
+    expect(sc.getLocalesImpuestosRetenidos()).toStrictEqual(new Decimal(0));
     expect(sc.getLocalesRetenciones()).toHaveLength(0);
   });
 
@@ -141,9 +138,9 @@ describe('sumas conceptos', () => {
 
     const sc = new SumasConceptos(comprobante, 3);
     expect(sc.hasTraslados()).toBeTruthy();
-    expect(sc.getImpuestosTrasladados()).toBe(10);
-    expect(sc.getTraslados()['002:Tasa:0.160000'].Importe).toBe(10);
-    expect(sc.getTraslados()['002:Tasa:0.160000'].Base).toBe(62.5);
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(10));
+    expect(sc.getTraslados()['002:Tasa:0.160000'].Importe).toStrictEqual(new Decimal(10));
+    expect(sc.getTraslados()['002:Tasa:0.160000'].Base).toStrictEqual(new Decimal('62.5'));
   });
 
   test('impuesto with traslados and exento', () => {
@@ -169,12 +166,14 @@ describe('sumas conceptos', () => {
 
     const sc = new SumasConceptos(comprobante, 2);
     expect(sc.hasTraslados()).toBeTruthy();
-    expect(sc.getImpuestosTrasladados()).toBe(320);
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(320));
     expect(Object.keys(sc.getTraslados())).toHaveLength(1);
 
     expect(sc.hasExentos()).toBeTruthy();
     expect(Object.keys(sc.getExentos())).toHaveLength(1);
-    expect(Object.values(sc.getExentos()).reduce((a, b) => a + b.Base, 0)).toBe(1234.56);
+    expect(
+      Object.values(sc.getExentos()).reduce((a, b) => a.plus(b.Base), new Decimal(0)),
+    ).toStrictEqual(new Decimal('1234.56'));
   });
 
   test('impuesto with traslados and only exentos without base', () => {
@@ -184,11 +183,13 @@ describe('sumas conceptos', () => {
 
     const sc = new SumasConceptos(comprobante, 2);
     expect(sc.hasTraslados()).toBeFalsy();
-    expect(sc.getImpuestosTrasladados()).toBe(0);
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(0));
     expect(Object.keys(sc.getTraslados())).toHaveLength(0);
 
     expect(sc.hasExentos()).toBeTruthy();
-    expect(Object.values(sc.getExentos()).reduce((a, b) => a + b.Base, 0)).toBe(0);
+    expect(
+      Object.values(sc.getExentos()).reduce((a, b) => a.plus(b.Base), new Decimal(0)),
+    ).toStrictEqual(new Decimal(0));
   });
 
   test('impuesto with traslados and only exentos with base', () => {
@@ -206,14 +207,62 @@ describe('sumas conceptos', () => {
 
     const sc = new SumasConceptos(comprobante, 2);
     expect(sc.hasTraslados()).toBeFalsy();
-    expect(sc.getImpuestosTrasladados()).toBe(0);
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal(0));
     expect(Object.keys(sc.getTraslados())).toHaveLength(0);
     expect(sc.hasExentos()).toBeTruthy();
 
     const exentos001 = Object.values(sc.getExentos()).filter((val) => val.Impuesto === '001');
-    expect(exentos001.reduce((a, b) => a + b.Base, 0)).toBe(250);
+    expect(exentos001.reduce((a, b) => a.plus(b.Base), new Decimal(0))).toStrictEqual(
+      new Decimal(250),
+    );
 
     const exentos002 = Object.values(sc.getExentos()).filter((val) => val.Impuesto === '002');
-    expect(exentos002.reduce((a, b) => a + b.Base, 0)).toBeCloseTo(666.66, 6);
+    expect(exentos002.reduce((a, b) => a.plus(b.Base), new Decimal(0))).toStrictEqual(
+      new Decimal('666.66'),
+    );
+  });
+
+  test('avoids floating point precision issues in sums and halfway rounding', () => {
+    const comprobante = new Comprobante();
+    // In IEEE 754: 1.13 + 0.005 = 1.1349999999999998 (would wrongly round to 1.13)
+    comprobante.addConcepto({ Importe: '1.13' }).addTraslado({
+      Base: '1.002',
+      Importe: '0.10',
+      Impuesto: '002',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.160000',
+    });
+    comprobante.addConcepto({ Importe: '0.005' }).addTraslado({
+      Base: '0.003',
+      Importe: '0.20',
+      Impuesto: '002',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.160000',
+    });
+
+    const implocal = new ImpuestosLocales();
+    implocal.addTrasladosLocales({ ImpLocTraslado: 'IH', TasadeTraslado: '2.5', Importe: '0.10' });
+    implocal.addTrasladosLocales({ ImpLocTraslado: 'IH', TasadeTraslado: '2.5', Importe: '0.20' });
+    comprobante.addComplemento(implocal);
+
+    const sc = new SumasConceptos(comprobante, 2);
+    expect(sc.getSubTotal()).toStrictEqual(new Decimal('1.14'));
+    expect(sc.getTraslados()['002:Tasa:0.160000'].Base).toStrictEqual(new Decimal('1.01'));
+    expect(sc.getTraslados()['002:Tasa:0.160000'].Importe).toStrictEqual(new Decimal('0.3'));
+    expect(sc.getImpuestosTrasladados()).toStrictEqual(new Decimal('0.3'));
+    expect(sc.getLocalesImpuestosTrasladados()).toStrictEqual(new Decimal('0.3'));
+    expect(sc.getTotal()).toStrictEqual(new Decimal('1.74'));
+  });
+
+  test('handles invalid or non-finite numeric attribute values as zero', () => {
+    const comprobante = new Comprobante();
+    comprobante.addConcepto({ Importe: 'invalid', Descuento: 'NaN' });
+    comprobante.addConcepto({ Importe: 'Infinity', Descuento: ' ' });
+    comprobante.addConcepto({ Importe: '10.50' });
+
+    const sc = new SumasConceptos(comprobante, 2);
+    expect(sc.getSubTotal()).toStrictEqual(new Decimal('10.5'));
+    expect(sc.getDescuento()).toStrictEqual(new Decimal(0));
+    expect(sc.getTotal()).toStrictEqual(new Decimal('10.5'));
   });
 });

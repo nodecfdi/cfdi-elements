@@ -1,18 +1,18 @@
 /* eslint-disable unicorn/no-computed-property-existence-check */
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { SumaExentos, SumaLocal, SumaRetenciones, SumaTraslados } from '../types';
-import { roundNumber, toFloat } from '@nodecfdi/cfdi-core';
+import { Decimal } from '@nodecfdi/cfdi-core';
 
 export default class SumasConceptos {
-  private _importes = 0;
+  private _importes = new Decimal(0);
 
-  private _descuento = 0;
+  private _descuento = new Decimal(0);
 
-  private declare _total: number;
+  private declare _total: Decimal;
 
-  private declare _impuestosTrasladados: number;
+  private declare _impuestosTrasladados: Decimal;
 
-  private declare _impuestosRetenidos: number;
+  private declare _impuestosRetenidos: Decimal;
 
   private _traslados: SumaTraslados = {};
 
@@ -20,9 +20,9 @@ export default class SumasConceptos {
 
   private _retenciones: SumaRetenciones = {};
 
-  private declare _localesImpuestosTrasladados: number;
+  private declare _localesImpuestosTrasladados: Decimal;
 
-  private declare _localesImpuestosRetenidos: number;
+  private declare _localesImpuestosRetenidos: Decimal;
 
   private _localesTrasladados: SumaLocal[] = [];
 
@@ -37,15 +37,15 @@ export default class SumasConceptos {
     this.addComprobante(comprobante);
   }
 
-  public getTotal(): number {
+  public getTotal(): Decimal {
     return this._total;
   }
 
-  public getSubTotal(): number {
+  public getSubTotal(): Decimal {
     return this._importes;
   }
 
-  public getDescuento(): number {
+  public getDescuento(): Decimal {
     return this._descuento;
   }
 
@@ -73,11 +73,11 @@ export default class SumasConceptos {
     return Object.keys(this._retenciones).length > 0;
   }
 
-  public getImpuestosTrasladados(): number {
+  public getImpuestosTrasladados(): Decimal {
     return this._impuestosTrasladados;
   }
 
-  public getImpuestosRetenidos(): number {
+  public getImpuestosRetenidos(): Decimal {
     return this._impuestosRetenidos;
   }
 
@@ -97,11 +97,11 @@ export default class SumasConceptos {
     return this._localesRetenciones.length > 0;
   }
 
-  public getLocalesImpuestosTrasladados(): number {
+  public getLocalesImpuestosTrasladados(): Decimal {
     return this._localesImpuestosTrasladados;
   }
 
-  public getLocalesImpuestosRetenidos(): number {
+  public getLocalesImpuestosRetenidos(): Decimal {
     return this._localesImpuestosRetenidos;
   }
 
@@ -128,56 +128,47 @@ export default class SumasConceptos {
       'TrasladosLocales',
       'Traslado',
     );
-    this._localesImpuestosTrasladados = this._localesTrasladados.reduce(
-      (a: number, b) => a + b.Importe,
-      0,
-    );
+    this._localesImpuestosTrasladados = this._localesTrasladados
+      .reduce((a, b) => a.plus(b.Importe), new Decimal(0))
+      .toDecimalPlaces(this._precision);
     this._localesRetenciones = this.populateImpuestosLocales(
       comprobante,
       'RetencionesLocales',
       'Retenido',
     );
-    this._localesImpuestosRetenidos = this._localesRetenciones.reduce(
-      (a: number, b) => a + b.Importe,
-      0,
-    );
+    this._localesImpuestosRetenidos = this._localesRetenciones
+      .reduce((a, b) => a.plus(b.Importe), new Decimal(0))
+      .toDecimalPlaces(this._precision);
 
     this._traslados = this.roundImpuestosGroup(this._traslados);
+    this._exentos = this.roundImpuestosGroup(this._exentos);
     this._retenciones = this.roundImpuestosGroup(this._retenciones);
-    this._impuestosTrasladados = Object.values(this._traslados).reduce(
-      (a: number, b) => a + b.Importe,
-      0,
-    );
-    this._impuestosRetenidos = Object.values(this._retenciones).reduce(
-      (a: number, b) => a + b.Importe,
-      0,
-    );
+    this._impuestosTrasladados = Object.values(this._traslados)
+      .reduce((a, b) => a.plus(b.Importe), new Decimal(0))
+      .toDecimalPlaces(this._precision);
+    this._impuestosRetenidos = Object.values(this._retenciones)
+      .reduce((a, b) => a.plus(b.Importe), new Decimal(0))
+      .toDecimalPlaces(this._precision);
 
-    this._impuestosTrasladados = roundNumber(this._impuestosTrasladados, this._precision);
-    this._impuestosRetenidos = roundNumber(this._impuestosRetenidos, this._precision);
-    this._importes = roundNumber(this._importes, this._precision);
-    this._descuento = roundNumber(this._descuento, this._precision);
+    this._importes = this._importes.toDecimalPlaces(this._precision);
+    this._descuento = this._descuento.toDecimalPlaces(this._precision);
 
-    this._total = roundNumber(
-      [
-        this._importes,
-        -this._descuento,
-        this._impuestosTrasladados,
-        -this._impuestosRetenidos,
-        this._localesImpuestosTrasladados,
-        -this._localesImpuestosRetenidos,
-      ].reduce((a, b) => a + b, 0),
-      this._precision,
-    );
+    this._total = this._importes
+      .minus(this._descuento)
+      .plus(this._impuestosTrasladados)
+      .minus(this._impuestosRetenidos)
+      .plus(this._localesImpuestosTrasladados)
+      .minus(this._localesImpuestosRetenidos)
+      .toDecimalPlaces(this._precision);
   }
 
-  private addConcepto(concepto: XmlNodeInterface) {
-    this._importes += toFloat(concepto.getAttribute('Importe'));
+  private addConcepto(concepto: XmlNodeInterface): void {
+    this._importes = this._importes.plus(this.toDecimal(concepto.getAttribute('Importe')));
     if (concepto.hasAttribute('Descuento')) {
       this._foundAnyConceptWithDiscount = true;
     }
 
-    this._descuento += toFloat(concepto.getAttribute('Descuento'));
+    this._descuento = this._descuento.plus(this.toDecimal(concepto.getAttribute('Descuento')));
 
     const traslados = concepto.searchNodes('cfdi:Impuestos', 'cfdi:Traslados', 'cfdi:Traslado');
     for (const traslado of traslados) {
@@ -212,21 +203,25 @@ export default class SumasConceptos {
     return locales.map((local) => {
       return {
         Impuesto: local.getAttribute(`ImpLoc${singular}`),
-        Tasa: toFloat(local.getAttribute(`Tasade${singular}`)),
-        Importe: toFloat(local.getAttribute('Importe')),
+        Tasa: this.toDecimal(local.getAttribute(`Tasade${singular}`)),
+        Importe: this.toDecimal(local.getAttribute('Importe')),
       };
     });
   }
 
   private roundImpuestosGroup<
-    T extends Record<string, { Impuesto: string; Importe: number; Base?: number }>,
-  >(group: T,
+    T extends Record<string, { Impuesto: string; Importe?: Decimal; Base?: Decimal }>,
+  >(
+    group: T,
   ): T {
     // eslint-disable-next-line unicorn/prefer-object-iterable-methods
     for (const key of Object.keys(group)) {
-      group[key].Importe = roundNumber(group[key].Importe, this._precision);
+      if (group[key].Importe !== undefined) {
+        group[key].Importe = group[key].Importe.toDecimalPlaces(this._precision);
+      }
+
       if (group[key].Base !== undefined) {
-        group[key].Base = roundNumber(group[key].Base, this._precision);
+        group[key].Base = group[key].Base.toDecimalPlaces(this._precision);
       }
     }
 
@@ -245,13 +240,17 @@ export default class SumasConceptos {
         Impuesto: traslado.getAttribute('Impuesto'),
         TipoFactor: traslado.getAttribute('TipoFactor'),
         TasaOCuota: traslado.getAttribute('TasaOCuota'),
-        Importe: 0,
-        Base: 0,
+        Importe: new Decimal(0),
+        Base: new Decimal(0),
       };
     }
 
-    this._traslados[key].Importe += toFloat(traslado.getAttribute('Importe'));
-    this._traslados[key].Base += toFloat(traslado.getAttribute('Base'));
+    this._traslados[key].Importe = this._traslados[key].Importe.plus(
+      this.toDecimal(traslado.getAttribute('Importe')),
+    );
+    this._traslados[key].Base = this._traslados[key].Base.plus(
+      this.toDecimal(traslado.getAttribute('Base')),
+    );
   }
 
   private addExento(exento: XmlNodeInterface): void {
@@ -263,11 +262,13 @@ export default class SumasConceptos {
       this._exentos[key] = {
         TipoFactor: exento.getAttribute('TipoFactor'),
         Impuesto: exento.getAttribute('Impuesto'),
-        Base: 0,
+        Base: new Decimal(0),
       };
     }
 
-    this._exentos[key].Base += toFloat(exento.getAttribute('Base'));
+    this._exentos[key].Base = this._exentos[key].Base.plus(
+      this.toDecimal(exento.getAttribute('Base')),
+    );
   }
 
   private addRetencion(retencion: XmlNodeInterface): void {
@@ -275,10 +276,27 @@ export default class SumasConceptos {
     if (!(key in this._retenciones)) {
       this._retenciones[key] = {
         Impuesto: retencion.getAttribute('Impuesto'),
-        Importe: 0,
+        Importe: new Decimal(0),
       };
     }
 
-    this._retenciones[key].Importe += toFloat(retencion.getAttribute('Importe'));
+    this._retenciones[key].Importe = this._retenciones[key].Importe.plus(
+      this.toDecimal(retencion.getAttribute('Importe')),
+    );
+  }
+
+  private toDecimal(value: string): Decimal {
+    const trimmed = value.trim();
+    if (trimmed === '') {
+      return new Decimal(0);
+    }
+
+    try {
+      const parsed = new Decimal(trimmed);
+
+      return parsed.isFinite() ? parsed : new Decimal(0);
+    } catch {
+      return new Decimal(0);
+    }
   }
 }

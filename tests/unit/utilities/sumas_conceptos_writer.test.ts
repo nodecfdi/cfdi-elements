@@ -1,4 +1,4 @@
-import { nodeToXmlString, XmlNode } from '@nodecfdi/cfdi-core';
+import { Decimal, nodeToXmlString, XmlNode } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
 import { Comprobante } from '../../../src/elements/cfdi_40/index';
 import { ImpuestosLocales } from '../../../src/elements/implocal_10/index';
@@ -292,5 +292,38 @@ describe('sumas conceptos writer', () => {
     writer.put();
 
     expect(comprobante.searchNode('cfdi:Complemento')).toBeUndefined();
+  });
+
+  test('formats halfway values accurately when writer precision is lower than sumas precision', () => {
+    const comprobante = new Comprobante();
+    comprobante.addConcepto({ Importe: '1.002' });
+    comprobante.addConcepto({ Importe: '0.003' });
+
+    const sc = new SumasConceptos(comprobante, 6);
+    const writer = new SumasConceptosWriter(comprobante, sc, 2);
+    writer.put();
+
+    expect(comprobante.getAttribute('SubTotal')).toBe('1.01');
+    expect(comprobante.getAttribute('Total')).toBe('1.01');
+  });
+
+  test('does not mutate SumasConceptos impuestos when putting attributes', () => {
+    const comprobante = new Comprobante();
+    comprobante.addConcepto({ Importe: '100' }).addTraslado({
+      Base: '100',
+      Impuesto: '002',
+      TipoFactor: 'Tasa',
+      TasaOCuota: '0.160000',
+      Importe: '16',
+    });
+
+    const sc = new SumasConceptos(comprobante, 2);
+    const writer = new SumasConceptosWriter(comprobante, sc, 2);
+    writer.put();
+    writer.put();
+
+    const traslado = sc.getTraslados()['002:Tasa:0.160000'];
+    expect(traslado.Base).toStrictEqual(new Decimal(100));
+    expect(traslado.Importe).toStrictEqual(new Decimal(16));
   });
 });
