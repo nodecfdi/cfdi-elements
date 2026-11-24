@@ -184,6 +184,13 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xsd
 ```
 
+
+### `ventavehiculos_11`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ventavehiculos/ventavehiculos11.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -300,6 +307,13 @@ pnpm make:elements scripts/elements_maker/specifications/iedu_10.json src/elemen
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/ine_11.json src/elements/ine_11/ --with-tests
+```
+
+
+### `ventavehiculos_11`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/ventavehiculos_11.json src/elements/ventavehiculos_11/ --with-tests
 ```
 
 <!-- elements:end -->

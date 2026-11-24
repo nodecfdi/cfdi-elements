@@ -1,0 +1,33 @@
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { InformacionAduaneraAttributes } from './informacion_aduanera';
+import { AbstractElement } from '../../common/abstract_element';
+import { InformacionAduanera } from './informacion_aduanera';
+
+export type ParteAttributes
+  = | 'cantidad'
+    | 'unidad'
+    | 'noIdentificacion'
+    | 'descripcion'
+    | 'valorUnitario'
+    | 'importe';
+
+export class Parte extends AbstractElement<ParteAttributes> {
+  public getElementName(): string {
+    return 'ventavehiculos:Parte';
+  }
+
+  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}, children: XmlNodeInterface[] = []): InformacionAduanera {
+    const subject = new InformacionAduanera(attributes, children);
+    this.addChild(subject);
+
+    return subject;
+  }
+
+  public multiInformacionAduanera(...elementAttributes: AttributesRecord<InformacionAduaneraAttributes>[]): this {
+    for (const attributes of elementAttributes) {
+      this.addInformacionAduanera(attributes);
+    }
+
+    return this;
+  }
+}

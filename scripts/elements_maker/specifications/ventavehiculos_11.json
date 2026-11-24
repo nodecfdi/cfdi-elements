@@ -1,0 +1,49 @@
+{
+  "prefix": "ventavehiculos",
+  "xml-namespace": "http://www.sat.gob.mx/ventavehiculos",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/ventavehiculos/ventavehiculos11.xsd",
+  "version-attribute": "version",
+  "version-value": "1.1",
+  "root": {
+    "name": "VentaVehiculos",
+    "attributes": [
+      "version",
+      "ClaveVehicular",
+      "Niv"
+    ],
+    "children": [
+      {
+        "name": "InformacionAduanera",
+        "multiple": true,
+        "attributes": [
+          "numero",
+          "fecha",
+          "aduana"
+        ]
+      },
+      {
+        "name": "Parte",
+        "multiple": true,
+        "attributes": [
+          "cantidad",
+          "unidad",
+          "noIdentificacion",
+          "descripcion",
+          "valorUnitario",
+          "importe"
+        ],
+        "children": [
+          {
+            "name": "InformacionAduanera",
+            "multiple": true,
+            "attributes": [
+              "numero",
+              "fecha",
+              "aduana"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

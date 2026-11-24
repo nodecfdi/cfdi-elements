@@ -47,6 +47,7 @@
     "./servicioparcial10": "./dist/servicioparcial10.js",
     "./tfd11": "./dist/tfd11.js",
     "./types": "./dist/types.js",
+    "./ventavehiculos11": "./dist/ventavehiculos11.js",
     "./package.json": "./package.json"
   },
   "types": "./dist/index.d.ts",
