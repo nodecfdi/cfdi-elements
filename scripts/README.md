@@ -140,6 +140,12 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/2/retencion
   --shortcut ':Totales->ImpRetenidos'
 ```
 
+### `notariospublicos_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -214,6 +220,12 @@ pnpm make:elements scripts/elements_maker/specifications/nomina_12.json src/elem
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/retenciones_20.json src/elements/retenciones_20/ --with-tests
+```
+
+### `notariospublicos_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/notariospublicos_10.json src/elements/notariospublicos_10/ --with-tests
 ```
 
 <!-- elements:end -->

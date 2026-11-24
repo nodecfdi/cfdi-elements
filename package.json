@@ -35,6 +35,7 @@
     "./implocal10": "./dist/implocal10.js",
     "./leyendasFisc10": "./dist/leyendasFisc10.js",
     "./nomina12": "./dist/nomina12.js",
+    "./notariospublicos10": "./dist/notariospublicos10.js",
     "./pago20": "./dist/pago20.js",
     "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
     "./retenciones20": "./dist/retenciones20.js",

@@ -1,0 +1,126 @@
+{
+  "prefix": "notariospublicos",
+  "xml-namespace": "http://www.sat.gob.mx/notariospublicos",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.0",
+  "root": {
+    "name": "NotariosPublicos",
+    "attributes": [
+      "Version"
+    ],
+    "children": [
+      {
+        "name": "DescInmuebles",
+        "children": [
+          {
+            "name": "DescInmueble",
+            "multiple": true,
+            "attributes": [
+              "TipoInmueble",
+              "Calle",
+              "NoExterior",
+              "NoInterior",
+              "Colonia",
+              "Localidad",
+              "Referencia",
+              "Municipio",
+              "Estado",
+              "Pais",
+              "CodigoPostal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DatosOperacion",
+        "attributes": [
+          "NumInstrumentoNotarial",
+          "FechaInstNotarial",
+          "MontoOperacion",
+          "Subtotal",
+          "IVA"
+        ]
+      },
+      {
+        "name": "DatosNotario",
+        "attributes": [
+          "CURP",
+          "NumNotaria",
+          "EntidadFederativa",
+          "Adscripcion"
+        ]
+      },
+      {
+        "name": "DatosEnajenante",
+        "attributes": [
+          "CoproSocConyugalE"
+        ],
+        "children": [
+          {
+            "name": "DatosUnEnajenante",
+            "attributes": [
+              "Nombre",
+              "ApellidoPaterno",
+              "ApellidoMaterno",
+              "RFC",
+              "CURP"
+            ]
+          },
+          {
+            "name": "DatosEnajenantesCopSC",
+            "children": [
+              {
+                "name": "DatosEnajenanteCopSC",
+                "multiple": true,
+                "attributes": [
+                  "Nombre",
+                  "ApellidoPaterno",
+                  "ApellidoMaterno",
+                  "RFC",
+                  "CURP",
+                  "Porcentaje"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DatosAdquiriente",
+        "attributes": [
+          "CoproSocConyugalE"
+        ],
+        "children": [
+          {
+            "name": "DatosUnAdquiriente",
+            "attributes": [
+              "Nombre",
+              "ApellidoPaterno",
+              "ApellidoMaterno",
+              "RFC",
+              "CURP"
+            ]
+          },
+          {
+            "name": "DatosAdquirientesCopSC",
+            "children": [
+              {
+                "name": "DatosAdquirienteCopSC",
+                "multiple": true,
+                "attributes": [
+                  "Nombre",
+                  "ApellidoPaterno",
+                  "ApellidoMaterno",
+                  "RFC",
+                  "CURP",
+                  "Porcentaje"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
