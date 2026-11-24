@@ -151,5 +151,11 @@
         "pnpm run changelog"
       ]
     }
+  },
+  "nodecfdi": {
+    "title": "CFDI Elements",
+    "icon": "i-tabler-components",
+    "category": "cfdi",
+    "featured": true
   }
 }

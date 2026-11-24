@@ -22,6 +22,27 @@ Librería de elementos y/o estructuras de datos que componen un cfdi.
 
 Librería inspirada por la versión para php https://github.com/eclipxe13/CfdiUtils modularizada.
 
+## Inicio rápido
+
+```bash
+pnpm add @nodecfdi/cfdi-elements @nodecfdi/cfdi-core
+```
+
+```ts
+import { nodeToXmlString } from '@nodecfdi/cfdi-core';
+import { SumasConceptos, SumasConceptosWriter } from '@nodecfdi/cfdi-elements';
+import { Comprobante } from '@nodecfdi/cfdi-elements/cfdi40';
+
+const comprobante = new Comprobante({ Serie: 'A', Folio: '1', TipoDeComprobante: 'I', Moneda: 'MXN' });
+comprobante.addEmisor({ Rfc: 'EKU9003173C9', Nombre: 'EMISOR', RegimenFiscal: '601' });
+comprobante.addReceptor({ Rfc: 'URE180429TM6', Nombre: 'RECEPTOR', DomicilioFiscalReceptor: '65000', RegimenFiscalReceptor: '601', UsoCFDI: 'G03' });
+comprobante.addConcepto({ ClaveProdServ: '84111506', Cantidad: '1', ClaveUnidad: 'E48', Descripcion: 'Servicio', ValorUnitario: '100.00', Importe: '100.00', ObjetoImp: '02' })
+  .addTraslado({ Base: '100.00', Impuesto: '002', TipoFactor: 'Tasa', TasaOCuota: '0.160000', Importe: '16.00' });
+
+new SumasConceptosWriter(comprobante, new SumasConceptos(comprobante, 2), 2).put();
+console.log(nodeToXmlString(comprobante, true));
+```
+
 ## Documentación
 
 La documentación está disponible en el sitio web [NodeCfdi](https://nodecfdi.com/packages/cfdi-elements/getting-started/)
