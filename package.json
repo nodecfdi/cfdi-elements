@@ -45,6 +45,7 @@
     "./notariospublicos10": "./dist/notariospublicos10.js",
     "./pago20": "./dist/pago20.js",
     "./pagosaextranjeros10": "./dist/pagosaextranjeros10.js",
+    "./planesderetiro11": "./dist/planesderetiro11.js",
     "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
     "./retenciones20": "./dist/retenciones20.js",
     "./servicioparcial10": "./dist/servicioparcial10.js",

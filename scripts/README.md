@@ -216,6 +216,13 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/intereses
 pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/intereseshipotecarios/intereseshipotecarios.xsd --rename .=InteresesHipotecarios
 ```
 
+### `planesderetiro_11`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/planesderetiro11/planesderetiro11.xsd \
+  --rename .=PlanesDeRetiro
+```
+
 <!-- specifications:end -->
 
 ---
@@ -357,6 +364,12 @@ pnpm make:elements scripts/elements_maker/specifications/intereses_10.json src/e
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/intereseshipotecarios_10.json src/elements/intereseshipotecarios_10/ --with-tests
+```
+
+### `planesderetiro_11`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/planesderetiro_11.json src/elements/planesderetiro_11/ --with-tests
 ```
 
 <!-- elements:end -->
