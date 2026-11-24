@@ -1,0 +1,613 @@
+{
+  "prefix": "detallista",
+  "xml-namespace": "http://www.sat.gob.mx/detallista",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/detallista/detallista.xsd",
+  "version-attribute": "",
+  "version-value": "",
+  "root": {
+    "name": "Detallista",
+    "elementName": "detallista",
+    "attributes": [
+      "type",
+      "contentVersion",
+      "documentStructureVersion",
+      "documentStatus"
+    ],
+    "children": [
+      {
+        "name": "RequestForPaymentIdentification",
+        "elementName": "requestForPaymentIdentification",
+        "children": [
+          {
+            "name": "EntityType",
+            "elementName": "entityType"
+          }
+        ]
+      },
+      {
+        "name": "SpecialInstruction",
+        "elementName": "specialInstruction",
+        "multiple": true,
+        "attributes": [
+          "code"
+        ],
+        "children": [
+          {
+            "name": "Text",
+            "elementName": "text",
+            "multiple": true
+          }
+        ]
+      },
+      {
+        "name": "OrderIdentification",
+        "elementName": "orderIdentification",
+        "children": [
+          {
+            "name": "ReferenceIdentification",
+            "elementName": "referenceIdentification",
+            "multiple": true,
+            "attributes": [
+              "type"
+            ]
+          },
+          {
+            "name": "ReferenceDate"
+          }
+        ]
+      },
+      {
+        "name": "AdditionalInformation",
+        "children": [
+          {
+            "name": "ReferenceIdentification",
+            "elementName": "referenceIdentification",
+            "multiple": true,
+            "attributes": [
+              "type"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DeliveryNote",
+        "children": [
+          {
+            "name": "ReferenceIdentification",
+            "elementName": "referenceIdentification",
+            "multiple": true
+          },
+          {
+            "name": "ReferenceDate"
+          }
+        ]
+      },
+      {
+        "name": "Buyer",
+        "elementName": "buyer",
+        "children": [
+          {
+            "name": "Gln",
+            "elementName": "gln"
+          },
+          {
+            "name": "ContactInformation",
+            "elementName": "contactInformation",
+            "children": [
+              {
+                "name": "PersonOrDepartmentName",
+                "elementName": "personOrDepartmentName",
+                "children": [
+                  {
+                    "name": "Text",
+                    "elementName": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Seller",
+        "elementName": "seller",
+        "children": [
+          {
+            "name": "Gln",
+            "elementName": "gln"
+          },
+          {
+            "name": "AlternatePartyIdentification",
+            "elementName": "alternatePartyIdentification",
+            "attributes": [
+              "type"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ShipTo",
+        "elementName": "shipTo",
+        "children": [
+          {
+            "name": "Gln",
+            "elementName": "gln"
+          },
+          {
+            "name": "ShipToNameAndAddress",
+            "elementName": "nameAndAddress",
+            "children": [
+              {
+                "name": "Name",
+                "elementName": "name",
+                "multiple": true
+              },
+              {
+                "name": "StreetAddressOne",
+                "elementName": "streetAddressOne",
+                "multiple": true
+              },
+              {
+                "name": "City",
+                "elementName": "city",
+                "multiple": true
+              },
+              {
+                "name": "PostalCode",
+                "elementName": "postalCode",
+                "multiple": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "InvoiceCreator",
+        "children": [
+          {
+            "name": "Gln",
+            "elementName": "gln"
+          },
+          {
+            "name": "AlternatePartyIdentification",
+            "elementName": "alternatePartyIdentification",
+            "attributes": [
+              "type"
+            ]
+          },
+          {
+            "name": "InvoiceCreatorNameAndAddress",
+            "elementName": "nameAndAddress",
+            "children": [
+              {
+                "name": "Name",
+                "elementName": "name"
+              },
+              {
+                "name": "StreetAddressOne",
+                "elementName": "streetAddressOne"
+              },
+              {
+                "name": "City",
+                "elementName": "city"
+              },
+              {
+                "name": "PostalCode",
+                "elementName": "postalCode"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Customs",
+        "multiple": true,
+        "children": [
+          {
+            "name": "Gln",
+            "elementName": "gln"
+          }
+        ]
+      },
+      {
+        "name": "Currency",
+        "elementName": "currency",
+        "multiple": true,
+        "attributes": [
+          "currencyISOCode"
+        ],
+        "children": [
+          {
+            "name": "CurrencyFunction",
+            "elementName": "currencyFunction",
+            "multiple": true
+          },
+          {
+            "name": "RateOfChange",
+            "elementName": "rateOfChange"
+          }
+        ]
+      },
+      {
+        "name": "PaymentTerms",
+        "elementName": "paymentTerms",
+        "attributes": [
+          "paymentTermsEvent",
+          "PaymentTermsRelationTime"
+        ],
+        "children": [
+          {
+            "name": "NetPayment",
+            "elementName": "netPayment",
+            "attributes": [
+              "netPaymentTermsType"
+            ],
+            "children": [
+              {
+                "name": "PaymentTimePeriod",
+                "elementName": "paymentTimePeriod",
+                "children": [
+                  {
+                    "name": "TimePeriodDue",
+                    "elementName": "timePeriodDue",
+                    "attributes": [
+                      "timePeriod"
+                    ],
+                    "children": [
+                      {
+                        "name": "Value",
+                        "elementName": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "DiscountPayment",
+            "elementName": "discountPayment",
+            "attributes": [
+              "discountType"
+            ],
+            "children": [
+              {
+                "name": "Percentage",
+                "elementName": "percentage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ShipmentDetail",
+        "elementName": "shipmentDetail"
+      },
+      {
+        "name": "AllowanceCharge",
+        "elementName": "allowanceCharge",
+        "multiple": true,
+        "attributes": [
+          "allowanceChargeType",
+          "settlementType",
+          "sequenceNumber"
+        ],
+        "children": [
+          {
+            "name": "SpecialServicesType",
+            "elementName": "specialServicesType"
+          },
+          {
+            "name": "AllowanceChargeMonetaryAmountOrPercentage",
+            "elementName": "monetaryAmountOrPercentage",
+            "children": [
+              {
+                "name": "Rate",
+                "elementName": "rate",
+                "attributes": [
+                  "base"
+                ],
+                "children": [
+                  {
+                    "name": "Percentage",
+                    "elementName": "percentage"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "LineItem",
+        "elementName": "lineItem",
+        "multiple": true,
+        "attributes": [
+          "type",
+          "number"
+        ],
+        "children": [
+          {
+            "name": "TradeItemIdentification",
+            "elementName": "tradeItemIdentification",
+            "children": [
+              {
+                "name": "Gtin",
+                "elementName": "gtin"
+              }
+            ]
+          },
+          {
+            "name": "AlternateTradeItemIdentification",
+            "elementName": "alternateTradeItemIdentification",
+            "multiple": true,
+            "attributes": [
+              "type"
+            ]
+          },
+          {
+            "name": "TradeItemDescriptionInformation",
+            "elementName": "tradeItemDescriptionInformation",
+            "attributes": [
+              "language"
+            ],
+            "children": [
+              {
+                "name": "LongText",
+                "elementName": "longText"
+              }
+            ]
+          },
+          {
+            "name": "InvoicedQuantity",
+            "elementName": "invoicedQuantity",
+            "attributes": [
+              "unitOfMeasure"
+            ]
+          },
+          {
+            "name": "AditionalQuantity",
+            "elementName": "aditionalQuantity",
+            "multiple": true,
+            "attributes": [
+              "QuantityType"
+            ]
+          },
+          {
+            "name": "GrossPrice",
+            "elementName": "grossPrice",
+            "children": [
+              {
+                "name": "Amount"
+              }
+            ]
+          },
+          {
+            "name": "NetPrice",
+            "elementName": "netPrice",
+            "children": [
+              {
+                "name": "Amount"
+              }
+            ]
+          },
+          {
+            "name": "LineItemAdditionalInformation",
+            "children": [
+              {
+                "name": "ReferenceIdentification",
+                "elementName": "referenceIdentification",
+                "attributes": [
+                  "type"
+                ]
+              }
+            ],
+            "elementName": "AdditionalInformation"
+          },
+          {
+            "name": "LineItemCustoms",
+            "multiple": true,
+            "children": [
+              {
+                "name": "Gln",
+                "elementName": "gln"
+              },
+              {
+                "name": "AlternatePartyIdentification",
+                "elementName": "alternatePartyIdentification",
+                "attributes": [
+                  "type"
+                ]
+              },
+              {
+                "name": "ReferenceDate"
+              },
+              {
+                "name": "CustomsNameAndAddress",
+                "elementName": "nameAndAddress",
+                "children": [
+                  {
+                    "name": "Name",
+                    "elementName": "name"
+                  }
+                ]
+              }
+            ],
+            "elementName": "Customs"
+          },
+          {
+            "name": "LogisticUnits",
+            "children": [
+              {
+                "name": "SerialShippingContainerCode",
+                "elementName": "serialShippingContainerCode",
+                "attributes": [
+                  "type"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "PalletInformation",
+            "elementName": "palletInformation",
+            "children": [
+              {
+                "name": "PalletQuantity",
+                "elementName": "palletQuantity"
+              },
+              {
+                "name": "Description",
+                "elementName": "description",
+                "attributes": [
+                  "type"
+                ]
+              },
+              {
+                "name": "Transport",
+                "elementName": "transport",
+                "children": [
+                  {
+                    "name": "MethodOfPayment",
+                    "elementName": "methodOfPayment"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ExtendedAttributes",
+            "elementName": "extendedAttributes",
+            "children": [
+              {
+                "name": "LotNumber",
+                "elementName": "lotNumber",
+                "multiple": true,
+                "attributes": [
+                  "productionDate"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "LineItemAllowanceCharge",
+            "elementName": "allowanceCharge",
+            "multiple": true,
+            "attributes": [
+              "allowanceChargeType",
+              "settlementType",
+              "sequenceNumber"
+            ],
+            "children": [
+              {
+                "name": "SpecialServicesType",
+                "elementName": "specialServicesType"
+              },
+              {
+                "name": "LineItemMonetaryAmountOrPercentage",
+                "elementName": "monetaryAmountOrPercentage",
+                "children": [
+                  {
+                    "name": "PercentagePerUnit",
+                    "elementName": "percentagePerUnit"
+                  },
+                  {
+                    "name": "RatePerUnit",
+                    "elementName": "ratePerUnit",
+                    "children": [
+                      {
+                        "name": "AmountPerUnit",
+                        "elementName": "amountPerUnit"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "TradeItemTaxInformation",
+            "elementName": "tradeItemTaxInformation",
+            "multiple": true,
+            "children": [
+              {
+                "name": "TaxTypeDescription",
+                "elementName": "taxTypeDescription"
+              },
+              {
+                "name": "ReferenceNumber",
+                "elementName": "referenceNumber"
+              },
+              {
+                "name": "TradeItemTaxAmount",
+                "elementName": "tradeItemTaxAmount",
+                "children": [
+                  {
+                    "name": "TaxPercentage",
+                    "elementName": "taxPercentage"
+                  },
+                  {
+                    "name": "TaxAmount",
+                    "elementName": "taxAmount"
+                  }
+                ]
+              },
+              {
+                "name": "TaxCategory",
+                "elementName": "taxCategory"
+              }
+            ]
+          },
+          {
+            "name": "TotalLineAmount",
+            "elementName": "totalLineAmount",
+            "children": [
+              {
+                "name": "GrossAmount",
+                "elementName": "grossAmount",
+                "children": [
+                  {
+                    "name": "Amount"
+                  }
+                ]
+              },
+              {
+                "name": "NetAmount",
+                "elementName": "netAmount",
+                "children": [
+                  {
+                    "name": "Amount"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TotalAmount",
+        "elementName": "totalAmount",
+        "children": [
+          {
+            "name": "Amount"
+          }
+        ]
+      },
+      {
+        "name": "TotalAllowanceCharge",
+        "multiple": true,
+        "attributes": [
+          "allowanceOrChargeType"
+        ],
+        "children": [
+          {
+            "name": "SpecialServicesType",
+            "elementName": "specialServicesType"
+          },
+          {
+            "name": "Amount"
+          }
+        ]
+      }
+    ]
+  }
+}

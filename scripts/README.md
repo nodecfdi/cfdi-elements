@@ -184,11 +184,24 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xsd
 ```
 
-
 ### `ventavehiculos_11`
 
 ```sh
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ventavehiculos/ventavehiculos11.xsd
+```
+
+### `detallista`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/detallista/detallista.xsd \
+  --rename ShipTo.nameAndAddress=ShipToNameAndAddress \
+  --rename InvoiceCreator.nameAndAddress=InvoiceCreatorNameAndAddress \
+  --rename AllowanceCharge.monetaryAmountOrPercentage=AllowanceChargeMonetaryAmountOrPercentage \
+  --rename LineItem.AdditionalInformation=LineItemAdditionalInformation \
+  --rename LineItem.Customs=LineItemCustoms \
+  --rename LineItem.LineItemCustoms.nameAndAddress=CustomsNameAndAddress \
+  --rename LineItem.allowanceCharge=LineItemAllowanceCharge \
+  --rename LineItem.LineItemAllowanceCharge.monetaryAmountOrPercentage=LineItemMonetaryAmountOrPercentage
 ```
 
 <!-- specifications:end -->
@@ -314,6 +327,12 @@ pnpm make:elements scripts/elements_maker/specifications/ine_11.json src/element
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/ventavehiculos_11.json src/elements/ventavehiculos_11/ --with-tests
+```
+
+### `detallista`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/detallista.json src/elements/detallista/ --with-tests
 ```
 
 <!-- elements:end -->

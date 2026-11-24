@@ -450,7 +450,9 @@ export function inferSpecKeyFromXsd(prefix: string, versionValue: string): strin
 }
 
 function getChildrenSignature(node: ElementSpec): string {
-  return (node.children ?? []).map((child) => child.elementName ?? child.name).join(',');
+  return (node.children ?? [])
+    .map((child) => `${child.name}:${child.elementName ?? child.name}:${child.multiple ? 'm' : ''}${child.singleAddChild ? 's' : ''}`)
+    .join(',');
 }
 
 function getSharedPascalPrefix(names: string[]): string {
@@ -493,64 +495,98 @@ function renameNode(node: ElementSpec, newName: string): void {
   node.name = newName;
 }
 
-function prefixWithParentName(list: Occurrence[], skip?: ElementSpec): void {
-  for (const item of list) {
+function prefixWithParentName(list: Occurrence[], skip?: ElementSpec, divergeIndex = -1): boolean {
+  const targets = list.filter((item) => item.node !== skip);
+  const proposedNames = targets.map((item) => {
     const parent = item.ancestors.at(-1);
-    if (parent && item.node !== skip) {
-      renameNode(item.node, `${parent.name}${item.node.name}`);
+
+    return parent ? `${parent.name}${item.node.name}` : item.node.name;
+  });
+
+  const hasDuplicates = new Set(proposedNames).size < proposedNames.length;
+  let renamed = false;
+
+  for (const [index, item] of targets.entries()) {
+    const nextName = hasDuplicates && divergeIndex !== -1
+      ? `${item.ancestors[divergeIndex].name}${item.node.name}`
+      : proposedNames[index];
+
+    if (nextName === item.node.name) {
+      continue;
     }
+
+    renameNode(item.node, nextName);
+    renamed = true;
   }
+
+  return renamed;
 }
 
 function disambiguateStructuralCollisions(root: ElementSpec): void {
-  const occurrences = new Map<string, Occurrence[]>();
+  const maxPasses = 10;
 
-  function collect(parent: ElementSpec, ancestors: ElementSpec[]): void {
-    const children = parent.children ?? [];
-    for (const child of children) {
-      const list = occurrences.get(child.name) ?? [];
-      list.push({ node: child, ancestors, sig: getChildrenSignature(child) });
-      occurrences.set(child.name, list);
-      collect(child, [...ancestors, child]);
-    }
-  }
+  for (let pass = 0; pass < maxPasses; pass += 1) {
+    const occurrences = new Map<string, Occurrence[]>();
 
-  collect(root, [root]);
+    const collect = (parent: ElementSpec, ancestors: ElementSpec[]): void => {
+      const children = parent.children ?? [];
+      for (const child of children) {
+        const list = occurrences.get(child.name) ?? [];
+        list.push({ node: child, ancestors, sig: getChildrenSignature(child) });
+        occurrences.set(child.name, list);
+        collect(child, [...ancestors, child]);
+      }
+    };
 
-  for (const [, list] of occurrences) {
-    if (list.length < 2) {
-      continue;
-    }
+    collect(root, [root]);
 
-    const distinctSignatures = new Set(list.map((item) => item.sig));
-    if (distinctSignatures.size < 2) {
-      continue;
-    }
+    let changed = false;
 
-    const directRootChildren = list.filter((item) => item.ancestors.length === 1);
-    if (directRootChildren.length === 1) {
-      prefixWithParentName(list, directRootChildren[0].node);
-      continue;
-    }
+    for (const [, list] of occurrences) {
+      if (list.length < 2) {
+        continue;
+      }
 
-    const divergeIndex = findDivergeIndex(list);
-    if (divergeIndex !== -1) {
-      const divergingNames = list.map((item) => item.ancestors[divergeIndex].name);
-      const sharedPrefix = getSharedPascalPrefix(divergingNames);
-      const suffixes = sharedPrefix
-        ? divergingNames.map((name) => name.slice(sharedPrefix.length))
-        : [];
+      const distinctSignatures = new Set(list.map((item) => item.sig));
+      if (distinctSignatures.size < 2) {
+        continue;
+      }
 
-      if (suffixes.length > 0 && suffixes.every((suffix) => suffix.length > 0)) {
-        for (const [index, item] of list.entries()) {
-          renameNode(item.node, `${item.node.name}${suffixes[index]}`);
+      const directRootChildren = list.filter((item) => item.ancestors.length === 1);
+      if (directRootChildren.length === 1) {
+        if (prefixWithParentName(list, directRootChildren[0].node)) {
+          changed = true;
         }
 
         continue;
       }
+
+      const divergeIndex = findDivergeIndex(list);
+      if (divergeIndex !== -1) {
+        const divergingNames = list.map((item) => item.ancestors[divergeIndex].name);
+        const sharedPrefix = getSharedPascalPrefix(divergingNames);
+        const suffixes = sharedPrefix
+          ? divergingNames.map((name) => name.slice(sharedPrefix.length))
+          : [];
+
+        if (suffixes.length > 0 && suffixes.every((suffix) => suffix.length > 0)) {
+          for (const [index, item] of list.entries()) {
+            renameNode(item.node, `${item.node.name}${suffixes[index]}`);
+          }
+
+          changed = true;
+          continue;
+        }
+      }
+
+      if (prefixWithParentName(list, undefined, divergeIndex)) {
+        changed = true;
+      }
     }
 
-    prefixWithParentName(list);
+    if (!changed) {
+      break;
+    }
   }
 }
 

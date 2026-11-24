@@ -63,7 +63,14 @@ export class ElementsMaker {
     }
 
     if (isRoot) {
-      sectionsContent.push(this.template('get_fixed_attributes', finalDictionary));
+      const versionAttribute = dictionary.get('#version-attribute#');
+      const versionValue = dictionary.get('#version-value#');
+      const versionEntry = versionAttribute
+        ? `\n      '${versionAttribute}': '${versionValue}',`
+        : '';
+      sectionsContent.push(
+        this.template('get_fixed_attributes', finalDictionary.with('#version-entry#', versionEntry)),
+      );
     }
 
     for (const child of structure) {

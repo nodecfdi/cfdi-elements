@@ -148,7 +148,7 @@ export class TestsMaker {
         schemaLocationLine.length <= 100
           ? schemaLocationLine
           : `      'xsi:schemaLocation':\n        ${schemaLocationValue},`,
-        `      '${versionAttribute}': '${versionValue}',`,
+        ...(versionAttribute ? [`      '${versionAttribute}': '${versionValue}',`] : []),
         '    });',
       );
     }
