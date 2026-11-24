@@ -204,6 +204,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/detallista/deta
   --rename LineItem.LineItemAllowanceCharge.monetaryAmountOrPercentage=LineItemMonetaryAmountOrPercentage
 ```
 
+### `intereses_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/intereses/intereses.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -333,6 +339,12 @@ pnpm make:elements scripts/elements_maker/specifications/ventavehiculos_11.json 
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/detallista.json src/elements/detallista/ --with-tests
+```
+
+### `intereses_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/intereses_10.json src/elements/intereses_10/ --with-tests
 ```
 
 <!-- elements:end -->

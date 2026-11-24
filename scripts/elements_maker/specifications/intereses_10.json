@@ -1,0 +1,19 @@
+{
+  "prefix": "intereses",
+  "xml-namespace": "http://www.sat.gob.mx/esquemas/retencionpago/1/intereses",
+  "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/1/intereses/intereses.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.0",
+  "root": {
+    "name": "Intereses",
+    "attributes": [
+      "Version",
+      "SistFinanciero",
+      "RetiroAORESRetInt",
+      "OperFinancDerivad",
+      "MontIntNominal",
+      "MontIntReal",
+      "Perdida"
+    ]
+  }
+}
