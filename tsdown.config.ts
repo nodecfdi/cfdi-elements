@@ -1,17 +1,21 @@
+import { existsSync, readdirSync } from 'node:fs';
 import { defineConfig } from 'tsdown';
+
+function toCamelCase(name: string): string {
+  return name.replaceAll(/_([a-z0-9])/g, (_, char: string) => char.toUpperCase());
+}
+
+const elementEntries = Object.fromEntries(
+  readdirSync('src/elements', { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && existsSync(`src/elements/${entry.name}/index.ts`))
+    .map((entry) => [toCamelCase(entry.name), `src/elements/${entry.name}/index.ts`]),
+);
 
 export default defineConfig({
   entry: {
     index: 'index.ts',
     types: 'src/types.ts',
-    tfd11: 'src/elements/tfd_11/index.ts',
-    cfdi40: 'src/elements/cfdi_40/index.ts',
-    pago20: 'src/elements/pago_20/index.ts',
-    implocal10: 'src/elements/implocal_10/index.ts',
-    donat11: 'src/elements/donat_11/index.ts',
-    leyendasFisc10: 'src/elements/leyendas_fisc_10/index.ts',
-    plataformasTecnologicas10: 'src/elements/plataformas_tecnologicas_10/index.ts',
-    cartaporte31: 'src/elements/cartaporte_31/index.ts',
+    ...elementEntries,
   },
   clean: true,
   format: 'esm',
