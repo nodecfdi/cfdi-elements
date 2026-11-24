@@ -43,6 +43,7 @@
     "commitlint": "commitlint --edit",
     "make:elements": "tsx scripts/make_elements.ts",
     "make:specification": "tsx scripts/make_specification.ts",
+    "make:tests": "tsx scripts/make_tests.ts",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "typecheck": "tsc --noEmit",

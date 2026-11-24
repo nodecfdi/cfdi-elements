@@ -146,10 +146,12 @@ export async function ensureElementInReadme(
   specKey: string,
   specificationFile: string,
   outputDirectory: string,
+  withTests = false,
 ): Promise<boolean> {
   const normalizedSpec = specificationFile.replace(/^\.\//, '');
   const normalizedOutput = outputDirectory.replace(/^\.\//, '');
-  const command = `pnpm make:elements ${normalizedSpec} ${normalizedOutput}`;
+  const testsFlag = withTests ? ' --with-tests' : '';
+  const command = `pnpm make:elements ${normalizedSpec} ${normalizedOutput}${testsFlag}`;
 
   return ensureSectionEntry(ELEMENTS_START, ELEMENTS_END, specKey, command);
 }

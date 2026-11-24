@@ -7,11 +7,12 @@ incluir en el paquete distribuible.
 
 ## Comandos
 
-Actualmente se incluyen dos scripts de ayuda ejecutados con `tsx`: uno para crear o actualizar el archivo
-de especificación (incluyendo extracción de estructura y atributos desde el XSD) y otro para generar los
-elementos tipados (junto con su `index.ts`) a partir de una especificación.
+Actualmente se incluyen tres scripts de ayuda ejecutados con `tsx`: uno para crear o actualizar el archivo
+de especificación (incluyendo extracción de estructura y atributos desde el XSD), otro para generar los
+elementos tipados (junto con su `index.ts`) a partir de una especificación y otro para generar el archivo
+base de tests unitarios del módulo.
 
-Al ejecutar cualquiera de los dos comandos sobre una especificación o módulo nuevo, su comando se registra
+Al ejecutar cualquiera de los comandos sobre una especificación o módulo nuevo, su comando se registra
 automáticamente en las secciones correspondientes al final de este documento si aún no existe.
 
 ### Script `make:specification`
@@ -35,11 +36,28 @@ pnpm make:elements [opciones] <specification-file> <output-directory>
 
 Con `--sync-xsd` (o `--xsd <archivo-o-url>`) actualiza primero `"attributes"` en el archivo de
 especificación a partir del XSD y luego genera las clases con tipos `*Attributes` y `AttributesRecord`.
-Para omitir el formateo automático con ESLint se puede pasar `--no-beautify`. Para ver la ayuda:
+Con `--with-tests` genera también el test base si aún no existe. Para omitir el formateo automático con
+ESLint se puede pasar `--no-beautify`.
+
+### Script `make:tests`
+
+Genera el archivo de tests unitarios base (`tests/unit/<spec>/<root>.test.ts`) validando nombre de elemento,
+orden de hijos, atributos fijos del nodo raíz, hijos (`single`, `singleAddChild`, `multiple`) y `shortcuts`
+a partir del archivo de especificación:
 
 ```sh
-pnpm make:elements --help
+pnpm make:tests [opciones] <specification-file> [output-path]
+```
+
+Por seguridad, si el archivo de test ya existe **no lo sobrescribe** (para preservar casos de prueba
+adicionales agregados manualmente), a menos que se pase `-f` / `--force`.
+
+Para ver la ayuda completa de cada script:
+
+```sh
 pnpm make:specification --help
+pnpm make:elements --help
+pnpm make:tests --help
 ```
 
 ---
@@ -116,49 +134,49 @@ Comandos para regenerar cada módulo en `src/`:
 ### `cartaporte_31`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/cartaporte_31.json src/cartaporte_31/
+pnpm make:elements scripts/elements_maker/specifications/cartaporte_31.json src/cartaporte_31/ --with-tests
 ```
 
 ### `cfdi_40`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/cfdi_40.json src/cfdi_40/
+pnpm make:elements scripts/elements_maker/specifications/cfdi_40.json src/cfdi_40/ --with-tests
 ```
 
 ### `donat_11`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/donat_11.json src/donat_11/
+pnpm make:elements scripts/elements_maker/specifications/donat_11.json src/donat_11/ --with-tests
 ```
 
 ### `implocal_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/implocal_10.json src/implocal_10/
+pnpm make:elements scripts/elements_maker/specifications/implocal_10.json src/implocal_10/ --with-tests
 ```
 
 ### `leyendas_fisc_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/leyendas_fisc_10.json src/leyendas_fisc_10/
+pnpm make:elements scripts/elements_maker/specifications/leyendas_fisc_10.json src/leyendas_fisc_10/ --with-tests
 ```
 
 ### `pago_20`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/pago_20.json src/pago_20/
+pnpm make:elements scripts/elements_maker/specifications/pago_20.json src/pago_20/ --with-tests
 ```
 
 ### `plataformas_tecnologicas_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/plataformas_tecnologicas_10.json src/plataformas_tecnologicas_10/
+pnpm make:elements scripts/elements_maker/specifications/plataformas_tecnologicas_10.json src/plataformas_tecnologicas_10/ --with-tests
 ```
 
 ### `tfd_11`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/tfd_11/
+pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/tfd_11/ --with-tests
 ```
 
 <!-- elements:end -->

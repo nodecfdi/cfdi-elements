@@ -6,6 +6,7 @@ import process from 'node:process';
 import { parseArgs, promisify } from 'node:util';
 import ElementsMaker from './elements_maker/elements_maker.js';
 import { ensureElementInReadme } from './elements_maker/readme_updater.js';
+import TestsMaker from './elements_maker/tests_maker.js';
 import {
   loadXsdContent,
   parseXsd,
@@ -27,6 +28,7 @@ Argumentos:
 Opciones:
   --sync-xsd          Descarga el XSD de xml-schemalocation y actualiza "attributes" antes de generar
   --xsd <path-or-url> Archivo XSD local o URL alterna para sincronizar atributos
+  --with-tests        Genera también el archivo de tests base si aún no existe
   --beautify          Aplica eslint --fix a los archivos generados (por defecto: true)
   --no-beautify       Omite el formateo con eslint
   -h, --help          Muestra esta ayuda
@@ -61,6 +63,10 @@ async function main(): Promise<void> {
       'xsd': {
         type: 'string',
       },
+      'with-tests': {
+        type: 'boolean',
+        default: false,
+      },
       'beautify': {
         type: 'boolean',
         default: true,
@@ -92,6 +98,7 @@ async function main(): Promise<void> {
   }
 
   const fixedOutputDirectory = `${outputDirectory}${outputDirectory.endsWith('/') ? '' : '/'}`;
+  const lintTargets = [fixedOutputDirectory];
 
   try {
     if (values['sync-xsd'] || values.xsd) {
@@ -103,9 +110,29 @@ async function main(): Promise<void> {
     console.log('Elements created');
 
     const specKey = path.basename(specificationFile, path.extname(specificationFile));
-    const readmeUpdated = await ensureElementInReadme(specKey, specificationFile, fixedOutputDirectory);
+    const readmeUpdated = await ensureElementInReadme(
+      specKey,
+      specificationFile,
+      fixedOutputDirectory,
+      values['with-tests'],
+    );
     if (readmeUpdated) {
       console.log(`Added '${specKey}' elements command to scripts/README.md`);
+    }
+
+    if (values['with-tests']) {
+      const defaultTestDir = `tests/unit/${specKey}/`;
+      const testsMaker = TestsMaker.make(specificationFile, defaultTestDir, {
+        specKey,
+        srcDir: fixedOutputDirectory,
+      });
+      const testFile = testsMaker.getOutputFile();
+      if (testsMaker.write()) {
+        lintTargets.push(testFile);
+        console.log(`Test file created: ${testFile}`);
+      } else {
+        console.warn(`Test file '${testFile}' already exists. Skipping.`);
+      }
     }
   } catch (error) {
     console.error((error as Error).message);
@@ -119,7 +146,7 @@ async function main(): Promise<void> {
   }
 
   console.log('Applying linter/formatter using eslint...');
-  await execFileAsync('pnpm', ['eslint', fixedOutputDirectory, '--fix']);
+  await execFileAsync('pnpm', ['eslint', ...lintTargets, '--fix']);
   console.log('Formatting completed');
 }
 

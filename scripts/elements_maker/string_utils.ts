@@ -8,3 +8,11 @@ export function toSnakeCase(value: string): string {
     .replaceAll(/^_+|_+$/g, '')
     .toLowerCase();
 }
+
+export function toWords(value: string): string {
+  return toSnakeCase(value).replaceAll('_', ' ');
+}
+
+export function snakeToCamelCase(value: string): string {
+  return value.replaceAll(/_([a-z0-9])/gi, (_, char: string) => char.toUpperCase());
+}

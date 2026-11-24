@@ -334,9 +334,9 @@ async function main(): Promise<void> {
     console.log(`Added '${specKey}' specification command to scripts/README.md`);
   }
 
-  console.log('\nSuggested command to generate elements:');
+  console.log('\nSuggested command to generate elements and base tests:');
   console.log(
-    `  pnpm make:elements scripts/elements_maker/specifications/${specKey}.json src/${specKey}/`,
+    `  pnpm make:elements scripts/elements_maker/specifications/${specKey}.json src/${specKey}/ --with-tests`,
   );
 }
 
