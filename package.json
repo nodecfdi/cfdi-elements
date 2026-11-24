@@ -34,6 +34,7 @@
     "./donat11": "./dist/donat11.js",
     "./implocal10": "./dist/implocal10.js",
     "./leyendasFisc10": "./dist/leyendasFisc10.js",
+    "./nomina12": "./dist/nomina12.js",
     "./pago20": "./dist/pago20.js",
     "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
     "./tfd11": "./dist/tfd11.js",

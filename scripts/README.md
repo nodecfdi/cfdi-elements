@@ -127,6 +127,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDig
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd
 ```
 
+### `nomina_12`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -189,6 +195,12 @@ pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/element
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/cce_20.json src/elements/cce_20/ --with-tests
+```
+
+### `nomina_12`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/nomina_12.json src/elements/nomina_12/ --with-tests
 ```
 
 <!-- elements:end -->

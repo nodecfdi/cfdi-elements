@@ -1,0 +1,199 @@
+{
+  "prefix": "nomina12",
+  "xml-namespace": "http://www.sat.gob.mx/nomina12",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.2",
+  "root": {
+    "name": "Nomina",
+    "attributes": [
+      "Version",
+      "TipoNomina",
+      "FechaPago",
+      "FechaInicialPago",
+      "FechaFinalPago",
+      "NumDiasPagados",
+      "TotalPercepciones",
+      "TotalDeducciones",
+      "TotalOtrosPagos"
+    ],
+    "children": [
+      {
+        "name": "Emisor",
+        "attributes": [
+          "Curp",
+          "RegistroPatronal",
+          "RfcPatronOrigen"
+        ],
+        "children": [
+          {
+            "name": "EntidadSNCF",
+            "attributes": [
+              "OrigenRecurso",
+              "MontoRecursoPropio"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Receptor",
+        "attributes": [
+          "Curp",
+          "NumSeguridadSocial",
+          "FechaInicioRelLaboral",
+          "Antigüedad",
+          "TipoContrato",
+          "Sindicalizado",
+          "TipoJornada",
+          "TipoRegimen",
+          "NumEmpleado",
+          "Departamento",
+          "Puesto",
+          "RiesgoPuesto",
+          "PeriodicidadPago",
+          "Banco",
+          "CuentaBancaria",
+          "SalarioBaseCotApor",
+          "SalarioDiarioIntegrado",
+          "ClaveEntFed"
+        ],
+        "children": [
+          {
+            "name": "SubContratacion",
+            "multiple": true,
+            "attributes": [
+              "RfcLabora",
+              "PorcentajeTiempo"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Percepciones",
+        "attributes": [
+          "TotalSueldos",
+          "TotalSeparacionIndemnizacion",
+          "TotalJubilacionPensionRetiro",
+          "TotalGravado",
+          "TotalExento"
+        ],
+        "children": [
+          {
+            "name": "Percepcion",
+            "multiple": true,
+            "attributes": [
+              "TipoPercepcion",
+              "Clave",
+              "Concepto",
+              "ImporteGravado",
+              "ImporteExento"
+            ],
+            "children": [
+              {
+                "name": "AccionesOTitulos",
+                "attributes": [
+                  "ValorMercado",
+                  "PrecioAlOtorgarse"
+                ]
+              },
+              {
+                "name": "HorasExtra",
+                "multiple": true,
+                "attributes": [
+                  "Dias",
+                  "TipoHoras",
+                  "HorasExtra",
+                  "ImportePagado"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "JubilacionPensionRetiro",
+            "attributes": [
+              "TotalUnaExhibicion",
+              "TotalParcialidad",
+              "MontoDiario",
+              "IngresoAcumulable",
+              "IngresoNoAcumulable"
+            ]
+          },
+          {
+            "name": "SeparacionIndemnizacion",
+            "attributes": [
+              "TotalPagado",
+              "NumAñosServicio",
+              "UltimoSueldoMensOrd",
+              "IngresoAcumulable",
+              "IngresoNoAcumulable"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Deducciones",
+        "attributes": [
+          "TotalOtrasDeducciones",
+          "TotalImpuestosRetenidos"
+        ],
+        "children": [
+          {
+            "name": "Deduccion",
+            "multiple": true,
+            "attributes": [
+              "TipoDeduccion",
+              "Clave",
+              "Concepto",
+              "Importe"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "OtrosPagos",
+        "children": [
+          {
+            "name": "OtroPago",
+            "multiple": true,
+            "attributes": [
+              "TipoOtroPago",
+              "Clave",
+              "Concepto",
+              "Importe"
+            ],
+            "children": [
+              {
+                "name": "SubsidioAlEmpleo",
+                "attributes": [
+                  "SubsidioCausado"
+                ]
+              },
+              {
+                "name": "CompensacionSaldosAFavor",
+                "attributes": [
+                  "SaldoAFavor",
+                  "Año",
+                  "RemanenteSalFav"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Incapacidades",
+        "children": [
+          {
+            "name": "Incapacidad",
+            "multiple": true,
+            "attributes": [
+              "DiasIncapacidad",
+              "TipoIncapacidad",
+              "ImporteMonetario"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
