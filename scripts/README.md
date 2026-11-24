@@ -133,6 +133,13 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterio
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
 ```
 
+### `retenciones_20`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/2/retencionpagov2.xsd \
+  --shortcut ':Totales->ImpRetenidos'
+```
+
 <!-- specifications:end -->
 
 ---
@@ -201,6 +208,12 @@ pnpm make:elements scripts/elements_maker/specifications/cce_20.json src/element
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/nomina_12.json src/elements/nomina_12/ --with-tests
+```
+
+### `retenciones_20`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/retenciones_20.json src/elements/retenciones_20/ --with-tests
 ```
 
 <!-- elements:end -->

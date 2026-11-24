@@ -1,0 +1,109 @@
+{
+  "prefix": "retenciones",
+  "xml-namespace": "http://www.sat.gob.mx/esquemas/retencionpago/2",
+  "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/2/retencionpagov2.xsd",
+  "version-attribute": "Version",
+  "version-value": "2.0",
+  "root": {
+    "name": "Retenciones",
+    "attributes": [
+      "Version",
+      "FolioInt",
+      "Sello",
+      "NoCertificado",
+      "Certificado",
+      "FechaExp",
+      "LugarExpRetenc",
+      "CveRetenc",
+      "DescRetenc"
+    ],
+    "shortcuts": [
+      {
+        "path": [
+          "Totales"
+        ],
+        "target": "ImpRetenidos"
+      }
+    ],
+    "children": [
+      {
+        "name": "CfdiRetenRelacionados",
+        "attributes": [
+          "TipoRelacion",
+          "UUID"
+        ]
+      },
+      {
+        "name": "Emisor",
+        "attributes": [
+          "RfcE",
+          "NomDenRazSocE",
+          "RegimenFiscalE"
+        ]
+      },
+      {
+        "name": "Receptor",
+        "attributes": [
+          "NacionalidadR"
+        ],
+        "children": [
+          {
+            "name": "Nacional",
+            "attributes": [
+              "RfcR",
+              "NomDenRazSocR",
+              "CurpR",
+              "DomicilioFiscalR"
+            ]
+          },
+          {
+            "name": "Extranjero",
+            "attributes": [
+              "NumRegIdTribR",
+              "NomDenRazSocR"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Periodo",
+        "attributes": [
+          "MesIni",
+          "MesFin",
+          "Ejercicio"
+        ]
+      },
+      {
+        "name": "Totales",
+        "attributes": [
+          "MontoTotOperacion",
+          "MontoTotGrav",
+          "MontoTotExent",
+          "MontoTotRet",
+          "UtilidadBimestral",
+          "ISRCorrespondiente"
+        ],
+        "children": [
+          {
+            "name": "ImpRetenidos",
+            "multiple": true,
+            "attributes": [
+              "BaseRet",
+              "ImpuestoRet",
+              "MontoRet",
+              "TipoPagoRet"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Complemento",
+        "singleAddChild": true
+      },
+      {
+        "name": "Addenda",
+        "singleAddChild": true
+      }
+    ]
+  }
+}
