@@ -1,9 +1,11 @@
 import type { SpecificationSpec } from './elements_maker/structure.js';
 import { execFile } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import process from 'node:process';
 import { parseArgs, promisify } from 'node:util';
 import ElementsMaker from './elements_maker/elements_maker.js';
+import { ensureElementInReadme } from './elements_maker/readme_updater.js';
 import {
   loadXsdContent,
   parseXsd,
@@ -99,6 +101,12 @@ async function main(): Promise<void> {
     const elementsMaker = ElementsMaker.make(specificationFile, fixedOutputDirectory);
     elementsMaker.write();
     console.log('Elements created');
+
+    const specKey = path.basename(specificationFile, path.extname(specificationFile));
+    const readmeUpdated = await ensureElementInReadme(specKey, specificationFile, fixedOutputDirectory);
+    if (readmeUpdated) {
+      console.log(`Added '${specKey}' elements command to scripts/README.md`);
+    }
   } catch (error) {
     console.error((error as Error).message);
     process.exitCode = 1;

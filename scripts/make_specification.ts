@@ -8,6 +8,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { parseArgs } from 'node:util';
+import { ensureSpecificationInReadme } from './elements_maker/readme_updater.js';
 import { toSnakeCase } from './elements_maker/string_utils.js';
 import {
   buildElementSpecFromXsdNode,
@@ -285,6 +286,12 @@ async function main(): Promise<void> {
 
   await writeFile(outputPath, `${JSON.stringify(content, null, 2)}\n`);
   console.log(`Specification ${fileExists ? 'updated' : 'created'}: ${outputPath}`);
+
+  const specKey = toSnakeCase(name);
+  const readmeUpdated = await ensureSpecificationInReadme(specKey, name, content);
+  if (readmeUpdated) {
+    console.log(`Added '${specKey}' specification command to scripts/README.md`);
+  }
 }
 
 await main();
