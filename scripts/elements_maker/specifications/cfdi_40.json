@@ -134,7 +134,6 @@
               {
                 "name": "ConceptoImpuestos",
                 "elementName": "Impuestos",
-                "methodName": "Impuestos",
                 "children": [
                   {
                     "name": "Traslados",

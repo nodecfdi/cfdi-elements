@@ -5,6 +5,11 @@ export default eienjs({
   stylistic: {
     maxLineLength: 200,
   },
+  unicorn: {
+    overrides: {
+      'unicorn/prefer-https': 'off',
+    },
+  },
   typescript: {
     tsconfigPath: 'tsconfig.json',
     erasableSyntaxOnly: {

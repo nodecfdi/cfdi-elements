@@ -2,16 +2,19 @@ import type { Element } from '@nodecfdi/cfdi-core';
 import type { ElementSpec, SpecificationSpec } from './structure.js';
 import { readFile } from 'node:fs/promises';
 import { isElement, newDocumentContent } from '@nodecfdi/cfdi-core';
+import { toSnakeCase } from './string_utils.js';
 
 export interface ParsedXsdElement {
   name: string;
   multiple: boolean;
+  singleAddChild: boolean;
   attributes: string[];
   fixedAttributes: Record<string, string>;
   children: ParsedXsdElement[];
 }
 
 export interface ParsedXsd {
+  prefix: string;
   targetNamespace: string;
   rootElement: string;
   attributesByPath: Map<string, string[]>;
@@ -190,6 +193,23 @@ function collectChildElementDefsFromChild(
   }
 }
 
+function hasWildcardAnyChild(container: Element): boolean {
+  for (const child of childElements(container)) {
+    if (child.localName === 'any') {
+      return true;
+    }
+
+    if (
+      (child.localName === 'sequence' || child.localName === 'choice' || child.localName === 'all')
+      && hasWildcardAnyChild(child)
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function collectChildElementDefs(
   container: Element,
   index: XsdIndex,
@@ -234,6 +254,7 @@ function walkElement(
   const attributes: string[] = [];
   const fixedAttributes: Record<string, string> = {};
   const children: ParsedXsdElement[] = [];
+  let singleAddChild = false;
 
   let complexType = childElements(element).find((child) => child.localName === 'complexType');
 
@@ -246,6 +267,7 @@ function walkElement(
 
   if (complexType) {
     collectAttributesFromNode(complexType, index, attributes, fixedAttributes, new Set());
+    singleAddChild = hasWildcardAnyChild(complexType);
     if (!activeStack.has(currentPath)) {
       activeStack.add(currentPath);
       const childDefs = collectChildElementDefs(complexType, index, new Set());
@@ -274,6 +296,7 @@ function walkElement(
   return {
     name,
     multiple,
+    singleAddChild,
     attributes,
     fixedAttributes,
     children,
@@ -342,6 +365,15 @@ export function parseXsd(xsdXml: string): ParsedXsd {
   }
 
   const targetNamespace = schema.getAttribute('targetNamespace') ?? '';
+  let prefix = '';
+  for (let i = 0; i < schema.attributes.length; i += 1) {
+    const attr = schema.attributes.item(i);
+    if (attr && attr.name.startsWith('xmlns:') && attr.value === targetNamespace) {
+      prefix = attr.name.slice(6);
+      break;
+    }
+  }
+
   const index: XsdIndex = {
     complexTypes: new Map(),
     attributeGroups: new Map(),
@@ -365,6 +397,7 @@ export function parseXsd(xsdXml: string): ParsedXsd {
     : undefined;
 
   return {
+    prefix,
     targetNamespace,
     rootElement: rootNode?.name ?? '',
     attributesByPath,
@@ -428,6 +461,127 @@ export function syncSpecificationAttributes(
   };
 }
 
+export function inferSpecKeyFromXsd(prefix: string, versionValue: string): string {
+  const versionDigits = versionValue.replaceAll('.', '');
+  const basePrefix = versionDigits && prefix.endsWith(versionDigits)
+    ? prefix.slice(0, -versionDigits.length)
+    : prefix;
+  const snakePrefix = toSnakeCase(basePrefix);
+
+  return versionDigits ? `${snakePrefix}_${versionDigits}` : snakePrefix;
+}
+
+function getChildrenSignature(node: ElementSpec): string {
+  return (node.children ?? []).map((child) => child.elementName ?? child.name).join(',');
+}
+
+function getSharedPascalPrefix(names: string[]): string {
+  const splitWords = names.map((name) => name.match(/[A-Z][a-z0-9]*/g) ?? [name]);
+  const minWords = Math.min(...splitWords.map((words) => words.length));
+  const shared: string[] = [];
+
+  for (let i = 0; i < minWords; i += 1) {
+    const word = splitWords[0][i];
+    if (splitWords.every((words) => words[i] === word)) {
+      shared.push(word);
+    } else {
+      break;
+    }
+  }
+
+  return shared.join('');
+}
+
+function findDivergeIndex(list: { ancestors: ElementSpec[] }[]): number {
+  const minAncestors = Math.min(...list.map((item) => item.ancestors.length));
+  for (let i = 0; i < minAncestors; i += 1) {
+    const first = list[0].ancestors[i].name;
+    if (list.some((item) => item.ancestors[i].name !== first)) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function disambiguateStructuralCollisions(root: ElementSpec): void {
+  const occurrences = new Map<
+    string,
+    { node: ElementSpec; ancestors: ElementSpec[]; sig: string }[]
+  >();
+
+  function collect(parent: ElementSpec, ancestors: ElementSpec[]): void {
+    const children = parent.children ?? [];
+    for (const child of children) {
+      const list = occurrences.get(child.name) ?? [];
+      list.push({ node: child, ancestors, sig: getChildrenSignature(child) });
+      occurrences.set(child.name, list);
+      collect(child, [...ancestors, child]);
+    }
+  }
+
+  collect(root, [root]);
+
+  for (const [, list] of occurrences) {
+    if (list.length < 2) {
+      continue;
+    }
+
+    const distinctSignatures = new Set(list.map((item) => item.sig));
+    if (distinctSignatures.size < 2) {
+      continue;
+    }
+
+    const directRootChildren = list.filter((item) => item.ancestors.length === 1);
+    if (directRootChildren.length === 1) {
+      const keepUnchanged = directRootChildren[0].node;
+      for (const item of list) {
+        if (item.node === keepUnchanged) {
+          continue;
+        }
+
+        const parent = item.ancestors.at(-1);
+        if (!parent) {
+          continue;
+        }
+
+        item.node.elementName ??= item.node.name;
+        item.node.name = `${parent.name}${item.node.name}`;
+      }
+
+      continue;
+    }
+
+    const divergeIndex = findDivergeIndex(list);
+    if (divergeIndex !== -1) {
+      const divergingNames = list.map((item) => item.ancestors[divergeIndex].name);
+      const sharedPrefix = getSharedPascalPrefix(divergingNames);
+      const suffixes = sharedPrefix
+        ? divergingNames.map((name) => name.slice(sharedPrefix.length))
+        : [];
+
+      if (suffixes.length > 0 && suffixes.every((suffix) => suffix.length > 0)) {
+        for (const [index, item] of list.entries()) {
+          item.node.elementName ??= item.node.name;
+          item.node.name = `${item.node.name}${suffixes[index]}`;
+        }
+
+        continue;
+      }
+    }
+
+    for (const item of list) {
+      const parent = item.ancestors.at(-1);
+      if (!parent) {
+        continue;
+      }
+
+      item.node.elementName ??= item.node.name;
+      item.node.name = `${parent.name}${item.node.name}`;
+    }
+  }
+}
+
 export function buildElementSpecFromXsdNode(
   node: ParsedXsdElement,
   isRoot = false,
@@ -440,12 +594,20 @@ export function buildElementSpecFromXsdNode(
     result.multiple = true;
   }
 
+  if (!isRoot && node.singleAddChild) {
+    result.singleAddChild = true;
+  }
+
   if (node.attributes.length > 0) {
     result.attributes = node.attributes;
   }
 
   if (node.children.length > 0) {
     result.children = node.children.map((child) => buildElementSpecFromXsdNode(child));
+  }
+
+  if (isRoot) {
+    disambiguateStructuralCollisions(result);
   }
 
   return result;

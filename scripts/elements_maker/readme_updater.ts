@@ -35,7 +35,7 @@ function collectSpecFlags(
   const shortcuts = node.shortcuts ?? [];
   for (const shortcut of shortcuts) {
     const modeSuffix = shortcut.multi === false ? ':single' : '';
-    flags.push(`--shortcut ${currentPathStr}:${shortcut.path.join('.')}->${shortcut.target}${modeSuffix}`);
+    flags.push(`--shortcut '${currentPathStr}:${shortcut.path.join('.')}->${shortcut.target}${modeSuffix}'`);
   }
 
   const children = node.children ?? [];
@@ -44,29 +44,42 @@ function collectSpecFlags(
   }
 }
 
-export function buildMakeSpecificationCommand(name: string, spec: SpecificationSpec): string {
+export interface InferredXsdMetadata {
+  specKey: string;
+  prefix: string;
+  xmlNamespace: string;
+  versionAttribute: string;
+  versionValue: string;
+}
+
+export function buildMakeSpecificationCommand(
+  specKey: string,
+  explicitName: string | undefined,
+  spec: SpecificationSpec,
+  inferred?: InferredXsdMetadata,
+): string {
   const args: string[] = [
-    `pnpm make:specification ${name}${spec['xml-schemalocation'] ? ` ${spec['xml-schemalocation']}` : ''}`,
+    `pnpm make:specification ${spec['xml-schemalocation']}`,
   ];
 
-  if (spec.prefix) {
+  if (explicitName && specKey !== inferred?.specKey) {
+    args.push(`--name ${explicitName}`);
+  }
+
+  if (spec.prefix && spec.prefix !== inferred?.prefix) {
     args.push(`--prefix ${spec.prefix}`);
   }
 
-  if (spec['xml-namespace']) {
+  if (spec['xml-namespace'] && spec['xml-namespace'] !== inferred?.xmlNamespace) {
     args.push(`--xml-namespace ${spec['xml-namespace']}`);
   }
 
-  if (spec['version-attribute']) {
+  if (spec['version-attribute'] && spec['version-attribute'] !== inferred?.versionAttribute) {
     args.push(`--version-attribute ${spec['version-attribute']}`);
   }
 
-  if (spec['version-value']) {
+  if (spec['version-value'] && spec['version-value'] !== inferred?.versionValue) {
     args.push(`--version-value ${spec['version-value']}`);
-  }
-
-  if (spec['xml-schemalocation']) {
-    args.push('--sync-xsd');
   }
 
   const childFlags: string[] = [];
@@ -75,7 +88,7 @@ export function buildMakeSpecificationCommand(name: string, spec: SpecificationS
 
   for (const shortcut of rootShortcuts) {
     const modeSuffix = shortcut.multi === false ? ':single' : '';
-    childFlags.push(`--shortcut :${shortcut.path.join('.')}->${shortcut.target}${modeSuffix}`);
+    childFlags.push(`--shortcut ':${shortcut.path.join('.')}->${shortcut.target}${modeSuffix}'`);
   }
 
   for (const child of rootChildren) {
@@ -120,10 +133,11 @@ async function ensureSectionEntry(
 
 export async function ensureSpecificationInReadme(
   specKey: string,
-  cliName: string,
+  explicitName: string | undefined,
   spec: SpecificationSpec,
+  inferred?: InferredXsdMetadata,
 ): Promise<boolean> {
-  const command = buildMakeSpecificationCommand(cliName, spec);
+  const command = buildMakeSpecificationCommand(specKey, explicitName, spec, inferred);
 
   return ensureSectionEntry(SPECS_START, SPECS_END, specKey, command);
 }

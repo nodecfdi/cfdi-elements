@@ -9,10 +9,10 @@ export class Donatarias extends AbstractElement<DonatariasAttributes> {
 
   public getFixedAttributes(): Record<string, string> {
     return {
-      'xmlns:donat': 'https://www.sat.gob.mx/donat',
+      'xmlns:donat': 'http://www.sat.gob.mx/donat',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-          'https://www.sat.gob.mx/donat https://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd',
+          'http://www.sat.gob.mx/donat http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd',
       'version': '1.1',
     };
   }

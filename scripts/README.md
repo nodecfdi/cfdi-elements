@@ -16,12 +16,13 @@ automáticamente en las secciones correspondientes al final de este documento si
 
 ### Script `make:specification`
 
-Crea o actualiza un archivo de especificación JSON con el esquema `root` / `children`. Permite poblar
-automáticamente la estructura y los atributos desde `xml-schemalocation` (o un archivo XSD local) y
-declarar `shortcuts`, `methodName`, `rename` y `singleAddChild` directamente desde CLI:
+Crea o actualiza un archivo de especificación JSON con el esquema `root` / `children`. Solo requiere el
+`<schema-location>` (URL o archivo XSD local): infiere automáticamente el nombre del archivo (`prefix` +
+versión), `prefix`, `xml-namespace`, `version-attribute`, `version-value`, árbol de nodos, `attributes`,
+`singleAddChild` (nodos con `<xs:any>`) y colisiones estructurales (`ConceptoImpuestos`):
 
 ```sh
-pnpm make:specification [opciones] <name> [<schema-location>]
+pnpm make:specification [opciones] <schema-location>
 ```
 
 ### Script `make:elements`
@@ -52,100 +53,54 @@ Comandos exactos para reproducir cada especificación en `scripts/elements_maker
 ### `cartaporte_31`
 
 ```sh
-pnpm make:specification CartaPorte31 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd \
-  --prefix cartaporte31 \
-  --xml-namespace http://www.sat.gob.mx/CartaPorte31 \
-  --version-attribute Version \
-  --version-value 3.1 \
-  --sync-xsd \
-  --rename Mercancias.TransporteMaritimo.Contenedor=ContenedorMaritimo \
-  --rename Mercancias.TransporteFerroviario.Carro.Contenedor=ContenedorFerroviario
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd
 ```
 
 ### `cfdi_40`
 
 ```sh
-pnpm make:specification Cfdi40 https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd \
-  --prefix cfdi \
-  --xml-namespace https://www.sat.gob.mx/cfd/4 \
-  --version-attribute Version \
-  --version-value 4.0 \
-  --sync-xsd \
-  --rename Conceptos.Concepto.Impuestos=ConceptoImpuestos:Impuestos \
-  --single-add-child Conceptos.Concepto.ComplementoConcepto \
-  --single-add-child Complemento \
-  --single-add-child Addenda \
-  --shortcut :Conceptos->Concepto:single \
-  --shortcut :Impuestos.Traslados->Traslado \
-  --shortcut :Impuestos.Retenciones->Retencion \
-  --shortcut Conceptos.Concepto:Impuestos.Traslados->Traslado \
-  --shortcut Conceptos.Concepto:Impuestos.Retenciones->Retencion
+pnpm make:specification https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd \
+  --shortcut ':Conceptos->Concepto:single' \
+  --shortcut ':Impuestos.Traslados->Traslado' \
+  --shortcut ':Impuestos.Retenciones->Retencion' \
+  --shortcut 'Conceptos.Concepto:Impuestos.Traslados->Traslado' \
+  --shortcut 'Conceptos.Concepto:Impuestos.Retenciones->Retencion'
 ```
 
 ### `donat_11`
 
 ```sh
-pnpm make:specification Donat11 http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd \
-  --prefix donat \
-  --xml-namespace http://www.sat.gob.mx/donat \
-  --version-attribute version \
-  --version-value 1.1 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd
 ```
 
 ### `implocal_10`
 
 ```sh
-pnpm make:specification Implocal10 http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd \
-  --prefix implocal \
-  --xml-namespace http://www.sat.gob.mx/implocal \
-  --version-attribute version \
-  --version-value 1.0 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd
 ```
 
 ### `leyendas_fisc_10`
 
 ```sh
-pnpm make:specification LeyendasFisc10 http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd \
-  --prefix leyendasFisc \
-  --xml-namespace http://www.sat.gob.mx/leyendasFiscales \
-  --version-attribute version \
-  --version-value 1.0 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd
 ```
 
-### `pagos_20`
+### `pago_20`
 
 ```sh
-pnpm make:specification Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd \
-  --prefix pago20 \
-  --xml-namespace http://www.sat.gob.mx/Pagos20 \
-  --version-attribute Version \
-  --version-value 2.0 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd
 ```
 
 ### `plataformas_tecnologicas_10`
 
 ```sh
-pnpm make:specification PlataformasTecnologicas10 http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd \
-  --prefix plataformasTecnologicas \
-  --xml-namespace http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10 \
-  --version-attribute Version \
-  --version-value 1.0 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd
 ```
 
 ### `tfd_11`
 
 ```sh
-pnpm make:specification Tfd11 http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd \
-  --prefix tfd \
-  --xml-namespace http://www.sat.gob.mx/TimbreFiscalDigital \
-  --version-attribute Version \
-  --version-value 1.1 \
-  --sync-xsd
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd
 ```
 
 <!-- specifications:end -->
@@ -188,10 +143,10 @@ pnpm make:elements scripts/elements_maker/specifications/implocal_10.json src/im
 pnpm make:elements scripts/elements_maker/specifications/leyendas_fisc_10.json src/leyendas_fisc_10/
 ```
 
-### `pagos_20`
+### `pago_20`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/pagos_20.json src/pago_20/
+pnpm make:elements scripts/elements_maker/specifications/pago_20.json src/pago_20/
 ```
 
 ### `plataformas_tecnologicas_10`

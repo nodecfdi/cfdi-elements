@@ -1,21 +1,20 @@
 import AbstractElement from '../common/abstract_element';
 
-
-export type TimbreFiscalDigitalAttributes =
-  | 'Version'
-  | 'UUID'
-  | 'FechaTimbrado'
-  | 'RfcProvCertif'
-  | 'Leyenda'
-  | 'SelloCFD'
-  | 'NoCertificadoSAT'
-  | 'SelloSAT';
+export type TimbreFiscalDigitalAttributes
+  = | 'Version'
+    | 'UUID'
+    | 'FechaTimbrado'
+    | 'RfcProvCertif'
+    | 'Leyenda'
+    | 'SelloCFD'
+    | 'NoCertificadoSAT'
+    | 'SelloSAT';
 
 export class TimbreFiscalDigital extends AbstractElement<TimbreFiscalDigitalAttributes> {
   public getElementName(): string {
     return 'tfd:TimbreFiscalDigital';
   }
-  
+
   public getFixedAttributes(): Record<string, string> {
     return {
       'xmlns:tfd': 'http://www.sat.gob.mx/TimbreFiscalDigital',
@@ -25,5 +24,4 @@ export class TimbreFiscalDigital extends AbstractElement<TimbreFiscalDigitalAttr
       'Version': '1.1',
     };
   }
-
 }
