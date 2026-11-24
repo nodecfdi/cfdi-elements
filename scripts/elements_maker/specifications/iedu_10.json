@@ -1,0 +1,19 @@
+{
+  "prefix": "iedu",
+  "xml-namespace": "http://www.sat.gob.mx/iedu",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd",
+  "version-attribute": "version",
+  "version-value": "1.0",
+  "root": {
+    "name": "InstEducativas",
+    "elementName": "instEducativas",
+    "attributes": [
+      "version",
+      "nombreAlumno",
+      "CURP",
+      "nivelEducativo",
+      "autRVOE",
+      "rfcPago"
+    ]
+  }
+}

@@ -172,6 +172,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/servicioparcial
   --rename .=ParcialesConstruccion
 ```
 
+### `iedu_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -276,6 +282,12 @@ pnpm make:elements scripts/elements_maker/specifications/pagosaextranjeros_10.js
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/servicioparcial_10.json src/elements/servicioparcial_10/ --with-tests
+```
+
+### `iedu_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/iedu_10.json src/elements/iedu_10/ --with-tests
 ```
 
 <!-- elements:end -->
