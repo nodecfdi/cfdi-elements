@@ -230,6 +230,13 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaci
   --rename .=EnajenacionDeAcciones
 ```
 
+### `arrendamientoenfideicomiso_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso/arrendamientoenfideicomiso.xsd \
+  --rename .=ArrendamientoEnFideicomiso
+```
+
 <!-- specifications:end -->
 
 ---
@@ -348,7 +355,6 @@ pnpm make:elements scripts/elements_maker/specifications/iedu_10.json src/elemen
 pnpm make:elements scripts/elements_maker/specifications/ine_11.json src/elements/ine_11/ --with-tests
 ```
 
-
 ### `ventavehiculos_11`
 
 ```sh
@@ -379,11 +385,16 @@ pnpm make:elements scripts/elements_maker/specifications/intereseshipotecarios_1
 pnpm make:elements scripts/elements_maker/specifications/planesderetiro_11.json src/elements/planesderetiro_11/ --with-tests
 ```
 
-
 ### `enajenaciondeacciones_10`
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/enajenaciondeacciones_10.json src/elements/enajenaciondeacciones_10/ --with-tests
+```
+
+### `arrendamientoenfideicomiso_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/arrendamientoenfideicomiso_10.json src/elements/arrendamientoenfideicomiso_10/ --with-tests
 ```
 
 <!-- elements:end -->

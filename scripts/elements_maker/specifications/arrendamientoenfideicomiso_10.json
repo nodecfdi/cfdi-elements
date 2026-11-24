@@ -1,0 +1,21 @@
+{
+  "prefix": "arrendamientoenfideicomiso",
+  "xml-namespace": "http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso",
+  "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso/arrendamientoenfideicomiso.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.0",
+  "root": {
+    "name": "ArrendamientoEnFideicomiso",
+    "attributes": [
+      "Version",
+      "PagProvEfecPorFiduc",
+      "RendimFideicom",
+      "DeduccCorresp",
+      "MontTotRet",
+      "MontResFiscDistFibras",
+      "MontOtrosConceptDistr",
+      "DescrMontOtrosConceptDistr"
+    ],
+    "elementName": "Arrendamientoenfideicomiso"
+  }
+}
