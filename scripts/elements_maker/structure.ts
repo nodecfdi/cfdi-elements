@@ -1,3 +1,5 @@
+import { toPascalCase } from './string_utils.js';
+
 export interface ShortcutDefinition {
   path: string[];
   target: string;
@@ -106,9 +108,9 @@ export default class Structure implements Iterable<Structure> {
   }
 
   public static makeFromSpec(spec: ElementSpec): Structure {
-    const { name } = spec;
-    const elementName = spec.elementName ?? name;
-    const methodName = spec.methodName ?? elementName;
+    const name = toPascalCase(spec.name);
+    const elementName = spec.elementName ?? spec.name;
+    const methodName = spec.methodName ?? toPascalCase(elementName);
     const multiple = spec.multiple ?? false;
     const singleAddChild = spec.singleAddChild ?? false;
 

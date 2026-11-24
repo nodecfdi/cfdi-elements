@@ -16,3 +16,10 @@ export function toWords(value: string): string {
 export function snakeToCamelCase(value: string): string {
   return value.replaceAll(/_([a-z0-9])/gi, (_, char: string) => char.toUpperCase());
 }
+
+export function toPascalCase(value: string): string {
+  return value
+    .replaceAll(/[\s_-]+(.)/g, (_, char: string) => char.toUpperCase())
+    .replaceAll(/[\s_-]+/g, '')
+    .replace(/^./, (char) => char.toUpperCase());
+}

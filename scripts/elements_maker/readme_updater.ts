@@ -1,6 +1,7 @@
 import type { ElementSpec, SpecificationSpec } from './structure.js';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { toPascalCase } from './string_utils.js';
 
 const README_PATH = path.resolve(import.meta.dirname, '..', 'README.md');
 
@@ -18,13 +19,15 @@ function collectSpecFlags(
   const currentPath = parentPath ? [...parentPath, node.name] : [];
   const currentPathStr = currentPath.join('.');
 
-  if (node.elementName && node.elementName !== node.name) {
-    const originalPath = [...(parentPath ?? []), node.elementName].join('.');
-    const methodSuffix = node.methodName && node.methodName !== node.elementName
+  const defaultClassName = toPascalCase(node.elementName ?? node.name);
+
+  if (node.elementName && node.elementName !== node.name && defaultClassName !== node.name) {
+    const originalPath = parentPath ? [...parentPath, node.elementName].join('.') : '.';
+    const methodSuffix = node.methodName && node.methodName !== defaultClassName
       ? `:${node.methodName}`
       : '';
     flags.push(`--rename ${originalPath}=${node.name}${methodSuffix}`);
-  } else if (node.methodName && node.methodName !== (node.elementName ?? node.name)) {
+  } else if (node.methodName && node.methodName !== defaultClassName) {
     flags.push(`--method-name ${currentPathStr}=${node.methodName}`);
   }
 

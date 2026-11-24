@@ -161,7 +161,15 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/dividendo
 ### `pagosaextranjeros_10`
 
 ```sh
-pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd \
+  --rename .=PagosAExtranjeros
+```
+
+### `servicioparcial_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/servicioparcialconstruccion/servicioparcialconstruccion.xsd \
+  --rename .=ParcialesConstruccion
 ```
 
 <!-- specifications:end -->
@@ -262,6 +270,12 @@ pnpm make:elements scripts/elements_maker/specifications/dividendos_10.json src/
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/pagosaextranjeros_10.json src/elements/pagosaextranjeros_10/ --with-tests
+```
+
+### `servicioparcial_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/servicioparcial_10.json src/elements/servicioparcial_10/ --with-tests
 ```
 
 <!-- elements:end -->

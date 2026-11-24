@@ -2,7 +2,7 @@ import type { Element } from '@nodecfdi/cfdi-core';
 import type { ElementSpec, SpecificationSpec } from './structure.js';
 import { readFile } from 'node:fs/promises';
 import { isElement, newDocumentContent } from '@nodecfdi/cfdi-core';
-import { toSnakeCase } from './string_utils.js';
+import { toPascalCase, toSnakeCase } from './string_utils.js';
 
 export interface ParsedXsdElement {
   name: string;
@@ -558,9 +558,14 @@ export function buildElementSpecFromXsdNode(
   node: ParsedXsdElement,
   isRoot = false,
 ): ElementSpec {
+  const className = toPascalCase(node.name);
   const result: ElementSpec = {
-    name: node.name,
+    name: className,
   };
+
+  if (className !== node.name) {
+    result.elementName = node.name;
+  }
 
   if (!isRoot && node.multiple) {
     result.multiple = true;
