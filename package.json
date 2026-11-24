@@ -42,6 +42,7 @@
     "./pagosaextranjeros10": "./dist/pagosaextranjeros10.js",
     "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
     "./retenciones20": "./dist/retenciones20.js",
+    "./servicioparcial10": "./dist/servicioparcial10.js",
     "./tfd11": "./dist/tfd11.js",
     "./types": "./dist/types.js",
     "./package.json": "./package.json"
