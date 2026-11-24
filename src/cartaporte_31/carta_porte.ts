@@ -1,10 +1,10 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { MercanciasAttributes } from './mercancias';
 import AbstractElement from '../common/abstract_element';
-import FiguraTransporte from './figura_transporte';
-import Mercancias from './mercancias';
-import RegimenesAduaneros from './regimenes_aduaneros';
-import Ubicaciones from './ubicaciones';
+import { FiguraTransporte } from './figura_transporte';
+import { Mercancias } from './mercancias';
+import { RegimenesAduaneros } from './regimenes_aduaneros';
+import { Ubicaciones } from './ubicaciones';
 
 export type CartaPorteAttributes
   = | 'Version'
@@ -18,7 +18,7 @@ export type CartaPorteAttributes
     | 'UbicacionPoloOrigen'
     | 'UbicacionPoloDestino';
 
-export default class CartaPorte extends AbstractElement<CartaPorteAttributes> {
+export class CartaPorte extends AbstractElement<CartaPorteAttributes> {
   public getElementName(): string {
     return 'cartaporte31:CartaPorte';
   }

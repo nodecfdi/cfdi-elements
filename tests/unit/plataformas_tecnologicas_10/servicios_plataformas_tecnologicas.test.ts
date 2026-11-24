@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import ComisionDelServicio from '../../../src/plataformas_tecnologicas_10/comision_del_servicio';
-import ContribucionGubernamental from '../../../src/plataformas_tecnologicas_10/contribucion_gubernamental';
-import DetallesDelServicio from '../../../src/plataformas_tecnologicas_10/detalles_del_servicio';
-import ImpuestosTrasladadosdelServicio from '../../../src/plataformas_tecnologicas_10/impuestos_trasladadosdel_servicio';
-import Servicios from '../../../src/plataformas_tecnologicas_10/servicios';
-import ServiciosPlataformasTecnologicas from '../../../src/plataformas_tecnologicas_10/servicios_plataformas_tecnologicas';
+import { ComisionDelServicio } from '../../../src/plataformas_tecnologicas_10/comision_del_servicio';
+import { ContribucionGubernamental } from '../../../src/plataformas_tecnologicas_10/contribucion_gubernamental';
+import { DetallesDelServicio } from '../../../src/plataformas_tecnologicas_10/detalles_del_servicio';
+import { ImpuestosTrasladadosdelServicio } from '../../../src/plataformas_tecnologicas_10/impuestos_trasladadosdel_servicio';
+import { Servicios } from '../../../src/plataformas_tecnologicas_10/servicios';
+import { ServiciosPlataformasTecnologicas } from '../../../src/plataformas_tecnologicas_10/servicios_plataformas_tecnologicas';
 
 describe('plataformasTecnologicas10', () => {
   test('plataformas tecnologicas', ({ assert }) => {

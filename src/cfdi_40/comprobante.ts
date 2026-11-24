@@ -1,24 +1,21 @@
 import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { CfdiRelacionadosAttributes } from './cfdi_relacionados';
-import type Concepto from './concepto';
-import type { ConceptoAttributes } from './concepto';
+import type { Concepto, ConceptoAttributes } from './concepto';
 import type { EmisorAttributes } from './emisor';
 import type { ImpuestosAttributes } from './impuestos';
 import type { InformacionGlobalAttributes } from './informacion_global';
 import type { ReceptorAttributes } from './receptor';
-import type Retencion from './retencion';
-import type { RetencionAttributes } from './retencion';
-import type Traslado from './traslado';
-import type { TrasladoAttributes } from './traslado';
+import type { Retencion, RetencionAttributes } from './retencion';
+import type { Traslado, TrasladoAttributes } from './traslado';
 import AbstractElement from '../common/abstract_element';
-import Addenda from './addenda';
-import CfdiRelacionados from './cfdi_relacionados';
-import Complemento from './complemento';
-import Conceptos from './conceptos';
-import Emisor from './emisor';
-import Impuestos from './impuestos';
-import InformacionGlobal from './informacion_global';
-import Receptor from './receptor';
+import { Addenda } from './addenda';
+import { CfdiRelacionados } from './cfdi_relacionados';
+import { Complemento } from './complemento';
+import { Conceptos } from './conceptos';
+import { Emisor } from './emisor';
+import { Impuestos } from './impuestos';
+import { InformacionGlobal } from './informacion_global';
+import { Receptor } from './receptor';
 
 export type ComprobanteAttributes
   = | 'Version'
@@ -41,7 +38,7 @@ export type ComprobanteAttributes
     | 'LugarExpedicion'
     | 'Confirmacion';
 
-export default class Comprobante extends AbstractElement<ComprobanteAttributes> {
+export class Comprobante extends AbstractElement<ComprobanteAttributes> {
   public getElementName(): string {
     return 'cfdi:Comprobante';
   }

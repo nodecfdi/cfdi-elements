@@ -2,13 +2,13 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { IdentificacionVehicularAttributes } from './identificacion_vehicular';
 import type { SegurosAttributes } from './seguros';
 import AbstractElement from '../common/abstract_element';
-import IdentificacionVehicular from './identificacion_vehicular';
-import Remolques from './remolques';
-import Seguros from './seguros';
+import { IdentificacionVehicular } from './identificacion_vehicular';
+import { Remolques } from './remolques';
+import { Seguros } from './seguros';
 
 export type AutotransporteAttributes = 'PermSCT' | 'NumPermisoSCT';
 
-export default class Autotransporte extends AbstractElement<AutotransporteAttributes> {
+export class Autotransporte extends AbstractElement<AutotransporteAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Autotransporte';
   }

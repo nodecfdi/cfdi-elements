@@ -1,8 +1,8 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DoctoRelacionadoAttributes } from './docto_relacionado';
 import AbstractElement from '../common/abstract_element';
-import DoctoRelacionado from './docto_relacionado';
-import ImpuestosP from './impuestos_p';
+import { DoctoRelacionado } from './docto_relacionado';
+import { ImpuestosP } from './impuestos_p';
 
 export type PagoAttributes
   = | 'FechaPago'
@@ -21,7 +21,7 @@ export type PagoAttributes
     | 'CadPago'
     | 'SelloPago';
 
-export default class Pago extends AbstractElement<PagoAttributes> {
+export class Pago extends AbstractElement<PagoAttributes> {
   public getElementName(): string {
     return 'pago20:Pago';
   }

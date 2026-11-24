@@ -9,7 +9,7 @@ export type ReceptorAttributes
     | 'RegimenFiscalReceptor'
     | 'UsoCFDI';
 
-export default class Receptor extends AbstractElement<ReceptorAttributes> {
+export class Receptor extends AbstractElement<ReceptorAttributes> {
   public getElementName(): string {
     return 'cfdi:Receptor';
   }

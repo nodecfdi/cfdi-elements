@@ -1,9 +1,9 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RemolqueAttributes } from './remolque';
 import AbstractElement from '../common/abstract_element';
-import Remolque from './remolque';
+import { Remolque } from './remolque';
 
-export default class Remolques extends AbstractElement {
+export class Remolques extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:Remolques';
   }

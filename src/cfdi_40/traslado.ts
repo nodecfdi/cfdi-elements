@@ -7,7 +7,7 @@ export type TrasladoAttributes
     | 'TasaOCuota'
     | 'Importe';
 
-export default class Traslado extends AbstractElement<TrasladoAttributes> {
+export class Traslado extends AbstractElement<TrasladoAttributes> {
   public getElementName(): string {
     return 'cfdi:Traslado';
   }

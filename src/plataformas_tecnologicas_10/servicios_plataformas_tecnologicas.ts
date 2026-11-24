@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
-import Servicios from './servicios';
+import { Servicios } from './servicios';
 
 export type ServiciosPlataformasTecnologicasAttributes
   = | 'Version'
@@ -14,7 +14,7 @@ export type ServiciosPlataformasTecnologicasAttributes
     | 'MonTotalporUsoPlataforma'
     | 'MonTotalContribucionGubernamental';
 
-export default class ServiciosPlataformasTecnologicas extends AbstractElement<ServiciosPlataformasTecnologicasAttributes> {
+export class ServiciosPlataformasTecnologicas extends AbstractElement<ServiciosPlataformasTecnologicasAttributes> {
   public getElementName(): string {
     return 'plataformasTecnologicas:ServiciosPlataformasTecnologicas';
   }

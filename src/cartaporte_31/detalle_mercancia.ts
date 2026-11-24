@@ -7,7 +7,7 @@ export type DetalleMercanciaAttributes
     | 'PesoTara'
     | 'NumPiezas';
 
-export default class DetalleMercancia extends AbstractElement<DetalleMercanciaAttributes> {
+export class DetalleMercancia extends AbstractElement<DetalleMercanciaAttributes> {
   public getElementName(): string {
     return 'cartaporte31:DetalleMercancia';
   }

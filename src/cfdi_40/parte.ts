@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { InformacionAduaneraAttributes } from './informacion_aduanera';
 import AbstractElement from '../common/abstract_element';
-import InformacionAduanera from './informacion_aduanera';
+import { InformacionAduanera } from './informacion_aduanera';
 
 export type ParteAttributes
   = | 'ClaveProdServ'
@@ -12,7 +12,7 @@ export type ParteAttributes
     | 'ValorUnitario'
     | 'Importe';
 
-export default class Parte extends AbstractElement<ParteAttributes> {
+export class Parte extends AbstractElement<ParteAttributes> {
   public getElementName(): string {
     return 'cfdi:Parte';
   }

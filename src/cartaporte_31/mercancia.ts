@@ -4,10 +4,10 @@ import type { DetalleMercanciaAttributes } from './detalle_mercancia';
 import type { DocumentacionAduaneraAttributes } from './documentacion_aduanera';
 import type { GuiasIdentificacionAttributes } from './guias_identificacion';
 import AbstractElement from '../common/abstract_element';
-import CantidadTransporta from './cantidad_transporta';
-import DetalleMercancia from './detalle_mercancia';
-import DocumentacionAduanera from './documentacion_aduanera';
-import GuiasIdentificacion from './guias_identificacion';
+import { CantidadTransporta } from './cantidad_transporta';
+import { DetalleMercancia } from './detalle_mercancia';
+import { DocumentacionAduanera } from './documentacion_aduanera';
+import { GuiasIdentificacion } from './guias_identificacion';
 
 export type MercanciaAttributes
   = | 'BienesTransp'
@@ -49,7 +49,7 @@ export type MercanciaAttributes
     | 'TipoMateria'
     | 'DescripcionMateria';
 
-export default class Mercancia extends AbstractElement<MercanciaAttributes> {
+export class Mercancia extends AbstractElement<MercanciaAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Mercancia';
   }

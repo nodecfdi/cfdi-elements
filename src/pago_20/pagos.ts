@@ -2,12 +2,12 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { PagoAttributes } from './pago';
 import type { TotalesAttributes } from './totales';
 import AbstractElement from '../common/abstract_element';
-import Pago from './pago';
-import Totales from './totales';
+import { Pago } from './pago';
+import { Totales } from './totales';
 
 export type PagosAttributes = 'Version';
 
-export default class Pagos extends AbstractElement<PagosAttributes> {
+export class Pagos extends AbstractElement<PagosAttributes> {
   public getElementName(): string {
     return 'pago20:Pagos';
   }

@@ -2,12 +2,12 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RetencionesLocalesAttributes } from './retenciones_locales';
 import type { TrasladosLocalesAttributes } from './traslados_locales';
 import AbstractElement from '../common/abstract_element';
-import RetencionesLocales from './retenciones_locales';
-import TrasladosLocales from './traslados_locales';
+import { RetencionesLocales } from './retenciones_locales';
+import { TrasladosLocales } from './traslados_locales';
 
 export type ImpuestosLocalesAttributes = 'version' | 'TotaldeRetenciones' | 'TotaldeTraslados';
 
-export default class ImpuestosLocales extends AbstractElement<ImpuestosLocalesAttributes> {
+export class ImpuestosLocales extends AbstractElement<ImpuestosLocalesAttributes> {
   public getElementName(): string {
     return 'implocal:ImpuestosLocales';
   }

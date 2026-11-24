@@ -10,7 +10,7 @@ export type TimbreFiscalDigitalAttributes
     | 'NoCertificadoSAT'
     | 'SelloSAT';
 
-export default class TimbreFiscalDigital extends AbstractElement<TimbreFiscalDigitalAttributes> {
+export class TimbreFiscalDigital extends AbstractElement<TimbreFiscalDigitalAttributes> {
   public getElementName(): string {
     return 'tfd:TimbreFiscalDigital';
   }

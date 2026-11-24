@@ -12,7 +12,7 @@ export type DomicilioAttributes
     | 'Pais'
     | 'CodigoPostal';
 
-export default class Domicilio extends AbstractElement<DomicilioAttributes> {
+export class Domicilio extends AbstractElement<DomicilioAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Domicilio';
   }

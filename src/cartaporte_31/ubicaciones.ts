@@ -1,9 +1,9 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { UbicacionAttributes } from './ubicacion';
 import AbstractElement from '../common/abstract_element';
-import Ubicacion from './ubicacion';
+import { Ubicacion } from './ubicacion';
 
-export default class Ubicaciones extends AbstractElement {
+export class Ubicaciones extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:Ubicaciones';
   }

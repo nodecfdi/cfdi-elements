@@ -2,12 +2,12 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { CarroAttributes } from './carro';
 import type { DerechosDePasoAttributes } from './derechos_de_paso';
 import AbstractElement from '../common/abstract_element';
-import Carro from './carro';
-import DerechosDePaso from './derechos_de_paso';
+import { Carro } from './carro';
+import { DerechosDePaso } from './derechos_de_paso';
 
 export type TransporteFerroviarioAttributes = 'TipoDeServicio' | 'TipoDeTrafico' | 'NombreAseg' | 'NumPolizaSeguro';
 
-export default class TransporteFerroviario extends AbstractElement<TransporteFerroviarioAttributes> {
+export class TransporteFerroviario extends AbstractElement<TransporteFerroviarioAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TransporteFerroviario';
   }

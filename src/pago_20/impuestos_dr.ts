@@ -1,9 +1,9 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
-import RetencionesDR from './retenciones_dr';
-import TrasladosDR from './traslados_dr';
+import { RetencionesDR } from './retenciones_dr';
+import { TrasladosDR } from './traslados_dr';
 
-export default class ImpuestosDR extends AbstractElement {
+export class ImpuestosDR extends AbstractElement {
   public getElementName(): string {
     return 'pago20:ImpuestosDR';
   }

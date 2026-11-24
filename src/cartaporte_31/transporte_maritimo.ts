@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ContenedorMaritimoAttributes } from './contenedor_maritimo';
 import AbstractElement from '../common/abstract_element';
-import ContenedorMaritimo from './contenedor_maritimo';
+import { ContenedorMaritimo } from './contenedor_maritimo';
 
 export type TransporteMaritimoAttributes
   = | 'PermSCT'
@@ -27,7 +27,7 @@ export type TransporteMaritimoAttributes
     | 'NumConocEmbarc'
     | 'PermisoTempNavegacion';
 
-export default class TransporteMaritimo extends AbstractElement<TransporteMaritimoAttributes> {
+export class TransporteMaritimo extends AbstractElement<TransporteMaritimoAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TransporteMaritimo';
   }

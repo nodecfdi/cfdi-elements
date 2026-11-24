@@ -1,11 +1,11 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
-import Retenciones from './retenciones';
-import Traslados from './traslados';
+import { Retenciones } from './retenciones';
+import { Traslados } from './traslados';
 
 export type ImpuestosAttributes = 'TotalImpuestosRetenidos' | 'TotalImpuestosTrasladados';
 
-export default class Impuestos extends AbstractElement<ImpuestosAttributes> {
+export class Impuestos extends AbstractElement<ImpuestosAttributes> {
   public getElementName(): string {
     return 'cfdi:Impuestos';
   }

@@ -7,7 +7,7 @@ export type RetencionAttributes
     | 'TasaOCuota'
     | 'Importe';
 
-export default class Retencion extends AbstractElement<RetencionAttributes> {
+export class Retencion extends AbstractElement<RetencionAttributes> {
   public getElementName(): string {
     return 'cfdi:Retencion';
   }

@@ -1,6 +1,11 @@
-export { default as ComisionDelServicio } from './comision_del_servicio';
-export { default as ContribucionGubernamental } from './contribucion_gubernamental';
-export { default as DetallesDelServicio } from './detalles_del_servicio';
-export { default as ImpuestosTrasladadosdelServicio } from './impuestos_trasladadosdel_servicio';
-export { default as Servicios } from './servicios';
-export { default as ServiciosPlataformasTecnologicas } from './servicios_plataformas_tecnologicas';
+export type { ComisionDelServicioAttributes } from './comision_del_servicio';
+export { ComisionDelServicio } from './comision_del_servicio';
+export type { ContribucionGubernamentalAttributes } from './contribucion_gubernamental';
+export { ContribucionGubernamental } from './contribucion_gubernamental';
+export type { DetallesDelServicioAttributes } from './detalles_del_servicio';
+export { DetallesDelServicio } from './detalles_del_servicio';
+export type { ImpuestosTrasladadosdelServicioAttributes } from './impuestos_trasladadosdel_servicio';
+export { ImpuestosTrasladadosdelServicio } from './impuestos_trasladadosdel_servicio';
+export { Servicios } from './servicios';
+export type { ServiciosPlataformasTecnologicasAttributes } from './servicios_plataformas_tecnologicas';
+export { ServiciosPlataformasTecnologicas } from './servicios_plataformas_tecnologicas';

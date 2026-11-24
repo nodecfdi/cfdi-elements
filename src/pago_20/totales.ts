@@ -13,7 +13,7 @@ export type TotalesAttributes
     | 'TotalTrasladosBaseIVAExento'
     | 'MontoTotalPagos';
 
-export default class Totales extends AbstractElement<TotalesAttributes> {
+export class Totales extends AbstractElement<TotalesAttributes> {
   public getElementName(): string {
     return 'pago20:Totales';
   }

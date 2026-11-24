@@ -1,2 +1,4 @@
-export { default as Leyenda } from './leyenda';
-export { default as LeyendasFiscales } from './leyendas_fiscales';
+export type { LeyendaAttributes } from './leyenda';
+export { Leyenda } from './leyenda';
+export type { LeyendasFiscalesAttributes } from './leyendas_fiscales';
+export { LeyendasFiscales } from './leyendas_fiscales';

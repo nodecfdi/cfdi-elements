@@ -7,7 +7,7 @@ export type TrasladoDRAttributes
     | 'TasaOCuotaDR'
     | 'ImporteDR';
 
-export default class TrasladoDR extends AbstractElement<TrasladoDRAttributes> {
+export class TrasladoDR extends AbstractElement<TrasladoDRAttributes> {
   public getElementName(): string {
     return 'pago20:TrasladoDR';
   }

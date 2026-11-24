@@ -1,9 +1,9 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { TrasladoDRAttributes } from './traslado_dr';
 import AbstractElement from '../common/abstract_element';
-import TrasladoDR from './traslado_dr';
+import { TrasladoDR } from './traslado_dr';
 
-export default class TrasladosDR extends AbstractElement {
+export class TrasladosDR extends AbstractElement {
   public getElementName(): string {
     return 'pago20:TrasladosDR';
   }

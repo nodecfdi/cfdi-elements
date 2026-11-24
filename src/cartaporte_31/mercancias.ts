@@ -5,11 +5,11 @@ import type { TransporteAereoAttributes } from './transporte_aereo';
 import type { TransporteFerroviarioAttributes } from './transporte_ferroviario';
 import type { TransporteMaritimoAttributes } from './transporte_maritimo';
 import AbstractElement from '../common/abstract_element';
-import Autotransporte from './autotransporte';
-import Mercancia from './mercancia';
-import TransporteAereo from './transporte_aereo';
-import TransporteFerroviario from './transporte_ferroviario';
-import TransporteMaritimo from './transporte_maritimo';
+import { Autotransporte } from './autotransporte';
+import { Mercancia } from './mercancia';
+import { TransporteAereo } from './transporte_aereo';
+import { TransporteFerroviario } from './transporte_ferroviario';
+import { TransporteMaritimo } from './transporte_maritimo';
 
 export type MercanciasAttributes
   = | 'PesoBrutoTotal'
@@ -19,7 +19,7 @@ export type MercanciasAttributes
     | 'CargoPorTasacion'
     | 'LogisticaInversaRecoleccionDevolucion';
 
-export default class Mercancias extends AbstractElement<MercanciasAttributes> {
+export class Mercancias extends AbstractElement<MercanciasAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Mercancias';
   }

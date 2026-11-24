@@ -3,17 +3,15 @@ import type { ACuentaTercerosAttributes } from './a_cuenta_terceros';
 import type { CuentaPredialAttributes } from './cuenta_predial';
 import type { InformacionAduaneraAttributes } from './informacion_aduanera';
 import type { ParteAttributes } from './parte';
-import type Retencion from './retencion';
-import type { RetencionAttributes } from './retencion';
-import type Traslado from './traslado';
-import type { TrasladoAttributes } from './traslado';
+import type { Retencion, RetencionAttributes } from './retencion';
+import type { Traslado, TrasladoAttributes } from './traslado';
 import AbstractElement from '../common/abstract_element';
-import ACuentaTerceros from './a_cuenta_terceros';
-import ComplementoConcepto from './complemento_concepto';
-import ConceptoImpuestos from './concepto_impuestos';
-import CuentaPredial from './cuenta_predial';
-import InformacionAduanera from './informacion_aduanera';
-import Parte from './parte';
+import { ACuentaTerceros } from './a_cuenta_terceros';
+import { ComplementoConcepto } from './complemento_concepto';
+import { ConceptoImpuestos } from './concepto_impuestos';
+import { CuentaPredial } from './cuenta_predial';
+import { InformacionAduanera } from './informacion_aduanera';
+import { Parte } from './parte';
 
 export type ConceptoAttributes
   = | 'ClaveProdServ'
@@ -27,7 +25,7 @@ export type ConceptoAttributes
     | 'Descuento'
     | 'ObjetoImp';
 
-export default class Concepto extends AbstractElement<ConceptoAttributes> {
+export class Concepto extends AbstractElement<ConceptoAttributes> {
   public getElementName(): string {
     return 'cfdi:Concepto';
   }

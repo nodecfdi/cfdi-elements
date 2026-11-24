@@ -1,1 +1,2 @@
-export { default as Donatarias } from './donatarias';
+export type { DonatariasAttributes } from './donatarias';
+export { Donatarias } from './donatarias';

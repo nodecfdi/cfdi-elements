@@ -1,7 +1,7 @@
 import AbstractElement from '../common/abstract_element';
 #imports#
 #attributes-type#
-export default class #class-name# extends AbstractElement#element-generics# {
+export class #class-name# extends AbstractElement#element-generics# {
   public getElementName(): string {
     return '#prefix#:#element-name#';
   }

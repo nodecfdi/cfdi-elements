@@ -7,7 +7,7 @@ export type RetencionDRAttributes
     | 'TasaOCuotaDR'
     | 'ImporteDR';
 
-export default class RetencionDR extends AbstractElement<RetencionDRAttributes> {
+export class RetencionDR extends AbstractElement<RetencionDRAttributes> {
   public getElementName(): string {
     return 'pago20:RetencionDR';
   }

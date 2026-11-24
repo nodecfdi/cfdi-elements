@@ -25,6 +25,7 @@ export default class ElementsMarker {
     this._classAttributes.clear();
     this.collectClassAttributes(this._specs.getStructure());
     this.createElement(this._specs.getStructure(), this._specs.getDictionary(), true);
+    this.writeIndex();
   }
 
   public createElement(structure: Structure, dictionary: Dictionary, isRoot = false): void {
@@ -43,7 +44,6 @@ export default class ElementsMarker {
     const sectionsContent: string[] = [];
     const cfdiCoreTypes = new Set<string>();
     const valueImports = new Map<string, string>();
-    const typeDefaultImports = new Map<string, string>();
     const typeNamedImports = new Map<string, Set<string>>();
     const orderElements = structure.getChildrenNames(`${prefix}:`);
 
@@ -131,7 +131,7 @@ export default class ElementsMarker {
       }
 
       if (!valueImports.has(targetModule)) {
-        typeDefaultImports.set(targetModule, targetName);
+        addNamedTypeImport(targetModule, targetName);
       }
     }
 
@@ -141,17 +141,13 @@ export default class ElementsMarker {
       importLines.push(`import type { ${sorted.join(', ')} } from '@nodecfdi/cfdi-core/types';`);
     }
 
-    for (const [modulePath, defaultType] of typeDefaultImports) {
-      importLines.push(`import type ${defaultType} from '${modulePath}';`);
-    }
-
     for (const [modulePath, named] of typeNamedImports) {
       const sortedNamed = [...named].toSorted((a, b) => a.localeCompare(b));
       importLines.push(`import type { ${sortedNamed.join(', ')} } from '${modulePath}';`);
     }
 
     for (const [modulePath, valueName] of valueImports) {
-      importLines.push(`import ${valueName} from '${modulePath}';`);
+      importLines.push(`import { ${valueName} } from '${modulePath}';`);
     }
 
     finalDictionary = finalDictionary.with('#sections#', sectionsContent.join(''));
@@ -164,6 +160,29 @@ export default class ElementsMarker {
 
   public static make(specFile: string, outputDir: string): ElementsMarker {
     return new ElementsMarker(Specifications.makeFromFile(specFile), outputDir);
+  }
+
+  private writeIndex(): void {
+    const entries = [...this._classAttributes]
+      .map(([className, attributes]) => ({
+        className,
+        fileName: toSnakeCase(className),
+        hasAttributes: attributes.length > 0,
+      }))
+      .toSorted((a, b) => a.fileName.localeCompare(b.fileName));
+
+    const lines: string[] = [];
+    for (const entry of entries) {
+      if (entry.hasAttributes) {
+        lines.push(`export type { ${entry.className}Attributes } from './${entry.fileName}';`);
+      }
+    }
+
+    for (const entry of entries) {
+      lines.push(`export { ${entry.className} } from './${entry.fileName}';`);
+    }
+
+    writeFileSync(path.join(this._outputDir, 'index.ts'), `${lines.join('\n')}\n`);
   }
 
   private collectClassAttributes(structure: Structure): void {

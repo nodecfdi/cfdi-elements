@@ -9,7 +9,7 @@ export type SegurosAttributes
     | 'PolizaCarga'
     | 'PrimaSeguro';
 
-export default class Seguros extends AbstractElement<SegurosAttributes> {
+export class Seguros extends AbstractElement<SegurosAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Seguros';
   }

@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
-import ImpuestosDR from './impuestos_dr';
+import { ImpuestosDR } from './impuestos_dr';
 
 export type DoctoRelacionadoAttributes
   = | 'IdDocumento'
@@ -14,7 +14,7 @@ export type DoctoRelacionadoAttributes
     | 'ImpSaldoInsoluto'
     | 'ObjetoImpDR';
 
-export default class DoctoRelacionado extends AbstractElement<DoctoRelacionadoAttributes> {
+export class DoctoRelacionado extends AbstractElement<DoctoRelacionadoAttributes> {
   public getElementName(): string {
     return 'pago20:DoctoRelacionado';
   }

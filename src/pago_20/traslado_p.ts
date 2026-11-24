@@ -7,7 +7,7 @@ export type TrasladoPAttributes
     | 'TasaOCuotaP'
     | 'ImporteP';
 
-export default class TrasladoP extends AbstractElement<TrasladoPAttributes> {
+export class TrasladoP extends AbstractElement<TrasladoPAttributes> {
   public getElementName(): string {
     return 'pago20:TrasladoP';
   }

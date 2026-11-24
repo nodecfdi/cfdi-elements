@@ -14,7 +14,7 @@ export type TransporteAereoAttributes
     | 'ResidenciaFiscalEmbarc'
     | 'NombreEmbarcador';
 
-export default class TransporteAereo extends AbstractElement<TransporteAereoAttributes> {
+export class TransporteAereo extends AbstractElement<TransporteAereoAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TransporteAereo';
   }

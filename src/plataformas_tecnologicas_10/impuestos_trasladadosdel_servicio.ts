@@ -7,7 +7,7 @@ export type ImpuestosTrasladadosdelServicioAttributes
     | 'TasaCuota'
     | 'Importe';
 
-export default class ImpuestosTrasladadosdelServicio extends AbstractElement<ImpuestosTrasladadosdelServicioAttributes> {
+export class ImpuestosTrasladadosdelServicio extends AbstractElement<ImpuestosTrasladadosdelServicioAttributes> {
   public getElementName(): string {
     return 'plataformasTecnologicas:ImpuestosTrasladadosdelServicio';
   }

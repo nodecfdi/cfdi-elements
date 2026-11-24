@@ -2,8 +2,8 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DomicilioAttributes } from './domicilio';
 import type { PartesTransporteAttributes } from './partes_transporte';
 import AbstractElement from '../common/abstract_element';
-import Domicilio from './domicilio';
-import PartesTransporte from './partes_transporte';
+import { Domicilio } from './domicilio';
+import { PartesTransporte } from './partes_transporte';
 
 export type TiposFiguraAttributes
   = | 'TipoFigura'
@@ -13,7 +13,7 @@ export type TiposFiguraAttributes
     | 'NumRegIdTribFigura'
     | 'ResidenciaFiscalFigura';
 
-export default class TiposFigura extends AbstractElement<TiposFiguraAttributes> {
+export class TiposFigura extends AbstractElement<TiposFiguraAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TiposFigura';
   }
