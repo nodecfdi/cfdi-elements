@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { Beneficiario, NoBeneficiario, Pagosaextranjeros } from '../../../../src/elements/pagosaextranjeros_10/index';
+import { Beneficiario, NoBeneficiario, PagosAExtranjeros } from '../../../../src/elements/pagosaextranjeros_10/index';
 
 describe('pagosaextranjeros10', () => {
-  test('pagosaextranjeros', ({ assert }) => {
-    const element = new Pagosaextranjeros();
+  test('pagos a extranjeros', ({ assert }) => {
+    const element = new PagosAExtranjeros();
     expect(element).toElementHasName('pagosaextranjeros:Pagosaextranjeros');
     expect(element).toElementHasOrder([
       'pagosaextranjeros:NoBeneficiario',

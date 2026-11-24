@@ -5,9 +5,9 @@ import AbstractElement from '../../common/abstract_element';
 import { Beneficiario } from './beneficiario';
 import { NoBeneficiario } from './no_beneficiario';
 
-export type PagosaextranjerosAttributes = 'Version' | 'EsBenefEfectDelCobro';
+export type PagosAExtranjerosAttributes = 'Version' | 'EsBenefEfectDelCobro';
 
-export class Pagosaextranjeros extends AbstractElement<PagosaextranjerosAttributes> {
+export class PagosAExtranjeros extends AbstractElement<PagosAExtranjerosAttributes> {
   public getElementName(): string {
     return 'pagosaextranjeros:Pagosaextranjeros';
   }

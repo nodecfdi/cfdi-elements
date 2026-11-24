@@ -5,7 +5,7 @@
   "version-attribute": "Version",
   "version-value": "1.0",
   "root": {
-    "name": "Pagosaextranjeros",
+    "name": "PagosAExtranjeros",
     "attributes": [
       "Version",
       "EsBenefEfectDelCobro"
@@ -29,6 +29,7 @@
           "DescripcionConcepto"
         ]
       }
-    ]
+    ],
+    "elementName": "Pagosaextranjeros"
   }
 }
