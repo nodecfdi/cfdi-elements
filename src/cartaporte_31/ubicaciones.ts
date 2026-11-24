@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Ubicacion from './ubicacion';
 
-export default class Ubicaciones extends Mixin(AbstractElement) {
+export default class Ubicaciones extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:Ubicaciones';
   }

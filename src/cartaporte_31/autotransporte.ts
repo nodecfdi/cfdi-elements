@@ -1,10 +1,9 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import IdentificacionVehicular from './identificacion_vehicular';
 import Remolques from './remolques';
 import Seguros from './seguros';
 
-export default class Autotransporte extends Mixin(AbstractElement) {
+export default class Autotransporte extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:Autotransporte';
   }

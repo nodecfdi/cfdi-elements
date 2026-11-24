@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import RegimenAduaneroCCP from './regimen_aduanero_ccp';
 
-export default class RegimenesAduaneros extends Mixin(AbstractElement) {
+export default class RegimenesAduaneros extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:RegimenesAduaneros';
   }

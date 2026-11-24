@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import DetallesDelServicio from './detalles_del_servicio';
 
-export default class Servicios extends Mixin(AbstractElement) {
+export default class Servicios extends AbstractElement {
   public getElementName(): string {
     return 'plataformasTecnologicas:Servicios';
   }

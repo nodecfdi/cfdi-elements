@@ -184,10 +184,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      ts-mixer:
-        specifier: ^6.0.4
-        version: 6.0.4
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.2.4
@@ -2975,9 +2971,6 @@ packages:
     engines: {node: '>=18.12'}
     peerDependencies:
       typescript: '>=4.8.4'
-
-  ts-mixer@6.0.4:
-    resolution: {integrity: sha512-ufKpbmrugz5Aou4wcr5Wc1UUFWOLhq+Fm6qa6P0w0K5Qw2yhaUoiWszhCVuNQyNwrlGiscHOmqYoAox1PtvgjA==}
 
   tsdown@0.23.7:
     resolution: {integrity: sha512-w9nmWyEimfqQ7/HpVeKTldAeBvWGXiaWyNP7xaxSrr0GhKxsngEyTWqk1nOruRqvqRSkdpMMkpV2BcoWfLB4Uw==}
@@ -6121,8 +6114,6 @@ snapshots:
   ts-api-utils@2.5.0(typescript@6.0.3):
     dependencies:
       typescript: 6.0.3
-
-  ts-mixer@6.0.4: {}
 
   tsdown@0.23.7(tsx@4.23.15)(typescript@6.0.3):
     dependencies:

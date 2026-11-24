@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import RemolquesCCP from './remolques_ccp';
 
-export default class ContenedorMaritimo extends Mixin(AbstractElement) {
+export default class ContenedorMaritimo extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:Contenedor';
   }

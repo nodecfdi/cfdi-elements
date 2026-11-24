@@ -13,7 +13,6 @@ export { default as Emisor } from './emisor';
 export { default as Impuestos } from './impuestos';
 export { default as InformacionAduanera } from './informacion_aduanera';
 export { default as InformacionGlobal } from './informacion_global';
-export { default as WithImpuestos } from './mixins/with_impuestos';
 export { default as Parte } from './parte';
 export { default as Receptor } from './receptor';
 export { default as Retencion } from './retencion';

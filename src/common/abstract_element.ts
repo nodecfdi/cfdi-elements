@@ -1,29 +1,24 @@
-import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { ElementInterface } from '../types';
 import { isValidXmlName, XmlNode } from '@nodecfdi/cfdi-core';
-import { settings } from 'ts-mixer';
 
-settings.initFunction = '__init';
-
-export default abstract class AbstractElement extends XmlNode implements ElementInterface {
+export default abstract class AbstractElement<TAttributes extends string = string>
+  extends XmlNode<TAttributes>
+  implements ElementInterface<TAttributes> {
   public constructor(
-    _attributes: Record<string, unknown> = {},
-    _children: XmlNodeInterface[] = [],
+    attributes: AttributesRecord<TAttributes> = {},
+    children: XmlNodeInterface[] = [],
   ) {
     super('temp:Temp');
-  }
 
-  protected __init(
-    attributes: Record<string, unknown> = {},
-    children: XmlNodeInterface[] = [],
-  ): void {
-    if (!isValidXmlName(this.getElementName())) {
+    const elementName = this.getElementName();
+    if (!isValidXmlName(elementName)) {
       throw new SyntaxError(
-        `Cannot create a node with an invalid xml name: ${this.getElementName()}`,
+        `Cannot create a node with an invalid xml name: ${elementName}`,
       );
     }
 
-    (this as unknown as { _name: string })._name = this.getElementName();
+    (this as unknown as { _name: string })._name = elementName;
     this.addAttributes({
       ...this.getFixedAttributes(),
       ...attributes,
@@ -44,7 +39,7 @@ export default abstract class AbstractElement extends XmlNode implements Element
 
   protected helperGetOrAdd<T extends AbstractElement>(element: T): T {
     const retrieved = this.searchNode(element.getElementName());
-    if (retrieved) {
+    if (retrieved instanceof AbstractElement) {
       return retrieved as T;
     }
 

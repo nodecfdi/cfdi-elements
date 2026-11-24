@@ -1,11 +1,16 @@
 {
   "prefix": "cfdi",
-  "xml-namespace": "http://www.sat.gob.mx/cfd/4",
-  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
+  "xml-namespace": "https://www.sat.gob.mx/cfd/4",
+  "xml-schemalocation": "https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
   "version-attribute": "Version",
   "version-value": "4.0",
   "root-element": "Comprobante",
   "structure": {
+    "shortcuts": [
+      { "path": ["Conceptos"], "target": "Concepto", "multi": false },
+      { "path": ["Impuestos", "Traslados"], "target": "Traslado" },
+      { "path": ["Impuestos", "Retenciones"], "target": "Retencion" }
+    ],
     "InformacionGlobal": {},
     "CfdiRelacionados": {
       "multiple": true,
@@ -16,7 +21,13 @@
     "Conceptos": {
       "Concepto": {
         "multiple": true,
-        "Impuestos": {
+        "shortcuts": [
+          { "path": ["Impuestos", "Traslados"], "target": "Traslado" },
+          { "path": ["Impuestos", "Retenciones"], "target": "Retencion" }
+        ],
+        "ConceptoImpuestos": {
+          "elementName": "Impuestos",
+          "methodName": "Impuestos",
           "Traslados": {
             "Traslado": { "multiple": true }
           },

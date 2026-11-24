@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Leyenda from './leyenda';
 
-export default class LeyendasFiscales extends Mixin(AbstractElement) {
+export default class LeyendasFiscales extends AbstractElement {
   public getElementName(): string {
     return 'leyendasFisc:LeyendasFiscales';
   }

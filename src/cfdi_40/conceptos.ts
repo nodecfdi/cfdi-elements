@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Concepto from './concepto';
 
-export default class Conceptos extends Mixin(AbstractElement) {
+export default class Conceptos extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:Conceptos';
   }

@@ -1,0 +1,7 @@
+
+  public multi#target#(...elementAttributes: Record<string, unknown>[]): this {
+    this.#getter-chain#
+      .multi#target#(...elementAttributes);
+
+    return this;
+  }

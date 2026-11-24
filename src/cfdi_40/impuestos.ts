@@ -1,15 +1,17 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Retenciones from './retenciones';
 import Traslados from './traslados';
 
-export default class Impuestos extends Mixin(AbstractElement) {
+export default class Impuestos extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:Impuestos';
   }
 
   public getChildrenOrder(): string[] {
-    return ['cfdi:Retenciones', 'cfdi:Traslados'];
+    return [
+      'cfdi:Retenciones',
+      'cfdi:Traslados',
+    ];
   }
 
   public getRetenciones(): Retenciones {

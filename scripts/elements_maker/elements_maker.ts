@@ -29,7 +29,8 @@ export default class ElementsMarker {
       .with('#element-name#', structure.getElementName())
       .with('#class-name#', structure.getName());
     const sectionsContent: string[] = [];
-    const imports: string[] = [];
+    const imports = new Set<string>();
+    const importedClasses = new Set<string>();
     const orderElements = structure.getChildrenNames(`${prefix}:`);
 
     if (orderElements.length > 1) {
@@ -52,22 +53,51 @@ export default class ElementsMarker {
             ? 'child_single_add'
             : 'child_single');
       sectionsContent.push(
-        this.template(childTemplate, new Dictionary({ '#child-name#': child.getName() })),
+        this.template(
+          childTemplate,
+          new Dictionary({
+            '#child-name#': child.getName(),
+            '#child-method-name#': child.getMethodName(),
+          }),
+        ),
       );
 
-      imports.push(
+      imports.add(
         `import ${child.getName()} from './${toSnakeCase(child.getName())}';`,
       );
+      importedClasses.add(child.getName());
 
       if (child.isSingleAddChild()) {
-        imports.push("import { type XmlNodeInterface } from '@nodecfdi/cfdi-core/types';");
+        imports.add("import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';");
       }
 
       this.createElement(child, finalDictionary);
     }
 
+    for (const shortcut of structure.getShortcuts()) {
+      const getterChain = shortcut.path.map((segment) => `get${segment}()`).join('.');
+      const shortcutDictionary = new Dictionary({
+        '#target#': shortcut.target,
+        '#getter-chain#': getterChain,
+      });
+
+      sectionsContent.push(this.template('shortcut_add', shortcutDictionary));
+      if (shortcut.multi !== false) {
+        sectionsContent.push(this.template('shortcut_multi', shortcutDictionary));
+      }
+
+      if (importedClasses.has(shortcut.target)) {
+        continue;
+      }
+
+      imports.add(
+        `import type ${shortcut.target} from './${toSnakeCase(shortcut.target)}';`,
+      );
+      importedClasses.add(shortcut.target);
+    }
+
     finalDictionary = finalDictionary.with('#sections#', sectionsContent.join(''));
-    finalDictionary = finalDictionary.with('#imports#', imports.join('\n'));
+    finalDictionary = finalDictionary.with('#imports#', [...imports].join('\n'));
 
     const contents = this.template('element', finalDictionary);
     const outputFile = this.buildOutputFile(structure.getName());

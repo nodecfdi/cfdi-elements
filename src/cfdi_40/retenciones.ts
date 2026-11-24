@@ -1,8 +1,7 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Retencion from './retencion';
 
-export default class Retenciones extends Mixin(AbstractElement) {
+export default class Retenciones extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:Retenciones';
   }

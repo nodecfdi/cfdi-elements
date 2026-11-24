@@ -1,9 +1,8 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Domicilio from './domicilio';
 import PartesTransporte from './partes_transporte';
 
-export default class TiposFigura extends Mixin(AbstractElement) {
+export default class TiposFigura extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:TiposFigura';
   }

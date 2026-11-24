@@ -11,7 +11,8 @@ export type SumaRetenciones = Record<string, { Impuesto: string; Importe: number
 
 export interface SumaLocal { Impuesto: string; Tasa: number; Importe: number }
 
-export interface ElementInterface extends XmlNodeInterface {
+export interface ElementInterface<TAttributes extends string = string>
+  extends XmlNodeInterface<TAttributes> {
   getElementName: () => string;
 
   getFixedAttributes: () => Record<string, string>;

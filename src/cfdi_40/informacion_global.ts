@@ -1,7 +1,6 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 
-export default class InformacionGlobal extends Mixin(AbstractElement) {
+export default class InformacionGlobal extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:InformacionGlobal';
   }

@@ -1,0 +1,4 @@
+
+  public add#target#(attributes: Record<string, unknown> = {}): #target# {
+    return this.#getter-chain#.add#target#(attributes);
+  }

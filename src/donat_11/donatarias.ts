@@ -1,7 +1,6 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 
-export default class Donatarias extends Mixin(AbstractElement) {
+export default class Donatarias extends AbstractElement {
   public getElementName(): string {
     return 'donat:Donatarias';
   }

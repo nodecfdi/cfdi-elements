@@ -1,6 +1,7 @@
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type Concepto from './concepto';
-import { Mixin } from 'ts-mixer';
+import type Retencion from './retencion';
+import type Traslado from './traslado';
 import AbstractElement from '../common/abstract_element';
 import Addenda from './addenda';
 import CfdiRelacionados from './cfdi_relacionados';
@@ -9,10 +10,9 @@ import Conceptos from './conceptos';
 import Emisor from './emisor';
 import Impuestos from './impuestos';
 import InformacionGlobal from './informacion_global';
-import WithImpuestos from './mixins/with_impuestos';
 import Receptor from './receptor';
 
-export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
+export default class Comprobante extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:Comprobante';
   }
@@ -35,7 +35,7 @@ export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
       'xmlns:cfdi': 'https://www.sat.gob.mx/cfd/4',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/cfd/4 https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
+          'https://www.sat.gob.mx/cfd/4 https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
       'Version': '4.0',
     };
   }
@@ -132,5 +132,25 @@ export default class Comprobante extends Mixin(AbstractElement, WithImpuestos) {
 
   public addConcepto(attributes: Record<string, unknown> = {}): Concepto {
     return this.getConceptos().addConcepto(attributes);
+  }
+
+  public addTraslado(attributes: Record<string, unknown> = {}): Traslado {
+    return this.getImpuestos().getTraslados().addTraslado(attributes);
+  }
+
+  public multiTraslado(...elementAttributes: Record<string, unknown>[]): this {
+    this.getImpuestos().getTraslados().multiTraslado(...elementAttributes);
+
+    return this;
+  }
+
+  public addRetencion(attributes: Record<string, unknown> = {}): Retencion {
+    return this.getImpuestos().getRetenciones().addRetencion(attributes);
+  }
+
+  public multiRetencion(...elementAttributes: Record<string, unknown>[]): this {
+    this.getImpuestos().getRetenciones().multiRetencion(...elementAttributes);
+
+    return this;
   }
 }

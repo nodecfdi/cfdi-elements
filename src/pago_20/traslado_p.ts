@@ -1,7 +1,6 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 
-export default class TrasladoP extends Mixin(AbstractElement) {
+export default class TrasladoP extends AbstractElement {
   public getElementName(): string {
     return 'pago20:TrasladoP';
   }

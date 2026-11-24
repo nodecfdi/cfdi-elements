@@ -1,9 +1,8 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Pago from './pago';
 import Totales from './totales';
 
-export default class Pagos extends Mixin(AbstractElement) {
+export default class Pagos extends AbstractElement {
   public getElementName(): string {
     return 'pago20:Pagos';
   }

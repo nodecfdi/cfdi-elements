@@ -1,15 +1,15 @@
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import { Mixin } from 'ts-mixer';
+import type Retencion from './retencion';
+import type Traslado from './traslado';
 import AbstractElement from '../common/abstract_element';
 import ACuentaTerceros from './a_cuenta_terceros';
 import ComplementoConcepto from './complemento_concepto';
 import ConceptoImpuestos from './concepto_impuestos';
 import CuentaPredial from './cuenta_predial';
 import InformacionAduanera from './informacion_aduanera';
-import WithImpuestos from './mixins/with_impuestos';
 import Parte from './parte';
 
-export default class Concepto extends Mixin(AbstractElement, WithImpuestos) {
+export default class Concepto extends AbstractElement {
   public getElementName(): string {
     return 'cfdi:Concepto';
   }
@@ -98,6 +98,26 @@ export default class Concepto extends Mixin(AbstractElement, WithImpuestos) {
     for (const attributes of elementAttributes) {
       this.addParte(attributes);
     }
+
+    return this;
+  }
+
+  public addTraslado(attributes: Record<string, unknown> = {}): Traslado {
+    return this.getImpuestos().getTraslados().addTraslado(attributes);
+  }
+
+  public multiTraslado(...elementAttributes: Record<string, unknown>[]): this {
+    this.getImpuestos().getTraslados().multiTraslado(...elementAttributes);
+
+    return this;
+  }
+
+  public addRetencion(attributes: Record<string, unknown> = {}): Retencion {
+    return this.getImpuestos().getRetenciones().addRetencion(attributes);
+  }
+
+  public multiRetencion(...elementAttributes: Record<string, unknown>[]): this {
+    this.getImpuestos().getRetenciones().multiRetencion(...elementAttributes);
 
     return this;
   }

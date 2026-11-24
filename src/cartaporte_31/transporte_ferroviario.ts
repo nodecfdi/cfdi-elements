@@ -1,9 +1,8 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import Carro from './carro';
 import DerechosDePaso from './derechos_de_paso';
 
-export default class TransporteFerroviario extends Mixin(AbstractElement) {
+export default class TransporteFerroviario extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:TransporteFerroviario';
   }

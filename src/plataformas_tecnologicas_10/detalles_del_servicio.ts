@@ -1,10 +1,9 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import ComisionDelServicio from './comision_del_servicio';
 import ContribucionGubernamental from './contribucion_gubernamental';
 import ImpuestosTrasladadosdelServicio from './impuestos_trasladadosdel_servicio';
 
-export default class DetallesDelServicio extends Mixin(AbstractElement) {
+export default class DetallesDelServicio extends AbstractElement {
   public getElementName(): string {
     return 'plataformasTecnologicas:DetallesDelServicio';
   }

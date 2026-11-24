@@ -1,10 +1,10 @@
 
-  public get#child-name#(): #child-name# {
+  public get#child-method-name#(): #child-name# {
     return this.helperGetOrAdd(new #child-name#());
   }
 
-  public add#child-name#(attributes: Record<string, unknown> = {}): #child-name# {
-    const subject = this.get#child-name#();
+  public add#child-method-name#(attributes: Record<string, unknown> = {}): #child-name# {
+    const subject = this.get#child-method-name#();
     subject.addAttributes(attributes);
 
     return subject;

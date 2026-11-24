@@ -1,11 +1,10 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import FiguraTransporte from './figura_transporte';
 import Mercancias from './mercancias';
 import RegimenesAduaneros from './regimenes_aduaneros';
 import Ubicaciones from './ubicaciones';
 
-export default class CartaPorte extends Mixin(AbstractElement) {
+export default class CartaPorte extends AbstractElement {
   public getElementName(): string {
     return 'cartaporte31:CartaPorte';
   }

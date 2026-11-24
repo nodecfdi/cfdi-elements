@@ -1,11 +1,21 @@
+export interface ShortcutDefinition {
+  path: string[];
+  target: string;
+  multi?: boolean;
+}
+
 export default class Structure implements Iterable<Structure> {
   private readonly _name: string;
 
   private readonly _elementName: string;
 
+  private readonly _methodName: string;
+
   private readonly _multiple: boolean;
 
   private readonly _singleAddChild: boolean;
+
+  private readonly _shortcuts: ShortcutDefinition[];
 
   private readonly _children: Structure[];
 
@@ -14,12 +24,16 @@ export default class Structure implements Iterable<Structure> {
     elementName: string,
     multiple: boolean,
     singleAddChild: boolean,
+    methodName = name,
+    shortcuts: ShortcutDefinition[] = [],
     ...children: Structure[]
   ) {
     this._name = name;
     this._elementName = elementName;
+    this._methodName = methodName;
     this._multiple = multiple;
     this._singleAddChild = singleAddChild;
+    this._shortcuts = shortcuts;
     this._children = children;
   }
 
@@ -35,6 +49,10 @@ export default class Structure implements Iterable<Structure> {
     return this._elementName;
   }
 
+  public getMethodName(): string {
+    return this._methodName;
+  }
+
   public isMultiple(): boolean {
     return this._multiple;
   }
@@ -43,13 +61,17 @@ export default class Structure implements Iterable<Structure> {
     return this._singleAddChild;
   }
 
+  public getShortcuts(): ShortcutDefinition[] {
+    return this._shortcuts;
+  }
+
   public getChildren(): Structure[] {
     return this._children;
   }
 
   public getChildrenNames(prefix: string): string[] {
     return this._children
-      .map((structure) => `${prefix}${structure.getName()}`)
+      .map((structure) => `${prefix}${structure.getElementName()}`)
       .filter((value, index, array) => array.indexOf(value) === index);
   }
 
@@ -61,6 +83,9 @@ export default class Structure implements Iterable<Structure> {
     let multiple = false;
     let singleAddChild = false;
     let elementName = name;
+    let methodName = name;
+    const shortcuts: ShortcutDefinition[] = [];
+
     if ('multiple' in data && typeof data.multiple === 'boolean') {
       multiple = data.multiple;
     }
@@ -73,6 +98,29 @@ export default class Structure implements Iterable<Structure> {
       elementName = data.elementName;
     }
 
+    if ('methodName' in data && typeof data.methodName === 'string') {
+      methodName = data.methodName;
+    }
+
+    if ('shortcuts' in data && Array.isArray(data.shortcuts)) {
+      for (const item of data.shortcuts as unknown[]) {
+        if (item === null || typeof item !== 'object') {
+          continue;
+        }
+
+        const record = item as Record<string, unknown>;
+        if (!Array.isArray(record.path) || typeof record.target !== 'string') {
+          continue;
+        }
+
+        shortcuts.push({
+          path: record.path.filter((segment): segment is string => typeof segment === 'string'),
+          target: record.target,
+          multi: record.multi !== false,
+        });
+      }
+    }
+
     const children: Structure[] = [];
 
     for (const [key, value] of Object.entries(data)) {
@@ -81,6 +129,14 @@ export default class Structure implements Iterable<Structure> {
       }
     }
 
-    return new Structure(name, elementName, multiple, singleAddChild, ...children);
+    return new Structure(
+      name,
+      elementName,
+      multiple,
+      singleAddChild,
+      methodName,
+      shortcuts,
+      ...children,
+    );
   }
 }

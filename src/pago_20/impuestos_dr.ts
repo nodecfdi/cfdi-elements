@@ -1,9 +1,8 @@
-import { Mixin } from 'ts-mixer';
 import AbstractElement from '../common/abstract_element';
 import RetencionesDR from './retenciones_dr';
 import TrasladosDR from './traslados_dr';
 
-export default class ImpuestosDR extends Mixin(AbstractElement) {
+export default class ImpuestosDR extends AbstractElement {
   public getElementName(): string {
     return 'pago20:ImpuestosDR';
   }
