@@ -16,7 +16,7 @@ Argumentos:
   output-path         Directorio o archivo .test.ts destino (por defecto: tests/unit/<spec-key>/)
 
 Opciones:
-  --src-dir <dir>     Directorio de los elementos fuente (por defecto: src/<spec-key>/)
+  --src-dir <dir>     Directorio de los elementos fuente (por defecto: src/elements/<spec-key>/)
   -f, --force         Sobrescribe el archivo de tests si ya existe
   --beautify          Aplica eslint --fix al archivo generado (por defecto: true)
   --no-beautify       Omite el formateo con eslint

@@ -127,56 +127,56 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDig
 
 ## Comandos de Generación de Elementos (`make:elements`)
 
-Comandos para regenerar cada módulo en `src/`:
+Comandos para regenerar cada módulo en `src/elements/`:
 
 <!-- elements:start -->
 
 ### `cartaporte_31`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/cartaporte_31.json src/cartaporte_31/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/cartaporte_31.json src/elements/cartaporte_31/ --with-tests
 ```
 
 ### `cfdi_40`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/cfdi_40.json src/cfdi_40/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/cfdi_40.json src/elements/cfdi_40/ --with-tests
 ```
 
 ### `donat_11`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/donat_11.json src/donat_11/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/donat_11.json src/elements/donat_11/ --with-tests
 ```
 
 ### `implocal_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/implocal_10.json src/implocal_10/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/implocal_10.json src/elements/implocal_10/ --with-tests
 ```
 
 ### `leyendas_fisc_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/leyendas_fisc_10.json src/leyendas_fisc_10/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/leyendas_fisc_10.json src/elements/leyendas_fisc_10/ --with-tests
 ```
 
 ### `pago_20`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/pago_20.json src/pago_20/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/pago_20.json src/elements/pago_20/ --with-tests
 ```
 
 ### `plataformas_tecnologicas_10`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/plataformas_tecnologicas_10.json src/plataformas_tecnologicas_10/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/plataformas_tecnologicas_10.json src/elements/plataformas_tecnologicas_10/ --with-tests
 ```
 
 ### `tfd_11`
 
 ```sh
-pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/tfd_11/ --with-tests
+pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/elements/tfd_11/ --with-tests
 ```
 
 <!-- elements:end -->

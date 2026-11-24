@@ -28,7 +28,7 @@ export default class TestsMaker {
     const isTestFile = outputPath.endsWith('.test.ts') || outputPath.endsWith('.spec.ts');
     this._outputFile = isTestFile ? outputPath : path.join(outputPath, rootFileName);
     this._specKey = options.specKey ?? path.basename(path.dirname(this._outputFile));
-    this._srcDir = options.srcDir ?? path.join('src', this._specKey);
+    this._srcDir = options.srcDir ?? path.join('src', 'elements', this._specKey);
     this._force = options.force ?? false;
   }
 

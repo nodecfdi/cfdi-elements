@@ -307,7 +307,7 @@ async function main(): Promise<void> {
 
   console.log('\nSuggested command to generate elements and base tests:');
   console.log(
-    `  pnpm make:elements scripts/elements_maker/specifications/${specKey}.json src/${specKey}/ --with-tests`,
+    `  pnpm make:elements scripts/elements_maker/specifications/${specKey}.json src/elements/${specKey}/ --with-tests`,
   );
 }
 

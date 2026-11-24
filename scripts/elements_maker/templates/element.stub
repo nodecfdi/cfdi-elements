@@ -1,4 +1,4 @@
-import AbstractElement from '../common/abstract_element';
+import AbstractElement from '../../common/abstract_element';
 #imports#
 #attributes-type#
 export class #class-name# extends AbstractElement#element-generics# {
