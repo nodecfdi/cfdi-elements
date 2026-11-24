@@ -39,6 +39,7 @@
     "./types": "./dist/types.js",
     "./package.json": "./package.json"
   },
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -63,14 +64,13 @@
     "build": "tsdown",
     "release": "release-it"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@nodecfdi/cfdi-core": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eienjs/eslint-config": "^2.3.2",
-    "@nodecfdi/cfdi-core": "^2.0.0",
     "@types/node": "^26.6.6",
     "@vitest/coverage-istanbul": "^5.1.1",
     "auto-changelog": "^2.7.0",
