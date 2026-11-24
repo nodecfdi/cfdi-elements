@@ -4,18 +4,21 @@
   "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd",
   "version-attribute": "version",
   "version-value": "1.0",
-  "root-element": "LeyendasFiscales",
-  "structure": {
+  "root": {
+    "name": "LeyendasFiscales",
     "attributes": [
       "version"
     ],
-    "Leyenda": {
-      "attributes": [
-        "disposicionFiscal",
-        "norma",
-        "textoLeyenda"
-      ],
-      "multiple": true
-    }
+    "children": [
+      {
+        "name": "Leyenda",
+        "multiple": true,
+        "attributes": [
+          "disposicionFiscal",
+          "norma",
+          "textoLeyenda"
+        ]
+      }
+    ]
   }
 }

@@ -4,8 +4,8 @@
   "xml-schemalocation": "https://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
   "version-attribute": "Version",
   "version-value": "4.0",
-  "root-element": "Comprobante",
-  "structure": {
+  "root": {
+    "name": "Comprobante",
     "attributes": [
       "Version",
       "Serie",
@@ -50,178 +50,225 @@
         "target": "Retencion"
       }
     ],
-    "InformacionGlobal": {
-      "attributes": [
-        "Periodicidad",
-        "Meses",
-        "Año"
-      ]
-    },
-    "CfdiRelacionados": {
-      "attributes": [
-        "TipoRelacion"
-      ],
-      "multiple": true,
-      "CfdiRelacionado": {
+    "children": [
+      {
+        "name": "InformacionGlobal",
         "attributes": [
-          "UUID"
-        ],
-        "multiple": true
-      }
-    },
-    "Emisor": {
-      "attributes": [
-        "Rfc",
-        "Nombre",
-        "RegimenFiscal",
-        "FacAtrAdquirente"
-      ]
-    },
-    "Receptor": {
-      "attributes": [
-        "Rfc",
-        "Nombre",
-        "DomicilioFiscalReceptor",
-        "ResidenciaFiscal",
-        "NumRegIdTrib",
-        "RegimenFiscalReceptor",
-        "UsoCFDI"
-      ]
-    },
-    "Conceptos": {
-      "Concepto": {
-        "attributes": [
-          "ClaveProdServ",
-          "NoIdentificacion",
-          "Cantidad",
-          "ClaveUnidad",
-          "Unidad",
-          "Descripcion",
-          "ValorUnitario",
-          "Importe",
-          "Descuento",
-          "ObjetoImp"
-        ],
-        "multiple": true,
-        "shortcuts": [
-          {
-            "path": [
-              "Impuestos",
-              "Traslados"
-            ],
-            "target": "Traslado"
-          },
-          {
-            "path": [
-              "Impuestos",
-              "Retenciones"
-            ],
-            "target": "Retencion"
-          }
-        ],
-        "ConceptoImpuestos": {
-          "elementName": "Impuestos",
-          "methodName": "Impuestos",
-          "Traslados": {
-            "Traslado": {
-              "attributes": [
-                "Base",
-                "Impuesto",
-                "TipoFactor",
-                "TasaOCuota",
-                "Importe"
-              ],
-              "multiple": true
-            }
-          },
-          "Retenciones": {
-            "Retencion": {
-              "attributes": [
-                "Base",
-                "Impuesto",
-                "TipoFactor",
-                "TasaOCuota",
-                "Importe"
-              ],
-              "multiple": true
-            }
-          }
-        },
-        "ACuentaTerceros": {
-          "attributes": [
-            "RfcACuentaTerceros",
-            "NombreACuentaTerceros",
-            "RegimenFiscalACuentaTerceros",
-            "DomicilioFiscalACuentaTerceros"
-          ]
-        },
-        "InformacionAduanera": {
-          "attributes": [
-            "NumeroPedimento"
-          ],
-          "multiple": true
-        },
-        "CuentaPredial": {
-          "attributes": [
-            "Numero"
-          ],
-          "multiple": true
-        },
-        "ComplementoConcepto": {
-          "singleAddChild": true
-        },
-        "Parte": {
-          "attributes": [
-            "ClaveProdServ",
-            "NoIdentificacion",
-            "Cantidad",
-            "Unidad",
-            "Descripcion",
-            "ValorUnitario",
-            "Importe"
-          ],
-          "multiple": true,
-          "InformacionAduanera": {
-            "attributes": [
-              "NumeroPedimento"
-            ],
-            "multiple": true
-          }
-        }
-      }
-    },
-    "Impuestos": {
-      "attributes": [
-        "TotalImpuestosRetenidos",
-        "TotalImpuestosTrasladados"
-      ],
-      "Retenciones": {
-        "Retencion": {
-          "attributes": [
-            "Impuesto",
-            "Importe"
-          ],
-          "multiple": true
-        }
+          "Periodicidad",
+          "Meses",
+          "Año"
+        ]
       },
-      "Traslados": {
-        "Traslado": {
-          "attributes": [
-            "Base",
-            "Impuesto",
-            "TipoFactor",
-            "TasaOCuota",
-            "Importe"
-          ],
-          "multiple": true
-        }
+      {
+        "name": "CfdiRelacionados",
+        "multiple": true,
+        "attributes": [
+          "TipoRelacion"
+        ],
+        "children": [
+          {
+            "name": "CfdiRelacionado",
+            "multiple": true,
+            "attributes": [
+              "UUID"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Emisor",
+        "attributes": [
+          "Rfc",
+          "Nombre",
+          "RegimenFiscal",
+          "FacAtrAdquirente"
+        ]
+      },
+      {
+        "name": "Receptor",
+        "attributes": [
+          "Rfc",
+          "Nombre",
+          "DomicilioFiscalReceptor",
+          "ResidenciaFiscal",
+          "NumRegIdTrib",
+          "RegimenFiscalReceptor",
+          "UsoCFDI"
+        ]
+      },
+      {
+        "name": "Conceptos",
+        "children": [
+          {
+            "name": "Concepto",
+            "multiple": true,
+            "attributes": [
+              "ClaveProdServ",
+              "NoIdentificacion",
+              "Cantidad",
+              "ClaveUnidad",
+              "Unidad",
+              "Descripcion",
+              "ValorUnitario",
+              "Importe",
+              "Descuento",
+              "ObjetoImp"
+            ],
+            "shortcuts": [
+              {
+                "path": [
+                  "Impuestos",
+                  "Traslados"
+                ],
+                "target": "Traslado"
+              },
+              {
+                "path": [
+                  "Impuestos",
+                  "Retenciones"
+                ],
+                "target": "Retencion"
+              }
+            ],
+            "children": [
+              {
+                "name": "ConceptoImpuestos",
+                "elementName": "Impuestos",
+                "methodName": "Impuestos",
+                "children": [
+                  {
+                    "name": "Traslados",
+                    "children": [
+                      {
+                        "name": "Traslado",
+                        "multiple": true,
+                        "attributes": [
+                          "Base",
+                          "Impuesto",
+                          "TipoFactor",
+                          "TasaOCuota",
+                          "Importe"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Retenciones",
+                    "children": [
+                      {
+                        "name": "Retencion",
+                        "multiple": true,
+                        "attributes": [
+                          "Base",
+                          "Impuesto",
+                          "TipoFactor",
+                          "TasaOCuota",
+                          "Importe"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "ACuentaTerceros",
+                "attributes": [
+                  "RfcACuentaTerceros",
+                  "NombreACuentaTerceros",
+                  "RegimenFiscalACuentaTerceros",
+                  "DomicilioFiscalACuentaTerceros"
+                ]
+              },
+              {
+                "name": "InformacionAduanera",
+                "multiple": true,
+                "attributes": [
+                  "NumeroPedimento"
+                ]
+              },
+              {
+                "name": "CuentaPredial",
+                "multiple": true,
+                "attributes": [
+                  "Numero"
+                ]
+              },
+              {
+                "name": "ComplementoConcepto",
+                "singleAddChild": true
+              },
+              {
+                "name": "Parte",
+                "multiple": true,
+                "attributes": [
+                  "ClaveProdServ",
+                  "NoIdentificacion",
+                  "Cantidad",
+                  "Unidad",
+                  "Descripcion",
+                  "ValorUnitario",
+                  "Importe"
+                ],
+                "children": [
+                  {
+                    "name": "InformacionAduanera",
+                    "multiple": true,
+                    "attributes": [
+                      "NumeroPedimento"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Impuestos",
+        "attributes": [
+          "TotalImpuestosRetenidos",
+          "TotalImpuestosTrasladados"
+        ],
+        "children": [
+          {
+            "name": "Retenciones",
+            "children": [
+              {
+                "name": "Retencion",
+                "multiple": true,
+                "attributes": [
+                  "Impuesto",
+                  "Importe"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Traslados",
+            "children": [
+              {
+                "name": "Traslado",
+                "multiple": true,
+                "attributes": [
+                  "Base",
+                  "Impuesto",
+                  "TipoFactor",
+                  "TasaOCuota",
+                  "Importe"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Complemento",
+        "singleAddChild": true
+      },
+      {
+        "name": "Addenda",
+        "singleAddChild": true
       }
-    },
-    "Complemento": {
-      "singleAddChild": true
-    },
-    "Addenda": {
-      "singleAddChild": true
-    }
+    ]
   }
 }

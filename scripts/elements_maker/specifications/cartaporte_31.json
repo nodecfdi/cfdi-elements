@@ -4,8 +4,8 @@
   "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd",
   "version-attribute": "Version",
   "version-value": "3.1",
-  "root-element": "CartaPorte",
-  "structure": {
+  "root": {
+    "name": "CartaPorte",
     "attributes": [
       "Version",
       "IdCCP",
@@ -18,297 +18,356 @@
       "UbicacionPoloOrigen",
       "UbicacionPoloDestino"
     ],
-    "RegimenesAduaneros": {
-      "RegimenAduaneroCCP": {
-        "attributes": [
-          "RegimenAduanero"
-        ],
-        "multiple": true
-      }
-    },
-    "Ubicaciones": {
-      "Ubicacion": {
-        "attributes": [
-          "TipoUbicacion",
-          "IDUbicacion",
-          "RFCRemitenteDestinatario",
-          "NombreRemitenteDestinatario",
-          "NumRegIdTrib",
-          "ResidenciaFiscal",
-          "NumEstacion",
-          "NombreEstacion",
-          "NavegacionTrafico",
-          "FechaHoraSalidaLlegada",
-          "TipoEstacion",
-          "DistanciaRecorrida"
-        ],
-        "multiple": true,
-        "Domicilio": {
-          "attributes": [
-            "Calle",
-            "NumeroExterior",
-            "NumeroInterior",
-            "Colonia",
-            "Localidad",
-            "Referencia",
-            "Municipio",
-            "Estado",
-            "Pais",
-            "CodigoPostal"
-          ]
-        }
-      }
-    },
-    "Mercancias": {
-      "attributes": [
-        "PesoBrutoTotal",
-        "UnidadPeso",
-        "PesoNetoTotal",
-        "NumTotalMercancias",
-        "CargoPorTasacion",
-        "LogisticaInversaRecoleccionDevolucion"
-      ],
-      "Mercancia": {
-        "attributes": [
-          "BienesTransp",
-          "ClaveSTCC",
-          "Descripcion",
-          "Cantidad",
-          "ClaveUnidad",
-          "Unidad",
-          "Dimensiones",
-          "MaterialPeligroso",
-          "CveMaterialPeligroso",
-          "Embalaje",
-          "DescripEmbalaje",
-          "SectorCOFEPRIS",
-          "NombreIngredienteActivo",
-          "NomQuimico",
-          "DenominacionGenericaProd",
-          "DenominacionDistintivaProd",
-          "Fabricante",
-          "FechaCaducidad",
-          "LoteMedicamento",
-          "FormaFarmaceutica",
-          "CondicionesEspTransp",
-          "RegistroSanitarioFolioAutorizacion",
-          "PermisoImportacion",
-          "FolioImpoVUCEM",
-          "NumCAS",
-          "RazonSocialEmpImp",
-          "NumRegSanPlagCOFEPRIS",
-          "DatosFabricante",
-          "DatosFormulador",
-          "DatosMaquilador",
-          "UsoAutorizado",
-          "PesoEnKg",
-          "ValorMercancia",
-          "Moneda",
-          "FraccionArancelaria",
-          "UUIDComercioExt",
-          "TipoMateria",
-          "DescripcionMateria"
-        ],
-        "multiple": true,
-        "DocumentacionAduanera": {
-          "attributes": [
-            "TipoDocumento",
-            "NumPedimento",
-            "IdentDocAduanero",
-            "RFCImpo"
-          ],
-          "multiple": true
-        },
-        "GuiasIdentificacion": {
-          "attributes": [
-            "NumeroGuiaIdentificacion",
-            "DescripGuiaIdentificacion",
-            "PesoGuiaIdentificacion"
-          ],
-          "multiple": true
-        },
-        "CantidadTransporta": {
-          "attributes": [
-            "Cantidad",
-            "IDOrigen",
-            "IDDestino",
-            "CvesTransporte"
-          ],
-          "multiple": true
-        },
-        "DetalleMercancia": {
-          "attributes": [
-            "UnidadPesoMerc",
-            "PesoBruto",
-            "PesoNeto",
-            "PesoTara",
-            "NumPiezas"
-          ]
-        }
-      },
-      "Autotransporte": {
-        "attributes": [
-          "PermSCT",
-          "NumPermisoSCT"
-        ],
-        "IdentificacionVehicular": {
-          "attributes": [
-            "ConfigVehicular",
-            "PesoBrutoVehicular",
-            "PlacaVM",
-            "AnioModeloVM"
-          ]
-        },
-        "Seguros": {
-          "attributes": [
-            "AseguraRespCivil",
-            "PolizaRespCivil",
-            "AseguraMedAmbiente",
-            "PolizaMedAmbiente",
-            "AseguraCarga",
-            "PolizaCarga",
-            "PrimaSeguro"
-          ]
-        },
-        "Remolques": {
-          "Remolque": {
+    "children": [
+      {
+        "name": "RegimenesAduaneros",
+        "children": [
+          {
+            "name": "RegimenAduaneroCCP",
+            "multiple": true,
             "attributes": [
-              "SubTipoRem",
-              "Placa"
-            ],
-            "multiple": true
+              "RegimenAduanero"
+            ]
           }
-        }
-      },
-      "TransporteMaritimo": {
-        "attributes": [
-          "PermSCT",
-          "NumPermisoSCT",
-          "NombreAseg",
-          "NumPolizaSeguro",
-          "TipoEmbarcacion",
-          "Matricula",
-          "NumeroOMI",
-          "AnioEmbarcacion",
-          "NombreEmbarc",
-          "NacionalidadEmbarc",
-          "UnidadesDeArqBruto",
-          "TipoCarga",
-          "Eslora",
-          "Manga",
-          "Calado",
-          "Puntal",
-          "LineaNaviera",
-          "NombreAgenteNaviero",
-          "NumAutorizacionNaviero",
-          "NumViaje",
-          "NumConocEmbarc",
-          "PermisoTempNavegacion"
-        ],
-        "ContenedorMaritimo": {
-          "attributes": [
-            "TipoContenedor",
-            "MatriculaContenedor",
-            "NumPrecinto",
-            "IdCCPRelacionado",
-            "PlacaVMCCP",
-            "FechaCertificacionCCP"
-          ],
-          "elementName": "Contenedor",
-          "multiple": true,
-          "RemolquesCCP": {
-            "RemolqueCCP": {
-              "attributes": [
-                "SubTipoRemCCP",
-                "PlacaCCP"
-              ],
-              "multiple": true
-            }
-          }
-        }
-      },
-      "TransporteAereo": {
-        "attributes": [
-          "PermSCT",
-          "NumPermisoSCT",
-          "MatriculaAeronave",
-          "NombreAseg",
-          "NumPolizaSeguro",
-          "NumeroGuia",
-          "LugarContrato",
-          "CodigoTransportista",
-          "RFCEmbarcador",
-          "NumRegIdTribEmbarc",
-          "ResidenciaFiscalEmbarc",
-          "NombreEmbarcador"
         ]
       },
-      "TransporteFerroviario": {
-        "attributes": [
-          "TipoDeServicio",
-          "TipoDeTrafico",
-          "NombreAseg",
-          "NumPolizaSeguro"
-        ],
-        "DerechosDePaso": {
-          "attributes": [
-            "TipoDerechoDePaso",
-            "KilometrajePagado"
-          ],
-          "multiple": true
-        },
-        "Carro": {
-          "attributes": [
-            "TipoCarro",
-            "MatriculaCarro",
-            "GuiaCarro",
-            "ToneladasNetasCarro"
-          ],
-          "multiple": true,
-          "ContenedorFerroviario": {
+      {
+        "name": "Ubicaciones",
+        "children": [
+          {
+            "name": "Ubicacion",
+            "multiple": true,
             "attributes": [
-              "TipoContenedor",
-              "PesoContenedorVacio",
-              "PesoNetoMercancia"
+              "TipoUbicacion",
+              "IDUbicacion",
+              "RFCRemitenteDestinatario",
+              "NombreRemitenteDestinatario",
+              "NumRegIdTrib",
+              "ResidenciaFiscal",
+              "NumEstacion",
+              "NombreEstacion",
+              "NavegacionTrafico",
+              "FechaHoraSalidaLlegada",
+              "TipoEstacion",
+              "DistanciaRecorrida"
             ],
-            "elementName": "Contenedor",
-            "multiple": true
+            "children": [
+              {
+                "name": "Domicilio",
+                "attributes": [
+                  "Calle",
+                  "NumeroExterior",
+                  "NumeroInterior",
+                  "Colonia",
+                  "Localidad",
+                  "Referencia",
+                  "Municipio",
+                  "Estado",
+                  "Pais",
+                  "CodigoPostal"
+                ]
+              }
+            ]
           }
-        }
-      }
-    },
-    "FiguraTransporte": {
-      "TiposFigura": {
+        ]
+      },
+      {
+        "name": "Mercancias",
         "attributes": [
-          "TipoFigura",
-          "RFCFigura",
-          "NumLicencia",
-          "NombreFigura",
-          "NumRegIdTribFigura",
-          "ResidenciaFiscalFigura"
+          "PesoBrutoTotal",
+          "UnidadPeso",
+          "PesoNetoTotal",
+          "NumTotalMercancias",
+          "CargoPorTasacion",
+          "LogisticaInversaRecoleccionDevolucion"
         ],
-        "multiple": true,
-        "PartesTransporte": {
-          "attributes": [
-            "ParteTransporte"
-          ],
-          "multiple": true
-        },
-        "Domicilio": {
-          "attributes": [
-            "Calle",
-            "NumeroExterior",
-            "NumeroInterior",
-            "Colonia",
-            "Localidad",
-            "Referencia",
-            "Municipio",
-            "Estado",
-            "Pais",
-            "CodigoPostal"
-          ]
-        }
+        "children": [
+          {
+            "name": "Mercancia",
+            "multiple": true,
+            "attributes": [
+              "BienesTransp",
+              "ClaveSTCC",
+              "Descripcion",
+              "Cantidad",
+              "ClaveUnidad",
+              "Unidad",
+              "Dimensiones",
+              "MaterialPeligroso",
+              "CveMaterialPeligroso",
+              "Embalaje",
+              "DescripEmbalaje",
+              "SectorCOFEPRIS",
+              "NombreIngredienteActivo",
+              "NomQuimico",
+              "DenominacionGenericaProd",
+              "DenominacionDistintivaProd",
+              "Fabricante",
+              "FechaCaducidad",
+              "LoteMedicamento",
+              "FormaFarmaceutica",
+              "CondicionesEspTransp",
+              "RegistroSanitarioFolioAutorizacion",
+              "PermisoImportacion",
+              "FolioImpoVUCEM",
+              "NumCAS",
+              "RazonSocialEmpImp",
+              "NumRegSanPlagCOFEPRIS",
+              "DatosFabricante",
+              "DatosFormulador",
+              "DatosMaquilador",
+              "UsoAutorizado",
+              "PesoEnKg",
+              "ValorMercancia",
+              "Moneda",
+              "FraccionArancelaria",
+              "UUIDComercioExt",
+              "TipoMateria",
+              "DescripcionMateria"
+            ],
+            "children": [
+              {
+                "name": "DocumentacionAduanera",
+                "multiple": true,
+                "attributes": [
+                  "TipoDocumento",
+                  "NumPedimento",
+                  "IdentDocAduanero",
+                  "RFCImpo"
+                ]
+              },
+              {
+                "name": "GuiasIdentificacion",
+                "multiple": true,
+                "attributes": [
+                  "NumeroGuiaIdentificacion",
+                  "DescripGuiaIdentificacion",
+                  "PesoGuiaIdentificacion"
+                ]
+              },
+              {
+                "name": "CantidadTransporta",
+                "multiple": true,
+                "attributes": [
+                  "Cantidad",
+                  "IDOrigen",
+                  "IDDestino",
+                  "CvesTransporte"
+                ]
+              },
+              {
+                "name": "DetalleMercancia",
+                "attributes": [
+                  "UnidadPesoMerc",
+                  "PesoBruto",
+                  "PesoNeto",
+                  "PesoTara",
+                  "NumPiezas"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Autotransporte",
+            "attributes": [
+              "PermSCT",
+              "NumPermisoSCT"
+            ],
+            "children": [
+              {
+                "name": "IdentificacionVehicular",
+                "attributes": [
+                  "ConfigVehicular",
+                  "PesoBrutoVehicular",
+                  "PlacaVM",
+                  "AnioModeloVM"
+                ]
+              },
+              {
+                "name": "Seguros",
+                "attributes": [
+                  "AseguraRespCivil",
+                  "PolizaRespCivil",
+                  "AseguraMedAmbiente",
+                  "PolizaMedAmbiente",
+                  "AseguraCarga",
+                  "PolizaCarga",
+                  "PrimaSeguro"
+                ]
+              },
+              {
+                "name": "Remolques",
+                "children": [
+                  {
+                    "name": "Remolque",
+                    "multiple": true,
+                    "attributes": [
+                      "SubTipoRem",
+                      "Placa"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "TransporteMaritimo",
+            "attributes": [
+              "PermSCT",
+              "NumPermisoSCT",
+              "NombreAseg",
+              "NumPolizaSeguro",
+              "TipoEmbarcacion",
+              "Matricula",
+              "NumeroOMI",
+              "AnioEmbarcacion",
+              "NombreEmbarc",
+              "NacionalidadEmbarc",
+              "UnidadesDeArqBruto",
+              "TipoCarga",
+              "Eslora",
+              "Manga",
+              "Calado",
+              "Puntal",
+              "LineaNaviera",
+              "NombreAgenteNaviero",
+              "NumAutorizacionNaviero",
+              "NumViaje",
+              "NumConocEmbarc",
+              "PermisoTempNavegacion"
+            ],
+            "children": [
+              {
+                "name": "ContenedorMaritimo",
+                "elementName": "Contenedor",
+                "multiple": true,
+                "attributes": [
+                  "TipoContenedor",
+                  "MatriculaContenedor",
+                  "NumPrecinto",
+                  "IdCCPRelacionado",
+                  "PlacaVMCCP",
+                  "FechaCertificacionCCP"
+                ],
+                "children": [
+                  {
+                    "name": "RemolquesCCP",
+                    "children": [
+                      {
+                        "name": "RemolqueCCP",
+                        "multiple": true,
+                        "attributes": [
+                          "SubTipoRemCCP",
+                          "PlacaCCP"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "TransporteAereo",
+            "attributes": [
+              "PermSCT",
+              "NumPermisoSCT",
+              "MatriculaAeronave",
+              "NombreAseg",
+              "NumPolizaSeguro",
+              "NumeroGuia",
+              "LugarContrato",
+              "CodigoTransportista",
+              "RFCEmbarcador",
+              "NumRegIdTribEmbarc",
+              "ResidenciaFiscalEmbarc",
+              "NombreEmbarcador"
+            ]
+          },
+          {
+            "name": "TransporteFerroviario",
+            "attributes": [
+              "TipoDeServicio",
+              "TipoDeTrafico",
+              "NombreAseg",
+              "NumPolizaSeguro"
+            ],
+            "children": [
+              {
+                "name": "DerechosDePaso",
+                "multiple": true,
+                "attributes": [
+                  "TipoDerechoDePaso",
+                  "KilometrajePagado"
+                ]
+              },
+              {
+                "name": "Carro",
+                "multiple": true,
+                "attributes": [
+                  "TipoCarro",
+                  "MatriculaCarro",
+                  "GuiaCarro",
+                  "ToneladasNetasCarro"
+                ],
+                "children": [
+                  {
+                    "name": "ContenedorFerroviario",
+                    "elementName": "Contenedor",
+                    "multiple": true,
+                    "attributes": [
+                      "TipoContenedor",
+                      "PesoContenedorVacio",
+                      "PesoNetoMercancia"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FiguraTransporte",
+        "children": [
+          {
+            "name": "TiposFigura",
+            "multiple": true,
+            "attributes": [
+              "TipoFigura",
+              "RFCFigura",
+              "NumLicencia",
+              "NombreFigura",
+              "NumRegIdTribFigura",
+              "ResidenciaFiscalFigura"
+            ],
+            "children": [
+              {
+                "name": "PartesTransporte",
+                "multiple": true,
+                "attributes": [
+                  "ParteTransporte"
+                ]
+              },
+              {
+                "name": "Domicilio",
+                "attributes": [
+                  "Calle",
+                  "NumeroExterior",
+                  "NumeroInterior",
+                  "Colonia",
+                  "Localidad",
+                  "Referencia",
+                  "Municipio",
+                  "Estado",
+                  "Pais",
+                  "CodigoPostal"
+                ]
+              }
+            ]
+          }
+        ]
       }
-    }
+    ]
   }
 }

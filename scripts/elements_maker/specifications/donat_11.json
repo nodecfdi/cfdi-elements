@@ -4,8 +4,8 @@
   "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd",
   "version-attribute": "version",
   "version-value": "1.1",
-  "root-element": "Donatarias",
-  "structure": {
+  "root": {
+    "name": "Donatarias",
     "attributes": [
       "version",
       "noAutorizacion",

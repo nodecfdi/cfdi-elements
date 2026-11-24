@@ -1,3 +1,4 @@
+import type { ElementSpec } from './structure.js';
 import Dictionary from './dictionary.js';
 import SpecificationsReader from './specifications_reader.js';
 import Structure from './structure.js';
@@ -22,11 +23,13 @@ export default class Specifications {
 
   public static makeFromFile(specFile: string): Specifications {
     const specFileReader = SpecificationsReader.fromFile(specFile);
+    const root = specFileReader.keyAsObject('root') as ElementSpec;
 
-    const structure = Structure.makeFromObject(
-      specFileReader.keyAsString('root-element'),
-      specFileReader.keyAsObject('structure'),
-    );
+    if (!root.name) {
+      throw new Error(`Specification file '${specFile}' is missing a valid 'root.name'`);
+    }
+
+    const structure = Structure.makeFromSpec(root);
 
     const dictionary = new Dictionary({
       '#prefix#': specFileReader.keyAsString('prefix'),

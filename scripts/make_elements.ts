@@ -1,3 +1,4 @@
+import type { SpecificationSpec } from './elements_maker/structure.js';
 import { execFile } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import process from 'node:process';
@@ -31,9 +32,8 @@ Opciones:
 
 async function syncAttributesFromXsd(specificationFile: string, customXsd?: string): Promise<void> {
   const raw = await readFile(specificationFile, 'utf8');
-  const specData = JSON.parse(raw) as Record<string, unknown>;
-  const source = customXsd
-    ?? (typeof specData['xml-schemalocation'] === 'string' ? specData['xml-schemalocation'] : '');
+  const specData = JSON.parse(raw) as SpecificationSpec;
+  const source = customXsd ?? specData['xml-schemalocation'];
 
   if (!source) {
     throw new Error(

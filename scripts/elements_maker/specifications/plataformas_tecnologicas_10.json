@@ -4,8 +4,8 @@
   "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd",
   "version-attribute": "Version",
   "version-value": "1.0",
-  "root-element": "ServiciosPlataformasTecnologicas",
-  "structure": {
+  "root": {
+    "name": "ServiciosPlataformasTecnologicas",
     "attributes": [
       "Version",
       "Periodicidad",
@@ -18,40 +18,51 @@
       "MonTotalporUsoPlataforma",
       "MonTotalContribucionGubernamental"
     ],
-    "Servicios": {
-      "DetallesDelServicio": {
-        "attributes": [
-          "FormaPagoServ",
-          "TipoDeServ",
-          "SubTipServ",
-          "RFCTerceroAutorizado",
-          "FechaServ",
-          "PrecioServSinIVA"
-        ],
-        "multiple": true,
-        "ImpuestosTrasladadosdelServicio": {
-          "attributes": [
-            "Base",
-            "Impuesto",
-            "TipoFactor",
-            "TasaCuota",
-            "Importe"
-          ]
-        },
-        "ContribucionGubernamental": {
-          "attributes": [
-            "ImpContrib",
-            "EntidadDondePagaLaContribucion"
-          ]
-        },
-        "ComisionDelServicio": {
-          "attributes": [
-            "Base",
-            "Porcentaje",
-            "Importe"
-          ]
-        }
+    "children": [
+      {
+        "name": "Servicios",
+        "children": [
+          {
+            "name": "DetallesDelServicio",
+            "multiple": true,
+            "attributes": [
+              "FormaPagoServ",
+              "TipoDeServ",
+              "SubTipServ",
+              "RFCTerceroAutorizado",
+              "FechaServ",
+              "PrecioServSinIVA"
+            ],
+            "children": [
+              {
+                "name": "ImpuestosTrasladadosdelServicio",
+                "attributes": [
+                  "Base",
+                  "Impuesto",
+                  "TipoFactor",
+                  "TasaCuota",
+                  "Importe"
+                ]
+              },
+              {
+                "name": "ContribucionGubernamental",
+                "attributes": [
+                  "ImpContrib",
+                  "EntidadDondePagaLaContribucion"
+                ]
+              },
+              {
+                "name": "ComisionDelServicio",
+                "attributes": [
+                  "Base",
+                  "Porcentaje",
+                  "Importe"
+                ]
+              }
+            ]
+          }
+        ]
       }
-    }
+    ]
   }
 }

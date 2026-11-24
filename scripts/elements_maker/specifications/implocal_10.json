@@ -4,28 +4,32 @@
   "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xsd",
   "version-attribute": "version",
   "version-value": "1.0",
-  "root-element": "ImpuestosLocales",
-  "structure": {
+  "root": {
+    "name": "ImpuestosLocales",
     "attributes": [
       "version",
       "TotaldeRetenciones",
       "TotaldeTraslados"
     ],
-    "RetencionesLocales": {
-      "attributes": [
-        "ImpLocRetenido",
-        "TasadeRetencion",
-        "Importe"
-      ],
-      "multiple": true
-    },
-    "TrasladosLocales": {
-      "attributes": [
-        "ImpLocTrasladado",
-        "TasadeTraslado",
-        "Importe"
-      ],
-      "multiple": true
-    }
+    "children": [
+      {
+        "name": "RetencionesLocales",
+        "multiple": true,
+        "attributes": [
+          "ImpLocRetenido",
+          "TasadeRetencion",
+          "Importe"
+        ]
+      },
+      {
+        "name": "TrasladosLocales",
+        "multiple": true,
+        "attributes": [
+          "ImpLocTrasladado",
+          "TasadeTraslado",
+          "Importe"
+        ]
+      }
+    ]
   }
 }

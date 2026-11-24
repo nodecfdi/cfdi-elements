@@ -4,6 +4,26 @@ export interface ShortcutDefinition {
   multi?: boolean;
 }
 
+export interface ElementSpec {
+  name: string;
+  elementName?: string;
+  methodName?: string;
+  multiple?: boolean;
+  singleAddChild?: boolean;
+  attributes?: string[];
+  shortcuts?: ShortcutDefinition[];
+  children?: ElementSpec[];
+}
+
+export interface SpecificationSpec {
+  'prefix': string;
+  'xml-namespace': string;
+  'xml-schemalocation': string;
+  'version-attribute': string;
+  'version-value': string;
+  'root': ElementSpec;
+}
+
 export default class Structure implements Iterable<Structure> {
   private readonly _name: string;
 
@@ -26,7 +46,7 @@ export default class Structure implements Iterable<Structure> {
     elementName: string,
     multiple: boolean,
     singleAddChild: boolean,
-    methodName = name,
+    methodName = elementName,
     shortcuts: ShortcutDefinition[] = [],
     attributes: string[] = [],
     ...children: Structure[]
@@ -87,65 +107,28 @@ export default class Structure implements Iterable<Structure> {
     return this._children[Symbol.iterator]();
   }
 
-  public static makeFromObject(name: string, data: object): Structure {
-    let multiple = false;
-    let singleAddChild = false;
-    let elementName = name;
-    let methodName = name;
-    const shortcuts: ShortcutDefinition[] = [];
+  public static makeFromSpec(spec: ElementSpec): Structure {
+    const { name } = spec;
+    const elementName = spec.elementName ?? name;
+    const methodName = spec.methodName ?? elementName;
+    const multiple = spec.multiple ?? false;
+    const singleAddChild = spec.singleAddChild ?? false;
+
+    const shortcuts: ShortcutDefinition[] = (spec.shortcuts ?? []).map((item) => ({
+      path: item.path,
+      target: item.target,
+      multi: item.multi !== false,
+    }));
+
     const attributes: string[] = [];
-
-    if ('multiple' in data && typeof data.multiple === 'boolean') {
-      multiple = data.multiple;
-    }
-
-    if ('singleAddChild' in data && typeof data.singleAddChild === 'boolean') {
-      singleAddChild = data.singleAddChild;
-    }
-
-    if ('elementName' in data && typeof data.elementName === 'string') {
-      elementName = data.elementName;
-      methodName = data.elementName;
-    }
-
-    if ('methodName' in data && typeof data.methodName === 'string') {
-      methodName = data.methodName;
-    }
-
-    if ('shortcuts' in data && Array.isArray(data.shortcuts)) {
-      for (const item of data.shortcuts as unknown[]) {
-        if (item === null || typeof item !== 'object') {
-          continue;
-        }
-
-        const record = item as Record<string, unknown>;
-        if (!Array.isArray(record.path) || typeof record.target !== 'string') {
-          continue;
-        }
-
-        shortcuts.push({
-          path: record.path.filter((segment): segment is string => typeof segment === 'string'),
-          target: record.target,
-          multi: record.multi !== false,
-        });
+    const specAttributes = spec.attributes ?? [];
+    for (const attr of specAttributes) {
+      if (!attributes.includes(attr)) {
+        attributes.push(attr);
       }
     }
 
-    if ('attributes' in data && Array.isArray(data.attributes)) {
-      for (const attr of data.attributes as unknown[]) {
-        if (typeof attr === 'string' && !attributes.includes(attr)) {
-          attributes.push(attr);
-        }
-      }
-    }
-
-    const children: Structure[] = [];
-
-    for (const [key, value] of Object.entries(data)) {
-      if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-        children.push(this.makeFromObject(key, value as object));
-      }
-    }
+    const children = (spec.children ?? []).map((child) => this.makeFromSpec(child));
 
     return new Structure(
       name,

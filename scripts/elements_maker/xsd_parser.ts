@@ -1,4 +1,5 @@
 import type { Element } from '@nodecfdi/cfdi-core';
+import type { ElementSpec, SpecificationSpec } from './structure.js';
 import { readFile } from 'node:fs/promises';
 import { isElement, newDocumentContent } from '@nodecfdi/cfdi-core';
 
@@ -371,57 +372,71 @@ export function parseXsd(xsdXml: string): ParsedXsd {
   };
 }
 
-function syncNodeAttributes(
-  node: Record<string, unknown>,
+function syncElementSpecAttributes(
+  node: ElementSpec,
   pathParts: string[],
   attributesByPath: Map<string, string[]>,
-): Record<string, unknown> {
-  const pathKey = pathParts.join('/');
-  const attrs = attributesByPath.get(pathKey);
-  const result: Record<string, unknown> = {};
+): ElementSpec {
+  const xmlName = node.elementName ?? node.name;
+  const currentPath = [...pathParts, xmlName];
+  const attrs = attributesByPath.get(currentPath.join('/'));
+
+  const result: ElementSpec = {
+    name: node.name,
+  };
+
+  if (node.elementName) {
+    result.elementName = node.elementName;
+  }
+
+  if (node.methodName) {
+    result.methodName = node.methodName;
+  }
+
+  if (node.multiple) {
+    result.multiple = true;
+  }
+
+  if (node.singleAddChild) {
+    result.singleAddChild = true;
+  }
 
   if (attrs && attrs.length > 0) {
     result.attributes = attrs;
   }
 
-  for (const [key, value] of Object.entries(node)) {
-    if (key === 'attributes') {
-      continue;
-    }
+  if (node.shortcuts && node.shortcuts.length > 0) {
+    result.shortcuts = node.shortcuts;
+  }
 
-    if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-      const childObj = value as Record<string, unknown>;
-      const xmlName = typeof childObj.elementName === 'string' ? childObj.elementName : key;
-      result[key] = syncNodeAttributes(childObj, [...pathParts, xmlName], attributesByPath);
-    } else {
-      result[key] = value;
-    }
+  if (node.children && node.children.length > 0) {
+    result.children = node.children.map((child) =>
+      syncElementSpecAttributes(child, currentPath, attributesByPath),
+    );
   }
 
   return result;
 }
 
 export function syncSpecificationAttributes(
-  specData: Record<string, unknown>,
+  specData: SpecificationSpec,
   attributesByPath: Map<string, string[]>,
-): Record<string, unknown> {
-  const rootElement = typeof specData['root-element'] === 'string' ? specData['root-element'] : '';
-  const structure = specData.structure !== null && typeof specData.structure === 'object'
-    ? (specData.structure as Record<string, unknown>)
-    : {};
-
+): SpecificationSpec {
   return {
     ...specData,
-    structure: rootElement
-      ? syncNodeAttributes(structure, [rootElement], attributesByPath)
-      : structure,
+    root: syncElementSpecAttributes(specData.root, [], attributesByPath),
   };
 }
 
-export function buildStructureFromXsdNode(node: ParsedXsdElement): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
+export function buildElementSpecFromXsdNode(
+  node: ParsedXsdElement,
+  isRoot = false,
+): ElementSpec {
+  const result: ElementSpec = {
+    name: node.name,
+  };
 
-  if (node.multiple) {
+  if (!isRoot && node.multiple) {
     result.multiple = true;
   }
 
@@ -429,8 +444,8 @@ export function buildStructureFromXsdNode(node: ParsedXsdElement): Record<string
     result.attributes = node.attributes;
   }
 
-  for (const child of node.children) {
-    result[child.name] = buildStructureFromXsdNode(child);
+  if (node.children.length > 0) {
+    result.children = node.children.map((child) => buildElementSpecFromXsdNode(child));
   }
 
   return result;
