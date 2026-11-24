@@ -1,0 +1,21 @@
+{
+  "prefix": "intereseshipotecarios",
+  "xml-namespace": "http://www.sat.gob.mx/esquemas/retencionpago/1/intereseshipotecarios",
+  "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/1/intereseshipotecarios/intereseshipotecarios.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.0",
+  "root": {
+    "name": "InteresesHipotecarios",
+    "attributes": [
+      "Version",
+      "CreditoDeInstFinanc",
+      "SaldoInsoluto",
+      "PropDeducDelCredit",
+      "MontTotIntNominalesDev",
+      "MontTotIntNominalesDevYPag",
+      "MontTotIntRealPagDeduc",
+      "NumContrato"
+    ],
+    "elementName": "Intereseshipotecarios"
+  }
+}

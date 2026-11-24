@@ -210,6 +210,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/detallista/deta
 pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/intereses/intereses.xsd
 ```
 
+### `intereseshipotecarios_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/intereseshipotecarios/intereseshipotecarios.xsd --rename .=InteresesHipotecarios
+```
+
 <!-- specifications:end -->
 
 ---
@@ -345,6 +351,12 @@ pnpm make:elements scripts/elements_maker/specifications/detallista.json src/ele
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/intereses_10.json src/elements/intereses_10/ --with-tests
+```
+
+### `intereseshipotecarios_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/intereseshipotecarios_10.json src/elements/intereseshipotecarios_10/ --with-tests
 ```
 
 <!-- elements:end -->
