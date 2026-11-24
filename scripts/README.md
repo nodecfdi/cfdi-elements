@@ -158,6 +158,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/consumodecombus
 pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos/dividendos.xsd
 ```
 
+### `pagosaextranjeros_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -250,6 +256,12 @@ pnpm make:elements scripts/elements_maker/specifications/consumodecombustibles_1
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/dividendos_10.json src/elements/dividendos_10/ --with-tests
+```
+
+### `pagosaextranjeros_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/pagosaextranjeros_10.json src/elements/pagosaextranjeros_10/ --with-tests
 ```
 
 <!-- elements:end -->

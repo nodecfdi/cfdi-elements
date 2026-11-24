@@ -39,6 +39,7 @@
     "./nomina12": "./dist/nomina12.js",
     "./notariospublicos10": "./dist/notariospublicos10.js",
     "./pago20": "./dist/pago20.js",
+    "./pagosaextranjeros10": "./dist/pagosaextranjeros10.js",
     "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
     "./retenciones20": "./dist/retenciones20.js",
     "./tfd11": "./dist/tfd11.js",
