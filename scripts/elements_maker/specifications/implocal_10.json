@@ -6,10 +6,25 @@
   "version-value": "1.0",
   "root-element": "ImpuestosLocales",
   "structure": {
+    "attributes": [
+      "version",
+      "TotaldeRetenciones",
+      "TotaldeTraslados"
+    ],
     "RetencionesLocales": {
+      "attributes": [
+        "ImpLocRetenido",
+        "TasadeRetencion",
+        "Importe"
+      ],
       "multiple": true
     },
     "TrasladosLocales": {
+      "attributes": [
+        "ImpLocTrasladado",
+        "TasadeTraslado",
+        "Importe"
+      ],
       "multiple": true
     }
   }

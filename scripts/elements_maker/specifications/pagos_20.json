@@ -6,19 +6,79 @@
   "version-value": "2.0",
   "root-element": "Pagos",
   "structure": {
-    "Totales": {},
+    "attributes": [
+      "Version"
+    ],
+    "Totales": {
+      "attributes": [
+        "TotalRetencionesIVA",
+        "TotalRetencionesISR",
+        "TotalRetencionesIEPS",
+        "TotalTrasladosBaseIVA16",
+        "TotalTrasladosImpuestoIVA16",
+        "TotalTrasladosBaseIVA8",
+        "TotalTrasladosImpuestoIVA8",
+        "TotalTrasladosBaseIVA0",
+        "TotalTrasladosImpuestoIVA0",
+        "TotalTrasladosBaseIVAExento",
+        "MontoTotalPagos"
+      ]
+    },
     "Pago": {
+      "attributes": [
+        "FechaPago",
+        "FormaDePagoP",
+        "MonedaP",
+        "TipoCambioP",
+        "Monto",
+        "NumOperacion",
+        "RfcEmisorCtaOrd",
+        "NomBancoOrdExt",
+        "CtaOrdenante",
+        "RfcEmisorCtaBen",
+        "CtaBeneficiario",
+        "TipoCadPago",
+        "CertPago",
+        "CadPago",
+        "SelloPago"
+      ],
       "multiple": true,
       "DoctoRelacionado": {
+        "attributes": [
+          "IdDocumento",
+          "Serie",
+          "Folio",
+          "MonedaDR",
+          "EquivalenciaDR",
+          "NumParcialidad",
+          "ImpSaldoAnt",
+          "ImpPagado",
+          "ImpSaldoInsoluto",
+          "ObjetoImpDR"
+        ],
         "multiple": true,
         "ImpuestosDR": {
           "RetencionesDR": {
             "RetencionDR": {
+              "attributes": [
+                "BaseDR",
+                "ImpuestoDR",
+                "TipoFactorDR",
+                "TasaOCuotaDR",
+                "ImporteDR"
+              ],
               "multiple": true
             }
           },
           "TrasladosDR": {
             "TrasladoDR": {
+              "attributes": [
+                "BaseDR",
+                "ImpuestoDR",
+                "TipoFactorDR",
+                "TasaOCuotaDR",
+                "ImporteDR"
+              ],
               "multiple": true
             }
           }
@@ -27,11 +87,22 @@
       "ImpuestosP": {
         "RetencionesP": {
           "RetencionP": {
+            "attributes": [
+              "ImpuestoP",
+              "ImporteP"
+            ],
             "multiple": true
           }
         },
         "TrasladosP": {
           "TrasladoP": {
+            "attributes": [
+              "BaseP",
+              "ImpuestoP",
+              "TipoFactorP",
+              "TasaOCuotaP",
+              "ImporteP"
+            ],
             "multiple": true
           }
         }

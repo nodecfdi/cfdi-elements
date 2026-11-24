@@ -6,53 +6,215 @@
   "version-value": "4.0",
   "root-element": "Comprobante",
   "structure": {
-    "shortcuts": [
-      { "path": ["Conceptos"], "target": "Concepto", "multi": false },
-      { "path": ["Impuestos", "Traslados"], "target": "Traslado" },
-      { "path": ["Impuestos", "Retenciones"], "target": "Retencion" }
+    "attributes": [
+      "Version",
+      "Serie",
+      "Folio",
+      "Fecha",
+      "Sello",
+      "FormaPago",
+      "NoCertificado",
+      "Certificado",
+      "CondicionesDePago",
+      "SubTotal",
+      "Descuento",
+      "Moneda",
+      "TipoCambio",
+      "Total",
+      "TipoDeComprobante",
+      "Exportacion",
+      "MetodoPago",
+      "LugarExpedicion",
+      "Confirmacion"
     ],
-    "InformacionGlobal": {},
-    "CfdiRelacionados": {
-      "multiple": true,
-      "CfdiRelacionado": { "multiple": true }
+    "shortcuts": [
+      {
+        "path": [
+          "Conceptos"
+        ],
+        "target": "Concepto",
+        "multi": false
+      },
+      {
+        "path": [
+          "Impuestos",
+          "Traslados"
+        ],
+        "target": "Traslado"
+      },
+      {
+        "path": [
+          "Impuestos",
+          "Retenciones"
+        ],
+        "target": "Retencion"
+      }
+    ],
+    "InformacionGlobal": {
+      "attributes": [
+        "Periodicidad",
+        "Meses",
+        "Año"
+      ]
     },
-    "Emisor": {},
-    "Receptor": {},
+    "CfdiRelacionados": {
+      "attributes": [
+        "TipoRelacion"
+      ],
+      "multiple": true,
+      "CfdiRelacionado": {
+        "attributes": [
+          "UUID"
+        ],
+        "multiple": true
+      }
+    },
+    "Emisor": {
+      "attributes": [
+        "Rfc",
+        "Nombre",
+        "RegimenFiscal",
+        "FacAtrAdquirente"
+      ]
+    },
+    "Receptor": {
+      "attributes": [
+        "Rfc",
+        "Nombre",
+        "DomicilioFiscalReceptor",
+        "ResidenciaFiscal",
+        "NumRegIdTrib",
+        "RegimenFiscalReceptor",
+        "UsoCFDI"
+      ]
+    },
     "Conceptos": {
       "Concepto": {
+        "attributes": [
+          "ClaveProdServ",
+          "NoIdentificacion",
+          "Cantidad",
+          "ClaveUnidad",
+          "Unidad",
+          "Descripcion",
+          "ValorUnitario",
+          "Importe",
+          "Descuento",
+          "ObjetoImp"
+        ],
         "multiple": true,
         "shortcuts": [
-          { "path": ["Impuestos", "Traslados"], "target": "Traslado" },
-          { "path": ["Impuestos", "Retenciones"], "target": "Retencion" }
+          {
+            "path": [
+              "Impuestos",
+              "Traslados"
+            ],
+            "target": "Traslado"
+          },
+          {
+            "path": [
+              "Impuestos",
+              "Retenciones"
+            ],
+            "target": "Retencion"
+          }
         ],
         "ConceptoImpuestos": {
           "elementName": "Impuestos",
           "methodName": "Impuestos",
           "Traslados": {
-            "Traslado": { "multiple": true }
+            "Traslado": {
+              "attributes": [
+                "Base",
+                "Impuesto",
+                "TipoFactor",
+                "TasaOCuota",
+                "Importe"
+              ],
+              "multiple": true
+            }
           },
           "Retenciones": {
-            "Retencion": { "multiple": true }
+            "Retencion": {
+              "attributes": [
+                "Base",
+                "Impuesto",
+                "TipoFactor",
+                "TasaOCuota",
+                "Importe"
+              ],
+              "multiple": true
+            }
           }
         },
-        "ACuentaTerceros": {},
-        "InformacionAduanera": { "multiple": true },
-        "CuentaPredial": { "multiple": true },
+        "ACuentaTerceros": {
+          "attributes": [
+            "RfcACuentaTerceros",
+            "NombreACuentaTerceros",
+            "RegimenFiscalACuentaTerceros",
+            "DomicilioFiscalACuentaTerceros"
+          ]
+        },
+        "InformacionAduanera": {
+          "attributes": [
+            "NumeroPedimento"
+          ],
+          "multiple": true
+        },
+        "CuentaPredial": {
+          "attributes": [
+            "Numero"
+          ],
+          "multiple": true
+        },
         "ComplementoConcepto": {
           "singleAddChild": true
         },
         "Parte": {
+          "attributes": [
+            "ClaveProdServ",
+            "NoIdentificacion",
+            "Cantidad",
+            "Unidad",
+            "Descripcion",
+            "ValorUnitario",
+            "Importe"
+          ],
           "multiple": true,
-          "InformacionAduanera": { "multiple": true }
+          "InformacionAduanera": {
+            "attributes": [
+              "NumeroPedimento"
+            ],
+            "multiple": true
+          }
         }
       }
     },
     "Impuestos": {
+      "attributes": [
+        "TotalImpuestosRetenidos",
+        "TotalImpuestosTrasladados"
+      ],
       "Retenciones": {
-        "Retencion": { "multiple": true }
+        "Retencion": {
+          "attributes": [
+            "Impuesto",
+            "Importe"
+          ],
+          "multiple": true
+        }
       },
       "Traslados": {
-        "Traslado": { "multiple": true }
+        "Traslado": {
+          "attributes": [
+            "Base",
+            "Impuesto",
+            "TipoFactor",
+            "TasaOCuota",
+            "Importe"
+          ],
+          "multiple": true
+        }
       }
     },
     "Complemento": {

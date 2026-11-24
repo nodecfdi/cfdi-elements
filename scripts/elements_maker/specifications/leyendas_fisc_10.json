@@ -6,7 +6,15 @@
   "version-value": "1.0",
   "root-element": "LeyendasFiscales",
   "structure": {
+    "attributes": [
+      "version"
+    ],
     "Leyenda": {
+      "attributes": [
+        "disposicionFiscal",
+        "norma",
+        "textoLeyenda"
+      ],
       "multiple": true
     }
   }

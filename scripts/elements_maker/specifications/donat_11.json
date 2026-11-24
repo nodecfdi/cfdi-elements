@@ -5,5 +5,12 @@
   "version-attribute": "version",
   "version-value": "1.1",
   "root-element": "Donatarias",
-  "structure": {}
+  "structure": {
+    "attributes": [
+      "version",
+      "noAutorizacion",
+      "fechaAutorizacion",
+      "leyenda"
+    ]
+  }
 }

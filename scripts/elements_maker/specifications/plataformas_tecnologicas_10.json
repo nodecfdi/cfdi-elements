@@ -6,12 +6,51 @@
   "version-value": "1.0",
   "root-element": "ServiciosPlataformasTecnologicas",
   "structure": {
+    "attributes": [
+      "Version",
+      "Periodicidad",
+      "NumServ",
+      "MonTotServSIVA",
+      "TotalIVATrasladado",
+      "TotalIVARetenido",
+      "TotalISRRetenido",
+      "DifIVAEntregadoPrestServ",
+      "MonTotalporUsoPlataforma",
+      "MonTotalContribucionGubernamental"
+    ],
     "Servicios": {
       "DetallesDelServicio": {
+        "attributes": [
+          "FormaPagoServ",
+          "TipoDeServ",
+          "SubTipServ",
+          "RFCTerceroAutorizado",
+          "FechaServ",
+          "PrecioServSinIVA"
+        ],
         "multiple": true,
-        "ImpuestosTrasladadosdelServicio": {},
-        "ContribucionGubernamental": {},
-        "ComisionDelServicio": {}
+        "ImpuestosTrasladadosdelServicio": {
+          "attributes": [
+            "Base",
+            "Impuesto",
+            "TipoFactor",
+            "TasaCuota",
+            "Importe"
+          ]
+        },
+        "ContribucionGubernamental": {
+          "attributes": [
+            "ImpContrib",
+            "EntidadDondePagaLaContribucion"
+          ]
+        },
+        "ComisionDelServicio": {
+          "attributes": [
+            "Base",
+            "Porcentaje",
+            "Importe"
+          ]
+        }
       }
     }
   }

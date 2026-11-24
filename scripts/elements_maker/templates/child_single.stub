@@ -3,7 +3,7 @@
     return this.helperGetOrAdd(new #child-name#());
   }
 
-  public add#child-method-name#(attributes: Record<string, unknown> = {}): #child-name# {
+  public add#child-method-name#(attributes: #child-attributes-type# = {}): #child-name# {
     const subject = this.get#child-method-name#();
     subject.addAttributes(attributes);
 

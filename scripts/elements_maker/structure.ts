@@ -17,6 +17,8 @@ export default class Structure implements Iterable<Structure> {
 
   private readonly _shortcuts: ShortcutDefinition[];
 
+  private readonly _attributes: string[];
+
   private readonly _children: Structure[];
 
   public constructor(
@@ -26,6 +28,7 @@ export default class Structure implements Iterable<Structure> {
     singleAddChild: boolean,
     methodName = name,
     shortcuts: ShortcutDefinition[] = [],
+    attributes: string[] = [],
     ...children: Structure[]
   ) {
     this._name = name;
@@ -34,6 +37,7 @@ export default class Structure implements Iterable<Structure> {
     this._multiple = multiple;
     this._singleAddChild = singleAddChild;
     this._shortcuts = shortcuts;
+    this._attributes = attributes;
     this._children = children;
   }
 
@@ -65,6 +69,10 @@ export default class Structure implements Iterable<Structure> {
     return this._shortcuts;
   }
 
+  public getAttributes(): string[] {
+    return this._attributes;
+  }
+
   public getChildren(): Structure[] {
     return this._children;
   }
@@ -85,6 +93,7 @@ export default class Structure implements Iterable<Structure> {
     let elementName = name;
     let methodName = name;
     const shortcuts: ShortcutDefinition[] = [];
+    const attributes: string[] = [];
 
     if ('multiple' in data && typeof data.multiple === 'boolean') {
       multiple = data.multiple;
@@ -96,6 +105,7 @@ export default class Structure implements Iterable<Structure> {
 
     if ('elementName' in data && typeof data.elementName === 'string') {
       elementName = data.elementName;
+      methodName = data.elementName;
     }
 
     if ('methodName' in data && typeof data.methodName === 'string') {
@@ -121,6 +131,14 @@ export default class Structure implements Iterable<Structure> {
       }
     }
 
+    if ('attributes' in data && Array.isArray(data.attributes)) {
+      for (const attr of data.attributes as unknown[]) {
+        if (typeof attr === 'string' && !attributes.includes(attr)) {
+          attributes.push(attr);
+        }
+      }
+    }
+
     const children: Structure[] = [];
 
     for (const [key, value] of Object.entries(data)) {
@@ -136,6 +154,7 @@ export default class Structure implements Iterable<Structure> {
       singleAddChild,
       methodName,
       shortcuts,
+      attributes,
       ...children,
     );
   }

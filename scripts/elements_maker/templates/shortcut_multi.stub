@@ -1,5 +1,5 @@
 
-  public multi#target#(...elementAttributes: Record<string, unknown>[]): this {
+  public multi#target#(...elementAttributes: #target-attributes-type#[]): this {
     this.#getter-chain#
       .multi#target#(...elementAttributes);
 

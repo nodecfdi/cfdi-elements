@@ -1,14 +1,14 @@
 
-  public add#child-name#(attributes: Record<string, unknown> = {}): #child-name# {
+  public add#child-method-name#(attributes: #child-attributes-type# = {}): #child-name# {
     const subject = new #child-name#(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multi#child-name#(...elementAttributes: Record<string, unknown>[]): this {
+  public multi#child-method-name#(...elementAttributes: #child-attributes-type#[]): this {
     for (const attributes of elementAttributes) {
-      this.add#child-name#(attributes);
+      this.add#child-method-name#(attributes);
     }
 
     return this;

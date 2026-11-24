@@ -6,55 +6,308 @@
   "version-value": "3.1",
   "root-element": "CartaPorte",
   "structure": {
+    "attributes": [
+      "Version",
+      "IdCCP",
+      "TranspInternac",
+      "EntradaSalidaMerc",
+      "PaisOrigenDestino",
+      "ViaEntradaSalida",
+      "TotalDistRec",
+      "RegistroISTMO",
+      "UbicacionPoloOrigen",
+      "UbicacionPoloDestino"
+    ],
     "RegimenesAduaneros": {
       "RegimenAduaneroCCP": {
+        "attributes": [
+          "RegimenAduanero"
+        ],
         "multiple": true
       }
     },
     "Ubicaciones": {
       "Ubicacion": {
+        "attributes": [
+          "TipoUbicacion",
+          "IDUbicacion",
+          "RFCRemitenteDestinatario",
+          "NombreRemitenteDestinatario",
+          "NumRegIdTrib",
+          "ResidenciaFiscal",
+          "NumEstacion",
+          "NombreEstacion",
+          "NavegacionTrafico",
+          "FechaHoraSalidaLlegada",
+          "TipoEstacion",
+          "DistanciaRecorrida"
+        ],
         "multiple": true,
-        "Domicilio": {}
+        "Domicilio": {
+          "attributes": [
+            "Calle",
+            "NumeroExterior",
+            "NumeroInterior",
+            "Colonia",
+            "Localidad",
+            "Referencia",
+            "Municipio",
+            "Estado",
+            "Pais",
+            "CodigoPostal"
+          ]
+        }
       }
     },
     "Mercancias": {
+      "attributes": [
+        "PesoBrutoTotal",
+        "UnidadPeso",
+        "PesoNetoTotal",
+        "NumTotalMercancias",
+        "CargoPorTasacion",
+        "LogisticaInversaRecoleccionDevolucion"
+      ],
       "Mercancia": {
+        "attributes": [
+          "BienesTransp",
+          "ClaveSTCC",
+          "Descripcion",
+          "Cantidad",
+          "ClaveUnidad",
+          "Unidad",
+          "Dimensiones",
+          "MaterialPeligroso",
+          "CveMaterialPeligroso",
+          "Embalaje",
+          "DescripEmbalaje",
+          "SectorCOFEPRIS",
+          "NombreIngredienteActivo",
+          "NomQuimico",
+          "DenominacionGenericaProd",
+          "DenominacionDistintivaProd",
+          "Fabricante",
+          "FechaCaducidad",
+          "LoteMedicamento",
+          "FormaFarmaceutica",
+          "CondicionesEspTransp",
+          "RegistroSanitarioFolioAutorizacion",
+          "PermisoImportacion",
+          "FolioImpoVUCEM",
+          "NumCAS",
+          "RazonSocialEmpImp",
+          "NumRegSanPlagCOFEPRIS",
+          "DatosFabricante",
+          "DatosFormulador",
+          "DatosMaquilador",
+          "UsoAutorizado",
+          "PesoEnKg",
+          "ValorMercancia",
+          "Moneda",
+          "FraccionArancelaria",
+          "UUIDComercioExt",
+          "TipoMateria",
+          "DescripcionMateria"
+        ],
         "multiple": true,
-        "DocumentacionAduanera": { "multiple": true },
-        "GuiasIdentificacion": { "multiple": true },
-        "CantidadTransporta": { "multiple": true },
-        "DetalleMercancia": {}
-      },
-      "Autotransporte": {
-        "IdentificacionVehicular": {},
-        "Seguros": {},
-        "Remolques": {
-          "Remolque": { "multiple": true }
+        "DocumentacionAduanera": {
+          "attributes": [
+            "TipoDocumento",
+            "NumPedimento",
+            "IdentDocAduanero",
+            "RFCImpo"
+          ],
+          "multiple": true
+        },
+        "GuiasIdentificacion": {
+          "attributes": [
+            "NumeroGuiaIdentificacion",
+            "DescripGuiaIdentificacion",
+            "PesoGuiaIdentificacion"
+          ],
+          "multiple": true
+        },
+        "CantidadTransporta": {
+          "attributes": [
+            "Cantidad",
+            "IDOrigen",
+            "IDDestino",
+            "CvesTransporte"
+          ],
+          "multiple": true
+        },
+        "DetalleMercancia": {
+          "attributes": [
+            "UnidadPesoMerc",
+            "PesoBruto",
+            "PesoNeto",
+            "PesoTara",
+            "NumPiezas"
+          ]
         }
       },
-      "TransporteMaritimo": {
-        "ContenedorMaritimo": {
-          "elementName": "Contenedor",
-          "multiple": true,
-          "RemolquesCCP": {
-            "RemolqueCCP": { "multiple": true }
+      "Autotransporte": {
+        "attributes": [
+          "PermSCT",
+          "NumPermisoSCT"
+        ],
+        "IdentificacionVehicular": {
+          "attributes": [
+            "ConfigVehicular",
+            "PesoBrutoVehicular",
+            "PlacaVM",
+            "AnioModeloVM"
+          ]
+        },
+        "Seguros": {
+          "attributes": [
+            "AseguraRespCivil",
+            "PolizaRespCivil",
+            "AseguraMedAmbiente",
+            "PolizaMedAmbiente",
+            "AseguraCarga",
+            "PolizaCarga",
+            "PrimaSeguro"
+          ]
+        },
+        "Remolques": {
+          "Remolque": {
+            "attributes": [
+              "SubTipoRem",
+              "Placa"
+            ],
+            "multiple": true
           }
         }
       },
-      "TransporteAereo": {},
-      "TransporteFerroviario": {
-        "DerechosDePaso": { "multiple": true },
-        "Carro": {
+      "TransporteMaritimo": {
+        "attributes": [
+          "PermSCT",
+          "NumPermisoSCT",
+          "NombreAseg",
+          "NumPolizaSeguro",
+          "TipoEmbarcacion",
+          "Matricula",
+          "NumeroOMI",
+          "AnioEmbarcacion",
+          "NombreEmbarc",
+          "NacionalidadEmbarc",
+          "UnidadesDeArqBruto",
+          "TipoCarga",
+          "Eslora",
+          "Manga",
+          "Calado",
+          "Puntal",
+          "LineaNaviera",
+          "NombreAgenteNaviero",
+          "NumAutorizacionNaviero",
+          "NumViaje",
+          "NumConocEmbarc",
+          "PermisoTempNavegacion"
+        ],
+        "ContenedorMaritimo": {
+          "attributes": [
+            "TipoContenedor",
+            "MatriculaContenedor",
+            "NumPrecinto",
+            "IdCCPRelacionado",
+            "PlacaVMCCP",
+            "FechaCertificacionCCP"
+          ],
+          "elementName": "Contenedor",
           "multiple": true,
-          "ContenedorFerroviario": { "elementName": "Contenedor", "multiple": true }
+          "RemolquesCCP": {
+            "RemolqueCCP": {
+              "attributes": [
+                "SubTipoRemCCP",
+                "PlacaCCP"
+              ],
+              "multiple": true
+            }
+          }
+        }
+      },
+      "TransporteAereo": {
+        "attributes": [
+          "PermSCT",
+          "NumPermisoSCT",
+          "MatriculaAeronave",
+          "NombreAseg",
+          "NumPolizaSeguro",
+          "NumeroGuia",
+          "LugarContrato",
+          "CodigoTransportista",
+          "RFCEmbarcador",
+          "NumRegIdTribEmbarc",
+          "ResidenciaFiscalEmbarc",
+          "NombreEmbarcador"
+        ]
+      },
+      "TransporteFerroviario": {
+        "attributes": [
+          "TipoDeServicio",
+          "TipoDeTrafico",
+          "NombreAseg",
+          "NumPolizaSeguro"
+        ],
+        "DerechosDePaso": {
+          "attributes": [
+            "TipoDerechoDePaso",
+            "KilometrajePagado"
+          ],
+          "multiple": true
+        },
+        "Carro": {
+          "attributes": [
+            "TipoCarro",
+            "MatriculaCarro",
+            "GuiaCarro",
+            "ToneladasNetasCarro"
+          ],
+          "multiple": true,
+          "ContenedorFerroviario": {
+            "attributes": [
+              "TipoContenedor",
+              "PesoContenedorVacio",
+              "PesoNetoMercancia"
+            ],
+            "elementName": "Contenedor",
+            "multiple": true
+          }
         }
       }
     },
     "FiguraTransporte": {
       "TiposFigura": {
+        "attributes": [
+          "TipoFigura",
+          "RFCFigura",
+          "NumLicencia",
+          "NombreFigura",
+          "NumRegIdTribFigura",
+          "ResidenciaFiscalFigura"
+        ],
         "multiple": true,
-        "PartesTransporte": { "multiple": true },
-        "Domicilio": {}
+        "PartesTransporte": {
+          "attributes": [
+            "ParteTransporte"
+          ],
+          "multiple": true
+        },
+        "Domicilio": {
+          "attributes": [
+            "Calle",
+            "NumeroExterior",
+            "NumeroInterior",
+            "Colonia",
+            "Localidad",
+            "Referencia",
+            "Municipio",
+            "Estado",
+            "Pais",
+            "CodigoPostal"
+          ]
+        }
       }
     }
   }
