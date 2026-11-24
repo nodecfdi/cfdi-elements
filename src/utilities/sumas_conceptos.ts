@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-computed-property-existence-check */
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { SumaExentos, SumaLocal, SumaRetenciones, SumaTraslados } from '../types';
 import { roundNumber, toFloat } from '@nodecfdi/cfdi-core';
@@ -112,6 +113,10 @@ export default class SumasConceptos {
     return this._foundAnyConceptWithDiscount;
   }
 
+  public impuestoKey(impuesto: string, tipoFactor = '', tasaOCuota = ''): string {
+    return [impuesto, tipoFactor, tasaOCuota].join(':');
+  }
+
   private addComprobante(comprobante: XmlNodeInterface): void {
     const conceptos = comprobante.searchNodes('cfdi:Conceptos', 'cfdi:Concepto');
     for (const concepto of conceptos) {
@@ -217,6 +222,7 @@ export default class SumasConceptos {
     T extends Record<string, { Impuesto: string; Importe: number; Base?: number }>,
   >(group: T,
   ): T {
+    // eslint-disable-next-line unicorn/prefer-object-iterable-methods
     for (const key of Object.keys(group)) {
       group[key].Importe = roundNumber(group[key].Importe, this._precision);
       if (group[key].Base !== undefined) {
@@ -274,9 +280,5 @@ export default class SumasConceptos {
     }
 
     this._retenciones[key].Importe += toFloat(retencion.getAttribute('Importe'));
-  }
-
-  public impuestoKey(impuesto: string, tipoFactor = '', tasaOCuota = ''): string {
-    return [impuesto, tipoFactor, tasaOCuota].join(':');
   }
 }

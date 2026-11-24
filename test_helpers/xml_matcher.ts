@@ -63,13 +63,40 @@ const formatNode = (node: Node, indent: number): string => {
   return `${pad}${serializer.serializeToString(node)}`;
 };
 
+const parseXmlRoot = (xml: string): Node | null => {
+  const trimmed = xml.trim();
+  const body = trimmed.replace(/^<\?xml[^?]*\?>\s*/i, '');
+  const declaredPrefixes = new Set(
+    body.matchAll(/\bxmlns:([a-z_][\w.-]*)=/gi).map((m) => m[1]),
+  );
+  const usedPrefixes = new Set(
+    body.matchAll(/(?:<\/?|\s)([a-z_][\w.-]*):[a-z_][\w.-]*/gi).map((m) => m[1]),
+  );
+  const missingPrefixes = [...usedPrefixes].filter(
+    (prefix) => prefix !== 'xml' && prefix !== 'xmlns' && !declaredPrefixes.has(prefix),
+  );
+
+  if (missingPrefixes.length === 0) {
+    return new DOMParser().parseFromString(trimmed, 'text/xml').documentElement;
+  }
+
+  const nsDeclarations = missingPrefixes
+    .map((prefix) => `xmlns:${prefix}="urn:xml-matcher:${prefix}"`)
+    .join(' ');
+  const wrapped = `<__xml_matcher_root__ ${nsDeclarations}>${body}</__xml_matcher_root__>`;
+  const doc = new DOMParser().parseFromString(wrapped, 'text/xml');
+  const rootChildren = [...(doc.documentElement?.childNodes ?? [])];
+
+  return rootChildren.find((child) => child.nodeType === Node.ELEMENT_NODE) ?? null;
+};
+
 export const formatXml = (xml: string): string => {
-  const doc = new DOMParser().parseFromString(xml.trim(), 'text/xml');
-  if (!doc.documentElement) {
+  const root = parseXmlRoot(xml);
+  if (!root) {
     return xml.trim();
   }
 
-  return formatNode(doc.documentElement, 0);
+  return formatNode(root, 0);
 };
 
 export const toEqualXML = (
