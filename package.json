@@ -1,7 +1,7 @@
 {
   "name": "@nodecfdi/cfdi-elements",
   "type": "module",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@12.23.0",
   "description": "Librería de elementos y/o estructuras de datos que componen un cfdi",
   "author": "Fernando Isidro <luffynando@gmail.com>",
