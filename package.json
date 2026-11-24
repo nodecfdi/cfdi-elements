@@ -28,6 +28,14 @@
   ],
   "exports": {
     ".": "./dist/index.js",
+    "./cartaporte31": "./dist/cartaporte31.js",
+    "./cfdi40": "./dist/cfdi40.js",
+    "./donat11": "./dist/donat11.js",
+    "./implocal10": "./dist/implocal10.js",
+    "./leyendasFisc10": "./dist/leyendasFisc10.js",
+    "./pago20": "./dist/pago20.js",
+    "./plataformasTecnologicas10": "./dist/plataformasTecnologicas10.js",
+    "./tfd11": "./dist/tfd11.js",
     "./types": "./dist/types.js",
     "./package.json": "./package.json"
   },
