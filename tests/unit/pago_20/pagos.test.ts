@@ -1,18 +1,20 @@
 import { describe, expect, test } from 'vitest';
-import { DoctoRelacionado } from '../../../src/elements/pago_20/docto_relacionado';
-import { ImpuestosDR } from '../../../src/elements/pago_20/impuestos_dr';
-import { ImpuestosP } from '../../../src/elements/pago_20/impuestos_p';
-import { Pago } from '../../../src/elements/pago_20/pago';
-import { Pagos } from '../../../src/elements/pago_20/pagos';
-import { RetencionDR } from '../../../src/elements/pago_20/retencion_dr';
-import { RetencionP } from '../../../src/elements/pago_20/retencion_p';
-import { RetencionesDR } from '../../../src/elements/pago_20/retenciones_dr';
-import { RetencionesP } from '../../../src/elements/pago_20/retenciones_p';
-import { Totales } from '../../../src/elements/pago_20/totales';
-import { TrasladoDR } from '../../../src/elements/pago_20/traslado_dr';
-import { TrasladoP } from '../../../src/elements/pago_20/traslado_p';
-import { TrasladosDR } from '../../../src/elements/pago_20/traslados_dr';
-import { TrasladosP } from '../../../src/elements/pago_20/traslados_p';
+import {
+  DoctoRelacionado,
+  ImpuestosDR,
+  ImpuestosP,
+  Pago,
+  Pagos,
+  RetencionDR,
+  RetencionesDR,
+  RetencionesP,
+  RetencionP,
+  Totales,
+  TrasladoDR,
+  TrasladoP,
+  TrasladosDR,
+  TrasladosP,
+} from '../../../src/elements/pago_20/index';
 
 describe('pago20', () => {
   test('pagos', ({ assert }) => {

@@ -69,18 +69,11 @@ export default class TestsMaker {
     const relativeSrcBase = path.relative(testDir, absSrcDir).replaceAll('\\', '/');
     const normalizedSrcBase = relativeSrcBase.startsWith('.') ? relativeSrcBase : `./${relativeSrcBase}`;
 
-    const sortedImports = [...visitedClasses]
-      .map((className) => ({
-        className,
-        fileName: toSnakeCase(className),
-      }))
-      .toSorted((a, b) => a.fileName.localeCompare(b.fileName));
+    const sortedClassNames = [...visitedClasses].toSorted((a, b) => a.localeCompare(b));
 
     const importLines = [
       'import { describe, expect, test } from \'vitest\';',
-      ...sortedImports.map(
-        ({ className, fileName }) => `import { ${className} } from '${normalizedSrcBase}/${fileName}';`,
-      ),
+      `import { ${sortedClassNames.join(', ')} } from '${normalizedSrcBase}/index';`,
     ];
 
     const testBlocks: string[] = [];

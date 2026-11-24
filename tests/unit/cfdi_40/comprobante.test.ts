@@ -1,25 +1,27 @@
 import { describe, expect, test } from 'vitest';
-import { ACuentaTerceros } from '../../../src/elements/cfdi_40/a_cuenta_terceros';
-import { Addenda } from '../../../src/elements/cfdi_40/addenda';
-import { CfdiRelacionado } from '../../../src/elements/cfdi_40/cfdi_relacionado';
-import { CfdiRelacionados } from '../../../src/elements/cfdi_40/cfdi_relacionados';
-import { Complemento } from '../../../src/elements/cfdi_40/complemento';
-import { ComplementoConcepto } from '../../../src/elements/cfdi_40/complemento_concepto';
-import { Comprobante } from '../../../src/elements/cfdi_40/comprobante';
-import { Concepto } from '../../../src/elements/cfdi_40/concepto';
-import { ConceptoImpuestos } from '../../../src/elements/cfdi_40/concepto_impuestos';
-import { Conceptos } from '../../../src/elements/cfdi_40/conceptos';
-import { CuentaPredial } from '../../../src/elements/cfdi_40/cuenta_predial';
-import { Emisor } from '../../../src/elements/cfdi_40/emisor';
-import { Impuestos } from '../../../src/elements/cfdi_40/impuestos';
-import { InformacionAduanera } from '../../../src/elements/cfdi_40/informacion_aduanera';
-import { InformacionGlobal } from '../../../src/elements/cfdi_40/informacion_global';
-import { Parte } from '../../../src/elements/cfdi_40/parte';
-import { Receptor } from '../../../src/elements/cfdi_40/receptor';
-import { Retencion } from '../../../src/elements/cfdi_40/retencion';
-import { Retenciones } from '../../../src/elements/cfdi_40/retenciones';
-import { Traslado } from '../../../src/elements/cfdi_40/traslado';
-import { Traslados } from '../../../src/elements/cfdi_40/traslados';
+import {
+  ACuentaTerceros,
+  Addenda,
+  CfdiRelacionado,
+  CfdiRelacionados,
+  Complemento,
+  ComplementoConcepto,
+  Comprobante,
+  Concepto,
+  ConceptoImpuestos,
+  Conceptos,
+  CuentaPredial,
+  Emisor,
+  Impuestos,
+  InformacionAduanera,
+  InformacionGlobal,
+  Parte,
+  Receptor,
+  Retencion,
+  Retenciones,
+  Traslado,
+  Traslados,
+} from '../../../src/elements/cfdi_40/index';
 
 describe('cfdi40', () => {
   test('comprobante', ({ assert }) => {

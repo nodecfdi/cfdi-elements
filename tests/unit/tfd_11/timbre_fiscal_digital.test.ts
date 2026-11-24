@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { TimbreFiscalDigital } from '../../../src/elements/tfd_11/timbre_fiscal_digital';
+import { TimbreFiscalDigital } from '../../../src/elements/tfd_11/index';
 
 describe('tfd11', () => {
   test('timbre fiscal digital', () => {

@@ -1,33 +1,35 @@
 import { describe, expect, test } from 'vitest';
-import { Autotransporte } from '../../../src/elements/cartaporte_31/autotransporte';
-import { CantidadTransporta } from '../../../src/elements/cartaporte_31/cantidad_transporta';
-import { Carro } from '../../../src/elements/cartaporte_31/carro';
-import { CartaPorte } from '../../../src/elements/cartaporte_31/carta_porte';
-import { ContenedorFerroviario } from '../../../src/elements/cartaporte_31/contenedor_ferroviario';
-import { ContenedorMaritimo } from '../../../src/elements/cartaporte_31/contenedor_maritimo';
-import { DerechosDePaso } from '../../../src/elements/cartaporte_31/derechos_de_paso';
-import { DetalleMercancia } from '../../../src/elements/cartaporte_31/detalle_mercancia';
-import { DocumentacionAduanera } from '../../../src/elements/cartaporte_31/documentacion_aduanera';
-import { Domicilio } from '../../../src/elements/cartaporte_31/domicilio';
-import { FiguraTransporte } from '../../../src/elements/cartaporte_31/figura_transporte';
-import { GuiasIdentificacion } from '../../../src/elements/cartaporte_31/guias_identificacion';
-import { IdentificacionVehicular } from '../../../src/elements/cartaporte_31/identificacion_vehicular';
-import { Mercancia } from '../../../src/elements/cartaporte_31/mercancia';
-import { Mercancias } from '../../../src/elements/cartaporte_31/mercancias';
-import { PartesTransporte } from '../../../src/elements/cartaporte_31/partes_transporte';
-import { RegimenAduaneroCCP } from '../../../src/elements/cartaporte_31/regimen_aduanero_ccp';
-import { RegimenesAduaneros } from '../../../src/elements/cartaporte_31/regimenes_aduaneros';
-import { Remolque } from '../../../src/elements/cartaporte_31/remolque';
-import { RemolqueCCP } from '../../../src/elements/cartaporte_31/remolque_ccp';
-import { Remolques } from '../../../src/elements/cartaporte_31/remolques';
-import { RemolquesCCP } from '../../../src/elements/cartaporte_31/remolques_ccp';
-import { Seguros } from '../../../src/elements/cartaporte_31/seguros';
-import { TiposFigura } from '../../../src/elements/cartaporte_31/tipos_figura';
-import { TransporteAereo } from '../../../src/elements/cartaporte_31/transporte_aereo';
-import { TransporteFerroviario } from '../../../src/elements/cartaporte_31/transporte_ferroviario';
-import { TransporteMaritimo } from '../../../src/elements/cartaporte_31/transporte_maritimo';
-import { Ubicacion } from '../../../src/elements/cartaporte_31/ubicacion';
-import { Ubicaciones } from '../../../src/elements/cartaporte_31/ubicaciones';
+import {
+  Autotransporte,
+  CantidadTransporta,
+  Carro,
+  CartaPorte,
+  ContenedorFerroviario,
+  ContenedorMaritimo,
+  DerechosDePaso,
+  DetalleMercancia,
+  DocumentacionAduanera,
+  Domicilio,
+  FiguraTransporte,
+  GuiasIdentificacion,
+  IdentificacionVehicular,
+  Mercancia,
+  Mercancias,
+  PartesTransporte,
+  RegimenAduaneroCCP,
+  RegimenesAduaneros,
+  Remolque,
+  RemolqueCCP,
+  Remolques,
+  RemolquesCCP,
+  Seguros,
+  TiposFigura,
+  TransporteAereo,
+  TransporteFerroviario,
+  TransporteMaritimo,
+  Ubicacion,
+  Ubicaciones,
+} from '../../../src/elements/cartaporte_31/index';
 
 describe('cartaporte31', () => {
   test('carta porte', ({ assert }) => {
