@@ -1,0 +1,133 @@
+{
+  "prefix": "cce20",
+  "xml-namespace": "http://www.sat.gob.mx/ComercioExterior20",
+  "xml-schemalocation": "http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd",
+  "version-attribute": "Version",
+  "version-value": "2.0",
+  "root": {
+    "name": "ComercioExterior",
+    "attributes": [
+      "Version",
+      "MotivoTraslado",
+      "ClaveDePedimento",
+      "CertificadoOrigen",
+      "NumCertificadoOrigen",
+      "NumeroExportadorConfiable",
+      "Incoterm",
+      "Observaciones",
+      "TipoCambioUSD",
+      "TotalUSD"
+    ],
+    "children": [
+      {
+        "name": "Emisor",
+        "attributes": [
+          "Curp"
+        ],
+        "children": [
+          {
+            "name": "Domicilio",
+            "attributes": [
+              "Calle",
+              "NumeroExterior",
+              "NumeroInterior",
+              "Colonia",
+              "Localidad",
+              "Referencia",
+              "Municipio",
+              "Estado",
+              "Pais",
+              "CodigoPostal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Propietario",
+        "multiple": true,
+        "attributes": [
+          "NumRegIdTrib",
+          "ResidenciaFiscal"
+        ]
+      },
+      {
+        "name": "Receptor",
+        "attributes": [
+          "NumRegIdTrib"
+        ],
+        "children": [
+          {
+            "name": "Domicilio",
+            "attributes": [
+              "Calle",
+              "NumeroExterior",
+              "NumeroInterior",
+              "Colonia",
+              "Localidad",
+              "Referencia",
+              "Municipio",
+              "Estado",
+              "Pais",
+              "CodigoPostal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Destinatario",
+        "multiple": true,
+        "attributes": [
+          "NumRegIdTrib",
+          "Nombre"
+        ],
+        "children": [
+          {
+            "name": "Domicilio",
+            "multiple": true,
+            "attributes": [
+              "Calle",
+              "NumeroExterior",
+              "NumeroInterior",
+              "Colonia",
+              "Localidad",
+              "Referencia",
+              "Municipio",
+              "Estado",
+              "Pais",
+              "CodigoPostal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mercancias",
+        "children": [
+          {
+            "name": "Mercancia",
+            "multiple": true,
+            "attributes": [
+              "NoIdentificacion",
+              "FraccionArancelaria",
+              "CantidadAduana",
+              "UnidadAduana",
+              "ValorUnitarioAduana",
+              "ValorDolares"
+            ],
+            "children": [
+              {
+                "name": "DescripcionesEspecificas",
+                "multiple": true,
+                "attributes": [
+                  "Marca",
+                  "Modelo",
+                  "SubModelo",
+                  "NumeroSerie"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+export type { ComercioExteriorAttributes } from './comercio_exterior';
+export { ComercioExterior } from './comercio_exterior';
+export type { DescripcionesEspecificasAttributes } from './descripciones_especificas';
+export { DescripcionesEspecificas } from './descripciones_especificas';
+export type { DestinatarioAttributes } from './destinatario';
+export { Destinatario } from './destinatario';
+export type { DomicilioAttributes } from './domicilio';
+export { Domicilio } from './domicilio';
+export type { EmisorAttributes } from './emisor';
+export { Emisor } from './emisor';
+export type { MercanciaAttributes } from './mercancia';
+export { Mercancia } from './mercancia';
+export { Mercancias } from './mercancias';
+export type { PropietarioAttributes } from './propietario';
+export { Propietario } from './propietario';
+export type { ReceptorAttributes } from './receptor';
+export { Receptor } from './receptor';

@@ -121,6 +121,12 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/Plataform
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd
 ```
 
+### `cce_20`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -177,6 +183,12 @@ pnpm make:elements scripts/elements_maker/specifications/plataformas_tecnologica
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/tfd_11.json src/elements/tfd_11/ --with-tests
+```
+
+### `cce_20`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/cce_20.json src/elements/cce_20/ --with-tests
 ```
 
 <!-- elements:end -->
