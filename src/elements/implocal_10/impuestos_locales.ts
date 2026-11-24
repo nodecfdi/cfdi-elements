@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { RetencionesLocalesAttributes } from './retenciones_locales';
 import type { TrasladosLocalesAttributes } from './traslados_locales';
 import { AbstractElement } from '../../common/abstract_element';
@@ -29,8 +29,8 @@ export class ImpuestosLocales extends AbstractElement<ImpuestosLocalesAttributes
     };
   }
 
-  public addRetencionesLocales(attributes: AttributesRecord<RetencionesLocalesAttributes> = {}): RetencionesLocales {
-    const subject = new RetencionesLocales(attributes);
+  public addRetencionesLocales(attributes: AttributesRecord<RetencionesLocalesAttributes> = {}, children: XmlNodeInterface[] = []): RetencionesLocales {
+    const subject = new RetencionesLocales(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -44,8 +44,8 @@ export class ImpuestosLocales extends AbstractElement<ImpuestosLocalesAttributes
     return this;
   }
 
-  public addTrasladosLocales(attributes: AttributesRecord<TrasladosLocalesAttributes> = {}): TrasladosLocales {
-    const subject = new TrasladosLocales(attributes);
+  public addTrasladosLocales(attributes: AttributesRecord<TrasladosLocalesAttributes> = {}, children: XmlNodeInterface[] = []): TrasladosLocales {
+    const subject = new TrasladosLocales(attributes, children);
     this.addChild(subject);
 
     return subject;

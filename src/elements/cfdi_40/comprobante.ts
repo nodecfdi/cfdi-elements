@@ -77,8 +77,8 @@ export class Comprobante extends AbstractElement<ComprobanteAttributes> {
     return subject;
   }
 
-  public addCfdiRelacionados(attributes: AttributesRecord<CfdiRelacionadosAttributes> = {}): CfdiRelacionados {
-    const subject = new CfdiRelacionados(attributes);
+  public addCfdiRelacionados(attributes: AttributesRecord<CfdiRelacionadosAttributes> = {}, children: XmlNodeInterface[] = []): CfdiRelacionados {
+    const subject = new CfdiRelacionados(attributes, children);
     this.addChild(subject);
 
     return subject;

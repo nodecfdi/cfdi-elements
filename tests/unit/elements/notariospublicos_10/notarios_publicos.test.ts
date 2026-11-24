@@ -29,7 +29,8 @@ describe('notariospublicos10', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:notariospublicos': 'http://www.sat.gob.mx/notariospublicos',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/notariospublicos http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/notariospublicos http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xsd',
       'Version': '1.0',
     });
     assert.toElementHasChildSingle(element, DescInmuebles);

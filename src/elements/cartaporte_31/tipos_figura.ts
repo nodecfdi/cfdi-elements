@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DomicilioAttributes } from './domicilio';
 import type { PartesTransporteAttributes } from './partes_transporte';
 import { AbstractElement } from '../../common/abstract_element';
@@ -25,8 +25,8 @@ export class TiposFigura extends AbstractElement<TiposFiguraAttributes> {
     ];
   }
 
-  public addPartesTransporte(attributes: AttributesRecord<PartesTransporteAttributes> = {}): PartesTransporte {
-    const subject = new PartesTransporte(attributes);
+  public addPartesTransporte(attributes: AttributesRecord<PartesTransporteAttributes> = {}, children: XmlNodeInterface[] = []): PartesTransporte {
+    const subject = new PartesTransporte(attributes, children);
     this.addChild(subject);
 
     return subject;

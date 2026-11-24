@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { PagoAttributes } from './pago';
 import type { TotalesAttributes } from './totales';
 import { AbstractElement } from '../../common/abstract_element';
@@ -40,8 +40,8 @@ export class Pagos extends AbstractElement<PagosAttributes> {
     return subject;
   }
 
-  public addPago(attributes: AttributesRecord<PagoAttributes> = {}): Pago {
-    const subject = new Pago(attributes);
+  public addPago(attributes: AttributesRecord<PagoAttributes> = {}, children: XmlNodeInterface[] = []): Pago {
+    const subject = new Pago(attributes, children);
     this.addChild(subject);
 
     return subject;

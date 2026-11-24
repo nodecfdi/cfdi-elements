@@ -63,18 +63,18 @@ describe('sumas pagos20 calculator', () => {
     const pagos = nodeFromXmlString(minimalXml);
 
     let result = new Calculator().calculate(pagos);
-    expect(result.getTotales().getTotal().toFixed(2)).toBe('0.14');
-    expect(result.getTotales().getTrasladoIva16Base()?.toFixed(2)).toBe('0.12');
-    expect(result.getTotales().getTrasladoIva16Importe()?.toFixed(2)).toBe('0.02');
+    expect(result.getTotales().getTotal()).toStrictEqual(new Decimal('0.14'));
+    expect(result.getTotales().getTrasladoIva16Base()).toStrictEqual(new Decimal('0.12'));
+    expect(result.getTotales().getTrasladoIva16Importe()).toStrictEqual(new Decimal('0.02'));
 
     let impuesto = result.getPago(0).getImpuestos().getTraslado('002', 'Tasa', '0.160000');
-    expect(impuesto.getBase().toFixed(6)).toBe('0.123457');
-    expect(impuesto.getImporte().toFixed(6)).toBe('0.019753');
+    expect(impuesto.getBase()).toStrictEqual(new Decimal('0.123457'));
+    expect(impuesto.getImporte()).toStrictEqual(new Decimal('0.019753'));
 
     result = new Calculator(4).calculate(pagos);
     impuesto = result.getPago(0).getImpuestos().getTraslado('002', 'Tasa', '0.160000');
-    expect(impuesto.getBase().toFixed(4)).toBe('0.1235');
-    expect(impuesto.getImporte().toFixed(4)).toBe('0.0198');
+    expect(impuesto.getBase()).toStrictEqual(new Decimal('0.1235'));
+    expect(impuesto.getImporte()).toStrictEqual(new Decimal('0.0198'));
   });
 
   test('calculate minimal truncated', () => {
@@ -84,8 +84,8 @@ describe('sumas pagos20 calculator', () => {
     calculator.setTaxesTruncated();
     const result = calculator.calculate(pagos);
     const impuesto = result.getPago(0).getImpuestos().getTraslado('002', 'Tasa', '0.160000');
-    expect(impuesto.getBase().toFixed(4)).toBe('0.1234');
-    expect(impuesto.getImporte().toFixed(4)).toBe('0.0197');
+    expect(impuesto.getBase()).toStrictEqual(new Decimal('0.1234'));
+    expect(impuesto.getImporte()).toStrictEqual(new Decimal('0.0197'));
   });
 
   test('calculate two documents', () => {

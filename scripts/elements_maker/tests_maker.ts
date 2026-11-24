@@ -71,9 +71,13 @@ export class TestsMaker {
 
     const sortedClassNames = [...visitedClasses].toSorted((a, b) => a.localeCompare(b));
 
+    const elementsSource = `'${normalizedSrcBase}/index'`;
+    const singleLineImport = `import { ${sortedClassNames.join(', ')} } from ${elementsSource};`;
     const importLines = [
       'import { describe, expect, test } from \'vitest\';',
-      `import { ${sortedClassNames.join(', ')} } from '${normalizedSrcBase}/index';`,
+      singleLineImport.length <= 100
+        ? singleLineImport
+        : `import {\n${sortedClassNames.map((name) => `  ${name},`).join('\n')}\n} from ${elementsSource};`,
     ];
 
     const testBlocks: string[] = [];
@@ -119,8 +123,13 @@ export class TestsMaker {
     ];
 
     if (orderElements.length > 1) {
-      const items = orderElements.map((item) => `      '${item}',`).join('\n');
-      lines.push(`    expect(element).toElementHasOrder([\n${items}\n    ]);`);
+      const inlineOrder = `    expect(element).toElementHasOrder([${orderElements.map((item) => `'${item}'`).join(', ')}]);`;
+      if (inlineOrder.length <= 100) {
+        lines.push(inlineOrder);
+      } else {
+        const items = orderElements.map((item) => `      '${item}',`).join('\n');
+        lines.push(`    expect(element).toElementHasOrder([\n${items}\n    ]);`);
+      }
     }
 
     if (isRoot) {
@@ -130,11 +139,15 @@ export class TestsMaker {
       const versionAttribute = dictionary.get('#version-attribute#');
       const versionValue = dictionary.get('#version-value#');
 
+      const schemaLocationValue = `'${xmlNamespace} ${xmlSchemaLocation}'`;
+      const schemaLocationLine = `      'xsi:schemaLocation': ${schemaLocationValue},`;
       lines.push(
         '    expect(element).toElementHasFixedAttributes({',
         `      'xmlns:${prefix}': '${xmlNamespace}',`,
         '      \'xmlns:xsi\': \'http://www.w3.org/2001/XMLSchema-instance\',',
-        `      'xsi:schemaLocation': '${xmlNamespace} ${xmlSchemaLocation}',`,
+        schemaLocationLine.length <= 100
+          ? schemaLocationLine
+          : `      'xsi:schemaLocation':\n        ${schemaLocationValue},`,
         `      '${versionAttribute}': '${versionValue}',`,
         '    });',
       );
@@ -173,14 +186,15 @@ export class TestsMaker {
     if (shortcuts.length > 0) {
       const shortcutChecks: string[] = [`    const element = new ${className}();`];
       for (const shortcut of shortcuts) {
-        shortcutChecks.push(`    expect(element).toHaveProperty('add${shortcut.target}');`);
-        if (shortcut.multi !== false) {
-          shortcutChecks.push(`    expect(element).toHaveProperty('multi${shortcut.target}');`);
-        }
+        const pathItems = shortcut.path.map((segment) => `'${segment}'`).join(', ');
+        const multiArgument = shortcut.multi === false ? ', false' : '';
+        shortcutChecks.push(
+          `    assert.toElementHasShortcut(element, [${pathItems}], '${shortcut.target}'${multiArgument});`,
+        );
       }
 
       blocks.push(
-        `  test('${toWords(className)} shortcuts', () => {\n${shortcutChecks.join('\n')}\n  });`,
+        `  test('${toWords(className)} shortcuts', ({ assert }) => {\n${shortcutChecks.join('\n')}\n  });`,
       );
     }
 

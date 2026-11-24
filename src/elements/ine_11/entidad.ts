@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { ContabilidadAttributes } from './contabilidad';
 import { AbstractElement } from '../../common/abstract_element';
 import { Contabilidad } from './contabilidad';
@@ -10,8 +10,8 @@ export class Entidad extends AbstractElement<EntidadAttributes> {
     return 'ine:Entidad';
   }
 
-  public addContabilidad(attributes: AttributesRecord<ContabilidadAttributes> = {}): Contabilidad {
-    const subject = new Contabilidad(attributes);
+  public addContabilidad(attributes: AttributesRecord<ContabilidadAttributes> = {}, children: XmlNodeInterface[] = []): Contabilidad {
+    const subject = new Contabilidad(attributes, children);
     this.addChild(subject);
 
     return subject;

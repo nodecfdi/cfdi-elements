@@ -1,5 +1,11 @@
 import { describe, expect, test } from 'vitest';
-import { ConceptoConsumoDeCombustibles, Conceptos, ConsumoDeCombustibles, Determinado, Determinados } from '../../../../src/elements/consumodecombustibles_11/index';
+import {
+  ConceptoConsumoDeCombustibles,
+  Conceptos,
+  ConsumoDeCombustibles,
+  Determinado,
+  Determinados,
+} from '../../../../src/elements/consumodecombustibles_11/index';
 
 describe('consumodecombustibles11', () => {
   test('consumo de combustibles', ({ assert }) => {
@@ -8,7 +14,8 @@ describe('consumodecombustibles11', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:consumodecombustibles11': 'http://www.sat.gob.mx/ConsumoDeCombustibles11',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/ConsumoDeCombustibles11 http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodeCombustibles11.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/ConsumoDeCombustibles11 http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodeCombustibles11.xsd',
       'version': '1.1',
     });
     assert.toElementHasChildSingle(element, Conceptos);

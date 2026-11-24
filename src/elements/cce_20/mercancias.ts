@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { MercanciaAttributes } from './mercancia';
 import { AbstractElement } from '../../common/abstract_element';
 import { Mercancia } from './mercancia';
@@ -8,8 +8,8 @@ export class Mercancias extends AbstractElement {
     return 'cce20:Mercancias';
   }
 
-  public addMercancia(attributes: AttributesRecord<MercanciaAttributes> = {}): Mercancia {
-    const subject = new Mercancia(attributes);
+  public addMercancia(attributes: AttributesRecord<MercanciaAttributes> = {}, children: XmlNodeInterface[] = []): Mercancia {
+    const subject = new Mercancia(attributes, children);
     this.addChild(subject);
 
     return subject;

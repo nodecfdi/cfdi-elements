@@ -8,7 +8,8 @@ describe('ine11', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:ine': 'http://www.sat.gob.mx/ine',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/ine http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/ine http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xsd',
       'Version': '1.1',
     });
     assert.toElementHasChildMultiple(element, Entidad);

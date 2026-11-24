@@ -134,7 +134,7 @@ describe('cartaporte31', () => {
     expect(element).toElementHasName('cartaporte31:DetalleMercancia');
   });
 
-  test('auto transporte', ({ assert }) => {
+  test('autotransporte', ({ assert }) => {
     const element = new Autotransporte();
     expect(element).toElementHasName('cartaporte31:Autotransporte');
     expect(element).toElementHasOrder([

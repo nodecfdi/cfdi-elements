@@ -63,8 +63,8 @@ export class Concepto extends AbstractElement<ConceptoAttributes> {
     return subject;
   }
 
-  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}): InformacionAduanera {
-    const subject = new InformacionAduanera(attributes);
+  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}, children: XmlNodeInterface[] = []): InformacionAduanera {
+    const subject = new InformacionAduanera(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -78,8 +78,8 @@ export class Concepto extends AbstractElement<ConceptoAttributes> {
     return this;
   }
 
-  public addCuentaPredial(attributes: AttributesRecord<CuentaPredialAttributes> = {}): CuentaPredial {
-    const subject = new CuentaPredial(attributes);
+  public addCuentaPredial(attributes: AttributesRecord<CuentaPredialAttributes> = {}, children: XmlNodeInterface[] = []): CuentaPredial {
+    const subject = new CuentaPredial(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -103,8 +103,8 @@ export class Concepto extends AbstractElement<ConceptoAttributes> {
     return this;
   }
 
-  public addParte(attributes: AttributesRecord<ParteAttributes> = {}): Parte {
-    const subject = new Parte(attributes);
+  public addParte(attributes: AttributesRecord<ParteAttributes> = {}, children: XmlNodeInterface[] = []): Parte {
+    const subject = new Parte(attributes, children);
     this.addChild(subject);
 
     return subject;

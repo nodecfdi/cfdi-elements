@@ -54,12 +54,11 @@ describe('cfdi40', () => {
     assert.toElementHasChildSingleAddChild(element, Addenda);
   });
 
-  test('comprobante impuestos shortcuts', () => {
+  test('comprobante shortcuts', ({ assert }) => {
     const element = new Comprobante();
-    expect(element).toHaveProperty('addTraslado');
-    expect(element).toHaveProperty('multiTraslado');
-    expect(element).toHaveProperty('addRetencion');
-    expect(element).toHaveProperty('multiRetencion');
+    assert.toElementHasShortcut(element, ['Conceptos'], 'Concepto', false);
+    assert.toElementHasShortcut(element, ['Impuestos', 'Traslados'], 'Traslado');
+    assert.toElementHasShortcut(element, ['Impuestos', 'Retenciones'], 'Retencion');
   });
 
   test('informacion global', () => {
@@ -113,12 +112,10 @@ describe('cfdi40', () => {
     assert.toElementHasChildMultiple(element, Parte);
   });
 
-  test('concepto impuestos shortcuts', () => {
+  test('concepto shortcuts', ({ assert }) => {
     const element = new Concepto();
-    expect(element).toHaveProperty('addTraslado');
-    expect(element).toHaveProperty('multiTraslado');
-    expect(element).toHaveProperty('addRetencion');
-    expect(element).toHaveProperty('multiRetencion');
+    assert.toElementHasShortcut(element, ['Impuestos', 'Traslados'], 'Traslado');
+    assert.toElementHasShortcut(element, ['Impuestos', 'Retenciones'], 'Retencion');
   });
 
   test('concepto impuestos', ({ assert }) => {

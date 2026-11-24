@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { ConceptoConsumoDeCombustiblesAttributes } from './concepto_consumo_de_combustibles';
 import { AbstractElement } from '../../common/abstract_element';
 import { ConceptoConsumoDeCombustibles } from './concepto_consumo_de_combustibles';
@@ -8,8 +8,8 @@ export class Conceptos extends AbstractElement {
     return 'consumodecombustibles11:Conceptos';
   }
 
-  public addConceptoConsumoDeCombustibles(attributes: AttributesRecord<ConceptoConsumoDeCombustiblesAttributes> = {}): ConceptoConsumoDeCombustibles {
-    const subject = new ConceptoConsumoDeCombustibles(attributes);
+  public addConceptoConsumoDeCombustibles(attributes: AttributesRecord<ConceptoConsumoDeCombustiblesAttributes> = {}, children: XmlNodeInterface[] = []): ConceptoConsumoDeCombustibles {
+    const subject = new ConceptoConsumoDeCombustibles(attributes, children);
     this.addChild(subject);
 
     return subject;

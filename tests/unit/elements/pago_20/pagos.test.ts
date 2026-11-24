@@ -20,6 +20,7 @@ describe('pago20', () => {
   test('pagos', ({ assert }) => {
     const element = new Pagos();
     expect(element).toElementHasName('pago20:Pagos');
+    expect(element).toElementHasOrder(['pago20:Totales', 'pago20:Pago']);
     expect(element).toElementHasFixedAttributes({
       'xmlns:pago20': 'http://www.sat.gob.mx/Pagos20',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
@@ -50,7 +51,7 @@ describe('pago20', () => {
     assert.toElementHasChildSingle(element, ImpuestosDR);
   });
 
-  test('impuestos d r', ({ assert }) => {
+  test('impuestos dr', ({ assert }) => {
     const element = new ImpuestosDR();
     expect(element).toElementHasName('pago20:ImpuestosDR');
     expect(element).toElementHasOrder(['pago20:RetencionesDR', 'pago20:TrasladosDR']);
@@ -58,24 +59,24 @@ describe('pago20', () => {
     assert.toElementHasChildSingle(element, TrasladosDR);
   });
 
-  test('retenciones d r', ({ assert }) => {
+  test('retenciones dr', ({ assert }) => {
     const element = new RetencionesDR();
     expect(element).toElementHasName('pago20:RetencionesDR');
     assert.toElementHasChildMultiple(element, RetencionDR);
   });
 
-  test('retencion d r', () => {
+  test('retencion dr', () => {
     const element = new RetencionDR();
     expect(element).toElementHasName('pago20:RetencionDR');
   });
 
-  test('traslados d r', ({ assert }) => {
+  test('traslados dr', ({ assert }) => {
     const element = new TrasladosDR();
     expect(element).toElementHasName('pago20:TrasladosDR');
     assert.toElementHasChildMultiple(element, TrasladoDR);
   });
 
-  test('traslado d r', () => {
+  test('traslado dr', () => {
     const element = new TrasladoDR();
     expect(element).toElementHasName('pago20:TrasladoDR');
   });

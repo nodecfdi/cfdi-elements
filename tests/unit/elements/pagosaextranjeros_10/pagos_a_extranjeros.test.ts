@@ -1,5 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { Beneficiario, NoBeneficiario, PagosAExtranjeros } from '../../../../src/elements/pagosaextranjeros_10/index';
+import {
+  Beneficiario,
+  NoBeneficiario,
+  PagosAExtranjeros,
+} from '../../../../src/elements/pagosaextranjeros_10/index';
 
 describe('pagosaextranjeros10', () => {
   test('pagos a extranjeros', ({ assert }) => {
@@ -12,7 +16,8 @@ describe('pagosaextranjeros10', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:pagosaextranjeros': 'http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd',
       'Version': '1.0',
     });
     assert.toElementHasChildSingle(element, NoBeneficiario);

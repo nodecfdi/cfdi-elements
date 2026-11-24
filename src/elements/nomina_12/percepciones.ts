@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { JubilacionPensionRetiroAttributes } from './jubilacion_pension_retiro';
 import type { PercepcionAttributes } from './percepcion';
 import type { SeparacionIndemnizacionAttributes } from './separacion_indemnizacion';
@@ -27,8 +27,8 @@ export class Percepciones extends AbstractElement<PercepcionesAttributes> {
     ];
   }
 
-  public addPercepcion(attributes: AttributesRecord<PercepcionAttributes> = {}): Percepcion {
-    const subject = new Percepcion(attributes);
+  public addPercepcion(attributes: AttributesRecord<PercepcionAttributes> = {}, children: XmlNodeInterface[] = []): Percepcion {
+    const subject = new Percepcion(attributes, children);
     this.addChild(subject);
 
     return subject;

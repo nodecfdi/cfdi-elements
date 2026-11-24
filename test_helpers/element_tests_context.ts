@@ -29,18 +29,19 @@ beforeEach(async (ctx) => {
       const instanceTwo = (element[adder] as WrapMethod)({ foo: 'bar' });
       expect(
         instanceTwo,
-        `The method ${elementClassName}.${String(adder)} should return the an instance of ${childClassName}`,
-      ).toBeInstanceOf(childClass);
+        `The method ${elementClassName}.${String(adder)} should return the same instance as ${elementClassName}.${String(getter)}`,
+      ).toBe(instance);
       expect(
-        instanceTwo.getAttribute('foo'),
+        instance.getAttribute('foo'),
         `The method ${elementClassName}.${String(adder)} should write the attributes on the same instance`,
       ).toBe('bar');
+      expect(element.children(), `The method ${elementClassName}.${String(adder)} should not append a new child`).toHaveLength(1);
 
       const instanceThreeEmpty = (element[adder] as WrapMethod)();
       expect(
         instanceThreeEmpty,
-        `The method ${elementClassName}.${String(adder)} should return the an instance of ${childClassName}`,
-      ).toBeInstanceOf(childClass);
+        `The method ${elementClassName}.${String(adder)} should return the same instance as ${elementClassName}.${String(getter)}`,
+      ).toBe(instance);
       expect(
         instanceThreeEmpty.attributes(),
         `The method ${elementClassName}.${String(adder)} with empty attributes not append nothing`,
@@ -109,15 +110,77 @@ beforeEach(async (ctx) => {
         second,
         `The method ${elementClassName}.${String(adder)} should return the an instance of ${childClassName}`,
       ).toBeInstanceOf(childClass);
+      expect(
+        second,
+        `The method ${elementClassName}.${String(adder)} should return a new instance of ${childClassName}`,
+      ).not.toBe(first);
       expect(element).toHaveLength(2);
 
+      // Add with children should append them into the new instance
+      const grandChildren = [new XmlNode('child1'), new XmlNode('child2')];
+      const third = (element[adder] as WrapMethod)({ id: 'third' }, grandChildren);
+      expect(
+        [...third.children()],
+        `The method ${elementClassName}.${String(adder)} should append the given children to the new instance`,
+      ).toStrictEqual(grandChildren);
+      expect(element).toHaveLength(3);
+
       const multier = `multi${childClassName}` as keyof typeof element;
-      const sameAsElement = (element[multier] as WrapMethod)({ id: 'third' }, { id: 'fourth' });
+      const sameAsElement = (element[multier] as WrapMethod)({ id: 'fourth' }, { id: 'fifth' });
       expect(
         sameAsElement,
         `The method ${elementClassName}.${String(multier)} should return always the same element as the instance contained`,
       ).toBe(element);
-      expect(element).toHaveLength(4);
+      expect(element).toHaveLength(5);
+      expect([...element.children()].map((child) => child.getAttribute('id'))).toStrictEqual([
+        'first',
+        '',
+        'third',
+        'fourth',
+        'fifth',
+      ]);
+    },
+
+    toElementHasShortcut(element, path, target, multi = true) {
+      const elementClassName = element.constructor.name;
+      element.children().clear();
+
+      const resolveContainer = (): AbstractElement => {
+        let current: AbstractElement = element;
+        for (const segment of path) {
+          current = (current[`get${segment}` as keyof typeof current] as WrapMethod)();
+        }
+
+        return current;
+      };
+
+      const adder = `add${target}` as keyof typeof element;
+      const first = (element[adder] as WrapMethod)({ id: '1' });
+      const container = resolveContainer();
+      expect(
+        [...container.children()],
+        `The method ${elementClassName}.${String(adder)} should append the child into ${path.join('/')}`,
+      ).toStrictEqual([first]);
+      expect(first.getAttribute('id')).toBe('1');
+
+      const second = (element[adder] as WrapMethod)();
+      expect(second, `The method ${elementClassName}.${String(adder)} should return a new instance`).not.toBe(first);
+      expect(resolveContainer(), `The method ${elementClassName}.${String(adder)} should reuse the containers`).toBe(container);
+      expect(container.children()).toHaveLength(2);
+
+      if (!multi) {
+        expect(element).not.toHaveProperty(`multi${target}`);
+
+        return;
+      }
+
+      const multier = `multi${target}` as keyof typeof element;
+      const sameAsElement = (element[multier] as WrapMethod)({ id: '3' }, { id: '4' });
+      expect(
+        sameAsElement,
+        `The method ${elementClassName}.${String(multier)} should return always the same element instance`,
+      ).toBe(element);
+      expect([...container.children()].map((child) => child.getAttribute('id'))).toStrictEqual(['1', '', '3', '4']);
     },
   };
 });
@@ -142,6 +205,12 @@ declare module 'vitest' {
         element: AbstractElement,
         childClass: Constructor<Y>,
         elementName?: string,
+      ) => void;
+      toElementHasShortcut: (
+        element: AbstractElement,
+        path: string[],
+        target: string,
+        multi?: boolean,
       ) => void;
     };
   }

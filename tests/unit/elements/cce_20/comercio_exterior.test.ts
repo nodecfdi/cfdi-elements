@@ -1,5 +1,15 @@
 import { describe, expect, test } from 'vitest';
-import { ComercioExterior, DescripcionesEspecificas, Destinatario, Domicilio, Emisor, Mercancia, Mercancias, Propietario, Receptor } from '../../../../src/elements/cce_20/index';
+import {
+  ComercioExterior,
+  DescripcionesEspecificas,
+  Destinatario,
+  Domicilio,
+  Emisor,
+  Mercancia,
+  Mercancias,
+  Propietario,
+  Receptor,
+} from '../../../../src/elements/cce_20/index';
 
 describe('cce20', () => {
   test('comercio exterior', ({ assert }) => {
@@ -15,7 +25,8 @@ describe('cce20', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:cce20': 'http://www.sat.gob.mx/ComercioExterior20',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd',
       'Version': '2.0',
     });
     assert.toElementHasChildSingle(element, Emisor);

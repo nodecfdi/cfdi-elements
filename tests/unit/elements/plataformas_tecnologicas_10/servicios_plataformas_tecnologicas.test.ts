@@ -9,12 +9,11 @@ import {
 } from '../../../../src/elements/plataformas_tecnologicas_10/index';
 
 describe('plataformasTecnologicas10', () => {
-  test('plataformas tecnologicas', ({ assert }) => {
+  test('servicios plataformas tecnologicas', ({ assert }) => {
     const element = new ServiciosPlataformasTecnologicas();
     expect(element).toElementHasName('plataformasTecnologicas:ServiciosPlataformasTecnologicas');
     expect(element).toElementHasFixedAttributes({
-      'xmlns:plataformasTecnologicas':
-        'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10',
+      'xmlns:plataformasTecnologicas': 'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
         'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10 http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd',
@@ -42,7 +41,7 @@ describe('plataformasTecnologicas10', () => {
     assert.toElementHasChildSingle(element, ComisionDelServicio);
   });
 
-  test('impuestos trasladados', () => {
+  test('impuestos trasladadosdel servicio', () => {
     const element = new ImpuestosTrasladadosdelServicio();
     expect(element).toElementHasName('plataformasTecnologicas:ImpuestosTrasladadosdelServicio');
   });

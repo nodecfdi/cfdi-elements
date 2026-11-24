@@ -8,7 +8,8 @@ describe('iedu10', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:iedu': 'http://www.sat.gob.mx/iedu',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/iedu http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/iedu http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd',
       'version': '1.0',
     });
   });

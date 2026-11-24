@@ -1,5 +1,17 @@
 import { describe, expect, test } from 'vitest';
-import { Addenda, CfdiRetenRelacionados, Complemento, Emisor, Extranjero, ImpRetenidos, Nacional, Periodo, Receptor, Retenciones, Totales } from '../../../../src/elements/retenciones_20/index';
+import {
+  Addenda,
+  CfdiRetenRelacionados,
+  Complemento,
+  Emisor,
+  Extranjero,
+  ImpRetenidos,
+  Nacional,
+  Periodo,
+  Receptor,
+  Retenciones,
+  Totales,
+} from '../../../../src/elements/retenciones_20/index';
 
 describe('retenciones20', () => {
   test('retenciones', ({ assert }) => {
@@ -17,7 +29,8 @@ describe('retenciones20', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:retenciones': 'http://www.sat.gob.mx/esquemas/retencionpago/2',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/esquemas/retencionpago/2 http://www.sat.gob.mx/esquemas/retencionpago/2/retencionpagov2.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/esquemas/retencionpago/2 http://www.sat.gob.mx/esquemas/retencionpago/2/retencionpagov2.xsd',
       'Version': '2.0',
     });
     assert.toElementHasChildSingle(element, CfdiRetenRelacionados);
@@ -29,10 +42,9 @@ describe('retenciones20', () => {
     assert.toElementHasChildSingleAddChild(element, Addenda);
   });
 
-  test('retenciones shortcuts', () => {
+  test('retenciones shortcuts', ({ assert }) => {
     const element = new Retenciones();
-    expect(element).toHaveProperty('addImpRetenidos');
-    expect(element).toHaveProperty('multiImpRetenidos');
+    assert.toElementHasShortcut(element, ['Totales'], 'ImpRetenidos');
   });
 
   test('cfdi reten relacionados', () => {
@@ -48,10 +60,7 @@ describe('retenciones20', () => {
   test('receptor', ({ assert }) => {
     const element = new Receptor();
     expect(element).toElementHasName('retenciones:Receptor');
-    expect(element).toElementHasOrder([
-      'retenciones:Nacional',
-      'retenciones:Extranjero',
-    ]);
+    expect(element).toElementHasOrder(['retenciones:Nacional', 'retenciones:Extranjero']);
     assert.toElementHasChildSingle(element, Nacional);
     assert.toElementHasChildSingle(element, Extranjero);
   });

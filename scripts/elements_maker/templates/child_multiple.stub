@@ -1,6 +1,6 @@
 
-  public add#child-method-name#(attributes: #child-attributes-type# = {}): #child-name# {
-    const subject = new #child-name#(attributes);
+  public add#child-method-name#(attributes: #child-attributes-type# = {}, children: XmlNodeInterface[] = []): #child-name# {
+    const subject = new #child-name#(attributes, children);
     this.addChild(subject);
 
     return subject;

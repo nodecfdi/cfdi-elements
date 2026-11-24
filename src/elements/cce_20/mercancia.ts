@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DescripcionesEspecificasAttributes } from './descripciones_especificas';
 import { AbstractElement } from '../../common/abstract_element';
 import { DescripcionesEspecificas } from './descripciones_especificas';
@@ -16,8 +16,8 @@ export class Mercancia extends AbstractElement<MercanciaAttributes> {
     return 'cce20:Mercancia';
   }
 
-  public addDescripcionesEspecificas(attributes: AttributesRecord<DescripcionesEspecificasAttributes> = {}): DescripcionesEspecificas {
-    const subject = new DescripcionesEspecificas(attributes);
+  public addDescripcionesEspecificas(attributes: AttributesRecord<DescripcionesEspecificasAttributes> = {}, children: XmlNodeInterface[] = []): DescripcionesEspecificas {
+    const subject = new DescripcionesEspecificas(attributes, children);
     this.addChild(subject);
 
     return subject;

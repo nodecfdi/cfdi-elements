@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DoctoRelacionadoAttributes } from './docto_relacionado';
 import { AbstractElement } from '../../common/abstract_element';
 import { DoctoRelacionado } from './docto_relacionado';
@@ -33,8 +33,8 @@ export class Pago extends AbstractElement<PagoAttributes> {
     ];
   }
 
-  public addDoctoRelacionado(attributes: AttributesRecord<DoctoRelacionadoAttributes> = {}): DoctoRelacionado {
-    const subject = new DoctoRelacionado(attributes);
+  public addDoctoRelacionado(attributes: AttributesRecord<DoctoRelacionadoAttributes> = {}, children: XmlNodeInterface[] = []): DoctoRelacionado {
+    const subject = new DoctoRelacionado(attributes, children);
     this.addChild(subject);
 
     return subject;

@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DomicilioAttributes } from './domicilio';
 import { AbstractElement } from '../../common/abstract_element';
 import { Domicilio } from './domicilio';
@@ -10,8 +10,8 @@ export class Destinatario extends AbstractElement<DestinatarioAttributes> {
     return 'cce20:Destinatario';
   }
 
-  public addDomicilio(attributes: AttributesRecord<DomicilioAttributes> = {}): Domicilio {
-    const subject = new Domicilio(attributes);
+  public addDomicilio(attributes: AttributesRecord<DomicilioAttributes> = {}, children: XmlNodeInterface[] = []): Domicilio {
+    const subject = new Domicilio(attributes, children);
     this.addChild(subject);
 
     return subject;

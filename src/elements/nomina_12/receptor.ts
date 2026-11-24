@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { SubContratacionAttributes } from './sub_contratacion';
 import { AbstractElement } from '../../common/abstract_element';
 import { SubContratacion } from './sub_contratacion';
@@ -28,8 +28,8 @@ export class Receptor extends AbstractElement<ReceptorAttributes> {
     return 'nomina12:Receptor';
   }
 
-  public addSubContratacion(attributes: AttributesRecord<SubContratacionAttributes> = {}): SubContratacion {
-    const subject = new SubContratacion(attributes);
+  public addSubContratacion(attributes: AttributesRecord<SubContratacionAttributes> = {}, children: XmlNodeInterface[] = []): SubContratacion {
+    const subject = new SubContratacion(attributes, children);
     this.addChild(subject);
 
     return subject;

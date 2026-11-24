@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { CarroAttributes } from './carro';
 import type { DerechosDePasoAttributes } from './derechos_de_paso';
 import { AbstractElement } from '../../common/abstract_element';
@@ -19,8 +19,8 @@ export class TransporteFerroviario extends AbstractElement<TransporteFerroviario
     ];
   }
 
-  public addDerechosDePaso(attributes: AttributesRecord<DerechosDePasoAttributes> = {}): DerechosDePaso {
-    const subject = new DerechosDePaso(attributes);
+  public addDerechosDePaso(attributes: AttributesRecord<DerechosDePasoAttributes> = {}, children: XmlNodeInterface[] = []): DerechosDePaso {
+    const subject = new DerechosDePaso(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -34,8 +34,8 @@ export class TransporteFerroviario extends AbstractElement<TransporteFerroviario
     return this;
   }
 
-  public addCarro(attributes: AttributesRecord<CarroAttributes> = {}): Carro {
-    const subject = new Carro(attributes);
+  public addCarro(attributes: AttributesRecord<CarroAttributes> = {}, children: XmlNodeInterface[] = []): Carro {
+    const subject = new Carro(attributes, children);
     this.addChild(subject);
 
     return subject;

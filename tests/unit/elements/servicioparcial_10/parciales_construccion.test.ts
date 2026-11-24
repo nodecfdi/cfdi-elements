@@ -8,7 +8,8 @@ describe('servicioparcial10', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:servicioparcial': 'http://www.sat.gob.mx/servicioparcialconstruccion',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/servicioparcialconstruccion http://www.sat.gob.mx/sitio_internet/cfd/servicioparcialconstruccion/servicioparcialconstruccion.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/servicioparcialconstruccion http://www.sat.gob.mx/sitio_internet/cfd/servicioparcialconstruccion/servicioparcialconstruccion.xsd',
       'Version': '1.0',
     });
     assert.toElementHasChildSingle(element, Inmueble);

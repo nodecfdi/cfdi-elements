@@ -90,9 +90,11 @@ export class ElementsMaker {
 
       valueImports.set(childModule, childName);
 
-      if (child.isSingleAddChild()) {
+      if (child.isSingleAddChild() || child.isMultiple()) {
         cfdiCoreTypes.add('XmlNodeInterface');
-      } else {
+      }
+
+      if (!child.isSingleAddChild()) {
         cfdiCoreTypes.add('AttributesRecord');
         if (childHasAttributes) {
           addNamedTypeImport(childModule, `${childName}Attributes`);

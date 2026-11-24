@@ -4,7 +4,6 @@ import { Leyenda, LeyendasFiscales } from '../../../../src/elements/leyendas_fis
 describe('leyendasFisc10', () => {
   test('leyendas fiscales', ({ assert }) => {
     const element = new LeyendasFiscales();
-
     expect(element).toElementHasName('leyendasFisc:LeyendasFiscales');
     expect(element).toElementHasFixedAttributes({
       'xmlns:leyendasFisc': 'http://www.sat.gob.mx/leyendasFiscales',

@@ -36,7 +36,8 @@ describe('nomina12', () => {
     expect(element).toElementHasFixedAttributes({
       'xmlns:nomina12': 'http://www.sat.gob.mx/nomina12',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd',
+      'xsi:schemaLocation':
+        'http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd',
       'Version': '1.2',
     });
     assert.toElementHasChildSingle(element, Emisor);
@@ -85,10 +86,7 @@ describe('nomina12', () => {
   test('percepcion', ({ assert }) => {
     const element = new Percepcion();
     expect(element).toElementHasName('nomina12:Percepcion');
-    expect(element).toElementHasOrder([
-      'nomina12:AccionesOTitulos',
-      'nomina12:HorasExtra',
-    ]);
+    expect(element).toElementHasOrder(['nomina12:AccionesOTitulos', 'nomina12:HorasExtra']);
     assert.toElementHasChildSingle(element, AccionesOTitulos);
     assert.toElementHasChildMultiple(element, HorasExtra);
   });

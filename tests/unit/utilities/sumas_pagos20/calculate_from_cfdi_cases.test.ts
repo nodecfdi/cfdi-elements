@@ -51,7 +51,7 @@ describe('sumas pagos20 calculate from cfdi cases', () => {
     }
 
     const totales = pagos.getTotales();
-    expect(totales.getTotal().toFixed(2)).toBe(nodeTotales.getAttribute('MontoTotalPagos'));
+    expect(totales.getTotal()).toStrictEqual(new Decimal(nodeTotales.getAttribute('MontoTotalPagos')));
     checkAttributeDecimal(nodeTotales, 'TotalRetencionesIVA', totales.getRetencionIva());
     checkAttributeDecimal(nodeTotales, 'TotalRetencionesISR', totales.getRetencionIsr());
     checkAttributeDecimal(nodeTotales, 'TotalRetencionesIEPS', totales.getRetencionIeps());

@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { ImpRetenidosAttributes } from './imp_retenidos';
 import { AbstractElement } from '../../common/abstract_element';
 import { ImpRetenidos } from './imp_retenidos';
@@ -16,8 +16,8 @@ export class Totales extends AbstractElement<TotalesAttributes> {
     return 'retenciones:Totales';
   }
 
-  public addImpRetenidos(attributes: AttributesRecord<ImpRetenidosAttributes> = {}): ImpRetenidos {
-    const subject = new ImpRetenidos(attributes);
+  public addImpRetenidos(attributes: AttributesRecord<ImpRetenidosAttributes> = {}, children: XmlNodeInterface[] = []): ImpRetenidos {
+    const subject = new ImpRetenidos(attributes, children);
     this.addChild(subject);
 
     return subject;

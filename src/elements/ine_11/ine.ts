@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { EntidadAttributes } from './entidad';
 import { AbstractElement } from '../../common/abstract_element';
 import { Entidad } from './entidad';
@@ -20,8 +20,8 @@ export class INE extends AbstractElement<INEAttributes> {
     };
   }
 
-  public addEntidad(attributes: AttributesRecord<EntidadAttributes> = {}): Entidad {
-    const subject = new Entidad(attributes);
+  public addEntidad(attributes: AttributesRecord<EntidadAttributes> = {}, children: XmlNodeInterface[] = []): Entidad {
+    const subject = new Entidad(attributes, children);
     this.addChild(subject);
 
     return subject;

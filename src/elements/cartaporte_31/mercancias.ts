@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { AutotransporteAttributes } from './autotransporte';
 import type { MercanciaAttributes } from './mercancia';
 import type { TransporteAereoAttributes } from './transporte_aereo';
@@ -34,8 +34,8 @@ export class Mercancias extends AbstractElement<MercanciasAttributes> {
     ];
   }
 
-  public addMercancia(attributes: AttributesRecord<MercanciaAttributes> = {}): Mercancia {
-    const subject = new Mercancia(attributes);
+  public addMercancia(attributes: AttributesRecord<MercanciaAttributes> = {}, children: XmlNodeInterface[] = []): Mercancia {
+    const subject = new Mercancia(attributes, children);
     this.addChild(subject);
 
     return subject;

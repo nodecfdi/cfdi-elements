@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { AccionesOTitulosAttributes } from './acciones_o_titulos';
 import type { HorasExtraAttributes } from './horas_extra';
 import { AbstractElement } from '../../common/abstract_element';
@@ -35,8 +35,8 @@ export class Percepcion extends AbstractElement<PercepcionAttributes> {
     return subject;
   }
 
-  public addHorasExtra(attributes: AttributesRecord<HorasExtraAttributes> = {}): HorasExtra {
-    const subject = new HorasExtra(attributes);
+  public addHorasExtra(attributes: AttributesRecord<HorasExtraAttributes> = {}, children: XmlNodeInterface[] = []): HorasExtra {
+    const subject = new HorasExtra(attributes, children);
     this.addChild(subject);
 
     return subject;

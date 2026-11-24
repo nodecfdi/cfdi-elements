@@ -1,4 +1,5 @@
 import type { AbstractElement } from '../src/common/abstract_element';
+import { XmlNode } from '@nodecfdi/cfdi-core';
 import { expect } from 'vitest';
 
 expect.extend({
@@ -26,10 +27,26 @@ expect.extend({
     const { isNot } = this;
     const elementClass = received.constructor.name;
 
+    if (JSON.stringify(received.getChildrenOrder()) !== JSON.stringify(expected)) {
+      return {
+        pass: false,
+        message: () =>
+          `The element ${elementClass} should ${isNot ? 'not ' : ''}have the same children order, actually is ${JSON.stringify(received.getChildrenOrder())}`,
+      };
+    }
+
+    // Children added in reverse order must be sorted, use a fresh instance to not alter the received element
+    const fresh = new (received.constructor as new () => AbstractElement)();
+    for (const name of expected.toReversed()) {
+      fresh.addChild(new XmlNode(name));
+    }
+
+    const sorted = [...fresh.children()].map((child) => child.name());
+
     return {
-      pass: JSON.stringify(received.getChildrenOrder()) === JSON.stringify(expected),
+      pass: JSON.stringify(sorted) === JSON.stringify(expected),
       message: () =>
-        `The element ${elementClass} should ${isNot ? 'not ' : ''}have the same children order, actually is ${JSON.stringify(received.getChildrenOrder())}`,
+        `The element ${elementClass} should ${isNot ? 'not ' : ''}sort its children as ${JSON.stringify(expected)}, actually is ${JSON.stringify(sorted)}`,
     };
   },
 });

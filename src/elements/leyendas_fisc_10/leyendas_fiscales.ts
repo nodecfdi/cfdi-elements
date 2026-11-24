@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { LeyendaAttributes } from './leyenda';
 import { AbstractElement } from '../../common/abstract_element';
 import { Leyenda } from './leyenda';
@@ -20,8 +20,8 @@ export class LeyendasFiscales extends AbstractElement<LeyendasFiscalesAttributes
     };
   }
 
-  public addLeyenda(attributes: AttributesRecord<LeyendaAttributes> = {}): Leyenda {
-    const subject = new Leyenda(attributes);
+  public addLeyenda(attributes: AttributesRecord<LeyendaAttributes> = {}, children: XmlNodeInterface[] = []): Leyenda {
+    const subject = new Leyenda(attributes, children);
     this.addChild(subject);
 
     return subject;

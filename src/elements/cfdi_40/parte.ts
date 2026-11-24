@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { InformacionAduaneraAttributes } from './informacion_aduanera';
 import { AbstractElement } from '../../common/abstract_element';
 import { InformacionAduanera } from './informacion_aduanera';
@@ -17,8 +17,8 @@ export class Parte extends AbstractElement<ParteAttributes> {
     return 'cfdi:Parte';
   }
 
-  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}): InformacionAduanera {
-    const subject = new InformacionAduanera(attributes);
+  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}, children: XmlNodeInterface[] = []): InformacionAduanera {
+    const subject = new InformacionAduanera(attributes, children);
     this.addChild(subject);
 
     return subject;

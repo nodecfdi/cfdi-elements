@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { CantidadTransportaAttributes } from './cantidad_transporta';
 import type { DetalleMercanciaAttributes } from './detalle_mercancia';
 import type { DocumentacionAduaneraAttributes } from './documentacion_aduanera';
@@ -63,8 +63,8 @@ export class Mercancia extends AbstractElement<MercanciaAttributes> {
     ];
   }
 
-  public addDocumentacionAduanera(attributes: AttributesRecord<DocumentacionAduaneraAttributes> = {}): DocumentacionAduanera {
-    const subject = new DocumentacionAduanera(attributes);
+  public addDocumentacionAduanera(attributes: AttributesRecord<DocumentacionAduaneraAttributes> = {}, children: XmlNodeInterface[] = []): DocumentacionAduanera {
+    const subject = new DocumentacionAduanera(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -78,8 +78,8 @@ export class Mercancia extends AbstractElement<MercanciaAttributes> {
     return this;
   }
 
-  public addGuiasIdentificacion(attributes: AttributesRecord<GuiasIdentificacionAttributes> = {}): GuiasIdentificacion {
-    const subject = new GuiasIdentificacion(attributes);
+  public addGuiasIdentificacion(attributes: AttributesRecord<GuiasIdentificacionAttributes> = {}, children: XmlNodeInterface[] = []): GuiasIdentificacion {
+    const subject = new GuiasIdentificacion(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -93,8 +93,8 @@ export class Mercancia extends AbstractElement<MercanciaAttributes> {
     return this;
   }
 
-  public addCantidadTransporta(attributes: AttributesRecord<CantidadTransportaAttributes> = {}): CantidadTransporta {
-    const subject = new CantidadTransporta(attributes);
+  public addCantidadTransporta(attributes: AttributesRecord<CantidadTransportaAttributes> = {}, children: XmlNodeInterface[] = []): CantidadTransporta {
+    const subject = new CantidadTransporta(attributes, children);
     this.addChild(subject);
 
     return subject;

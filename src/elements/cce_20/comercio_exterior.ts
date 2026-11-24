@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DestinatarioAttributes } from './destinatario';
 import type { EmisorAttributes } from './emisor';
 import type { PropietarioAttributes } from './propietario';
@@ -58,8 +58,8 @@ export class ComercioExterior extends AbstractElement<ComercioExteriorAttributes
     return subject;
   }
 
-  public addPropietario(attributes: AttributesRecord<PropietarioAttributes> = {}): Propietario {
-    const subject = new Propietario(attributes);
+  public addPropietario(attributes: AttributesRecord<PropietarioAttributes> = {}, children: XmlNodeInterface[] = []): Propietario {
+    const subject = new Propietario(attributes, children);
     this.addChild(subject);
 
     return subject;
@@ -84,8 +84,8 @@ export class ComercioExterior extends AbstractElement<ComercioExteriorAttributes
     return subject;
   }
 
-  public addDestinatario(attributes: AttributesRecord<DestinatarioAttributes> = {}): Destinatario {
-    const subject = new Destinatario(attributes);
+  public addDestinatario(attributes: AttributesRecord<DestinatarioAttributes> = {}, children: XmlNodeInterface[] = []): Destinatario {
+    const subject = new Destinatario(attributes, children);
     this.addChild(subject);
 
     return subject;

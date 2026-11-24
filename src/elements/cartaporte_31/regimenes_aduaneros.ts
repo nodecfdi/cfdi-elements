@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { RegimenAduaneroCCPAttributes } from './regimen_aduanero_ccp';
 import { AbstractElement } from '../../common/abstract_element';
 import { RegimenAduaneroCCP } from './regimen_aduanero_ccp';
@@ -8,8 +8,8 @@ export class RegimenesAduaneros extends AbstractElement {
     return 'cartaporte31:RegimenesAduaneros';
   }
 
-  public addRegimenAduaneroCCP(attributes: AttributesRecord<RegimenAduaneroCCPAttributes> = {}): RegimenAduaneroCCP {
-    const subject = new RegimenAduaneroCCP(attributes);
+  public addRegimenAduaneroCCP(attributes: AttributesRecord<RegimenAduaneroCCPAttributes> = {}, children: XmlNodeInterface[] = []): RegimenAduaneroCCP {
+    const subject = new RegimenAduaneroCCP(attributes, children);
     this.addChild(subject);
 
     return subject;

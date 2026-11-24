@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DeterminadoAttributes } from './determinado';
 import { AbstractElement } from '../../common/abstract_element';
 import { Determinado } from './determinado';
@@ -8,8 +8,8 @@ export class Determinados extends AbstractElement {
     return 'consumodecombustibles11:Determinados';
   }
 
-  public addDeterminado(attributes: AttributesRecord<DeterminadoAttributes> = {}): Determinado {
-    const subject = new Determinado(attributes);
+  public addDeterminado(attributes: AttributesRecord<DeterminadoAttributes> = {}, children: XmlNodeInterface[] = []): Determinado {
+    const subject = new Determinado(attributes, children);
     this.addChild(subject);
 
     return subject;

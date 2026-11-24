@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { RemolqueAttributes } from './remolque';
 import { AbstractElement } from '../../common/abstract_element';
 import { Remolque } from './remolque';
@@ -8,8 +8,8 @@ export class Remolques extends AbstractElement {
     return 'cartaporte31:Remolques';
   }
 
-  public addRemolque(attributes: AttributesRecord<RemolqueAttributes> = {}): Remolque {
-    const subject = new Remolque(attributes);
+  public addRemolque(attributes: AttributesRecord<RemolqueAttributes> = {}, children: XmlNodeInterface[] = []): Remolque {
+    const subject = new Remolque(attributes, children);
     this.addChild(subject);
 
     return subject;

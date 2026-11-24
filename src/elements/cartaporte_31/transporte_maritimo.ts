@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { ContenedorMaritimoAttributes } from './contenedor_maritimo';
 import { AbstractElement } from '../../common/abstract_element';
 import { ContenedorMaritimo } from './contenedor_maritimo';
@@ -32,8 +32,8 @@ export class TransporteMaritimo extends AbstractElement<TransporteMaritimoAttrib
     return 'cartaporte31:TransporteMaritimo';
   }
 
-  public addContenedor(attributes: AttributesRecord<ContenedorMaritimoAttributes> = {}): ContenedorMaritimo {
-    const subject = new ContenedorMaritimo(attributes);
+  public addContenedor(attributes: AttributesRecord<ContenedorMaritimoAttributes> = {}, children: XmlNodeInterface[] = []): ContenedorMaritimo {
+    const subject = new ContenedorMaritimo(attributes, children);
     this.addChild(subject);
 
     return subject;

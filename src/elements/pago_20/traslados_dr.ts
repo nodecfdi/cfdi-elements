@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { TrasladoDRAttributes } from './traslado_dr';
 import { AbstractElement } from '../../common/abstract_element';
 import { TrasladoDR } from './traslado_dr';
@@ -8,8 +8,8 @@ export class TrasladosDR extends AbstractElement {
     return 'pago20:TrasladosDR';
   }
 
-  public addTrasladoDR(attributes: AttributesRecord<TrasladoDRAttributes> = {}): TrasladoDR {
-    const subject = new TrasladoDR(attributes);
+  public addTrasladoDR(attributes: AttributesRecord<TrasladoDRAttributes> = {}, children: XmlNodeInterface[] = []): TrasladoDR {
+    const subject = new TrasladoDR(attributes, children);
     this.addChild(subject);
 
     return subject;

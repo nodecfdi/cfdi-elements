@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { RetencionAttributes } from './retencion';
 import { AbstractElement } from '../../common/abstract_element';
 import { Retencion } from './retencion';
@@ -8,8 +8,8 @@ export class Retenciones extends AbstractElement {
     return 'cfdi:Retenciones';
   }
 
-  public addRetencion(attributes: AttributesRecord<RetencionAttributes> = {}): Retencion {
-    const subject = new Retencion(attributes);
+  public addRetencion(attributes: AttributesRecord<RetencionAttributes> = {}, children: XmlNodeInterface[] = []): Retencion {
+    const subject = new Retencion(attributes, children);
     this.addChild(subject);
 
     return subject;

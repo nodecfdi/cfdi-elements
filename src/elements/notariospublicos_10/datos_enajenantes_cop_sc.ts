@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { DatosEnajenanteCopSCAttributes } from './datos_enajenante_cop_sc';
 import { AbstractElement } from '../../common/abstract_element';
 import { DatosEnajenanteCopSC } from './datos_enajenante_cop_sc';
@@ -8,8 +8,8 @@ export class DatosEnajenantesCopSC extends AbstractElement {
     return 'notariospublicos:DatosEnajenantesCopSC';
   }
 
-  public addDatosEnajenanteCopSC(attributes: AttributesRecord<DatosEnajenanteCopSCAttributes> = {}): DatosEnajenanteCopSC {
-    const subject = new DatosEnajenanteCopSC(attributes);
+  public addDatosEnajenanteCopSC(attributes: AttributesRecord<DatosEnajenanteCopSCAttributes> = {}, children: XmlNodeInterface[] = []): DatosEnajenanteCopSC {
+    const subject = new DatosEnajenanteCopSC(attributes, children);
     this.addChild(subject);
 
     return subject;

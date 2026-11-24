@@ -1,4 +1,4 @@
-import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { CfdiRelacionadoAttributes } from './cfdi_relacionado';
 import { AbstractElement } from '../../common/abstract_element';
 import { CfdiRelacionado } from './cfdi_relacionado';
@@ -10,8 +10,8 @@ export class CfdiRelacionados extends AbstractElement<CfdiRelacionadosAttributes
     return 'cfdi:CfdiRelacionados';
   }
 
-  public addCfdiRelacionado(attributes: AttributesRecord<CfdiRelacionadoAttributes> = {}): CfdiRelacionado {
-    const subject = new CfdiRelacionado(attributes);
+  public addCfdiRelacionado(attributes: AttributesRecord<CfdiRelacionadoAttributes> = {}, children: XmlNodeInterface[] = []): CfdiRelacionado {
+    const subject = new CfdiRelacionado(attributes, children);
     this.addChild(subject);
 
     return subject;
