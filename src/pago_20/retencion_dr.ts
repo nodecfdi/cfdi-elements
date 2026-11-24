@@ -1,6 +1,13 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class RetencionDR extends AbstractElement {
+export type RetencionDRAttributes
+  = | 'BaseDR'
+    | 'ImpuestoDR'
+    | 'TipoFactorDR'
+    | 'TasaOCuotaDR'
+    | 'ImporteDR';
+
+export default class RetencionDR extends AbstractElement<RetencionDRAttributes> {
   public getElementName(): string {
     return 'pago20:RetencionDR';
   }

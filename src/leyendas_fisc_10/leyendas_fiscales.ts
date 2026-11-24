@@ -1,7 +1,11 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { LeyendaAttributes } from './leyenda';
 import AbstractElement from '../common/abstract_element';
 import Leyenda from './leyenda';
 
-export default class LeyendasFiscales extends AbstractElement {
+export type LeyendasFiscalesAttributes = 'version';
+
+export default class LeyendasFiscales extends AbstractElement<LeyendasFiscalesAttributes> {
   public getElementName(): string {
     return 'leyendasFisc:LeyendasFiscales';
   }
@@ -11,19 +15,19 @@ export default class LeyendasFiscales extends AbstractElement {
       'xmlns:leyendasFisc': 'https://www.sat.gob.mx/leyendasFiscales',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/leyendasFiscales https://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
+          'https://www.sat.gob.mx/leyendasFiscales https://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xsd',
       'version': '1.0',
     };
   }
 
-  public addLeyenda(attributes: Record<string, unknown> = {}): Leyenda {
+  public addLeyenda(attributes: AttributesRecord<LeyendaAttributes> = {}): Leyenda {
     const subject = new Leyenda(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiLeyenda(...elementAttributes: Record<string, unknown>[]): this {
+  public multiLeyenda(...elementAttributes: AttributesRecord<LeyendaAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addLeyenda(attributes);
     }

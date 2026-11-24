@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class InformacionAduanera extends AbstractElement {
+export type InformacionAduaneraAttributes = 'NumeroPedimento';
+
+export default class InformacionAduanera extends AbstractElement<InformacionAduaneraAttributes> {
   public getElementName(): string {
     return 'cfdi:InformacionAduanera';
   }

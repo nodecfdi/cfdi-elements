@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class IdentificacionVehicular extends AbstractElement {
+export type IdentificacionVehicularAttributes = 'ConfigVehicular' | 'PesoBrutoVehicular' | 'PlacaVM' | 'AnioModeloVM';
+
+export default class IdentificacionVehicular extends AbstractElement<IdentificacionVehicularAttributes> {
   public getElementName(): string {
     return 'cartaporte31:IdentificacionVehicular';
   }

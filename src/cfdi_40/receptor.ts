@@ -1,6 +1,15 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class Receptor extends AbstractElement {
+export type ReceptorAttributes
+  = | 'Rfc'
+    | 'Nombre'
+    | 'DomicilioFiscalReceptor'
+    | 'ResidenciaFiscal'
+    | 'NumRegIdTrib'
+    | 'RegimenFiscalReceptor'
+    | 'UsoCFDI';
+
+export default class Receptor extends AbstractElement<ReceptorAttributes> {
   public getElementName(): string {
     return 'cfdi:Receptor';
   }

@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class PartesTransporte extends AbstractElement {
+export type PartesTransporteAttributes = 'ParteTransporte';
+
+export default class PartesTransporte extends AbstractElement<PartesTransporteAttributes> {
   public getElementName(): string {
     return 'cartaporte31:PartesTransporte';
   }

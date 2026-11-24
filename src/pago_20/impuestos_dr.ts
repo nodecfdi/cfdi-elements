@@ -1,3 +1,4 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
 import RetencionesDR from './retenciones_dr';
 import TrasladosDR from './traslados_dr';
@@ -8,14 +9,17 @@ export default class ImpuestosDR extends AbstractElement {
   }
 
   public getChildrenOrder(): string[] {
-    return ['pago20:RetencionesDR', 'pago20:TrasladosDR'];
+    return [
+      'pago20:RetencionesDR',
+      'pago20:TrasladosDR',
+    ];
   }
 
   public getRetencionesDR(): RetencionesDR {
     return this.helperGetOrAdd(new RetencionesDR());
   }
 
-  public addRetencionesDR(attributes: Record<string, unknown> = {}): RetencionesDR {
+  public addRetencionesDR(attributes: AttributesRecord = {}): RetencionesDR {
     const subject = this.getRetencionesDR();
     subject.addAttributes(attributes);
 
@@ -26,7 +30,7 @@ export default class ImpuestosDR extends AbstractElement {
     return this.helperGetOrAdd(new TrasladosDR());
   }
 
-  public addTrasladosDR(attributes: Record<string, unknown> = {}): TrasladosDR {
+  public addTrasladosDR(attributes: AttributesRecord = {}): TrasladosDR {
     const subject = this.getTrasladosDR();
     subject.addAttributes(attributes);
 

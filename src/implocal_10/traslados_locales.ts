@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class TrasladosLocales extends AbstractElement {
+export type TrasladosLocalesAttributes = 'ImpLocTrasladado' | 'TasadeTraslado' | 'Importe';
+
+export default class TrasladosLocales extends AbstractElement<TrasladosLocalesAttributes> {
   public getElementName(): string {
     return 'implocal:TrasladosLocales';
   }

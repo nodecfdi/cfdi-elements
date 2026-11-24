@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class ACuentaTerceros extends AbstractElement {
+export type ACuentaTercerosAttributes = 'RfcACuentaTerceros' | 'NombreACuentaTerceros' | 'RegimenFiscalACuentaTerceros' | 'DomicilioFiscalACuentaTerceros';
+
+export default class ACuentaTerceros extends AbstractElement<ACuentaTercerosAttributes> {
   public getElementName(): string {
     return 'cfdi:ACuentaTerceros';
   }

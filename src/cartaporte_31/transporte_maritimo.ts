@@ -1,19 +1,45 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { ContenedorMaritimoAttributes } from './contenedor_maritimo';
 import AbstractElement from '../common/abstract_element';
-import Contenedor from './contenedor_maritimo';
+import ContenedorMaritimo from './contenedor_maritimo';
 
-export default class TransporteMaritimo extends AbstractElement {
+export type TransporteMaritimoAttributes
+  = | 'PermSCT'
+    | 'NumPermisoSCT'
+    | 'NombreAseg'
+    | 'NumPolizaSeguro'
+    | 'TipoEmbarcacion'
+    | 'Matricula'
+    | 'NumeroOMI'
+    | 'AnioEmbarcacion'
+    | 'NombreEmbarc'
+    | 'NacionalidadEmbarc'
+    | 'UnidadesDeArqBruto'
+    | 'TipoCarga'
+    | 'Eslora'
+    | 'Manga'
+    | 'Calado'
+    | 'Puntal'
+    | 'LineaNaviera'
+    | 'NombreAgenteNaviero'
+    | 'NumAutorizacionNaviero'
+    | 'NumViaje'
+    | 'NumConocEmbarc'
+    | 'PermisoTempNavegacion';
+
+export default class TransporteMaritimo extends AbstractElement<TransporteMaritimoAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TransporteMaritimo';
   }
 
-  public addContenedor(attributes: Record<string, unknown> = {}): Contenedor {
-    const subject = new Contenedor(attributes);
+  public addContenedor(attributes: AttributesRecord<ContenedorMaritimoAttributes> = {}): ContenedorMaritimo {
+    const subject = new ContenedorMaritimo(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiContenedor(...elementAttributes: Record<string, unknown>[]): this {
+  public multiContenedor(...elementAttributes: AttributesRecord<ContenedorMaritimoAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addContenedor(attributes);
     }

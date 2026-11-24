@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class Donatarias extends AbstractElement {
+export type DonatariasAttributes = 'version' | 'noAutorizacion' | 'fechaAutorizacion' | 'leyenda';
+
+export default class Donatarias extends AbstractElement<DonatariasAttributes> {
   public getElementName(): string {
     return 'donat:Donatarias';
   }
@@ -10,7 +12,7 @@ export default class Donatarias extends AbstractElement {
       'xmlns:donat': 'https://www.sat.gob.mx/donat',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/donat https://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd',
+          'https://www.sat.gob.mx/donat https://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xsd',
       'version': '1.1',
     };
   }

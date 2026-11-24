@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class RetencionesLocales extends AbstractElement {
+export type RetencionesLocalesAttributes = 'ImpLocRetenido' | 'TasadeRetencion' | 'Importe';
+
+export default class RetencionesLocales extends AbstractElement<RetencionesLocalesAttributes> {
   public getElementName(): string {
     return 'implocal:RetencionesLocales';
   }

@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class RetencionP extends AbstractElement {
+export type RetencionPAttributes = 'ImpuestoP' | 'ImporteP';
+
+export default class RetencionP extends AbstractElement<RetencionPAttributes> {
   public getElementName(): string {
     return 'pago20:RetencionP';
   }

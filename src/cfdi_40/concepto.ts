@@ -1,6 +1,12 @@
-import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { ACuentaTercerosAttributes } from './a_cuenta_terceros';
+import type { CuentaPredialAttributes } from './cuenta_predial';
+import type { InformacionAduaneraAttributes } from './informacion_aduanera';
+import type { ParteAttributes } from './parte';
 import type Retencion from './retencion';
+import type { RetencionAttributes } from './retencion';
 import type Traslado from './traslado';
+import type { TrasladoAttributes } from './traslado';
 import AbstractElement from '../common/abstract_element';
 import ACuentaTerceros from './a_cuenta_terceros';
 import ComplementoConcepto from './complemento_concepto';
@@ -9,7 +15,19 @@ import CuentaPredial from './cuenta_predial';
 import InformacionAduanera from './informacion_aduanera';
 import Parte from './parte';
 
-export default class Concepto extends AbstractElement {
+export type ConceptoAttributes
+  = | 'ClaveProdServ'
+    | 'NoIdentificacion'
+    | 'Cantidad'
+    | 'ClaveUnidad'
+    | 'Unidad'
+    | 'Descripcion'
+    | 'ValorUnitario'
+    | 'Importe'
+    | 'Descuento'
+    | 'ObjetoImp';
+
+export default class Concepto extends AbstractElement<ConceptoAttributes> {
   public getElementName(): string {
     return 'cfdi:Concepto';
   }
@@ -29,7 +47,7 @@ export default class Concepto extends AbstractElement {
     return this.helperGetOrAdd(new ConceptoImpuestos());
   }
 
-  public addImpuestos(attributes: Record<string, unknown> = {}): ConceptoImpuestos {
+  public addImpuestos(attributes: AttributesRecord = {}): ConceptoImpuestos {
     const subject = this.getImpuestos();
     subject.addAttributes(attributes);
 
@@ -40,21 +58,21 @@ export default class Concepto extends AbstractElement {
     return this.helperGetOrAdd(new ACuentaTerceros());
   }
 
-  public addACuentaTerceros(attributes: Record<string, unknown> = {}): ACuentaTerceros {
+  public addACuentaTerceros(attributes: AttributesRecord<ACuentaTercerosAttributes> = {}): ACuentaTerceros {
     const subject = this.getACuentaTerceros();
     subject.addAttributes(attributes);
 
     return subject;
   }
 
-  public addInformacionAduanera(attributes: Record<string, unknown> = {}): InformacionAduanera {
+  public addInformacionAduanera(attributes: AttributesRecord<InformacionAduaneraAttributes> = {}): InformacionAduanera {
     const subject = new InformacionAduanera(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiInformacionAduanera(...elementAttributes: Record<string, unknown>[]): this {
+  public multiInformacionAduanera(...elementAttributes: AttributesRecord<InformacionAduaneraAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addInformacionAduanera(attributes);
     }
@@ -62,14 +80,14 @@ export default class Concepto extends AbstractElement {
     return this;
   }
 
-  public addCuentaPredial(attributes: Record<string, unknown> = {}): CuentaPredial {
+  public addCuentaPredial(attributes: AttributesRecord<CuentaPredialAttributes> = {}): CuentaPredial {
     const subject = new CuentaPredial(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiCuentaPredial(...elementAttributes: Record<string, unknown>[]): this {
+  public multiCuentaPredial(...elementAttributes: AttributesRecord<CuentaPredialAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addCuentaPredial(attributes);
     }
@@ -87,14 +105,14 @@ export default class Concepto extends AbstractElement {
     return this;
   }
 
-  public addParte(attributes: Record<string, unknown> = {}): Parte {
+  public addParte(attributes: AttributesRecord<ParteAttributes> = {}): Parte {
     const subject = new Parte(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiParte(...elementAttributes: Record<string, unknown>[]): this {
+  public multiParte(...elementAttributes: AttributesRecord<ParteAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addParte(attributes);
     }
@@ -102,21 +120,21 @@ export default class Concepto extends AbstractElement {
     return this;
   }
 
-  public addTraslado(attributes: Record<string, unknown> = {}): Traslado {
+  public addTraslado(attributes: AttributesRecord<TrasladoAttributes> = {}): Traslado {
     return this.getImpuestos().getTraslados().addTraslado(attributes);
   }
 
-  public multiTraslado(...elementAttributes: Record<string, unknown>[]): this {
+  public multiTraslado(...elementAttributes: AttributesRecord<TrasladoAttributes>[]): this {
     this.getImpuestos().getTraslados().multiTraslado(...elementAttributes);
 
     return this;
   }
 
-  public addRetencion(attributes: Record<string, unknown> = {}): Retencion {
+  public addRetencion(attributes: AttributesRecord<RetencionAttributes> = {}): Retencion {
     return this.getImpuestos().getRetenciones().addRetencion(attributes);
   }
 
-  public multiRetencion(...elementAttributes: Record<string, unknown>[]): this {
+  public multiRetencion(...elementAttributes: AttributesRecord<RetencionAttributes>[]): this {
     this.getImpuestos().getRetenciones().multiRetencion(...elementAttributes);
 
     return this;

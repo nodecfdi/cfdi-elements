@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class ComisionDelServicio extends AbstractElement {
+export type ComisionDelServicioAttributes = 'Base' | 'Porcentaje' | 'Importe';
+
+export default class ComisionDelServicio extends AbstractElement<ComisionDelServicioAttributes> {
   public getElementName(): string {
     return 'plataformasTecnologicas:ComisionDelServicio';
   }

@@ -1,19 +1,23 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { ContenedorFerroviarioAttributes } from './contenedor_ferroviario';
 import AbstractElement from '../common/abstract_element';
-import Contenedor from './contenedor_ferroviario';
+import ContenedorFerroviario from './contenedor_ferroviario';
 
-export default class Carro extends AbstractElement {
+export type CarroAttributes = 'TipoCarro' | 'MatriculaCarro' | 'GuiaCarro' | 'ToneladasNetasCarro';
+
+export default class Carro extends AbstractElement<CarroAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Carro';
   }
 
-  public addContenedor(attributes: Record<string, unknown> = {}): Contenedor {
-    const subject = new Contenedor(attributes);
+  public addContenedor(attributes: AttributesRecord<ContenedorFerroviarioAttributes> = {}): ContenedorFerroviario {
+    const subject = new ContenedorFerroviario(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiContenedor(...elementAttributes: Record<string, unknown>[]): this {
+  public multiContenedor(...elementAttributes: AttributesRecord<ContenedorFerroviarioAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addContenedor(attributes);
     }

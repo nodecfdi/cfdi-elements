@@ -1,7 +1,15 @@
-import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
+import type { CfdiRelacionadosAttributes } from './cfdi_relacionados';
 import type Concepto from './concepto';
+import type { ConceptoAttributes } from './concepto';
+import type { EmisorAttributes } from './emisor';
+import type { ImpuestosAttributes } from './impuestos';
+import type { InformacionGlobalAttributes } from './informacion_global';
+import type { ReceptorAttributes } from './receptor';
 import type Retencion from './retencion';
+import type { RetencionAttributes } from './retencion';
 import type Traslado from './traslado';
+import type { TrasladoAttributes } from './traslado';
 import AbstractElement from '../common/abstract_element';
 import Addenda from './addenda';
 import CfdiRelacionados from './cfdi_relacionados';
@@ -12,7 +20,28 @@ import Impuestos from './impuestos';
 import InformacionGlobal from './informacion_global';
 import Receptor from './receptor';
 
-export default class Comprobante extends AbstractElement {
+export type ComprobanteAttributes
+  = | 'Version'
+    | 'Serie'
+    | 'Folio'
+    | 'Fecha'
+    | 'Sello'
+    | 'FormaPago'
+    | 'NoCertificado'
+    | 'Certificado'
+    | 'CondicionesDePago'
+    | 'SubTotal'
+    | 'Descuento'
+    | 'Moneda'
+    | 'TipoCambio'
+    | 'Total'
+    | 'TipoDeComprobante'
+    | 'Exportacion'
+    | 'MetodoPago'
+    | 'LugarExpedicion'
+    | 'Confirmacion';
+
+export default class Comprobante extends AbstractElement<ComprobanteAttributes> {
   public getElementName(): string {
     return 'cfdi:Comprobante';
   }
@@ -44,21 +73,21 @@ export default class Comprobante extends AbstractElement {
     return this.helperGetOrAdd(new InformacionGlobal());
   }
 
-  public addInformacionGlobal(attributes: Record<string, unknown> = {}): InformacionGlobal {
+  public addInformacionGlobal(attributes: AttributesRecord<InformacionGlobalAttributes> = {}): InformacionGlobal {
     const subject = this.getInformacionGlobal();
     subject.addAttributes(attributes);
 
     return subject;
   }
 
-  public addCfdiRelacionados(attributes: Record<string, unknown> = {}): CfdiRelacionados {
+  public addCfdiRelacionados(attributes: AttributesRecord<CfdiRelacionadosAttributes> = {}): CfdiRelacionados {
     const subject = new CfdiRelacionados(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiCfdiRelacionados(...elementAttributes: Record<string, unknown>[]): this {
+  public multiCfdiRelacionados(...elementAttributes: AttributesRecord<CfdiRelacionadosAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addCfdiRelacionados(attributes);
     }
@@ -70,7 +99,7 @@ export default class Comprobante extends AbstractElement {
     return this.helperGetOrAdd(new Emisor());
   }
 
-  public addEmisor(attributes: Record<string, unknown> = {}): Emisor {
+  public addEmisor(attributes: AttributesRecord<EmisorAttributes> = {}): Emisor {
     const subject = this.getEmisor();
     subject.addAttributes(attributes);
 
@@ -81,7 +110,7 @@ export default class Comprobante extends AbstractElement {
     return this.helperGetOrAdd(new Receptor());
   }
 
-  public addReceptor(attributes: Record<string, unknown> = {}): Receptor {
+  public addReceptor(attributes: AttributesRecord<ReceptorAttributes> = {}): Receptor {
     const subject = this.getReceptor();
     subject.addAttributes(attributes);
 
@@ -92,7 +121,7 @@ export default class Comprobante extends AbstractElement {
     return this.helperGetOrAdd(new Conceptos());
   }
 
-  public addConceptos(attributes: Record<string, unknown> = {}): Conceptos {
+  public addConceptos(attributes: AttributesRecord = {}): Conceptos {
     const subject = this.getConceptos();
     subject.addAttributes(attributes);
 
@@ -103,7 +132,7 @@ export default class Comprobante extends AbstractElement {
     return this.helperGetOrAdd(new Impuestos());
   }
 
-  public addImpuestos(attributes: Record<string, unknown> = {}): Impuestos {
+  public addImpuestos(attributes: AttributesRecord<ImpuestosAttributes> = {}): Impuestos {
     const subject = this.getImpuestos();
     subject.addAttributes(attributes);
 
@@ -130,25 +159,25 @@ export default class Comprobante extends AbstractElement {
     return this;
   }
 
-  public addConcepto(attributes: Record<string, unknown> = {}): Concepto {
+  public addConcepto(attributes: AttributesRecord<ConceptoAttributes> = {}): Concepto {
     return this.getConceptos().addConcepto(attributes);
   }
 
-  public addTraslado(attributes: Record<string, unknown> = {}): Traslado {
+  public addTraslado(attributes: AttributesRecord<TrasladoAttributes> = {}): Traslado {
     return this.getImpuestos().getTraslados().addTraslado(attributes);
   }
 
-  public multiTraslado(...elementAttributes: Record<string, unknown>[]): this {
+  public multiTraslado(...elementAttributes: AttributesRecord<TrasladoAttributes>[]): this {
     this.getImpuestos().getTraslados().multiTraslado(...elementAttributes);
 
     return this;
   }
 
-  public addRetencion(attributes: Record<string, unknown> = {}): Retencion {
+  public addRetencion(attributes: AttributesRecord<RetencionAttributes> = {}): Retencion {
     return this.getImpuestos().getRetenciones().addRetencion(attributes);
   }
 
-  public multiRetencion(...elementAttributes: Record<string, unknown>[]): this {
+  public multiRetencion(...elementAttributes: AttributesRecord<RetencionAttributes>[]): this {
     this.getImpuestos().getRetenciones().multiRetencion(...elementAttributes);
 
     return this;

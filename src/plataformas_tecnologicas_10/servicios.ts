@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { DetallesDelServicioAttributes } from './detalles_del_servicio';
 import AbstractElement from '../common/abstract_element';
 import DetallesDelServicio from './detalles_del_servicio';
 
@@ -6,14 +8,14 @@ export default class Servicios extends AbstractElement {
     return 'plataformasTecnologicas:Servicios';
   }
 
-  public addDetallesDelServicio(attributes: Record<string, unknown> = {}): DetallesDelServicio {
+  public addDetallesDelServicio(attributes: AttributesRecord<DetallesDelServicioAttributes> = {}): DetallesDelServicio {
     const subject = new DetallesDelServicio(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiDetallesDelServicio(...elementAttributes: Record<string, unknown>[]): this {
+  public multiDetallesDelServicio(...elementAttributes: AttributesRecord<DetallesDelServicioAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addDetallesDelServicio(attributes);
     }

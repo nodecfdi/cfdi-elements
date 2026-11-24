@@ -1,3 +1,4 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
 import Retenciones from './retenciones';
 import Traslados from './traslados';
@@ -18,7 +19,7 @@ export default class ConceptoImpuestos extends AbstractElement {
     return this.helperGetOrAdd(new Traslados());
   }
 
-  public addTraslados(attributes: Record<string, unknown> = {}): Traslados {
+  public addTraslados(attributes: AttributesRecord = {}): Traslados {
     const subject = this.getTraslados();
     subject.addAttributes(attributes);
 
@@ -29,7 +30,7 @@ export default class ConceptoImpuestos extends AbstractElement {
     return this.helperGetOrAdd(new Retenciones());
   }
 
-  public addRetenciones(attributes: Record<string, unknown> = {}): Retenciones {
+  public addRetenciones(attributes: AttributesRecord = {}): Retenciones {
     const subject = this.getRetenciones();
     subject.addAttributes(attributes);
 

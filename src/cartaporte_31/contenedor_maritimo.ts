@@ -1,7 +1,16 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import AbstractElement from '../common/abstract_element';
 import RemolquesCCP from './remolques_ccp';
 
-export default class ContenedorMaritimo extends AbstractElement {
+export type ContenedorMaritimoAttributes
+  = | 'TipoContenedor'
+    | 'MatriculaContenedor'
+    | 'NumPrecinto'
+    | 'IdCCPRelacionado'
+    | 'PlacaVMCCP'
+    | 'FechaCertificacionCCP';
+
+export default class ContenedorMaritimo extends AbstractElement<ContenedorMaritimoAttributes> {
   public getElementName(): string {
     return 'cartaporte31:Contenedor';
   }
@@ -10,7 +19,7 @@ export default class ContenedorMaritimo extends AbstractElement {
     return this.helperGetOrAdd(new RemolquesCCP());
   }
 
-  public addRemolquesCCP(attributes: Record<string, unknown> = {}): RemolquesCCP {
+  public addRemolquesCCP(attributes: AttributesRecord = {}): RemolquesCCP {
     const subject = this.getRemolquesCCP();
     subject.addAttributes(attributes);
 

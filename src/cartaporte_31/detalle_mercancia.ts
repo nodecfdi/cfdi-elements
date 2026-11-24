@@ -1,6 +1,13 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class DetalleMercancia extends AbstractElement {
+export type DetalleMercanciaAttributes
+  = | 'UnidadPesoMerc'
+    | 'PesoBruto'
+    | 'PesoNeto'
+    | 'PesoTara'
+    | 'NumPiezas';
+
+export default class DetalleMercancia extends AbstractElement<DetalleMercanciaAttributes> {
   public getElementName(): string {
     return 'cartaporte31:DetalleMercancia';
   }

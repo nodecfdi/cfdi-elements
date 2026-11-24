@@ -1,10 +1,24 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { MercanciasAttributes } from './mercancias';
 import AbstractElement from '../common/abstract_element';
 import FiguraTransporte from './figura_transporte';
 import Mercancias from './mercancias';
 import RegimenesAduaneros from './regimenes_aduaneros';
 import Ubicaciones from './ubicaciones';
 
-export default class CartaPorte extends AbstractElement {
+export type CartaPorteAttributes
+  = | 'Version'
+    | 'IdCCP'
+    | 'TranspInternac'
+    | 'EntradaSalidaMerc'
+    | 'PaisOrigenDestino'
+    | 'ViaEntradaSalida'
+    | 'TotalDistRec'
+    | 'RegistroISTMO'
+    | 'UbicacionPoloOrigen'
+    | 'UbicacionPoloDestino';
+
+export default class CartaPorte extends AbstractElement<CartaPorteAttributes> {
   public getElementName(): string {
     return 'cartaporte31:CartaPorte';
   }
@@ -23,7 +37,7 @@ export default class CartaPorte extends AbstractElement {
       'xmlns:cartaporte31': 'https://www.sat.gob.mx/CartaPorte31',
       'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
       'xsi:schemaLocation':
-        'https://www.sat.gob.mx/CartaPorte31 https://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
+          'https://www.sat.gob.mx/CartaPorte31 https://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
       'Version': '3.1',
     };
   }
@@ -32,7 +46,7 @@ export default class CartaPorte extends AbstractElement {
     return this.helperGetOrAdd(new RegimenesAduaneros());
   }
 
-  public addRegimenesAduaneros(attributes: Record<string, unknown> = {}): RegimenesAduaneros {
+  public addRegimenesAduaneros(attributes: AttributesRecord = {}): RegimenesAduaneros {
     const subject = this.getRegimenesAduaneros();
     subject.addAttributes(attributes);
 
@@ -43,7 +57,7 @@ export default class CartaPorte extends AbstractElement {
     return this.helperGetOrAdd(new Ubicaciones());
   }
 
-  public addUbicaciones(attributes: Record<string, unknown> = {}): Ubicaciones {
+  public addUbicaciones(attributes: AttributesRecord = {}): Ubicaciones {
     const subject = this.getUbicaciones();
     subject.addAttributes(attributes);
 
@@ -54,7 +68,7 @@ export default class CartaPorte extends AbstractElement {
     return this.helperGetOrAdd(new Mercancias());
   }
 
-  public addMercancias(attributes: Record<string, unknown> = {}): Mercancias {
+  public addMercancias(attributes: AttributesRecord<MercanciasAttributes> = {}): Mercancias {
     const subject = this.getMercancias();
     subject.addAttributes(attributes);
 
@@ -65,7 +79,7 @@ export default class CartaPorte extends AbstractElement {
     return this.helperGetOrAdd(new FiguraTransporte());
   }
 
-  public addFiguraTransporte(attributes: Record<string, unknown> = {}): FiguraTransporte {
+  public addFiguraTransporte(attributes: AttributesRecord = {}): FiguraTransporte {
     const subject = this.getFiguraTransporte();
     subject.addAttributes(attributes);
 

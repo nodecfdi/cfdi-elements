@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { RetencionAttributes } from './retencion';
 import AbstractElement from '../common/abstract_element';
 import Retencion from './retencion';
 
@@ -6,14 +8,14 @@ export default class Retenciones extends AbstractElement {
     return 'cfdi:Retenciones';
   }
 
-  public addRetencion(attributes: Record<string, unknown> = {}): Retencion {
+  public addRetencion(attributes: AttributesRecord<RetencionAttributes> = {}): Retencion {
     const subject = new Retencion(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiRetencion(...elementAttributes: Record<string, unknown>[]): this {
+  public multiRetencion(...elementAttributes: AttributesRecord<RetencionAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addRetencion(attributes);
     }

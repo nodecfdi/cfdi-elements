@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class RemolqueCCP extends AbstractElement {
+export type RemolqueCCPAttributes = 'SubTipoRemCCP' | 'PlacaCCP';
+
+export default class RemolqueCCP extends AbstractElement<RemolqueCCPAttributes> {
   public getElementName(): string {
     return 'cartaporte31:RemolqueCCP';
   }

@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { TrasladoAttributes } from './traslado';
 import AbstractElement from '../common/abstract_element';
 import Traslado from './traslado';
 
@@ -6,14 +8,14 @@ export default class Traslados extends AbstractElement {
     return 'cfdi:Traslados';
   }
 
-  public addTraslado(attributes: Record<string, unknown> = {}): Traslado {
+  public addTraslado(attributes: AttributesRecord<TrasladoAttributes> = {}): Traslado {
     const subject = new Traslado(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiTraslado(...elementAttributes: Record<string, unknown>[]): this {
+  public multiTraslado(...elementAttributes: AttributesRecord<TrasladoAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addTraslado(attributes);
     }

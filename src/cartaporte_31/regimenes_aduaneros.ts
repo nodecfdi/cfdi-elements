@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { RegimenAduaneroCCPAttributes } from './regimen_aduanero_ccp';
 import AbstractElement from '../common/abstract_element';
 import RegimenAduaneroCCP from './regimen_aduanero_ccp';
 
@@ -6,14 +8,14 @@ export default class RegimenesAduaneros extends AbstractElement {
     return 'cartaporte31:RegimenesAduaneros';
   }
 
-  public addRegimenAduaneroCCP(attributes: Record<string, unknown> = {}): RegimenAduaneroCCP {
+  public addRegimenAduaneroCCP(attributes: AttributesRecord<RegimenAduaneroCCPAttributes> = {}): RegimenAduaneroCCP {
     const subject = new RegimenAduaneroCCP(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiRegimenAduaneroCCP(...elementAttributes: Record<string, unknown>[]): this {
+  public multiRegimenAduaneroCCP(...elementAttributes: AttributesRecord<RegimenAduaneroCCPAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addRegimenAduaneroCCP(attributes);
     }

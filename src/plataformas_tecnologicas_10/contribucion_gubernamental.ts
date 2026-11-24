@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class ContribucionGubernamental extends AbstractElement {
+export type ContribucionGubernamentalAttributes = 'ImpContrib' | 'EntidadDondePagaLaContribucion';
+
+export default class ContribucionGubernamental extends AbstractElement<ContribucionGubernamentalAttributes> {
   public getElementName(): string {
     return 'plataformasTecnologicas:ContribucionGubernamental';
   }

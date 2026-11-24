@@ -1,24 +1,32 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { CarroAttributes } from './carro';
+import type { DerechosDePasoAttributes } from './derechos_de_paso';
 import AbstractElement from '../common/abstract_element';
 import Carro from './carro';
 import DerechosDePaso from './derechos_de_paso';
 
-export default class TransporteFerroviario extends AbstractElement {
+export type TransporteFerroviarioAttributes = 'TipoDeServicio' | 'TipoDeTrafico' | 'NombreAseg' | 'NumPolizaSeguro';
+
+export default class TransporteFerroviario extends AbstractElement<TransporteFerroviarioAttributes> {
   public getElementName(): string {
     return 'cartaporte31:TransporteFerroviario';
   }
 
   public getChildrenOrder(): string[] {
-    return ['cartaporte31:DerechosDePaso', 'cartaporte31:Carro'];
+    return [
+      'cartaporte31:DerechosDePaso',
+      'cartaporte31:Carro',
+    ];
   }
 
-  public addDerechosDePaso(attributes: Record<string, unknown> = {}): DerechosDePaso {
+  public addDerechosDePaso(attributes: AttributesRecord<DerechosDePasoAttributes> = {}): DerechosDePaso {
     const subject = new DerechosDePaso(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiDerechosDePaso(...elementAttributes: Record<string, unknown>[]): this {
+  public multiDerechosDePaso(...elementAttributes: AttributesRecord<DerechosDePasoAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addDerechosDePaso(attributes);
     }
@@ -26,14 +34,14 @@ export default class TransporteFerroviario extends AbstractElement {
     return this;
   }
 
-  public addCarro(attributes: Record<string, unknown> = {}): Carro {
+  public addCarro(attributes: AttributesRecord<CarroAttributes> = {}): Carro {
     const subject = new Carro(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiCarro(...elementAttributes: Record<string, unknown>[]): this {
+  public multiCarro(...elementAttributes: AttributesRecord<CarroAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addCarro(attributes);
     }

@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { UbicacionAttributes } from './ubicacion';
 import AbstractElement from '../common/abstract_element';
 import Ubicacion from './ubicacion';
 
@@ -6,14 +8,14 @@ export default class Ubicaciones extends AbstractElement {
     return 'cartaporte31:Ubicaciones';
   }
 
-  public addUbicacion(attributes: Record<string, unknown> = {}): Ubicacion {
+  public addUbicacion(attributes: AttributesRecord<UbicacionAttributes> = {}): Ubicacion {
     const subject = new Ubicacion(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiUbicacion(...elementAttributes: Record<string, unknown>[]): this {
+  public multiUbicacion(...elementAttributes: AttributesRecord<UbicacionAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addUbicacion(attributes);
     }

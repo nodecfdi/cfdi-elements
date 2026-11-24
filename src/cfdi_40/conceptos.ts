@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { ConceptoAttributes } from './concepto';
 import AbstractElement from '../common/abstract_element';
 import Concepto from './concepto';
 
@@ -6,14 +8,14 @@ export default class Conceptos extends AbstractElement {
     return 'cfdi:Conceptos';
   }
 
-  public addConcepto(attributes: Record<string, unknown> = {}): Concepto {
+  public addConcepto(attributes: AttributesRecord<ConceptoAttributes> = {}): Concepto {
     const subject = new Concepto(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiConcepto(...elementAttributes: Record<string, unknown>[]): this {
+  public multiConcepto(...elementAttributes: AttributesRecord<ConceptoAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addConcepto(attributes);
     }

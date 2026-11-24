@@ -1,6 +1,8 @@
 import AbstractElement from '../common/abstract_element';
 
-export default class CuentaPredial extends AbstractElement {
+export type CuentaPredialAttributes = 'Numero';
+
+export default class CuentaPredial extends AbstractElement<CuentaPredialAttributes> {
   public getElementName(): string {
     return 'cfdi:CuentaPredial';
   }

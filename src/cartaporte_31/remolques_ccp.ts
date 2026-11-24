@@ -1,3 +1,5 @@
+import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
+import type { RemolqueCCPAttributes } from './remolque_ccp';
 import AbstractElement from '../common/abstract_element';
 import RemolqueCCP from './remolque_ccp';
 
@@ -6,14 +8,14 @@ export default class RemolquesCCP extends AbstractElement {
     return 'cartaporte31:RemolquesCCP';
   }
 
-  public addRemolqueCCP(attributes: Record<string, unknown> = {}): RemolqueCCP {
+  public addRemolqueCCP(attributes: AttributesRecord<RemolqueCCPAttributes> = {}): RemolqueCCP {
     const subject = new RemolqueCCP(attributes);
     this.addChild(subject);
 
     return subject;
   }
 
-  public multiRemolqueCCP(...elementAttributes: Record<string, unknown>[]): this {
+  public multiRemolqueCCP(...elementAttributes: AttributesRecord<RemolqueCCPAttributes>[]): this {
     for (const attributes of elementAttributes) {
       this.addRemolqueCCP(attributes);
     }
