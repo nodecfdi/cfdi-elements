@@ -223,6 +223,13 @@ pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/planesder
   --rename .=PlanesDeRetiro
 ```
 
+### `enajenaciondeacciones_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones/enajenaciondeacciones.xsd \
+  --rename .=EnajenacionDeAcciones
+```
+
 <!-- specifications:end -->
 
 ---
@@ -370,6 +377,13 @@ pnpm make:elements scripts/elements_maker/specifications/intereseshipotecarios_1
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/planesderetiro_11.json src/elements/planesderetiro_11/ --with-tests
+```
+
+
+### `enajenaciondeacciones_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/enajenaciondeacciones_10.json src/elements/enajenaciondeacciones_10/ --with-tests
 ```
 
 <!-- elements:end -->

@@ -1,0 +1,17 @@
+{
+  "prefix": "enajenaciondeacciones",
+  "xml-namespace": "http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones",
+  "xml-schemalocation": "http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones/enajenaciondeacciones.xsd",
+  "version-attribute": "Version",
+  "version-value": "1.0",
+  "root": {
+    "name": "EnajenacionDeAcciones",
+    "attributes": [
+      "Version",
+      "ContratoIntermediacion",
+      "Ganancia",
+      "Perdida"
+    ],
+    "elementName": "EnajenaciondeAcciones"
+  }
+}

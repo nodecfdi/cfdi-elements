@@ -35,6 +35,7 @@
     "./detallista": "./dist/detallista.js",
     "./dividendos10": "./dist/dividendos10.js",
     "./donat11": "./dist/donat11.js",
+    "./enajenaciondeacciones10": "./dist/enajenaciondeacciones10.js",
     "./iedu10": "./dist/iedu10.js",
     "./implocal10": "./dist/implocal10.js",
     "./ine11": "./dist/ine11.js",
