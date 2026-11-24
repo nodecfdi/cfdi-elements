@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { UbicacionAttributes } from './ubicacion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Ubicacion } from './ubicacion';
 
 export class Ubicaciones extends AbstractElement {

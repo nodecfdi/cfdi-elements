@@ -1,5 +1,5 @@
 import type { Decimal } from '@nodecfdi/cfdi-core';
-import type Impuestos from './impuestos';
+import type { Impuestos } from './impuestos';
 
 export interface PagoJson {
   monto: Decimal;
@@ -8,7 +8,7 @@ export interface PagoJson {
   impuestos: Impuestos;
 }
 
-export default class Pago {
+export class Pago {
   private readonly _monto: Decimal;
 
   private readonly _montoMinimo: Decimal;

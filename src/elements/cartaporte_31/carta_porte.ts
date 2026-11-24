@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { MercanciasAttributes } from './mercancias';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { FiguraTransporte } from './figura_transporte';
 import { Mercancias } from './mercancias';
 import { RegimenesAduaneros } from './regimenes_aduaneros';

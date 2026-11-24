@@ -14,7 +14,7 @@ export interface TotalesValues {
   total: Decimal;
 }
 
-export default class Totales {
+export class Totales {
   private readonly _values: TotalesValues;
 
   public constructor(values: TotalesValues) {

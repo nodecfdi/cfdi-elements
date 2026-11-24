@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { LeyendaAttributes } from './leyenda';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Leyenda } from './leyenda';
 
 export type LeyendasFiscalesAttributes = 'version';

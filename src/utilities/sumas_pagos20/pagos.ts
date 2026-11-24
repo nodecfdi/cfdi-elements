@@ -1,12 +1,12 @@
-import type Pago from './pago';
-import type Totales from './totales';
+import type { Pago } from './pago';
+import type { Totales } from './totales';
 
 export interface PagosJson {
   totales: Totales;
   pagos: Pago[];
 }
 
-export default class Pagos {
+export class Pagos {
   private readonly _totales: Totales;
 
   private readonly _pagos: Pago[];

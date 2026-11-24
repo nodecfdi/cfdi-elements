@@ -1,4 +1,4 @@
-export default class Dictionary {
+export class Dictionary {
   private readonly _values: Record<string, string>;
 
   public constructor(values: Record<string, string>) {

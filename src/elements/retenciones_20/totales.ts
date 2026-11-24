@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ImpRetenidosAttributes } from './imp_retenidos';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { ImpRetenidos } from './imp_retenidos';
 
 export type TotalesAttributes

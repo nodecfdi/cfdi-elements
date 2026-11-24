@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { OtroPagoAttributes } from './otro_pago';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { OtroPago } from './otro_pago';
 
 export class OtrosPagos extends AbstractElement {

@@ -7,7 +7,7 @@ import type { InformacionGlobalAttributes } from './informacion_global';
 import type { ReceptorAttributes } from './receptor';
 import type { Retencion, RetencionAttributes } from './retencion';
 import type { Traslado, TrasladoAttributes } from './traslado';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Addenda } from './addenda';
 import { CfdiRelacionados } from './cfdi_relacionados';
 import { Complemento } from './complemento';

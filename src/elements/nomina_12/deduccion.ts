@@ -1,4 +1,4 @@
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 
 export type DeduccionAttributes = 'TipoDeduccion' | 'Clave' | 'Concepto' | 'Importe';
 

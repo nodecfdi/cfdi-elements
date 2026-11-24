@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { SubContratacionAttributes } from './sub_contratacion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { SubContratacion } from './sub_contratacion';
 
 export type ReceptorAttributes

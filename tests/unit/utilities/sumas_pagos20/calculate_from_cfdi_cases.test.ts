@@ -1,7 +1,7 @@
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import { Decimal, nodeFromXmlString } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
-import Calculator from '../../../../src/utilities/sumas_pagos20/calculator';
+import { Calculator } from '../../../../src/utilities/sumas_pagos20/calculator';
 import { fileContents } from '../../../../test_helpers/test_utils';
 
 const checkAttributeDecimal = (

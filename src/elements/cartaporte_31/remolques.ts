@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RemolqueAttributes } from './remolque';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Remolque } from './remolque';
 
 export class Remolques extends AbstractElement {

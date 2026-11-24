@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DomicilioAttributes } from './domicilio';
 import type { PartesTransporteAttributes } from './partes_transporte';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Domicilio } from './domicilio';
 import { PartesTransporte } from './partes_transporte';
 

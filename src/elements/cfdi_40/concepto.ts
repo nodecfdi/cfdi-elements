@@ -5,7 +5,7 @@ import type { InformacionAduaneraAttributes } from './informacion_aduanera';
 import type { ParteAttributes } from './parte';
 import type { Retencion, RetencionAttributes } from './retencion';
 import type { Traslado, TrasladoAttributes } from './traslado';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { ACuentaTerceros } from './a_cuenta_terceros';
 import { ComplementoConcepto } from './complemento_concepto';
 import { ConceptoImpuestos } from './concepto_impuestos';

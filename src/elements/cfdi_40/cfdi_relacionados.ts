@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { CfdiRelacionadoAttributes } from './cfdi_relacionado';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { CfdiRelacionado } from './cfdi_relacionado';
 
 export type CfdiRelacionadosAttributes = 'TipoRelacion';

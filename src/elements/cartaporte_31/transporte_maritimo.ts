@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ContenedorMaritimoAttributes } from './contenedor_maritimo';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { ContenedorMaritimo } from './contenedor_maritimo';
 
 export type TransporteMaritimoAttributes

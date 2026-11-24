@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DetallesDelServicioAttributes } from './detalles_del_servicio';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DetallesDelServicio } from './detalles_del_servicio';
 
 export class Servicios extends AbstractElement {

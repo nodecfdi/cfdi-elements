@@ -4,7 +4,7 @@ import type { MercanciaAttributes } from './mercancia';
 import type { TransporteAereoAttributes } from './transporte_aereo';
 import type { TransporteFerroviarioAttributes } from './transporte_ferroviario';
 import type { TransporteMaritimoAttributes } from './transporte_maritimo';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Autotransporte } from './autotransporte';
 import { Mercancia } from './mercancia';
 import { TransporteAereo } from './transporte_aereo';

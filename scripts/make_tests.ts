@@ -1,7 +1,7 @@
 import process from 'node:process';
 import { parseArgs } from 'node:util';
 import { beautify, failWithUsage } from './elements_maker/cli_utils.js';
-import TestsMaker from './elements_maker/tests_maker.js';
+import { TestsMaker } from './elements_maker/tests_maker.js';
 
 const USAGE = `Uso:
   pnpm make:tests [opciones] <specification-file> [output-path]

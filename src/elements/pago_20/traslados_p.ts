@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { TrasladoPAttributes } from './traslado_p';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { TrasladoP } from './traslado_p';
 
 export class TrasladosP extends AbstractElement {

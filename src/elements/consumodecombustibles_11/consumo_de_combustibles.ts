@@ -1,5 +1,5 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Conceptos } from './conceptos';
 
 export type ConsumoDeCombustiblesAttributes

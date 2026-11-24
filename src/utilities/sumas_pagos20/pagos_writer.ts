@@ -1,13 +1,13 @@
 import type { Decimal } from '@nodecfdi/cfdi-core';
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import type PagoData from './pago';
-import type PagosData from './pagos';
+import type { Pago as PagoData } from './pago';
+import type { Pagos as PagosData } from './pagos';
 import { formatNumber } from '@nodecfdi/cfdi-core';
 import { Pago as ElementPago } from '../../elements/pago_20/pago';
 import { Pagos as ElementPagos } from '../../elements/pago_20/pagos';
-import Calculator from './calculator';
+import { Calculator } from './calculator';
 
-export default class PagosWriter {
+export class PagosWriter {
   private readonly _pagos: ElementPagos;
 
   private readonly _calculator: Calculator;

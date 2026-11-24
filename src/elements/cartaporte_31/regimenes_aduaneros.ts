@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RegimenAduaneroCCPAttributes } from './regimen_aduanero_ccp';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { RegimenAduaneroCCP } from './regimen_aduanero_ccp';
 
 export class RegimenesAduaneros extends AbstractElement {

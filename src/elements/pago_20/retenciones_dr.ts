@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RetencionDRAttributes } from './retencion_dr';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { RetencionDR } from './retencion_dr';
 
 export class RetencionesDR extends AbstractElement {

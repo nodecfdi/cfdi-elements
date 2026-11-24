@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ContenedorFerroviarioAttributes } from './contenedor_ferroviario';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { ContenedorFerroviario } from './contenedor_ferroviario';
 
 export type CarroAttributes = 'TipoCarro' | 'MatriculaCarro' | 'GuiaCarro' | 'ToneladasNetasCarro';

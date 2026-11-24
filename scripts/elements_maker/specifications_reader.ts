@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 
-export default class SpecificationsReader {
+export class SpecificationsReader {
   private _data: Record<string, unknown>;
 
   public constructor(data: Record<string, unknown>) {

@@ -1,14 +1,14 @@
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import { Decimal } from '@nodecfdi/cfdi-core';
-import Currencies from './currencies';
-import DoctoRelacionado from './docto_relacionado';
-import Impuesto from './impuesto';
-import Impuestos from './impuestos';
-import Pago from './pago';
-import Pagos from './pagos';
-import Totales from './totales';
+import { Currencies } from './currencies';
+import { DoctoRelacionado } from './docto_relacionado';
+import { Impuesto } from './impuesto';
+import { Impuestos } from './impuestos';
+import { Pago } from './pago';
+import { Pagos } from './pagos';
+import { Totales } from './totales';
 
-export default class Calculator {
+export class Calculator {
   private _paymentTaxesPrecision = 6;
 
   private _currencies: Currencies;

@@ -1,10 +1,10 @@
 import type { Decimal } from '@nodecfdi/cfdi-core';
-import type Impuestos from './impuestos';
+import type { Impuestos } from './impuestos';
 
 /**
  * The amounts on this class are set in the payment currency
  */
-export default class DoctoRelacionado {
+export class DoctoRelacionado {
   private readonly _impPagado: Decimal;
 
   private readonly _impuestos: Impuestos;

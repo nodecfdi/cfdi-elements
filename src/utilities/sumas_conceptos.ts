@@ -3,7 +3,7 @@ import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
 import type { SumaExentos, SumaLocal, SumaRetenciones, SumaTraslados } from '../types';
 import { Decimal } from '@nodecfdi/cfdi-core';
 
-export default class SumasConceptos {
+export class SumasConceptos {
   private _importes = new Decimal(0);
 
   private _descuento = new Decimal(0);

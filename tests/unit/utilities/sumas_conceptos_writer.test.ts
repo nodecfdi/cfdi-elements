@@ -2,8 +2,8 @@ import { Decimal, nodeToXmlString, XmlNode } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
 import { Comprobante } from '../../../src/elements/cfdi_40/index';
 import { ImpuestosLocales } from '../../../src/elements/implocal_10/index';
-import SumasConceptos from '../../../src/utilities/sumas_conceptos';
-import SumasConceptosWriter from '../../../src/utilities/sumas_conceptos_writer';
+import { SumasConceptos } from '../../../src/utilities/sumas_conceptos';
+import { SumasConceptosWriter } from '../../../src/utilities/sumas_conceptos_writer';
 
 describe('sumas conceptos writer', () => {
   test('constructor', () => {

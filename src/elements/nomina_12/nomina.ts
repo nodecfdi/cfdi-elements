@@ -3,7 +3,7 @@ import type { DeduccionesAttributes } from './deducciones';
 import type { EmisorAttributes } from './emisor';
 import type { PercepcionesAttributes } from './percepciones';
 import type { ReceptorAttributes } from './receptor';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Deducciones } from './deducciones';
 import { Emisor } from './emisor';
 import { Incapacidades } from './incapacidades';

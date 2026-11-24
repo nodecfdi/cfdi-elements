@@ -1,8 +1,8 @@
 import { XmlNode } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
 import { Pagos as ElementPagos } from '../../../../src/elements/pago_20/index';
-import Calculator from '../../../../src/utilities/sumas_pagos20/calculator';
-import PagosWriter from '../../../../src/utilities/sumas_pagos20/pagos_writer';
+import { Calculator } from '../../../../src/utilities/sumas_pagos20/calculator';
+import { PagosWriter } from '../../../../src/utilities/sumas_pagos20/pagos_writer';
 
 describe('sumas pagos20 pagos writer', () => {
   test('constructor requires a pago20:Pagos element', () => {

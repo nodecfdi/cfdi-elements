@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DatosUnAdquirienteAttributes } from './datos_un_adquiriente';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DatosAdquirientesCopSC } from './datos_adquirientes_cop_sc';
 import { DatosUnAdquiriente } from './datos_un_adquiriente';
 

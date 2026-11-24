@@ -1,8 +1,8 @@
 import type { Decimal } from '@nodecfdi/cfdi-core';
 import type { ImpuestoTipo } from './impuesto';
-import Impuesto from './impuesto';
+import { Impuesto } from './impuesto';
 
-export default class Impuestos {
+export class Impuestos {
   private _impuestos = new Map<string, Impuesto>();
 
   public constructor(...impuestos: Impuesto[]) {

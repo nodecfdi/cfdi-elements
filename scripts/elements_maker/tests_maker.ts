@@ -1,8 +1,8 @@
-import type Structure from './structure.js';
+import type { Structure } from './structure.js';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { specKeyFromFile } from './cli_utils.js';
-import Specifications from './specifications.js';
+import { Specifications } from './specifications.js';
 import { snakeToCamelCase, toSnakeCase, toWords } from './string_utils.js';
 
 export interface TestsMakerOptions {
@@ -11,7 +11,7 @@ export interface TestsMakerOptions {
   force?: boolean;
 }
 
-export default class TestsMaker {
+export class TestsMaker {
   private readonly _specs: Specifications;
 
   private readonly _outputFile: string;

@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { TiposFiguraAttributes } from './tipos_figura';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { TiposFigura } from './tipos_figura';
 
 export class FiguraTransporte extends AbstractElement {

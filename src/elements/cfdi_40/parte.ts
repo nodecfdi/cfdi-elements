@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { InformacionAduaneraAttributes } from './informacion_aduanera';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { InformacionAduanera } from './informacion_aduanera';
 
 export type ParteAttributes

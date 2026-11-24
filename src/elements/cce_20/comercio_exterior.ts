@@ -3,7 +3,7 @@ import type { DestinatarioAttributes } from './destinatario';
 import type { EmisorAttributes } from './emisor';
 import type { PropietarioAttributes } from './propietario';
 import type { ReceptorAttributes } from './receptor';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Destinatario } from './destinatario';
 import { Emisor } from './emisor';
 import { Mercancias } from './mercancias';

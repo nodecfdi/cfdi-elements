@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DeterminadoAttributes } from './determinado';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Determinado } from './determinado';
 
 export class Determinados extends AbstractElement {

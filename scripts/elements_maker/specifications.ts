@@ -1,9 +1,9 @@
 import type { ElementSpec } from './structure.js';
-import Dictionary from './dictionary.js';
-import SpecificationsReader from './specifications_reader.js';
-import Structure from './structure.js';
+import { Dictionary } from './dictionary.js';
+import { SpecificationsReader } from './specifications_reader.js';
+import { Structure } from './structure.js';
 
-export default class Specifications {
+export class Specifications {
   private _structure: Structure;
 
   private _dictionary: Dictionary;

@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { BeneficiarioAttributes } from './beneficiario';
 import type { NoBeneficiarioAttributes } from './no_beneficiario';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Beneficiario } from './beneficiario';
 import { NoBeneficiario } from './no_beneficiario';
 

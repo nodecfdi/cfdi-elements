@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { CompensacionSaldosAFavorAttributes } from './compensacion_saldos_a_favor';
 import type { SubsidioAlEmpleoAttributes } from './subsidio_al_empleo';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { CompensacionSaldosAFavor } from './compensacion_saldos_a_favor';
 import { SubsidioAlEmpleo } from './subsidio_al_empleo';
 

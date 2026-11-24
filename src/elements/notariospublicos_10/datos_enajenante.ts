@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DatosUnEnajenanteAttributes } from './datos_un_enajenante';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DatosEnajenantesCopSC } from './datos_enajenantes_cop_sc';
 import { DatosUnEnajenante } from './datos_un_enajenante';
 

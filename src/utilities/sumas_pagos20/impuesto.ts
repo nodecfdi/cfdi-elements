@@ -11,7 +11,7 @@ export interface ImpuestoJson {
   importe: Decimal;
 }
 
-export default class Impuesto {
+export class Impuesto {
   private readonly _tipo: ImpuestoTipo;
 
   private readonly _impuesto: string;

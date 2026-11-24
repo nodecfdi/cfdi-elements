@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { RetencionesLocalesAttributes } from './retenciones_locales';
 import type { TrasladosLocalesAttributes } from './traslados_locales';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { RetencionesLocales } from './retenciones_locales';
 import { TrasladosLocales } from './traslados_locales';
 

@@ -5,7 +5,7 @@ import type { ImpRetenidos, ImpRetenidosAttributes } from './imp_retenidos';
 import type { PeriodoAttributes } from './periodo';
 import type { ReceptorAttributes } from './receptor';
 import type { TotalesAttributes } from './totales';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Addenda } from './addenda';
 import { CfdiRetenRelacionados } from './cfdi_reten_relacionados';
 import { Complemento } from './complemento';

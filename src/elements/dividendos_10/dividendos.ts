@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DividOUtilAttributes } from './divid_o_util';
 import type { RemanenteAttributes } from './remanente';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DividOUtil } from './divid_o_util';
 import { Remanente } from './remanente';
 

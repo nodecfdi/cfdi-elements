@@ -3,7 +3,7 @@ import type { DatosAdquirienteAttributes } from './datos_adquiriente';
 import type { DatosEnajenanteAttributes } from './datos_enajenante';
 import type { DatosNotarioAttributes } from './datos_notario';
 import type { DatosOperacionAttributes } from './datos_operacion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DatosAdquiriente } from './datos_adquiriente';
 import { DatosEnajenante } from './datos_enajenante';
 import { DatosNotario } from './datos_notario';

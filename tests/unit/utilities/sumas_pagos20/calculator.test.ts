@@ -1,7 +1,7 @@
 import { Decimal, nodeFromXmlString } from '@nodecfdi/cfdi-core';
 import { describe, expect, test } from 'vitest';
-import Calculator from '../../../../src/utilities/sumas_pagos20/calculator';
-import Currencies from '../../../../src/utilities/sumas_pagos20/currencies';
+import { Calculator } from '../../../../src/utilities/sumas_pagos20/calculator';
+import { Currencies } from '../../../../src/utilities/sumas_pagos20/currencies';
 
 const minimalXml = `
 <pago20:Pagos xmlns:pago20="http://www.sat.gob.mx/Pagos20">

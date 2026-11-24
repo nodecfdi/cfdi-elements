@@ -2,7 +2,7 @@ import type { AttributesRecord, XmlNodeInterface } from '@nodecfdi/cfdi-core/typ
 import type { ElementInterface } from '../types';
 import { isValidXmlName, XmlNode } from '@nodecfdi/cfdi-core';
 
-export default abstract class AbstractElement<TAttributes extends string = string>
+export abstract class AbstractElement<TAttributes extends string = string>
   extends XmlNode<TAttributes>
   implements ElementInterface<TAttributes> {
   public constructor(

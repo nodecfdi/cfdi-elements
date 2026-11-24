@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DeduccionAttributes } from './deduccion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Deduccion } from './deduccion';
 
 export type DeduccionesAttributes = 'TotalOtrasDeducciones' | 'TotalImpuestosRetenidos';

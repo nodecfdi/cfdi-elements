@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { PagoAttributes } from './pago';
 import type { TotalesAttributes } from './totales';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Pago } from './pago';
 import { Totales } from './totales';
 

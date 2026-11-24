@@ -1,4 +1,4 @@
-export default class Currencies {
+export class Currencies {
   private readonly _currencyAllowedDecimals = new Map<string, number>();
 
   public constructor(currencyAllowedDecimals: Record<string, number>) {

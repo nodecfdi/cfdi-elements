@@ -26,7 +26,7 @@ export interface SpecificationSpec {
   'root': ElementSpec;
 }
 
-export default class Structure implements Iterable<Structure> {
+export class Structure implements Iterable<Structure> {
   private readonly _name: string;
 
   private readonly _elementName: string;

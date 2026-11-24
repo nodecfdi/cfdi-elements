@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DoctoRelacionadoAttributes } from './docto_relacionado';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DoctoRelacionado } from './docto_relacionado';
 import { ImpuestosP } from './impuestos_p';
 

@@ -1,4 +1,4 @@
-import type AbstractElement from '../src/common/abstract_element';
+import type { AbstractElement } from '../src/common/abstract_element';
 import { expect } from 'vitest';
 
 expect.extend({

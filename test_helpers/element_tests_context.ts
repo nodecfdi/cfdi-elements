@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
 
-import type AbstractElement from '../src/common/abstract_element';
+import type { AbstractElement } from '../src/common/abstract_element';
 import { XmlNode } from '@nodecfdi/cfdi-core';
 import { beforeEach, expect } from 'vitest';
 

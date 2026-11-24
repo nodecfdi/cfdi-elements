@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { AccionesOTitulosAttributes } from './acciones_o_titulos';
 import type { HorasExtraAttributes } from './horas_extra';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { AccionesOTitulos } from './acciones_o_titulos';
 import { HorasExtra } from './horas_extra';
 

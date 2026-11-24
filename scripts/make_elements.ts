@@ -7,9 +7,9 @@ import {
   specKeyFromFile,
   writeSpecificationFile,
 } from './elements_maker/cli_utils.js';
-import ElementsMaker from './elements_maker/elements_maker.js';
+import { ElementsMaker } from './elements_maker/elements_maker.js';
 import { ensureElementInReadme } from './elements_maker/readme_updater.js';
-import TestsMaker from './elements_maker/tests_maker.js';
+import { TestsMaker } from './elements_maker/tests_maker.js';
 import {
   loadXsdContent,
   parseXsd,

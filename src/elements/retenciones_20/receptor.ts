@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ExtranjeroAttributes } from './extranjero';
 import type { NacionalAttributes } from './nacional';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Extranjero } from './extranjero';
 import { Nacional } from './nacional';
 

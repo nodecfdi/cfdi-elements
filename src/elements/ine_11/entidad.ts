@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ContabilidadAttributes } from './contabilidad';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Contabilidad } from './contabilidad';
 
 export type EntidadAttributes = 'ClaveEntidad' | 'Ambito';

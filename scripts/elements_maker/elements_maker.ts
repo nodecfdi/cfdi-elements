@@ -1,11 +1,11 @@
-import type Structure from './structure.js';
+import type { Structure } from './structure.js';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import Dictionary from './dictionary.js';
-import Specifications from './specifications.js';
+import { Dictionary } from './dictionary.js';
+import { Specifications } from './specifications.js';
 import { toSnakeCase } from './string_utils.js';
 
-export default class ElementsMaker {
+export class ElementsMaker {
   private readonly _specs: Specifications;
 
   private readonly _outputDir: string;

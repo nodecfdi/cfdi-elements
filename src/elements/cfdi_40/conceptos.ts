@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ConceptoAttributes } from './concepto';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Concepto } from './concepto';
 
 export class Conceptos extends AbstractElement {

@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { EntidadSNCFAttributes } from './entidad_sncf';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { EntidadSNCF } from './entidad_sncf';
 
 export type EmisorAttributes = 'Curp' | 'RegistroPatronal' | 'RfcPatronOrigen';

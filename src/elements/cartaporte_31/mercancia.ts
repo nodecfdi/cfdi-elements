@@ -3,7 +3,7 @@ import type { CantidadTransportaAttributes } from './cantidad_transporta';
 import type { DetalleMercanciaAttributes } from './detalle_mercancia';
 import type { DocumentacionAduaneraAttributes } from './documentacion_aduanera';
 import type { GuiasIdentificacionAttributes } from './guias_identificacion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { CantidadTransporta } from './cantidad_transporta';
 import { DetalleMercancia } from './detalle_mercancia';
 import { DocumentacionAduanera } from './documentacion_aduanera';

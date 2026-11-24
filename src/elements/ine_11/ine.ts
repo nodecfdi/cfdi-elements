@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { EntidadAttributes } from './entidad';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Entidad } from './entidad';
 
 export type INEAttributes = 'Version' | 'TipoProceso' | 'TipoComite' | 'IdContabilidad';

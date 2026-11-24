@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { IdentificacionVehicularAttributes } from './identificacion_vehicular';
 import type { SegurosAttributes } from './seguros';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { IdentificacionVehicular } from './identificacion_vehicular';
 import { Remolques } from './remolques';
 import { Seguros } from './seguros';

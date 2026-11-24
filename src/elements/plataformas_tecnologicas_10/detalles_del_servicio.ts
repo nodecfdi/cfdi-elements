@@ -2,7 +2,7 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { ComisionDelServicioAttributes } from './comision_del_servicio';
 import type { ContribucionGubernamentalAttributes } from './contribucion_gubernamental';
 import type { ImpuestosTrasladadosdelServicioAttributes } from './impuestos_trasladadosdel_servicio';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { ComisionDelServicio } from './comision_del_servicio';
 import { ContribucionGubernamental } from './contribucion_gubernamental';
 import { ImpuestosTrasladadosdelServicio } from './impuestos_trasladadosdel_servicio';

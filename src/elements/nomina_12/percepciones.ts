@@ -2,7 +2,7 @@ import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { JubilacionPensionRetiroAttributes } from './jubilacion_pension_retiro';
 import type { PercepcionAttributes } from './percepcion';
 import type { SeparacionIndemnizacionAttributes } from './separacion_indemnizacion';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { JubilacionPensionRetiro } from './jubilacion_pension_retiro';
 import { Percepcion } from './percepcion';
 import { SeparacionIndemnizacion } from './separacion_indemnizacion';

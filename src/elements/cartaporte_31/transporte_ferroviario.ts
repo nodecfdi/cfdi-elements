@@ -1,7 +1,7 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { CarroAttributes } from './carro';
 import type { DerechosDePasoAttributes } from './derechos_de_paso';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Carro } from './carro';
 import { DerechosDePaso } from './derechos_de_paso';
 

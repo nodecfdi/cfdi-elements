@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DescInmuebleAttributes } from './desc_inmueble';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DescInmueble } from './desc_inmueble';
 
 export class DescInmuebles extends AbstractElement {

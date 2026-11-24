@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { InmuebleAttributes } from './inmueble';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { Inmueble } from './inmueble';
 
 export type ParcialesConstruccionAttributes = 'Version' | 'NumPerLicoAut';

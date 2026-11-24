@@ -1,6 +1,6 @@
 import type { AttributesRecord } from '@nodecfdi/cfdi-core/types';
 import type { DescripcionesEspecificasAttributes } from './descripciones_especificas';
-import AbstractElement from '../../common/abstract_element';
+import { AbstractElement } from '../../common/abstract_element';
 import { DescripcionesEspecificas } from './descripciones_especificas';
 
 export type MercanciaAttributes

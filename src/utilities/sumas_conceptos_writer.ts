@@ -1,10 +1,10 @@
 import type { Decimal } from '@nodecfdi/cfdi-core';
 import type { XmlNodeInterface } from '@nodecfdi/cfdi-core/types';
-import type SumasConceptos from './sumas_conceptos';
+import type { SumasConceptos } from './sumas_conceptos';
 import { formatNumber } from '@nodecfdi/cfdi-core';
 import { Comprobante } from '../elements/cfdi_40/comprobante';
 
-export default class SumasConceptosWriter {
+export class SumasConceptosWriter {
   private readonly _comprobante: Comprobante;
 
   private readonly _sumas: SumasConceptos;
