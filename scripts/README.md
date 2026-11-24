@@ -152,6 +152,12 @@ pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/notariospublico
 pnpm make:specification http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodeCombustibles11.xsd
 ```
 
+### `dividendos_10`
+
+```sh
+pnpm make:specification http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos/dividendos.xsd
+```
+
 <!-- specifications:end -->
 
 ---
@@ -238,6 +244,12 @@ pnpm make:elements scripts/elements_maker/specifications/notariospublicos_10.jso
 
 ```sh
 pnpm make:elements scripts/elements_maker/specifications/consumodecombustibles_11.json src/elements/consumodecombustibles_11/ --with-tests
+```
+
+### `dividendos_10`
+
+```sh
+pnpm make:elements scripts/elements_maker/specifications/dividendos_10.json src/elements/dividendos_10/ --with-tests
 ```
 
 <!-- elements:end -->
