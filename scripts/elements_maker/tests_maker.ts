@@ -98,7 +98,7 @@ export default class TestsMaker {
 
   public static make(specFile: string, outputPath?: string, options: TestsMakerOptions = {}): TestsMaker {
     const specKey = options.specKey ?? specKeyFromFile(specFile);
-    const resolvedOutput = outputPath ?? path.join('tests', 'unit', specKey);
+    const resolvedOutput = outputPath ?? path.join('tests', 'unit', 'elements', specKey);
 
     return new TestsMaker(Specifications.makeFromFile(specFile), resolvedOutput, {
       ...options,

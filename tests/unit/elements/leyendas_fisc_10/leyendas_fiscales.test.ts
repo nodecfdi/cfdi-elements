@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { Leyenda, LeyendasFiscales } from '../../../src/elements/leyendas_fisc_10/index';
+import { Leyenda, LeyendasFiscales } from '../../../../src/elements/leyendas_fisc_10/index';
 
 describe('leyendasFisc10', () => {
   test('leyendas fiscales', ({ assert }) => {

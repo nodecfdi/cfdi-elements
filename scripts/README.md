@@ -41,7 +41,7 @@ ESLint se puede pasar `--no-beautify`.
 
 ### Script `make:tests`
 
-Genera el archivo de tests unitarios base (`tests/unit/<spec>/<root>.test.ts`) validando nombre de elemento,
+Genera el archivo de tests unitarios base (`tests/unit/elements/<spec>/<root>.test.ts`) validando nombre de elemento,
 orden de hijos, atributos fijos del nodo raíz, hijos (`single`, `singleAddChild`, `multiple`) y `shortcuts`
 a partir del archivo de especificación:
 

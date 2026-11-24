@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { ImpuestosLocales, RetencionesLocales, TrasladosLocales } from '../../../src/elements/implocal_10/index';
+import { ImpuestosLocales, RetencionesLocales, TrasladosLocales } from '../../../../src/elements/implocal_10/index';
 
 describe('implocal10', () => {
   test('impuestos locales', ({ assert }) => {

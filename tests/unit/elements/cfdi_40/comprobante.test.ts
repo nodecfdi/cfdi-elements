@@ -21,7 +21,7 @@ import {
   Retenciones,
   Traslado,
   Traslados,
-} from '../../../src/elements/cfdi_40/index';
+} from '../../../../src/elements/cfdi_40/index';
 
 describe('cfdi40', () => {
   test('comprobante', ({ assert }) => {

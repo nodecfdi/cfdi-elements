@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { ComercioExterior, DescripcionesEspecificas, Destinatario, Domicilio, Emisor, Mercancia, Mercancias, Propietario, Receptor } from '../../../src/elements/cce_20/index';
+import { ComercioExterior, DescripcionesEspecificas, Destinatario, Domicilio, Emisor, Mercancia, Mercancias, Propietario, Receptor } from '../../../../src/elements/cce_20/index';
 
 describe('cce20', () => {
   test('comercio exterior', ({ assert }) => {

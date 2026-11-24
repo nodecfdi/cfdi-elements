@@ -8,12 +8,12 @@ const USAGE = `Uso:
 
 Descripción:
   Genera el archivo de tests base para los elementos de una especificación.
-  Por defecto escribe en tests/unit/<spec-key>/<root_snake>.test.ts y no sobrescribe
+  Por defecto escribe en tests/unit/elements/<spec-key>/<root_snake>.test.ts y no sobrescribe
   si el archivo ya existe (para preservar casos adicionales), salvo que se indique --force.
 
 Argumentos:
   specification-file  Ruta al archivo JSON de especificación
-  output-path         Directorio o archivo .test.ts destino (por defecto: tests/unit/<spec-key>/)
+  output-path         Directorio o archivo .test.ts destino (por defecto: tests/unit/elements/<spec-key>/)
 
 Opciones:
   --src-dir <dir>     Directorio de los elementos fuente (por defecto: src/elements/<spec-key>/)

@@ -14,7 +14,7 @@ import {
   TrasladoP,
   TrasladosDR,
   TrasladosP,
-} from '../../../src/elements/pago_20/index';
+} from '../../../../src/elements/pago_20/index';
 
 describe('pago20', () => {
   test('pagos', ({ assert }) => {

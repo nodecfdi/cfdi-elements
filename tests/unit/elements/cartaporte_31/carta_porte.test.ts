@@ -29,7 +29,7 @@ import {
   TransporteMaritimo,
   Ubicacion,
   Ubicaciones,
-} from '../../../src/elements/cartaporte_31/index';
+} from '../../../../src/elements/cartaporte_31/index';
 
 describe('cartaporte31', () => {
   test('carta porte', ({ assert }) => {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { Donatarias } from '../../../src/elements/donat_11/index';
+import { Donatarias } from '../../../../src/elements/donat_11/index';
 
 describe('donat11', () => {
   test('donatarias', () => {

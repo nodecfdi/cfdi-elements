@@ -6,7 +6,7 @@ import {
   ImpuestosTrasladadosdelServicio,
   Servicios,
   ServiciosPlataformasTecnologicas,
-} from '../../../src/elements/plataformas_tecnologicas_10/index';
+} from '../../../../src/elements/plataformas_tecnologicas_10/index';
 
 describe('plataformasTecnologicas10', () => {
   test('plataformas tecnologicas', ({ assert }) => {
